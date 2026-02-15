@@ -1,0 +1,194 @@
+.footer {
+  background-color: var(--header-bg); /* Se adapta al tema igual que el header */
+  color: var(--text-main);
+  padding: 70px 0 0;
+  border-top: 1px solid var(--card-border);
+  transition: var(--transition);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px 50px;
+  gap: 40px;
+}
+
+.brandSection {
+  flex: 1;
+  min-width: 250px;
+}
+
+.logo {
+  font-size: 2rem;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.logo span {
+  color: var(--primary-red);
+}
+
+.description {
+  line-height: 1.6;
+  margin-bottom: 25px;
+  opacity: 0.8;
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+}
+
+.socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  color: var(--primary-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border: 1px solid var(--card-border);
+}
+
+.socials a:hover {
+  background-color: var(--primary-red);
+  color: white;
+  transform: translateY(-5px);
+}
+
+.linksGrid {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.column h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--primary-red);
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.column ul li {
+  margin-bottom: 12px;
+}
+
+.column ul li a {
+  color: var(--text-main);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: var(--transition);
+}
+
+.column ul li a:hover {
+  opacity: 1;
+  color: var(--primary-red);
+  padding-left: 5px;
+}
+
+.bottomBar {
+  text-align: center;
+  padding: 25px 20px;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+}
+
+.bottomBar p {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+  .linksGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row; /* CAMBIO CLAVE: De vertical a horizontal */
+  flex-wrap: wrap;    /* Para que sea responsivo en celulares */
+  gap: 30px;          /* Espacio entre cada dato de contacto */
+  width: 100%;        /* Para que use todo el ancho disponible */
+  justify-content: center; /* Centra los datos horizontalmente */
+  margin-top: 20px;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center; 
+  gap: 10px;
+  color: #adb5bd; 
+  font-size: 0.9rem;
+  min-width: fit-content; /* Evita que el texto se corte */
+}
+.icon {
+  color: #ff9800; /* Color naranja para resaltar los iconos como en tu referencia */
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.2));
+}
+
+.columnTitle {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 1.1rem; /* Títulos consistentes con "Games" o "Legal" */
+}
+
+.footerContactRow {
+  display: flex; /* Alinea los hijos uno al lado del otro */
+  justify-content: center; /* Centra el bloque completo en el footer */
+  flex-wrap: wrap; /* Permite que bajen si no caben en pantallas pequeñas */
+  gap: 40px; /* Espacio horizontal generoso entre cada dato */
+  padding: 20px 0;
+  border-top: 1px solid #333; /* Opcional: una línea sutil divisoria */
+  margin-top: 20px;
+}
+
+.footerContactBar {
+  display: flex;
+  justify-content: flex-start !important; /* Fuerza la alineación a la izquierda */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px; /* Espacio entre dirección, teléfono y correo */
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria */
+  margin-top: 20px;
+  width: 100%; /* Ocupa todo el ancho para permitir el alineado a la izquierda */
+  text-align: left; /* Alinea el texto interno */
+}
+
+.contactIcon {
+  font-size: 1.2rem;
+  /* El color naranja ayuda a resaltar sobre el fondo gris oscuro */
+  color: #f39c12; 
+}
+
+.contactItem p {
+  color: #adb5bd; /* Gris claro para legibilidad en fondo oscuro */
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 1 auto; /* Evita que los items crezcan y se centren */
+}
+
+

@@ -1,0 +1,120 @@
+.aboutContainer {
+  padding: 80px 0px;
+  background-color: transparent; 
+  text-align: center;
+  transition: all 0.3s ease;
+  scroll-margin-top: 100px;
+}
+
+.mainTitle {
+  color: var(--text-main);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.underline {
+  width: 70px;
+  height: 4px;
+  background-color: var(--primary-red);
+  margin: 0 auto 50px;
+  border-radius: 2px;
+}
+
+.cardsGrid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Asegura que todas tengan el mismo alto */
+  gap: 20px;            /* Reducimos un poco el espacio para que quepan mejor */
+  flex-wrap: nowrap;    /* ¡CLAVE! Esto evita que la tercera card se baje */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  overflow-x: auto;     /* Por si la pantalla es MUY pequeña, permite scroll horizontal en vez de romperse */
+}
+
+/* Efecto 3D de Uiverse */
+.card3D {
+  /* Cambiamos width fijo por flex-basis para que sean elásticas */
+  flex: 1;              
+  min-width: 280px;     /* Ancho mínimo para que no se vean muy flacas */
+  max-width: 350px;     /* Ancho máximo para que no se vean gigantes */
+  min-height: 380px;
+  background-color: var(--card-bg);
+  border-radius: 24px;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 25px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px var(--card-shadow);
+}
+
+/* para laptops de pantallas pequeñas */
+@media (max-width: 1024px) {
+  .card3D {
+    min-width: 250px;
+    padding: 30px 15px;
+  }
+  .card3D h3 {
+    font-size: 1.5rem;
+  }
+}
+
+.card3D::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #F54748;
+  border-radius: 24px 24px 0 0;
+}
+
+.card3D:hover {
+  transform: translateY(-15px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: #F54748;
+}
+
+.card3D:hover::before {
+  height: 100%;
+  opacity: 0.1;
+}
+
+.content {
+  z-index: 1;
+}
+
+.iconWrapper {
+  transition: transform 0.4s ease;
+}
+
+.card3D:hover .iconWrapper {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.card3D {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 30px var(--card-shadow);
+  transition: var(--transition); /* Reutiliza tu transición global */
+}
+
+.card3D p {
+  color: var(--text-secondary, #cccccc);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card3D h3, .card3D p {
+  color: var(--text-main); /* Ambos se adaptan al tema */
+}
