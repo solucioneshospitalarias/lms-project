@@ -13,7 +13,7 @@ const About = () => {
     },
     {
       title: "Visión",
-      text: "Para el año 2030, Rutas del Saber se consolidará como ecosistema digital y pedagógico líder en Colombia para la transformación social. Habremos logrado articular a más de 1.000 comunidades educativas, integrando de manera efectiva la seguridad vial, la conciencia ambiental, convivencia escolar y la cultura de paz en el ADN de las nuevas generaciones. Seguiremos siendo el referente principal en la creacion de territorios inteligentes y seguros, donde cada niño y adolescente crezca con las herramientas necesarias para liderar una sociedad mas justa, sostenible y profundamente humana.",
+      text: "Para el año 2030, Rutas del Saber se consolidará como ecosistema digital y pedagógico líder en Colombia para la transformación social. Habremos logrado articular a más de 1.000 comunidades educativas, integrando de manera efectiva la seguridad vial, la conciencia ambiental, convivencia escolar y la cultura de paz en el ADN de las nuevas generaciones.",
       icon: faEye,
       color: "#47a0f5",
     },

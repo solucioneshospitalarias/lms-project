@@ -22,8 +22,9 @@
   --bg-main: #ffffff;
   --nav-link: #5C6670;
   --text-main: #5C6670;
+  
   --header-bg: #ffffff;
-  --card-bg: #f9f9f9;
+  --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.05); /* Borde sutil claro */
   --card-shadow: rgba(0, 0, 0, 0.1);    /* Sombra suave */
   
@@ -31,16 +32,25 @@
   --primary-red: #C22821;
   --accent-green: #48B358;
   --accent-blue: #AAD4E8;
+
+  --footer-bg: #3c4043;     /* Gris claro para el fondo */
+  --footer-text: #1a1a1a;     /* Letras negras */
+  --footer-text-links: #2d3748;
+  --footer-text-main: #1a202c;
 }
 
 [data-theme='dark'] {
   --bg-main: #121212;
-  --text-main: #e0e0e0;
+  --text-main: #ffffff;
+  --text-secondary: #cbd5e0;
   --header-bg: #1e1e1e;
   --card-bg: #2d2d2d;      /* Fondo gris oscuro profesional */
   --nav-link: #ffffff !important;
   --card-border: rgba(255, 255, 255, 0.1); /* Borde que resalta en la oscuridad */
-  --card-shadow: rgba(0, 0, 0, 0.5);       /* Sombra más profunda */
+  --card-shadow: rgba(0, 0, 0, 0.5);   
+  --footer-bg: #1a1a1a;       
+  --footer-text-links: #cbd5e0; 
+  --footer-text-main: #ffffff;   /* Sombra más profunda */
 }
 
 body {

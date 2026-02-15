@@ -1,57 +1,78 @@
-// src/components/layout/Header/Navbar.jsx
+import React from "react";
 import styles from "./Header.module.css";
 import { ChevronDown } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import logoRutas from "../../../assets/logoRutas.png";
+// Importamos NavLink para la detección automática de rutas
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
-  // Función para volver al inicio suavemente
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        {/* Logo interactivo: Casita + Texto en 2 líneas */}
-        <div className={styles.logoContainer} onClick={scrollToTop}>
+        {/* Logo que lleva al Inicio */}
+        <Link to="/" className={styles.logoContainer}>
           <img
             src={logoRutas}
             alt="Rutas del Saber"
             className={styles.mainLogo}
           />
-        </div>
+        </Link>
 
         {/* Menú de navegación */}
         <ul className={styles.navMenu}>
-          <li className={styles.active}>
-            <div className={styles.navItemContent}>
-              <span>Inicio</span> <ChevronDown size={14} />
-            </div>
+          {/* INICIO - La clase .active ahora es dinámica */}
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              <div className={styles.navItemContent}>
+                <span>Inicio</span> <ChevronDown size={14} />
+              </div>
+            </NavLink>
+          </li>
+
+          {/* ESTADÍSTICAS - La rayita roja saltará aquí al hacer clic */}
+          <li>
+            <NavLink
+              to="/estadisticas"
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              <div className={styles.navItemContent}>
+                <span>Estadísticas</span> <ChevronDown size={14} />
+              </div>
+            </NavLink>
+          </li>
+
+          {/* Otros botones (puedes añadirles NavLink después) */}
+          <li>
+            <NavLink
+              to="/productos"
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              <div className={styles.navItemContent}>
+                <span>Productos</span> <ChevronDown size={14} />
+              </div>
+            </NavLink>
           </li>
           <li>
-            <div className={styles.navItemContent}>
-              <span>¿Quiénes somos?</span> <ChevronDown size={14} />
-            </div>
-          </li>
-          <li>
-            <div className={styles.navItemContent}>
-              <span>Estadísticas</span> <ChevronDown size={14} />
-            </div>
-          </li>
-          <li>
-            <div className={styles.navItemContent}>
-              <span>Productos</span> <ChevronDown size={14} />
-            </div>
-          </li>
-          <li>
-            <div className={styles.navItemContent}>
-              <span>Recursos Educativos</span> <ChevronDown size={14} />
-            </div>
+            <NavLink
+              to="/recursos"
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              <div className={styles.navItemContent}>
+                <span>Recursos Educativos</span> <ChevronDown size={14} />
+              </div>
+            </NavLink>
           </li>
         </ul>
 

@@ -1,0 +1,138 @@
+.statsPage {
+  padding: 80px 20px;
+  background-color: var(--bg-main);
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease-out; /* Animación suave al entrar */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.badge {
+  background: rgba(194, 40, 33, 0.1);
+  color: var(--primary-red);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mainTitle {
+  font-size: 2.8rem;
+  color: var(--text-main);
+  margin-top: 15px;
+}
+
+.mainTitle span {
+  color: var(--primary-red);
+}
+
+.description {
+  color: var(--primary-gray);
+  max-width: 600px;
+  margin: 15px auto 0;
+  line-height: 1.6;
+}
+
+/* Cuadrícula de tarjetas */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.iconWrapper {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Colores suaves para los iconos */
+.blue { background: #e0f2fe; color: #0ea5e9; }
+.red { background: #fee2e2; color: #ef4444; }
+.gray { background: #f3f4f6; color: #6b7280; }
+.gold { background: #fef3c7; color: #d97706; }
+
+.cardInfo h3 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.cardInfo p {
+  margin: 0;
+  color: var(--primary-gray);
+  font-size: 0.9rem;
+}
+
+/* Estilo para la gráfica simulada */
+.chartPlaceholder {
+  margin-top: 50px;
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.barContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 15px;
+  height: 150px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 40px;
+  background: var(--primary-red);
+  border-radius: 8px 8px 0 0;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.bar:hover { opacity: 1; }
+
+.statsPage {
+  /* Aumenta el espacio superior para que el título respire */
+  padding-top: 140px; 
+  background-color: var(--bg-main);
+  min-height: 100vh;
+  position: relative;
+  z-index: 1; /* Nivel inferior al Navbar */
+}
