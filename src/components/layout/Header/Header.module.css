@@ -10,6 +10,38 @@
   position: relative;
 }
 
+.faFacebook {
+  color: #1877F2;
+}
+
+.faInstagram {
+  color: #E4405F;
+}
+
+.faTiktok {
+  color: #000000;
+}
+
+.faWhatsapp {
+  color: #25D366
+}
+
+:global(.dark-mode) .faTiktok {
+  color: #ffffff;
+}
+
+.socials a {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: inline-flex;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 20px;
+}
+
+.socials a:hover {
+  transform: translateY(-3px) scale(1.1);
+  filter: brightness(1.2);
+}
+
 header {
   position: sticky;
   top: 0;
@@ -115,9 +147,7 @@ header {
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(0,0,0,0.1);
-  width: 100%;
-  background-color: var(--header-bg);
-  transition: background-color 0.3s ease;
+  position: relative;
 }
 
 .navbar .container {
@@ -246,10 +276,6 @@ header {
   
 }
 
-.navMenu li:hover, 
-.navMenu li.active {
-  color: var(--primary-red);
-}
 
 /* Línea animada (Underline) */
 .navMenu li::after {

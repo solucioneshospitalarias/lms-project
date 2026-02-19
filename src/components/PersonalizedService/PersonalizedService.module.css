@@ -1,0 +1,110 @@
+.wrapper {
+  width: 100%;
+  padding: 80px 0; /* Espaciado vertical para separar de otras secciones */
+  display: flex;
+  justify-content: center;
+  background-color: transparent; 
+}
+
+.container {
+  width: 90%; /* Margen lateral en móviles */
+  max-width: 1300px; /* Evita que se estire demasiado en pantallas gigantes */
+  margin: 0 auto; /* MAGIA DEL CENTRADO */
+}
+
+.card {
+  width: 100%;
+  background: #0d0d0d; /* Fondo oscuro premium para Dark Mode */
+  border-radius: 40px; /* Consistencia con tus otros componentes */
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+.glowEffect {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--x) var(--y),
+    rgba(255, 49, 49, 0.1), /* Brillo rojo muy sutil */
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr; /* Equilibrio visual entre texto e imagen */
+  width: 100%;
+  z-index: 2;
+}
+
+.textSide {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mainTitle {
+  color: #ffffff;
+  font-size: 3.5rem; /* Tamaño senior de alto impacto */
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 20px 0;
+}
+
+.accent {
+  color: #ff3131; /* El rojo oficial de Rutas del Saber */
+}
+
+.contactBtn {
+  background-color: #ff3131;
+  color: white;
+  padding: 22px 45px;
+  border-radius: 50px; /* Botón redondeado profesional */
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: fit-content;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(255, 49, 49, 0.3);
+}
+
+.contactBtn:hover {
+  transform: translateY(-8px);
+  background-color: #e62e2e;
+  box-shadow: 0 15px 40px rgba(255, 49, 49, 0.5);
+}
+
+.imageSide {
+  position: relative;
+  height: 100%;
+}
+
+.personImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.fadeOverlay {
+  position: absolute;
+  inset: 0;
+  /* Máscara para que la imagen nazca del fondo oscuro */
+  background: linear-gradient(to right, #0d0d0d 0%, transparent 30%);
+}
+
+@media (max-width: 1024px) {
+  .contentGrid { grid-template-columns: 1fr; }
+  .imageSide { display: none; }
+  .textSide { padding: 60px 40px; text-align: center; align-items: center; }
+  .mainTitle { font-size: 2.5rem; }
+}

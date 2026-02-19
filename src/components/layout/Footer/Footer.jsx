@@ -5,7 +5,7 @@ import {
   faFacebookF,
   faInstagram,
   faTiktok,
-  faYoutube,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
@@ -24,16 +24,16 @@ const Footer = () => {
             tecnología interactiva y compromiso social.
           </p>
           <div className={styles.socials}>
-            <a href="#" aria-label="Facebook">
+            <a href="https://www.facebook.com/walter.ad.228863" aria-label="Facebook">
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="https://www.instagram.com/walter_ldk/" aria-label="Instagram">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
-            <a href="#" aria-label="Youtube">
-              <FontAwesomeIcon icon={faYoutube} />
+            <a href="https://wa.me/573234876604" aria-label="WhatsApp">
+              <FontAwesomeIcon icon={faWhatsapp} />
             </a>
-            <a href="#" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@trendigroup" aria-label="TikTok">
               <FontAwesomeIcon icon={faTiktok} />
             </a>
           </div>
@@ -84,8 +84,7 @@ const Footer = () => {
           <div className={styles.contactItem}>
             <span className={styles.contactIcon}>📍</span>
             <p>
-              Parque Industrial Los Robles, Km. 1 Vía Bogotá - Siberia, Cota.
-              Oficina 302
+              Cl. 58 #37 - 05, Suroccidente, Barranquilla, Atlántico
             </p>
           </div>
 
@@ -102,7 +101,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.bottomBar}>
-        <p>&copy; {currentYear} Echooling. Todos los derechos reservados.</p>
+        <p>&copy; {currentYear} Rutas del Saber. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

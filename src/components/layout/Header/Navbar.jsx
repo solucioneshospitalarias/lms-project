@@ -71,13 +71,28 @@ const Navbar = () => {
               </div>
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/contacto"
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              <div className={styles.navItemContent}>
+                <span>Contacto</span> <ChevronDown size={14} />
+              </div>
+            </NavLink>
+          </li>
         </ul>
 
         {/* Derecha: Toggle y Botón ÚNICO de Login */}
         <div className={styles.topbarRight}>
           <div className={styles.authButtons}>
             <ThemeToggle />
-            <Link to="/login" className={styles.btnLogin}>
+            <Link
+              to="/login"
+              className={styles.btnLogin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               INICIAR SESIÓN
             </Link>
           </div>

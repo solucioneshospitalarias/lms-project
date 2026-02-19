@@ -1,6 +1,7 @@
-// src/components/layout/Header/Topbar.jsx
 import styles from "./Header.module.css";
-import { Phone, Mail, Facebook, Twitter, Linkedin } from "lucide-react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTiktok, faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Topbar = () => {
   return (
@@ -8,20 +9,29 @@ const Topbar = () => {
       <div className={styles.container}>
         {/* Información de contacto a la izquierda */}
         <div className={styles.contactInfo}>
-          <span>
-            <Phone size={14} /> (+1) 3344 999 999
+          <span className={styles.contactItem}>
+            <FontAwesomeIcon icon={faPhone} style={{ fontSize: '14px' }} /> (+57) 323 487 6604
           </span>
-          <span>
-            <Mail size={14} /> waltersteven.dev@gmail.com
+          <span className={styles.contactItem}>
+            <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: '14px' }} /> waltersteven.dev@gmail.com
           </span>
         </div>
 
-        {/* Lado derecho: Botones + Redes Sociales */}
-
+        {/* Lado derecho: Redes Sociales */}
         <div className={styles.socials}>
-          <Facebook size={16} />
-          <Twitter size={16} />
-          <Linkedin size={16} />
+          <a href="https://www.facebook.com/walter.ad.228863" target="_blank" rel="noopener noreferrer" className={styles.faFacebook} style={{ fontSize: '16px' }}>
+            <FontAwesomeIcon icon={faFacebook} />
+          </a>
+          <a href="https://www.instagram.com/walter_ldk/" target="_blank" rel="noopener noreferrer" className={styles.faInstagram} style={{ fontSize: '16px' }}>
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className={styles.faTiktok} style={{ fontSize: '16px' }}>
+            <FontAwesomeIcon icon={faTiktok} />
+          </a>
+          <a href="https://wa.me/573234876604" target="_blank" rel="noopener noreferrer" className={styles.faWhatsapp} style={{ fontSize: '16px' }}>
+            <FontAwesomeIcon icon={faWhatsapp} />
+          </a>
+          
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import videoInicio from "../../assets/videoInicio.mp4";
 import Servicios from "../Servicios/Servicios";
 import AulaVirtual from "../AulaVirtual/AulaVirtual";
 import IdentityLinks from "../IdentityLinks/IdentityLinks";
+import PersonalizedService from "../PersonalizedService/PersonalizedService";
 
 const Home = () => {
   return (
@@ -73,6 +74,7 @@ const Home = () => {
         <Servicios />
         <AulaVirtual />
         <Slider data={data} activeSlide={0} />
+        <PersonalizedService />
       </>
     </div>
   );
