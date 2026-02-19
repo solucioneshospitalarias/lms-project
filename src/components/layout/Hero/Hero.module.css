@@ -25,7 +25,7 @@
   padding: 60px 80px; 
   gap: 60px; /* Más espacio de separación entre texto y video */
   align-items: center;
-  background-color: #003366; /* Azul Atlántico profundo */
+  /* background-color: #4A6D8C;  */
   border-radius: 80px; 
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   overflow: hidden; 

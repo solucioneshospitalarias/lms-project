@@ -61,7 +61,7 @@ const InfoCarousel = () => {
   useEffect(() => {
     let timer;
     if (!isPaused) {
-      timer = setInterval(nextSlide, 5000);
+      timer = setInterval(nextSlide, 2500);
     }
     return () => clearInterval(timer);
   }, [isPaused, slides.length]);

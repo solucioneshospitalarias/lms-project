@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./Hero.module.css";
 
-const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc }) => {
+const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc, bgColor }) => {
   return (
-    <section className={styles.heroSection}>
-      <div className={styles.mainContainer}>
+    <div className={styles.heroSection}>
+      <div
+        className={styles.mainContainer}
+        style={{ backgroundColor: bgColor }} // <--- Esto aplica el color único
+      >
         <div className={styles.infoColumn}>
           <span className={styles.topBadge}>{badge}</span>
 
@@ -23,10 +26,7 @@ const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc }) => {
 
           <div className={styles.buttonGroup}>
             <a href="#mision" className={styles.btnRed}>
-              Conoce nuestra misión
-            </a>
-            <a href="#galeria" className={styles.btnOutline}>
-              Ver Imágenes
+              Conoce más información
             </a>
           </div>
         </div>
@@ -39,7 +39,7 @@ const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc }) => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

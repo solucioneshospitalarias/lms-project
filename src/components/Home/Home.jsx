@@ -2,17 +2,22 @@ import React from "react";
 import Hero from "../layout/Hero/Hero";
 import styles from "./Home.module.css"
 import InfoCarousel from "../InfoCarousel/InfoCarousel";
-import About from "../About/About";
 import Slider from "../Gallery/Slider";
 import data from "../Gallery/data";
 import videoInicio from "../../assets/videoInicio.mp4";
+import Servicios from "../Servicios/Servicios";
+import AulaVirtual from "../AulaVirtual/AulaVirtual";
+import IdentityLinks from "../IdentityLinks/IdentityLinks";
 
 const Home = () => {
   return (
     <div className={styles.homeFadeIn}>
       <>
         <InfoCarousel />
+
+        {/* 1. EDUCACIÓN 360 - Azul Real */}
         <Hero
+          bgColor="#4A6D8C"
           badge="Formacion Completa"
           title="Educación 360"
           p1="Nuestra visión integral articula cada una de estas normativas en un solo modelo de aprendizaje continuo."
@@ -20,7 +25,10 @@ const Home = () => {
           quote="Una formación completa para que el aprendizaje no tenga límites."
           videoSrc={videoInicio}
         />
+
+        {/* 2. CULTURA DE PAZ - Verde Bosque */}
         <Hero
+          bgColor="#7A8C99"
           badge="Convivencia Armónica"
           title="Cultura de Paz"
           p1="Implementamos la Cátedra de la Paz como una herramienta esencial para el cumplimiento de los estándares de convivencia ciudadana."
@@ -28,7 +36,10 @@ const Home = () => {
           quote="Transformamos el aula en el escenario donde nace la paz de un país"
           videoSrc={videoInicio}
         />
+
+        {/* 3. EDUCACIÓN AMBIENTAL - Gris Carbono (Muy profesional) */}
         <Hero
+          bgColor="#5E7D5E"
           badge="Transformación Colectiva"
           title="Educación Ambiental"
           p1="Fortalecemos la cultura ambiental mediante la incorporación de proyectos sostenibles en el desarrollo territorial."
@@ -36,7 +47,10 @@ const Home = () => {
           quote="Formamos hoy la conciencia que protegerá nuestro planeta mañana"
           videoSrc={videoInicio}
         />
+
+        {/* 4. CONVIVENCIA ESCOLAR - Azul Atlántico Profundo */}
         <Hero
+          bgColor="#A67B5B"
           badge="Respeto Mutuo"
           title="Convivencia Escolar"
           p1="Lideramos la formación para el ejercicio de los Derechos Humanos y la prevención de la violencia en las aulas."
@@ -44,7 +58,10 @@ const Home = () => {
           quote="El respeto y la empatía son la base de una educación sin fronteras"
           videoSrc={videoInicio}
         />
+
+        {/* 5. EDUCACIÓN VIAL - Gris Azulado Oscuro */}
         <Hero
+          bgColor="#8C7A30"
           badge="Movilidad Segura"
           title="Educación Vial"
           p1="Promovemos la formación de hábitos y conductas seguras en la vía para proteger la vida. A través de programas pedagógicos en todos los niveles,"
@@ -52,7 +69,9 @@ const Home = () => {
           quote="Cuidar nuestra vida en la vía es el primer paso para llegar lejos"
           videoSrc={videoInicio}
         />
-        <About />
+        <IdentityLinks />
+        <Servicios />
+        <AulaVirtual />
         <Slider data={data} activeSlide={0} />
       </>
     </div>

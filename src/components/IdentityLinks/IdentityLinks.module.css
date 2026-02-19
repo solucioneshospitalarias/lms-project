@@ -1,0 +1,110 @@
+.heroParallax {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url('../../assets/Servicios.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+}
+
+.overlay {
+  background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.content {
+  width: 100%;
+  max-width: 1300px;
+  text-align: center;
+}
+
+/* TÍTULO MEJORADO */
+.mainTitle {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
+
+.accentText {
+  background: linear-gradient(to right, #ff3131, #ff8a8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin-bottom: 60px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* BOTONES PROFESIONALES */
+.buttonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 0 20px;
+}
+
+.premiumBtn {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 40px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.icon {
+  color: #ff3131; /* Rojo de tu marca */
+  font-size: 1.5rem;
+}
+
+.arrow {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+/* EFECTO HOVER PRO */
+.premiumBtn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: #ff3131;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 49, 49, 0.2);
+}
+
+.premiumBtn:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .buttonGrid { grid-template-columns: 1fr; }
+  .mainTitle { font-size: 3rem; }
+}

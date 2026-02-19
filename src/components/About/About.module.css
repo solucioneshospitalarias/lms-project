@@ -1,56 +1,182 @@
 .aboutContainer {
-  padding: 80px 20px;
-  text-align: center;
-  background-color: transparent; /* Mantiene la integración con el fondo del sitio */
+  padding: 20px 5%;
+  background-color: transparent;
+  width: 100%;
 }
 
-.mainTitle {
+.aboutPage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: transparent;
+  /* Animación de entrada para toda la página */
+  animation: fadeInEffect 0.8s ease-out forwards;
+}
+
+@keyframes fadeInEffect {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.outerWrapper {
+  perspective: 1500px; /* Profundidad aumentada para el paralaje */
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.whoWeAre3DCard {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: var(--card-bg);
+  padding: 50px;
+  border-radius: 40px;
+  border: 1px solid var(--card-border);
+  box-shadow: 20px 20px 60px var(--card-shadow);
+  
+  /* Habilitar 3D para el JS */
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+}
+
+.whoWeAre3DCard:hover {
+  box-shadow: 0 30px 70px var(--card-shadow);
+}
+
+.imageSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  transform: translateZ(50px); /* Hace que la imagen "salga" de la tarjeta */
+}
+
+.imgContainer {
+  position: relative;
+  border-radius: 30px;
+  overflow: visible;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.mainImg {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 30px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.floatingBadge {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(30px);
+  background: var(--primary-red);
+  color: white;
+  padding: 10px 25px;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
+  white-space: nowrap;
+}
+
+.infoSection {
+  flex: 1.2;
+  text-align: left;
+  transform: translateZ(30px); /* El texto también tiene relieve */
+}
+
+.title3D {
   color: var(--text-main);
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
+  font-size: 2.8rem;
+  margin: 0;
+  text-shadow: 2px 2px 4px var(--card-shadow);
 }
 
-.underline {
-  width: 70px;
-  height: 4px;
-  background-color: var(--primary-red);
-  margin: 0 auto 50px;
-  border-radius: 2px;
+.divider {
+  width: 80px;
+  height: 5px;
+  background: var(--primary-red);
+  margin: 20px 0;
+  border-radius: 10px;
 }
 
+.mainText {
+  color: var(--text-secondary, var(--text-main));
+  line-height: 1.8;
+  font-size: 1.15rem;
+  text-align: justify;
+}
+
+.platformBtn {
+  margin-top: 30px;
+  background: transparent;
+  color: var(--primary-red);
+  border: 2px solid var(--primary-red);
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.platformBtn:hover {
+  background: var(--primary-red);
+  color: white;
+  box-shadow: 0 0 20px rgba(194, 40, 33, 0.5);
+  transform: scale(1.05);
+}
+
+/* GRILLA DE TARJETAS CON PERSPECTIVA */
 .cardsGrid {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* Mantiene todas las tarjetas con la misma altura */
-  gap: 25px;
-  flex-wrap: wrap; /* Cambiado a wrap para mejor respuesta en móviles, el min-width controlará el ancho */
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 10px;
+  padding: 40px 10px;
+  perspective: 1000px;
 }
 
-/* Contenedor principal de la tarjeta con efecto 3D */
 .card3D {
   flex: 1;
-  min-width: 300px; 
+  min-width: 300px;
   max-width: 380px;
   min-height: 400px;
   background-color: var(--card-bg);
   border-radius: 24px;
   border: 1px solid var(--card-border);
   position: relative;
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding: 45px 30px; /* Padding ajustado para que el texto no toque los bordes */
+  padding: 45px 30px;
   cursor: pointer;
   box-shadow: 0 10px 30px var(--card-shadow);
   overflow: hidden;
+  
+  /* Propiedades de Paralaje */
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* Línea decorativa superior */
+.card3D:hover {
+  box-shadow: 0 20px 45px var(--card-shadow);
+  border-color: var(--primary-red);
+}
+
+.card3D:hover h3 {
+  color: var(--text-main);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
 .card3D::before {
   content: "";
   position: absolute;
@@ -58,82 +184,96 @@
   left: 0;
   width: 100%;
   height: 6px;
-  background: var(--primary-red, #F54748);
+  background: currentColor; /* Usa el color definido en el inline style del componente */
   border-radius: 24px 24px 0 0;
-  transition: height 0.3s ease, opacity 0.3s ease;
-}
-
-/* Efectos al señalar con el mouse (Hover) */
-.card3D:hover {
-  transform: translateY(-15px) rotateX(5deg); /* Se alza igual que los bloques de inicio */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  border-color: var(--primary-red);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0px transparent;
 }
 
 .card3D:hover::before {
-  height: 100%;
-  opacity: 0.05;
+  height: 8px;
+  /* Resplandor en la línea superior */
+  box-shadow: 0 0 20px currentColor;
+  opacity: 0.9;
 }
 
-.content {
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
+.innerGlow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(
+    circle at center, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card3D:hover .innerGlow {
+  opacity: 1;
+}
+
+.card3D:hover .iconWrapper {
+  transform: scale(1.15) rotate(10deg) translateZ(70px);
+  /* Creamos el resplandor usando drop-shadow con el color del icono */
+  filter: drop-shadow(0 0 15px currentColor); 
+}
+
+/* Brillo interno dinámico */
+.innerGlow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .iconWrapper {
   margin-bottom: 25px;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, filter 0.3s ease; /* Añadimos filter a la transición */
+  transform: translateZ(60px);
+  z-index: 2;
+  /* Filtro inicial sutil */
+  filter: drop-shadow(0 0 0px transparent);
 }
 
-.card3D:hover .iconWrapper {
-  transform: scale(1.15) rotate(10deg);
-}
-
-.content h3 {
+.card3D h3 {
   font-size: 1.8rem;
-  /* Usamos la variable para el título */
-  color: var(--text-main); 
+  color: var(--text-main);
   margin-bottom: 20px;
-  transition: color 0.3s ease; /* Transición suave al cambiar de modo */
+  transform: translateZ(40px);
+  z-index: 2;
 }
 
-/* AJUSTE CLAVE: Texto recto y justificado */
-.content p {
+.card3D p {
   text-align: justify;
-  text-justify: inter-word;
-  /* Usamos la variable para el cuerpo del texto */
-  color: var(--text-secondary); 
+  color: var(--text-secondary);
   line-height: 1.7;
   font-size: 1rem;
   margin: 0;
-  width: 100%;
-  transition: color 0.3s ease;
+  transform: translateZ(20px);
+  z-index: 2;
 }
 
-/* Responsivo para laptops y tablets */
-@media (max-width: 1024px) {
-  .card3D {
-    min-width: 280px;
-    padding: 35px 20px;
-  }
-  
-  .content h3 {
-    font-size: 1.5rem;
-  }
-}
-
-/* Responsivo para móviles */
-@media (max-width: 480px) {
-  .cardsGrid {
+/* Responsivo */
+@media (max-width: 900px) {
+  .whoWeAre3DCard {
     flex-direction: column;
-    align-items: center;
+    text-align: center;
+    padding: 30px;
+    transform: none !important; /* Desactivar 3D en móviles para evitar saltos */
   }
+
+  .infoSection { text-align: center; }
+  .divider { margin: 20px auto; }
   
   .card3D {
+    transform: none !important;
     width: 100%;
-    min-width: unset;
+    max-width: 100%;
   }
 }

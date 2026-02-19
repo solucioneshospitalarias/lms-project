@@ -7,6 +7,9 @@ import Home from "./components/Home/Home";
 import Productos from "./components/Productos/Productos";
 import Recursos from "./components/Recursos/Recursos";
 import Estadisticas from "./components/Estadisticas/Estadisticas";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import Conocenos from "./components/Conocenos/Conocenos";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function App() {
@@ -31,7 +34,6 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    // Esta lógica se ejecuta solo una vez cuando la aplicación se monta (al cargar o recargar)
     if (location.pathname !== "/") {
       navigate("/", { replace: true });
     }
@@ -41,12 +43,14 @@ function App() {
     <div className="app-container">
       <Header />
       <main style={{ padding: "50px", textAlign: "center" }}>
-        {/* Aquí es donde ocurre la magia: decide qué componente cargar */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/estadisticas" element={<Estadisticas />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/recursos" element={<Recursos />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/conocenos" element={<Conocenos />} />
         </Routes>
 
         <ScrollToTop />
