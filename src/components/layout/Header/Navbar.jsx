@@ -20,67 +20,65 @@ const Navbar = () => {
 
         {/* Menú de navegación dinámico */}
         <ul className={styles.navMenu}>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-            >
-              <div className={styles.navItemContent}>
-                <span>Inicio</span> <ChevronDown size={14} />
-              </div>
-            </NavLink>
-          </li>
+          <NavLink
+            to="/" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+          >
+            <li>
+                <div className={styles.navItemContent}>
+                  <span>Inicio</span> <ChevronDown size={14} />
+                </div>
+            </li>
+          </NavLink>
 
-          <li>
-            <NavLink
-              to="/conocenos"
-              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-            >
-              <div className={styles.navItemContent}>
-                <span>Conócenos</span> <ChevronDown size={14} /> {/* Agregamos la flechita */}
-              </div>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/estadisticas"
-              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-            >
-              <div className={styles.navItemContent}>
-                <span>Estadísticas</span> <ChevronDown size={14} />
-              </div>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/productos"
-              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-            >
-              <div className={styles.navItemContent}>
-                <span>Productos</span> <ChevronDown size={14} />
-              </div>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/recursos"
-              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-            >
+          <NavLink
+            to="/conocenos" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+          >
+            <li>
+                <div className={styles.navItemContent}>
+                  <span>Conócenos</span> <ChevronDown size={14} /> {/* Agregamos la flechita */}
+                </div>
+            </li>
+          </NavLink>
+
+          <NavLink
+            to="/estadisticas" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+          >
+            <li>
+                <div className={styles.navItemContent}>
+                  <span>Estadísticas</span> <ChevronDown size={14} />
+                </div>
+            </li>
+          </NavLink>
+
+          <NavLink
+            to="/productos" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+          >
+            <li>
+                <div className={styles.navItemContent}>
+                  <span>Productos</span> <ChevronDown size={14} />
+                </div>
+            </li>
+          </NavLink>
+
+          <NavLink
+              to="/recursos" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+          >
+            <li>
               <div className={styles.navItemContent}>
                 <span>Recursos Educativos</span> <ChevronDown size={14} />
               </div>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contacto"
-              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-            >
-              <div className={styles.navItemContent}>
-                <span>Contacto</span> <ChevronDown size={14} />
-              </div>
-            </NavLink>
-          </li>
+            </li>
+          </NavLink>
+          
+          <NavLink
+              to="/contacto" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.acttive}` : styles.navLink}
+          >
+            <li>
+                <div className={styles.navItemContent}>
+                  <span>Contacto</span> <ChevronDown size={14} />
+                </div>
+            </li>
+          </NavLink>
         </ul>
 
         {/* Derecha: Toggle y Botón ÚNICO de Login */}
