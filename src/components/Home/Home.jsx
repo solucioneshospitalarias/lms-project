@@ -17,6 +17,7 @@ const Home = () => {
       <InfoCarousel />
 
       {/* 1. EDUCACIÓN 360 */}
+      <div id="educacion-360">
       <Hero
         bgColor="#4A6D8C"
         badge="Formacion Completa"
@@ -26,8 +27,10 @@ const Home = () => {
         quote="Una formación completa para que el aprendizaje no tenga límites."
         videoSrc={videoInicio}
       />
+      </div>
 
       {/* 2. CULTURA DE PAZ */}
+      <div id="cultura-paz">
       <Hero
         bgColor="#7A8C99"
         badge="Convivencia Armónica"
@@ -37,8 +40,10 @@ const Home = () => {
         quote="Transformamos el aula en el escenario donde nace la paz de un país"
         videoSrc={videoInicio}
       />
+      </div>
 
       {/* 3. EDUCACIÓN AMBIENTAL */}
+      <div id="educacion-ambiental">
       <Hero
         bgColor="#5E7D5E"
         badge="Transformación Colectiva"
@@ -48,8 +53,10 @@ const Home = () => {
         quote="Formamos hoy la conciencia que protegerá nuestro planeta mañana"
         videoSrc={videoInicio}
       />
+      </div>
 
       {/* 4. CONVIVENCIA ESCOLAR */}
+      <div id="convivencia-escolar">
       <Hero
         bgColor="#A67B5B"
         badge="Respeto Mutuo"
@@ -59,8 +66,10 @@ const Home = () => {
         quote="El respeto y la empatía son la base de una educación sin fronteras"
         videoSrc={videoInicio}
       />
+      </div>
 
       {/* 5. EDUCACIÓN VIAL */}
+      <div id="educacion-vial">
       <Hero
         bgColor="#8C7A30"
         badge="Movilidad Segura"
@@ -70,12 +79,14 @@ const Home = () => {
         quote="Cuidar nuestra vida en la vía es el primer paso para llegar lejos"
         videoSrc={videoInicio}
       />
+      </div>
 
       <IdentityLinks />
       <Servicios />
       <AulaVirtual />
       <Slider data={data} activeSlide={0} />
       <PersonalizedService />
+      
     </div>
   );
 };
