@@ -1,12 +1,16 @@
 .galleryWrapper {
-  padding: 100px 0; /* Aumentamos el padding para separarlo bien del Hero */
+  padding: 100px 0;
+  /* Aumentamos el padding para separarlo bien del Hero */
   background-color: var(--bg-main);
   text-align: center;
   min-height: 600px;
-  position: relative; /* Asegura que se posicione en el flujo normal del documento */
+  position: relative;
+  /* Asegura que se posicione en el flujo normal del documento */
   width: 100%;
-  clear: both; /* Fuerza a que se coloque debajo de elementos flotantes previos */
-  overflow-x: hidden; /* Cambiamos hidden por visible para que el efecto 3D no se corte */
+  clear: both;
+  /* Fuerza a que se coloque debajo de elementos flotantes previos */
+  overflow-x: hidden;
+  /* Cambiamos hidden por visible para que el efecto 3D no se corte */
 }
 
 .sectionTitle {
@@ -28,7 +32,8 @@
   transform-style: preserve-3d;
   width: 362px;
   height: 450px;
-  margin: 40px auto; /* Añadimos margen arriba y abajo */
+  margin: 40px auto;
+  /* Añadimos margen arriba y abajo */
 }
 
 .slide {
@@ -53,19 +58,18 @@
   object-fit: cover;
 }
 
-/* El diseño del texto que pediste */
 .cardContent {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   z-index: 2;
   color: white;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  backdrop-filter: none;
   padding: 20px;
-  border-radius: 10px;
+  box-sizing: border-box;
+  transform: none;
 }
 
 .cardContent h3 {
@@ -73,13 +77,6 @@
   text-transform: uppercase;
   margin: 0;
   letter-spacing: 2px;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: white;
-  margin: 10px 0;
 }
 
 .cardContent p {
@@ -94,14 +91,21 @@
 
 .btn {
   cursor: pointer;
-  color: #F54748; /* Color rojo de tu logo para que resalte en blanco o negro */
+  color: #F54748;
+  /* Color rojo de tu logo para que resalte en blanco o negro */
   transition: transform 0.2s;
-  z-index: 20; /* Asegura que estén por encima de las fotos */
+  z-index: 20;
+  /* Asegura que estén por encima de las fotos */
   position: relative;
 }
 
-.btn:hover { transform: scale(1.2); }
-.btn:last-child { margin-left: 40px; }
+.btn:hover {
+  transform: scale(1.2);
+}
+
+.btn:last-child {
+  margin-left: 40px;
+}
 
 /* ver imagenes en grande */
 /* Contenedor principal del modal */
@@ -112,7 +116,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(8px); /* Desenfoque elegante de fondo */
+  backdrop-filter: blur(8px);
+  /* Desenfoque elegante de fondo */
   align-items: flex-start;
   overflow-y: auto;
   display: flex;
@@ -134,10 +139,12 @@
 
 .lightboxContent img {
   max-width: 100%;
-  max-height: 80vh; /* Dejamos espacio abajo para el texto */
+  max-height: 80vh;
+  /* Dejamos espacio abajo para el texto */
   width: auto;
   height: auto;
-  object-fit: contain; /* Asegura que la imagen no se deforme */
+  object-fit: contain;
+  /* Asegura que la imagen no se deforme */
   border-radius: 12px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -153,7 +160,8 @@
 }
 
 .lightboxText h2 {
-  color: #F54748; /* Rojo corporativo de Echooling */
+  color: #F54748;
+  /* Rojo corporativo de Echooling */
   margin: 0;
   font-size: 1.5rem;
 }
@@ -181,6 +189,11 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

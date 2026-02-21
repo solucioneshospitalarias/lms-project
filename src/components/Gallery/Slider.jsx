@@ -28,7 +28,7 @@ export default ({ data, activeSlide: initialSlide }) => {
       // Pausar si hay una imagen abierta
       interval = setInterval(() => {
         next();
-      }, 1000);
+      }, 5000);
     }
     return () => {
       if (interval) clearInterval(interval);
@@ -123,7 +123,7 @@ export default ({ data, activeSlide: initialSlide }) => {
 
   return (
     <section id="galeria" className={styles.galleryWrapper}>
-      <h2 className={styles.sectionTitle}>Imagenes</h2>
+      <h2 className={styles.sectionTitle}>Guías de Información Vial</h2>
       <div className={styles.underline}></div>
 
       <div
