@@ -80,12 +80,12 @@ header {
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  color: #2c9caf;
+  color: red;
   transition: all 400ms; /* Mil milisegundos (1s) es muy lento, 400ms es más fluido */
   font-size: 12px;
   position: relative;
   overflow: hidden;
-  outline: 2px solid #2c9caf;
+  outline: 2px solid red;
   background: transparent;
   margin-left: 0.5px;
   white-space: nowrap;
@@ -97,9 +97,9 @@ header {
 .btnLogin:hover {
   color: black;
   transform: scale(1.1);
-  outline: 2px solid #70bdca;
-  box-shadow: 4px 5px 17px -4px #268391;
-  background-color: #2c9caf;
+  outline: 2px solid red;
+  box-shadow: 4px 5px 17px -4px red;
+  background-color: red;
   color: white;
 }
 
@@ -110,7 +110,7 @@ header {
   top: 0;
   width: 0;
   height: 100%;
-  background-color: #2c9caf;
+  background-color: red;
   transform: skewX(45deg);
   z-index: -1;
   transition: width 1000ms;
