@@ -59,14 +59,14 @@ const Login = () => {
                     <div className={styles.cardGlow}></div>
 
                     <div className={styles.header}>
-                        <h2>Bienvenido de <span>Nuevo</span></h2>
+                        <h2>Bienvenido</h2>
                         <p>Ingresa a tu cuenta para continuar.</p>
                     </div>
 
                     {/* Paso 4: Cambiar el onSubmit para que use nuestra validación */}
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <div className={styles.inputGroup}>
-                            <label>Correo Electrónico</label>
+                            <label>Correo Electrónico:</label>
                             <div className={styles.inputWrapper}>
                                 <Mail className={styles.icon} size={16} />
                                 {/* Aplicamos clase de error si está vacío */}
@@ -80,7 +80,7 @@ const Login = () => {
                         </div>
 
                         <div className={styles.inputGroup}>
-                            <label>Contraseña</label>
+                            <label>Contraseña:</label>
                             <div className={styles.inputWrapper}>
                                 <Lock className={styles.icon} size={16} />
                                 <input
