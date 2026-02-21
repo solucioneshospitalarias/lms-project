@@ -11,6 +11,9 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Conocenos from "./components/Conocenos/Conocenos";
 import Contacto from "./components/Contacto/Contacto";
+import Terminos from "./components/Legal/Terminos";
+import Privacidad from "./components/Legal/Privacidad";
+import Autorizacion from "./components/Legal/Autorizacion"
 
 function App() {
   const location = useLocation();
@@ -36,6 +39,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/conocenos" element={<Conocenos />} />
+          <Route path="/terminos" element={<Terminos />} />
+          <Route path="/privacidad" element={<Privacidad />} />
+          <Route path="/autorizacion" element={<Autorizacion />} />
         </Routes>
 
         {!isLoginPage && <ScrollToTop />}
