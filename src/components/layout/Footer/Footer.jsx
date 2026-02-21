@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
@@ -44,14 +45,12 @@ const Footer = () => {
           <div className={styles.column}>
             <h3>Plataforma</h3>
             <ul>
+
               <li>
-                <a href="#">Inicio</a>
+                <a href="/conocenos">¿Quiénes somos?</a>
               </li>
               <li>
-                <a href="#">¿Quiénes somos?</a>
-              </li>
-              <li>
-                <a href="#">Estadísticas</a>
+                <a href="/estadisticas">Estadísticas</a>
               </li>
             </ul>
           </div>
@@ -59,13 +58,13 @@ const Footer = () => {
             <h3>Recursos</h3>
             <ul>
               <li>
-                <a href="#">Productos</a>
+                <a href="/productos">Productos</a>
               </li>
               <li>
-                <a href="#">Recursos Educativos</a>
+                <a href="/recursos">Recursos Educativos</a>
               </li>
               <li>
-                <a href="#">Contacto</a>
+                <a href="/contacto">Contacto</a>
               </li>
             </ul>
           </div>
@@ -73,7 +72,17 @@ const Footer = () => {
             <h3>Legal</h3>
             <ul>
               <li>
-                <a href="#">Términos y Condiciones</a>
+                <a href="/terminos">Términos y Condiciones</a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a href="/privacidad">Política de Privacidad</a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a href="/autorizacion">Autorización de Datos</a>
               </li>
             </ul>
           </div>
