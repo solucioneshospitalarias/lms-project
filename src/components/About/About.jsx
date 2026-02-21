@@ -3,7 +3,10 @@ import styles from "./About.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRocket, faEye, faUsers } from "@fortawesome/free-solid-svg-icons";
 import techImg from "../../assets/quienesSomos.png";
-
+import pngNiño from "../../assets/plataformaEducativa.png"
+import pngNiña from "../../assets/plataformaAnalisis.png"
+import portatil from "../../assets/portatil.png"
+ 
 const About = () => {
   const [activeTab, setActiveTab] = useState("escuelas");
   const [mainRotation, setMainRotation] = useState({ x: 0, y: 0 });
@@ -141,81 +144,32 @@ const About = () => {
         <div className={styles.schoolsContainer}>
           <div className={styles.schoolsContent}>
             <div className={styles.tabHeader}>
-              <h2># Trendi</h2>
-              <h3>Trends & Innovation</h3>
+              <h2 style={{ fontSize:"45px", fontWeight: "bold"}}>Plataforma educativa</h2>
             </div>
-
             <div className={styles.tabDivider}></div>
-
             <div className={styles.mainDescription}>
               <p>
-                Proveemos herramientas para facilitar la interacción entre docentes, estudiantes, directivos y padres de familia. Posibilidad de asignar tareas, foros, chat, trabajo colaborativo y de
-                realizar seguimiento detallado por estudiante.
+                Rutas del Saber es una plataforma educativa integral que conecta a la comunidad educativa y facilita el acceso a herramientas, contenidos y proyectos para impulsar la formación, la seguridad y el desarrollo social.
               </p>
-              <p style={{ marginTop: "20px" }}>Además contenido interactivo para cubrir el currículo en las diferentes áreas de conocimiento.</p>
-            </div>
 
-            <div className={styles.featuresSection}>
-              <h4>CARACTERÍSTICAS PRINCIPALES</h4>
-              <div className={styles.featuresGrid}>
-                <div className={styles.featureItem}>
-                  <svg className={styles.featureIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 6.5L3 11.5L12 16.5L21 11.5L12 6.5Z" />
-                    <path d="M3 11.5V17.5" />
-                    <path d="M21 11.5V17.5" />
-                  </svg>
-                  <span>Gestión Académica</span>
-                </div>
-                <div className={styles.featureItem}>
-                  <svg className={styles.featureIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                  <span>Trabajo Colaborativo</span>
-                </div>
-                <div className={styles.featureItem}>
-                  <svg className={styles.featureIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                  </svg>
-                  <span>Foros y Chat</span>
-                </div>
-                <div className={styles.featureItem}>
-                  <svg className={styles.featureIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <polyline points="10 9 9 9 8 9" />
-                  </svg>
-                  <span>Seguimiento Detallado</span>
-                </div>
-              </div>
-            </div>
+              <p> • Acceder a contenidos educativos estructurados y actualizados.</p>
 
-            <div className={styles.contactSection}>
-              <h4>CANALES DE SOPORTE</h4>
-              <div className={styles.contactGrid}>
-                <div className={styles.contactItem}>
-                  <span className={styles.contactLabel}>HORARIO</span>
-                  <span className={styles.contactValue}>L-V 7:00am a 5:00pm S 8:00am a 12:00m</span>
-                </div>
-                <div className={styles.contactItem}>
-                  <span className={styles.contactLabel}>EMAIL</span>
-                  <span className={styles.contactValue}>info@trendigroup.com</span>
-                </div>
-                <div className={styles.contactItem}>
-                  <span className={styles.contactLabel}>WHATSAPP</span>
-                  <span className={`${styles.contactValue} ${styles.highlight}`}>+57 320 788 7327</span>
-                </div>
-                <div className={styles.contactItem}>
-                  <span className={styles.contactLabel}>CELULAR</span>
-                  <span className={`${styles.contactValue} ${styles.highlight}`}>+57 304 526 4078</span>
-                </div>
-              </div>
-            </div>
+              <p> • Implementar proyectos pedagógicos enfocados en la transformación social.</p>
 
+              <p> • Fortalecer la convivencia escolar y la cultura de paz.</p>
+
+              <p> • Promover la sostenibilidad ambiental y la conciencia ciudadana.</p>
+
+              <p> • Prevenir la violencia y fomentar el respeto por los Derechos Humanos.</p>
+
+              <p> • Desarrollar competencias en Educación Vial y autocuidado</p>
+
+            </div>
+            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize:"20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
             <button className={styles.tabActionBtn}>Ingresar a mi plataforma</button>
+          </div>
+          <div className={styles.imgSection}>
+            <img src={pngNiño} alt="PlataformaEducativa" className={styles.imgNiño} />
           </div>
         </div>
       )}
@@ -223,38 +177,40 @@ const About = () => {
       {activeTab === "analisis" && (
         <div className={styles.analyticsContainer}>
           <div className={styles.analyticsContent}>
-            {/* Icono opcional */}
-            <div className={styles.analyticsIcon}>
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 17L8 12L12 16L18 10L21 13" stroke="var(--primary-red)" />
-                <path d="M3 3V21H21" stroke="var(--primary-red)" />
-                <circle cx="18" cy="6" r="2" stroke="var(--primary-red)" />
-              </svg>
+            <div className={styles.tabHeader}>
+              <h2 style={{ fontSize:"45px", fontWeight: "bold"}}>Plataforma Analisis</h2>
             </div>
+            <div className={styles.tabDivider}></div>
+            <div className={styles.mainDescription}>
+              <p>
+                Rutas del Saber es una plataforma educativa integral que conecta a la comunidad educativa y facilita el acceso a herramientas, contenidos y proyectos para impulsar la formación, la seguridad y el desarrollo social.
+              </p>
 
-            <h2>Plataforma de Análisis</h2>
-            <p>Contenido específico para análisis de datos. Describe las herramientas analíticas, dashboards y capacidades de tu plataforma.</p>
+              <p> • Acceder a contenidos educativos estructurados y actualizados.</p>
 
-            {/* Grid de características opcional */}
-            <div className={styles.tabContentGrid}>
-              <div className={styles.tabContentCard}>
-                <h3>Dashboards</h3>
-                <p>Visualización de datos en tiempo real</p>
-              </div>
-              <div className={styles.tabContentCard}>
-                <h3>Métricas KPIs</h3>
-                <p>Seguimiento de indicadores clave</p>
-              </div>
-              <div className={styles.tabContentCard}>
-                <h3>Predicciones</h3>
-                <p>Análisis predictivo avanzado</p>
-              </div>
+              <p> • Implementar proyectos pedagógicos enfocados en la transformación social.</p>
+
+              <p> • Fortalecer la convivencia escolar y la cultura de paz.</p>
+
+              <p> • Promover la sostenibilidad ambiental y la conciencia ciudadana.</p>
+
+              <p> • Prevenir la violencia y fomentar el respeto por los Derechos Humanos.</p>
+
+              <p> • Desarrollar competencias en Educación Vial y autocuidado</p>
+
             </div>
-
-            <button className={styles.tabContentBtn}>Saber más sobre análisis</button>
+            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize:"20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
+            <button className={styles.tabActionBtnAnalisis}>Ingresar a mi plataforma</button>
+          </div>
+          <div className={styles.imgSection}>
+            <img src={pngNiña} alt="PlataformaAnalisis" className={styles.imgNiña} />
           </div>
         </div>
       )}
+      <div className={styles.educacionContainer}>
+        <h3> Impulsando la educación 4.0 para los retos del mañana. </h3>
+        <img src={portatil} alt="Portatil" className={styles.portatil} />
+      </div>
     </section>
   );
 };
