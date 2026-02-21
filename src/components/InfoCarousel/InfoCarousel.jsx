@@ -11,6 +11,7 @@ const InfoCarousel = () => {
       title: "Educación 360",
       description: "Plataformas educativas interactivas a tu alcance.",
       image: "https://i.imgur.com/MMgnwo9.png",
+      targetId: "educacion-360",
       label: "Formación Completa",
     },
     {
@@ -18,6 +19,7 @@ const InfoCarousel = () => {
       title: "Cultura de Paz",
       description: "Transformando comunidades con software integral.",
       image: "https://i.imgur.com/e86NR8z.png",
+      targetId: "cultura-paz",
       label: "Convivencia Armónica",
     },
     {
@@ -25,6 +27,7 @@ const InfoCarousel = () => {
       title: "Educación Ambiental",
       description: "Herramientas para el cuidado y desarrollo infantil.",
       image: "https://i.imgur.com/XANLUgI.png",
+      targetId: "educacion-ambiental",
       label: "Transformación Colectiva",
     },
     {
@@ -32,13 +35,15 @@ const InfoCarousel = () => {
       title: "Convivencia Escolar",
       description: "Fomentando líderes en convivencia escolar.",
       image: "https://i.imgur.com/Kg36tqR.jpeg",
+      targetId: "convivencia-escolar",
       label: "Respeto Mutuo",
     },
     {
       id: 5,
       title: "Educación Vial",
-      description: "Fomentando líderes en convivencia escolar.",
+      description: "Formando ciudadanos responsables en la vía pública.",
       image: "https://i.imgur.com/06ScaPI.png",
+      targetId: "educacion-vial",
       label: "Movilidad Segura",
     },
   ];
@@ -50,6 +55,14 @@ const InfoCarousel = () => {
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
+
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+  
 
   useEffect(() => {
     let timer;
@@ -83,7 +96,9 @@ const InfoCarousel = () => {
               <span className={styles.label}>{slide.label}</span>
               <h2>{slide.title}</h2>
               <p>{slide.description}</p>
-              <button className={styles.slideBtn}>Ver</button>
+              <button className={styles.slideBtn} onClick={() => handleScroll(slide.targetId)}>
+                Ver
+              </button>
             </div>
           </div>
         ))}

@@ -1,9 +1,11 @@
 .carouselWrapper {
   width: 100%;
-  height: 500px; /* Altura consistente */
+  height: 500px;
+  /* Altura consistente */
   overflow: hidden;
   position: relative;
-  border-radius: 20px; /* Esquinas redondeadas como en tu diseño */
+  border-radius: 20px;
+  /* Esquinas redondeadas como en tu diseño */
   margin: 20px 0;
 }
 
@@ -11,14 +13,17 @@
   display: flex;
   width: 100%;
   height: 100%;
-  transition: transform 0.8s ease-in-out; /* Transición suave */
+  transition: transform 0.8s ease-in-out;
+  /* Transición suave */
 }
 
 .slide {
   min-width: 100%;
   height: 100%;
-  background-size: cover; /* LLENA EL ESPACIO COMPLETO */
-  background-position: center; /* MANTIENE EL CENTRO RECTO */
+  background-size: cover;
+  /* LLENA EL ESPACIO COMPLETO */
+  background-position: center;
+  /* MANTIENE EL CENTRO RECTO */
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -26,7 +31,8 @@
 }
 
 .slideContent {
-  padding-left: 80px; /* Margen para el texto */
+  padding-left: 80px;
+  /* Margen para el texto */
   color: white;
   z-index: 2;
   max-width: 500px;
@@ -34,7 +40,8 @@
 }
 
 .label {
-  background-color: #F54748; /* Tu rojo corporativo */
+  background-color: #F54748;
+  /* Tu rojo corporativo */
   padding: 5px 12px;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -88,8 +95,13 @@
   background: #F54748;
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
 
 /* Indicadores */
 .indicators {
@@ -112,11 +124,24 @@
 
 .activeDot {
   background: white;
-  width: 30px; /* Efecto de píldora para el activo */
+  width: 30px;
   border-radius: 10px;
 }
 
 @media (max-width: 768px) {
-  .slide { padding: 0 40px; }
-  .slideContent h2 { font-size: 2rem; }
+  .slide {
+    padding: 0 40px;
+  }
+
+  .slideContent h2 {
+    font-size: 2rem;
+  }
+}
+
+[id^="educacion-360"],
+[id^="cultura-paz"],
+[id^="educacion-ambiental"],
+[id^="convivencia-escolar"],
+[id^="educacion-vial"] {
+  scroll-margin-top: 80px;
 }
