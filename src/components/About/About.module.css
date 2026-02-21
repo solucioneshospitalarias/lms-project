@@ -235,7 +235,7 @@
 /* Para modo oscuro - SOLO CAMBIO DE COLOR */
 @media (prefers-color-scheme: dark) {
   .cardText {
-    color: #ffffff;
+    color: #6c757d;
   }
 }
 
@@ -246,47 +246,13 @@
 
 @media (prefers-color-scheme: dark) {
   .card3D:hover .cardText {
-    color: #ffffff;
+    color: #6c757d;
   }
 }
 
 .card3D:hover .cardTitle {
   color: var(--text-main);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-/* ===== ESTILOS DE ÍCONOS ===== */
-/* Estilo base para todos los íconos */
-.cardIcon {
-  transition: all 0.3s ease;
-}
-
-/* Clases específicas para cada ícono */
-.missionIcon {
-  filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.5));
-}
-
-.missionIcon:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 107, 107, 0.8));
-  transform: scale(1.1);
-}
-
-.visionIcon {
-  filter: drop-shadow(0 0 8px rgba(78, 205, 196, 0.5));
-}
-
-.visionIcon:hover {
-  filter: drop-shadow(0 0 15px rgba(78, 205, 196, 0.8));
-  transform: scale(1.1);
-}
-
-.valuesIcon {
-  filter: drop-shadow(0 0 8px rgba(255, 217, 61, 0.5));
-}
-
-.valuesIcon:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 217, 61, 0.8));
-  transform: scale(1.1);
 }
 
 /* Animación de pulso al hover de la tarjeta */
@@ -351,6 +317,85 @@
   background: #1f3a56;
   color: white;
   box-shadow: 0 6px 15px rgba(31, 58, 86, 0.3);
+}
+
+.schoolsContainer{ 
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: var(--card-bg);
+  padding: 50px;
+  border-radius: 40px;
+  background-color: #c22821;
+  color: #FFFF;
+  border: 1px solid var(--card-border);
+  box-shadow: 20px 20px 60px var(--card-shadow);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+  text-align: justify;
+}
+
+.tabActionBtn {
+  background: var(--bg-main);
+  color: var(--primary-red);
+  border: 2px solid var(--bg-main);
+  padding: 12px;
+  border-radius: 50px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tabActionBtn:hover {
+  background: #ffeaea;
+  color: var(--primary-red);
+  border: 2px solid var(--primary-red);
+  transform: scale(1.05);
+}
+
+.analyticsContainer{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: var(--card-bg);
+  padding: 50px;
+  border-radius: 40px;
+  background-color: #f19419;
+  color: #FFFF;
+  border: 1px solid var(--card-border);
+  box-shadow: 20px 20px 60px var(--card-shadow);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+  text-align: justify;
+}
+
+.tabActionBtnAnalisis {
+  background: var(--bg-main);
+  color: #f19419;
+  border: 2px solid var(--bg-main);
+  padding: 12px;
+  border-radius: 50px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tabActionBtnAnalisis:hover {
+  background: #ffefda;
+  color: #f19419;
+  border: 2px solid #f19419;
+  transform: scale(1.05);
+}
+
+.educacionContainer{
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.portatil{
+  max-width: 900px;
 }
 
 /* ===== RESPONSIVE ===== */
