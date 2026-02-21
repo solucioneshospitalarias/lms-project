@@ -1,47 +1,55 @@
-import React from "react";
-import styles from "./Productos.module.css";
-import { ShoppingBag, CheckCircle, Star } from "lucide-react";
+import React from 'react';
+import styles from './Productos.module.css';
+import { productosInformacion } from './informacionProductos';
 
 const Productos = () => {
-  const items = [
-    {
-      title: "Módulo Vial Pro",
-      desc: "Simulador avanzado de conducción urbana.",
-      price: "$49.99",
-    },
-    {
-      title: "Kit Educativo LOM",
-      desc: "Paquete completo de recursos multimedia.",
-      price: "$29.99",
-    },
-    {
-      title: "Certificación Gold",
-      desc: "Validación oficial de competencias viales.",
-      price: "$15.00",
-    },
-  ];
-
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>
-          Nuestros <span>Productos</span>
-        </h1>
-        <p>Herramientas premium para potenciar el aprendizaje interactivo.</p>
+    <div className={styles.container}>
+      <header className={styles.mainHeader}>
+        <h1>Portafolio de Programas Educativos</h1>
+        <p>Modelos integrales diseñados para la transformación social y académica.</p>
       </header>
-      <div className={styles.grid}>
-        {items.map((item, index) => (
-          <div key={index} className={styles.card}>
-            <ShoppingBag className={styles.icon} size={40} />
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-            <div className={styles.footer}>
-              <span className={styles.price}>{item.price}</span>
-              <button className={styles.btn}>Detalles</button>
+
+      {productosInformacion.map((prod, index) => (
+        <section
+          key={prod.id}
+          id={prod.id}
+          className={`${styles.section} ${index % 2 !== 0 ? styles.reverse : ''}`}
+        >
+          <div className={styles.imageWrapper}>
+            <img src={prod.image} alt={prod.title} className={styles.productImg} />
+            <div className={styles.colorBlock} style={{ backgroundColor: prod.color }}></div>
+          </div>
+
+          <div className={styles.textContent}>
+            <h2 style={{ color: prod.color }}>{prod.title}</h2>
+            <div className={styles.longText}>
+              <p>{prod.content}</p>
+              <p>{prod.content2}</p>
+              <p>{prod.content3}</p>
+            </div>
+
+            <div className={styles.gridInfo}>
+              <div className={styles.infoCol}>
+                <h4>Principios</h4>
+                <ul>{prod.principios.map(i => <li key={i}>{i}</li>)}</ul>
+              </div>
+              <div className={styles.infoCol}>
+                <h4>Objetivos</h4>
+                <ul>{prod.objetivos.map(i => <li key={i}>{i}</li>)}</ul>
+              </div>
+              <div className={styles.infoCol}>
+                <h4>Características</h4>
+                <ul>{prod.caracteristicas.map(i => <li key={i}>{i}</li>)}</ul>
+              </div>
+              <div className={styles.infoCol}>
+                <h4>Estrategias</h4>
+                <ul>{prod.estrategias.map(i => <li key={i}>{i}</li>)}</ul>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        </section>
+      ))}
     </div>
   );
 };
