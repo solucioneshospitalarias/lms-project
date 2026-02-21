@@ -13,69 +13,69 @@ import PersonalizedService from "../PersonalizedService/PersonalizedService";
 const Home = () => {
   return (
     <div className={styles.homeFadeIn}>
-      <>
-        <InfoCarousel />
+      {/* Eliminamos el fragmento <> </> ya que el div principal es suficiente contenedor */}
+      <InfoCarousel />
 
-        {/* 1. EDUCACIÓN 360 - Azul Real */}
-        <Hero
-          bgColor="#4A6D8C"
-          badge="Formacion Completa"
-          title="Educación 360"
-          p1="Nuestra visión integral articula cada una de estas normativas en un solo modelo de aprendizaje continuo."
-          p2="En Rutas del Saber, creemos que la educación es la herramienta más poderosa cuando logra conectar los valores humanos, la responsabilidad civil y el cuidado del medio ambiente en una formación completa para la vida."
-          quote="Una formación completa para que el aprendizaje no tenga límites."
-          videoSrc={videoInicio}
-        />
+      {/* 1. EDUCACIÓN 360 */}
+      <Hero
+        bgColor="#4A6D8C"
+        badge="Formacion Completa"
+        title="Educación 360"
+        p1="Nuestra visión integral articula cada una de estas normativas en un solo modelo de aprendizaje continuo."
+        p2="En Rutas del Saber, creemos que la educación es la herramienta más poderosa cuando logra conectar los valores humanos, la responsabilidad civil y el cuidado del medio ambiente en una formación completa para la vida."
+        quote="Una formación completa para que el aprendizaje no tenga límites."
+        videoSrc={videoInicio}
+      />
 
-        {/* 2. CULTURA DE PAZ - Verde Bosque */}
-        <Hero
-          bgColor="#7A8C99"
-          badge="Convivencia Armónica"
-          title="Cultura de Paz"
-          p1="Implementamos la Cátedra de la Paz como una herramienta esencial para el cumplimiento de los estándares de convivencia ciudadana."
-          p2="Formamos a las nuevas generaciones en valores de reconciliación y diálogo para construir una sociedad más justa y armónica."
-          quote="Transformamos el aula en el escenario donde nace la paz de un país"
-          videoSrc={videoInicio}
-        />
+      {/* 2. CULTURA DE PAZ */}
+      <Hero
+        bgColor="#7A8C99"
+        badge="Convivencia Armónica"
+        title="Cultura de Paz"
+        p1="Implementamos la Cátedra de la Paz como una herramienta esencial para el cumplimiento de los estándares de convivencia ciudadana."
+        p2="Formamos a las nuevas generaciones en valores de reconciliación y diálogo para construir una sociedad más justa y armónica."
+        quote="Transformamos el aula en el escenario donde nace la paz de un país"
+        videoSrc={videoInicio}
+      />
 
-        {/* 3. EDUCACIÓN AMBIENTAL - Gris Carbono (Muy profesional) */}
-        <Hero
-          bgColor="#5E7D5E"
-          badge="Transformación Colectiva"
-          title="Educación Ambiental"
-          p1="Fortalecemos la cultura ambiental mediante la incorporación de proyectos sostenibles en el desarrollo territorial."
-          p2="Nuestro objetivo es generar una conciencia ecológica que trascienda el aula, impulsando acciones concretas para la preservación de nuestro entorno natural."
-          quote="Formamos hoy la conciencia que protegerá nuestro planeta mañana"
-          videoSrc={videoInicio}
-        />
+      {/* 3. EDUCACIÓN AMBIENTAL */}
+      <Hero
+        bgColor="#5E7D5E"
+        badge="Transformación Colectiva"
+        title="Educación Ambiental"
+        p1="Fortalecemos la cultura ambiental mediante la incorporación de proyectos sostenibles en el desarrollo territorial."
+        p2="Nuestro objetivo es generar una conciencia ecológica que trascienda el aula, impulsando acciones concretas para la preservación de nuestro entorno natural."
+        quote="Formamos hoy la conciencia que protegerá nuestro planeta mañana"
+        videoSrc={videoInicio}
+      />
 
-        {/* 4. CONVIVENCIA ESCOLAR - Azul Atlántico Profundo */}
-        <Hero
-          bgColor="#A67B5B"
-          badge="Respeto Mutuo"
-          title="Convivencia Escolar"
-          p1="Lideramos la formación para el ejercicio de los Derechos Humanos y la prevención de la violencia en las aulas."
-          p2="Creamos entornos seguros y diversos donde el respeto y la mitigación del acoso escolar son la base fundamental del crecimiento académico."
-          quote="El respeto y la empatía son la base de una educación sin fronteras"
-          videoSrc={videoInicio}
-        />
+      {/* 4. CONVIVENCIA ESCOLAR */}
+      <Hero
+        bgColor="#A67B5B"
+        badge="Respeto Mutuo"
+        title="Convivencia Escolar"
+        p1="Lideramos la formación para el ejercicio de los Derechos Humanos y la prevención de la violencia en las aulas."
+        p2="Creamos entornos seguros y diversos donde el respeto y la mitigación del acoso escolar son la base fundamental del crecimiento académico."
+        quote="El respeto y la empatía son la base de una educación sin fronteras"
+        videoSrc={videoInicio}
+      />
 
-        {/* 5. EDUCACIÓN VIAL - Gris Azulado Oscuro */}
-        <Hero
-          bgColor="#8C7A30"
-          badge="Movilidad Segura"
-          title="Educación Vial"
-          p1="Promovemos la formación de hábitos y conductas seguras en la vía para proteger la vida. A través de programas pedagógicos en todos los niveles,"
-          p2="buscamos que niños y jóvenes desarrollen comportamientos responsables como actores de la movilidad."
-          quote="Cuidar nuestra vida en la vía es el primer paso para llegar lejos"
-          videoSrc={videoInicio}
-        />
-        <IdentityLinks />
-        <Servicios />
-        <AulaVirtual />
-        <Slider data={data} activeSlide={0} />
-        <PersonalizedService />
-      </>
+      {/* 5. EDUCACIÓN VIAL */}
+      <Hero
+        bgColor="#8C7A30"
+        badge="Movilidad Segura"
+        title="Educación Vial"
+        p1="Promovemos la formación de hábitos y conductas seguras en la vía para proteger la vida. A través de programas pedagógicos en todos los niveles,"
+        p2="buscamos que niños y jóvenes desarrollen comportamientos responsables como actores de la movilidad."
+        quote="Cuidar nuestra vida en la vía es el primer paso para llegar lejos"
+        videoSrc={videoInicio}
+      />
+
+      <IdentityLinks />
+      <Servicios />
+      <AulaVirtual />
+      <Slider data={data} activeSlide={0} />
+      <PersonalizedService />
     </div>
   );
 };
