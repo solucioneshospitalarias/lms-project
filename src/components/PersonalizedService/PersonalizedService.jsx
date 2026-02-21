@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import styles from './PersonalizedService.module.css';
-import supportImg from '../../assets/MujerAtencion.png';
+import supportImg from '../../assets/CapiAtencion.png';
 
 const PersonalizedService = () => {
     const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
