@@ -77,13 +77,13 @@
 }
 
 .item2 { 
-    bottom: -30%; 
+    bottom: -40%; 
     left: 0%; 
     animation-delay: 2s; 
 }
 
 .item3 { 
-    top: 5%; 
+    top: -20%; 
     right: -5%; 
     animation-delay: 4s; 
 }
