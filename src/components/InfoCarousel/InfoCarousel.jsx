@@ -10,40 +10,35 @@ const InfoCarousel = () => {
       id: 1,
       title: "Educación 360",
       description: "Plataformas educativas interactivas a tu alcance.",
-      image:
-        "https://www.quitoinforma.gob.ec/wp-content/uploads/2025/02/4983643217648005339-e1739200751585-800x445.jpg",
-      label: "Formacion Completa",
+      image: "https://i.imgur.com/MMgnwo9.png",
+      label: "Formación Completa",
     },
     {
       id: 2,
       title: "Cultura de Paz",
       description: "Transformando comunidades con software integral.",
-      image:
-        "https://www.caritas.org.mx/wp-content/uploads/2022/09/valores-de-la-cultura-de-paz-1024x768.jpg",
+      image: "https://i.imgur.com/e86NR8z.png",
       label: "Convivencia Armónica",
     },
     {
       id: 3,
       title: "Educación Ambiental",
       description: "Herramientas para el cuidado y desarrollo infantil.",
-      image:
-        "https://media.istockphoto.com/id/1435661954/photo/children-holding-a-planet-outdoors.jpg?s=1024x1024&w=is&k=20&c=QEjJBfN4mr63fUhuflW5XL-2a67clNQz7S3RamJwa3I=",
-      label: "Transformación Colectiva ",
+      image: "https://i.imgur.com/XANLUgI.png",
+      label: "Transformación Colectiva",
     },
     {
       id: 4,
       title: "Convivencia Escolar",
       description: "Fomentando líderes en convivencia escolar.",
-      image:
-        "https://images.pexels.com/photos/8926543/pexels-photo-8926543.jpeg",
+      image: "https://i.imgur.com/Kg36tqR.jpeg",
       label: "Respeto Mutuo",
     },
     {
       id: 5,
       title: "Educación Vial",
       description: "Fomentando líderes en convivencia escolar.",
-      image:
-        "https://img.freepik.com/vector-premium/imagenes-profesionales_753212-5309.jpg?semt=ais_user_personalization&w=740&q=80",
+      image: "https://i.imgur.com/06ScaPI.png",
       label: "Movilidad Segura",
     },
   ];
@@ -53,15 +48,14 @@ const InfoCarousel = () => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length,
-    );
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
   useEffect(() => {
     let timer;
     if (!isPaused) {
-      timer = setInterval(nextSlide, 2500);
+      // Tiempo ajustado a 3000ms para una mejor lectura (como sugerido antes)
+      timer = setInterval(nextSlide, 3000);
     }
     return () => clearInterval(timer);
   }, [isPaused, slides.length]);
@@ -81,24 +75,25 @@ const InfoCarousel = () => {
             key={slide.id}
             className={styles.slide}
             style={{
-              backgroundImage: `linear-gradient(to right, rgba(0, 51, 102, 0.85), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
+              // Usamos un degradado sutil para no tapar la nitidez de la imagen completa
+              backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7) 30%, transparent 100%), url(${slide.image})`,
             }}
           >
             <div className={styles.slideContent}>
               <span className={styles.label}>{slide.label}</span>
               <h2>{slide.title}</h2>
               <p>{slide.description}</p>
-              <button className={styles.slideBtn}>Saber más</button>
+              <button className={styles.slideBtn}>Ver</button>
             </div>
           </div>
         ))}
       </div>
-      <button className={`${styles.navBtn} ${styles.prev}`} onClick={prevSlide}>
-        ❮
-      </button>
-      <button className={`${styles.navBtn} ${styles.next}`} onClick={nextSlide}>
-        ❯
-      </button>
+
+      {/* Botones de navegación sobre la imagen */}
+      <button className={`${styles.navBtn} ${styles.prev}`} onClick={prevSlide}>❮</button>
+      <button className={`${styles.navBtn} ${styles.next}`} onClick={nextSlide}>❯</button>
+
+      {/* Indicadores centrados */}
       <div className={styles.indicators}>
         {slides.map((_, index) => (
           <div
