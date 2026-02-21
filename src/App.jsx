@@ -14,6 +14,7 @@ import Contacto from "./components/Contacto/Contacto";
 import Terminos from "./components/Legal/Terminos";
 import Privacidad from "./components/Legal/Privacidad";
 import Autorizacion from "./components/Legal/Autorizacion"
+import WhatsAppQR from "./components/WhatsApp/WhatsAppQR";
 
 function App() {
   const location = useLocation();
@@ -48,6 +49,8 @@ function App() {
       </main>
 
       {!isLoginPage && <Footer />}
+
+      <WhatsAppQR />
     </div>
   );
 }
