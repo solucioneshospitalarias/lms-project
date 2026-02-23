@@ -1,32 +1,45 @@
 .homeFadeIn {
   animation: fadeInSoft 1s ease-out;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.carouselSection {
+  width: 100%;
+  margin-bottom: 0; 
+  position: relative;
+}
+
+.heroSection {
+  scroll-margin-top: 80px;
+  width: 100%;
 }
 
 .sectionGallery {
-    padding: 80px 0;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 80px 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-
-
 .galleryTitle {
-    color: var(--text-main);
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    /* Animación para que aparezca igual que el resto */
-    animation: fadeIn 1s ease-in;
+  color: var(--text-main);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  animation: fadeIn 1s ease-in;
+  text-align: center;
+  padding: 0 20px;
 }
 
 .underline {
-    width: 80px;
-    height: 4px;
-    background: var(--primary-red);
-    margin-bottom: 40px;
-    border-radius: 2px;
+  width: 80px;
+  height: 4px;
+  background: var(--primary-red);
+  margin-bottom: 40px;
+  border-radius: 2px;
 }
 
 @keyframes fadeInSoft {
@@ -37,5 +50,51 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Media queries para el home */
+@media (max-width: 1024px) {
+  .galleryTitle {
+    font-size: 2.2rem;
+  }
+  
+  .sectionGallery {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryTitle {
+    font-size: 1.8rem;
+  }
+  
+  .sectionGallery {
+    padding: 40px 0;
+  }
+  
+  .heroSection {
+    scroll-margin-top: 60px;
+  }
+}
+
+@media (max-width: 348px) {
+  .galleryTitle {
+    font-size: 1.5rem;
+    padding: 0 15px;
+  }
+  
+  .sectionGallery {
+    padding: 30px 0;
+  }
+  
+  .underline {
+    width: 60px;
+    height: 3px;
+    margin-bottom: 30px;
+  }
+  
+  .heroSection {
+    scroll-margin-top: 50px;
   }
 }
