@@ -45,7 +45,7 @@
 header {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
   width: 100%;
   box-shadow: var(--shadow-sm);
 }
@@ -58,16 +58,24 @@ header {
   font-size: 13px;
 }
 
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 /* Estilos para la nueva sección de la derecha en la Topbar */
 .topbarRight {
   display: flex;
   align-items: center;
-  gap: 25px; /* Espacio entre botones y redes sociales */
+  gap: 25px;
 }
 
 .authButtons {
   display: flex;
-  align-items: center; /* Alineación vertical perfecta */
+  align-items: center;
   gap: 15px;
 }
 
@@ -81,7 +89,7 @@ header {
   text-transform: uppercase;
   cursor: pointer;
   color: red;
-  transition: all 400ms; /* Mil milisegundos (1s) es muy lento, 400ms es más fluido */
+  transition: all 400ms;
   font-size: 12px;
   position: relative;
   overflow: hidden;
@@ -91,8 +99,6 @@ header {
   white-space: nowrap;
   text-decoration: none !important;
 }
-
-
 
 .btnLogin:hover {
   color: black;
@@ -120,7 +126,6 @@ header {
   width: 250%;
 }
 
-
 .contactInfo, 
 .socials {
   display: flex;
@@ -137,7 +142,7 @@ header {
 }
 
 .contactInfo span:hover {
-  color: var(--accent-yellow); /* Detalle sutil al pasar el mouse */
+  color: var(--accent-yellow);
 }
 
 /* NAVBAR */
@@ -151,13 +156,14 @@ header {
 }
 
 .navbar .container {
-  display: grid;
-  grid-template-columns: 220px 1fr 250px; /* Logo, Espacio Menú, Buscador */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 20px;
+  gap: 20px;
 }
 
 .logo {
@@ -165,25 +171,27 @@ header {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  display: flex; align-items: center; gap: 8px;
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
 }
 
 .logoContainer {
   display: flex;
-  align-items: center; /* Alineación vertical perfecta */
-  gap: 15px;           /* Espacio entre casita y texto */
+  align-items: center;
+  gap: 15px;
   cursor: pointer;
   user-select: none;
-  margin-left: 50px;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .logoContainer:hover {
-  transform: scale(1.05); /* Un pequeño efecto visual al pasar el mouse */
+  transform: scale(1.05);
 }
 
 .mainLogo {
-  height: 85px;        /* Ajusta el tamaño según necesites */
+  height: 85px;
   width: auto;
   margin-top: -5px;
   margin-bottom: -5px;
@@ -196,72 +204,27 @@ header {
   transform: scale(1.05);
 }
 
-.logoTop {
-  color: var(--primary-red); /* Rojo de la marca */
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.logoBottom {
-  color: var(--primary-red);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;;
-  font-size: 1.8rem;
-}
-
-.logoTextWrapper {
-  display: flex;
-  flex-direction: column; /* Texto en dos filas */
-  line-height: 1;         /* Espaciado compacto entre líneas */
-}
-
-.logoMark { 
-  font-size: 2.2rem; 
-}
-
-.logoText {
-  color: var(--primary-red); /* Rojo de la paleta del Atlántico */
-  font-weight: 800;
-  font-size: 1.6rem;
-  letter-spacing: -0.5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.topText {
-  color: var(--primary-red);
-  font-weight: 800;
-  font-size: 1.2rem;
-  line-height: 1;      /* Quita espacios extra para que queden bien pegaditas */
-}
-
-.bottomText {
-  color: var(--primary-red);
-  font-weight: 800;
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-/* MENÚ DE NAVEGACIÓN */
+/* MENÚ DE NAVEGACIÓN - Desktop */
 .navMenu {
   display: flex;
   justify-content: center;
   list-style: none;
-  gap: 15px; /* Espacio entre opciones */
+  gap: 15px;
   margin: 0;
   padding: 0;
   height: 100%;
+  flex: 1;
 }
 
-.navMenu li {
-  position: relative; /* Necesario para posicionar la línea roja */
+.navMenu .navLink {
+  position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
   padding: 0 10px;
   height: 90px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .navItemContent {
@@ -273,29 +236,27 @@ header {
   color: var(--nav-link);
   transition: var(--transition);
   transition: color 0.3s ease;
-  
 }
 
-
 /* Línea animada (Underline) */
-.navMenu li::after {
+.navLink::after {
   content: '';
   position: absolute;
-  bottom: 0; /* Pegado al fondo de la navbar */
+  bottom: 0;
   left: 0;
   width: 0;
   height: 3px;
-  background-color: var(--primary-red); /* #C22821 */
+  background-color: var(--primary-red);
   transition: width 0.3s ease;
 }
 
-.navMenu li:hover::after,
-.navMenu li.active::after {
+.navLink:hover::after,
+.navLink.active::after {
   width: 100%;
 }
 
-.navMenu li:hover .navItemContent,
-.navMenu li.active .navItemContent {
+.navLink:hover .navItemContent,
+.navLink.active .navItemContent {
   color: var(--primary-red) !important;
 }
 
@@ -348,58 +309,14 @@ header {
 }
 
 .socials svg:hover {
-  color: var(--accent-yellow); /* Resalta con el amarillo de la paleta */
+  color: var(--accent-yellow);
   transform: translateY(-3px);
 }
 
-/* dark mode */
-.toggleContainer {
-  width: 60px;
-  height: 30px;
-  background-color: #333; /* Color oscuro de la cápsula */
-  border-radius: 50px;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-  transition: all 0.3s ease;
-  margin-left: 20px; /* Separación del botón de Login */
-  flex-shrink: 0;
-}
-
-.toggleBall {
-  width: 22px;
-  height: 22px;
-  background-color: white;
-  border-radius: 50%;
-  position: absolute;
-  left: 4px;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  z-index: 2;
-}
-
-.darkActive .toggleBall {
-  left: 34px; /* Se mueve a la derecha */
-}
-
-.toggleIcon {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 4px;
-  color: #aaa;
-  z-index: 1;
-}
-
-.hideIcon { opacity: 0; }
-.showIcon { opacity: 1; color: white; }
-
-/* Quita el subrayado azul y mantiene el color original */
 .navLink, 
 .navMenu a {
-  text-decoration: none !important; /* Adiós a las rayas azules */
-  color: inherit !important;        /* Mantiene el blanco/gris que ya configuramos */
+  text-decoration: none !important;
+  color: inherit !important;
   display: flex;
   align-items: center;
 }
@@ -408,28 +325,386 @@ header {
   transition: color 0.3s ease;
 }
 
-.active::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
+/* ========== MENÚ HAMBURGUESA ========== */
+.hamburgerBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+}
+
+.hamburgerBtn span {
+  width: 30px;
+  height: 3px;
+  background: var(--primary-red);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburgerBtn.open span:first-child {
+  transform: rotate(45deg);
+}
+
+.hamburgerBtn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerBtn.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* Overlay para móvil */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  border-radius: 10px;
-  /* Animación para que la raya roja crezca lateralmente */
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-@keyframes slideIn {
-  from { width: 0; left: 50%; }
-  to { width: 100%; left: 0; }
+.overlay.show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-
-
-/* Opcional: Si quieres que al pasar el mouse no aparezca nada raro */
-.navLink:hover, 
-.navMenu a:hover {
-  text-decoration: none !important;
+/* Clase para ocultar elementos en móvil cuando el menú está abierto */
+.mobileOnly {
+  display: none;
 }
 
+/* ========== MEDIA QUERIES ========== */
 
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .searchWrapper {
+    width: 200px;
+  }
+
+  .navMenu {
+    gap: 10px;
+  }
+
+  .navMenu .navLink {
+    padding: 0 5px;
+  }
+
+  .navItemContent {
+    font-size: 0.8rem;
+  }
+
+  .mainLogo {
+    height: 70px;
+  }
+}
+
+/* Tablet - 768px */
+@media (max-width: 768px) {
+  .topbar .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contactInfo {
+    border-left: none;
+    padding-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .socials {
+    border-left: none;
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .navbar .container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hamburgerBtn {
+    display: flex;
+    order: 3;
+  }
+
+  .logoContainer {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .topbarRight {
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* Menú móvil */
+  .navMenu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--header-bg);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 100px 30px 30px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+  }
+
+  .navMenu.open {
+    right: 0;
+  }
+
+  .navMenu .navLink {
+    height: auto;
+    padding: 15px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .navMenu .navLink:last-child {
+    border-bottom: none;
+  }
+
+  .navMenu .navLink::after {
+    display: none;
+  }
+
+  .navItemContent {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  /* Mostrar ThemeToggle en el menú móvil */
+  .mobileOnly {
+    display: flex;
+    padding: 20px 0 0;
+    justify-content: center;
+  }
+
+  .overlay.show {
+    display: block;
+  }
+
+  .mainLogo {
+    height: 60px;
+  }
+}
+
+/* Móvil - 480px */
+@media (max-width: 480px) {
+  .contactInfo {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contactInfo span {
+    justify-content: center;
+  }
+
+  .socials {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar .container {
+    gap: 8px;
+  }
+
+  .logoContainer {
+    gap: 8px;
+  }
+
+  .mainLogo {
+    height: 50px;
+  }
+
+  .topbarRight {
+    gap: 10px;
+  }
+
+  .btnLogin {
+    padding: 0.6em 1.2em;
+    font-size: 11px;
+  }
+
+  .navMenu {
+    width: 90%;
+    padding: 80px 20px 20px;
+  }
+
+  .searchWrapper {
+    width: 160px;
+    padding: 6px 12px;
+  }
+}
+
+/* Móvil pequeño - 348px */
+@media (max-width: 348px) {
+  .navbar .container {
+    padding: 0 10px;
+  }
+
+  .logoContainer {
+    gap: 5px;
+  }
+
+  .mainLogo {
+    height: 40px;
+  }
+
+  .topbarRight {
+    gap: 5px;
+  }
+
+  .btnLogin {
+    padding: 0.5em 1em;
+    font-size: 10px;
+  }
+
+  .searchWrapper {
+    width: 130px;
+    padding: 4px 10px;
+  }
+
+  .searchWrapper input {
+    font-size: 0.8rem;
+  }
+
+  .hamburgerBtn {
+    width: 25px;
+    height: 20px;
+  }
+
+  .hamburgerBtn span {
+    width: 25px;
+    height: 2px;
+  }
+
+  .navMenu {
+    width: 100%;
+    max-width: none;
+  }
+
+  .contactInfo span {
+    font-size: 12px;
+  }
+
+  .socials a {
+    font-size: 14px !important;
+  }
+}
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 4em;
+  height: 2.2em;
+  cursor: pointer;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #00a6ff;
+  transition: 0.4s;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* El círculo (Sol/Luna) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 0.4em;
+  bottom: 0.4em;
+  background-color: #ffcf48; /* Color del Sol */
+  transition: 0.4s cubic-bezier(0.81, -0.04, 0.38, 1.5);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(255, 207, 72, 0.5);
+}
+
+/* Estado Activo (Oscuro) */
+.switch input:checked + .slider {
+  background-color: #2a2a2a;
+}
+
+/* Estado Activo (Oscuro) */
+.switch input:checked + .slider:before {
+  transform: translateX(1.8em);
+  background-color: transparent;
+  box-shadow: inset -8px -4px 0px 0px #fff; 
+}
+
+/* Estrellas */
+.star {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 1;
+}
+
+.switch input:checked + .slider .star {
+  opacity: 1;
+}
+
+.star_1 { width: 4px; height: 4px; left: 1.2em; top: 0.6em; }
+.star_2 { width: 3px; height: 3px; left: 2em; top: 1.2em; }
+.star_3 { width: 3px; height: 3px; left: 0.8em; top: 1.3em; }
+
+/* Nube */
+.cloud {
+  width: 2.8em;
+  position: absolute;
+  bottom: -0.5em;
+  right: -0.5em;
+  opacity: 1;
+  transition: 0.4s;
+  z-index: 1;
+}
+
+.switch input:checked + .slider .cloud {
+  transform: translateY(2em);
+  opacity: 0;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+  .switch { font-size: 14px; }
+}
