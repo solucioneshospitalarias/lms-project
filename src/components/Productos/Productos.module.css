@@ -1,28 +1,175 @@
 .container {
-  padding-top: 120px;
-  background-color: #ffffff;
+  padding-top: 1px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: var(--transition);
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .mainHeader {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
+  position: relative;
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.mouseFollower {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y),
+      rgba(194, 40, 33, 0.15),
+      transparent 40%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mainHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px);
+  background-size: 550px 550px, 350px 350px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 5;
+  transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+  transition: transform 0.1s ease-out;
 }
 
 .mainHeader h1 {
-  font-size: 3rem;
-  color: #1a1a1a;
-  font-weight: 800;
+  font-size: 4.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.mainHeader p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 2;
+}
+
+.typewriterText {
+  display: inline-block;
+  overflow: hidden;
+  /* Oculta las letras antes de que se escriban */
+  border-right: 3px solid var(--primary-red);
+  /* El cursor parpadeante */
+  white-space: nowrap;
+  /* Evita que el texto salte de línea mientras se escribe */
+  margin: 0 auto;
+  letter-spacing: 1px;
+  animation:
+    typing 3.5s steps(60, end),
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+/* Animación del cursor */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: var(--primary-red)
+  }
+}
+
+.decoration {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 1;
+  opacity: 0.4;
+  animation: float 8s infinite ease-in-out;
+}
+
+.circle1 {
+  width: 150px;
+  height: 150px;
+  background: var(--primary-red);
+  top: -20px;
+  left: 10%;
+}
+
+.circle2 {
+  width: 200px;
+  height: 200px;
+  background: var(--accent-blue);
+  bottom: -50px;
+  right: 5%;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
 }
 
 .section {
   display: flex;
-  align-items: flex-start;
-  gap: 60px;
-  padding: 80px 10%;
-  border-bottom: 1px solid #f0f0f0;
+  flex-direction: column;
+  padding: 60px 10%;
+  gap: 40px;
+  border-bottom: 1px solid var(--card-border);
 }
 
-.reverse {
+.productMainContent {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.reverse .productMainContent {
   flex-direction: row-reverse;
 }
 
@@ -31,25 +178,15 @@
   position: relative;
 }
 
+
 .productImg {
   width: 100%;
-  height: 500px;
+  height: 450px;
   object-fit: cover;
   border-radius: 30px;
   z-index: 2;
   position: relative;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.colorBlock {
-  position: absolute;
-  top: 40px;
-  left: -20px;
-  width: 100%;
-  height: 100%;
-  border-radius: 30px;
-  z-index: 1;
-  opacity: 0.15;
+  box-shadow: var(--shadow-sm);
 }
 
 .textContent {
@@ -57,52 +194,246 @@
 }
 
 .textContent h2 {
-  font-size: 2.5rem;
-  margin-bottom: 25px;
+  font-size: 3.8rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 15px;
+  /* Quitamos el border-bottom normal para usar el animado */
+  border-bottom: none;
+}
+
+.textContent h2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  /* Empezamos en el centro */
+  width: 0;
+  /* Ancho inicial cero */
+  height: 6px;
+  background-color: currentColor;
+  /* Color dinámico del programa */
+  border-radius: 3px;
+  transform: translateX(-50%);
+  /* Centra el punto de origen */
+
+  /* Animación vinculada a la carga de la sección */
+  animation: growLine 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 0.5s;
+  /* Espera a que el título suba primero */
+}
+
+@keyframes growLine {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.textContent h2:hover {
+  transform: translateX(10px);
+  /* Ligero desplazamiento a la derecha */
+  border-bottom-width: 10px;
+  /* El subrayado se hace más grueso */
+}
+
+.textContent h2::after {
+  content: "✦";
+  position: absolute;
+  right: -35px;
+  bottom: -5px;
+  font-size: 1.5rem;
+  color: currentColor;
+  opacity: 0;
+  transform: scale(0);
+  animation: popIcon 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 1.5s;
+  /* Aparece justo cuando la línea termina de crecer */
+}
+
+@keyframes popIcon {
+  to {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.textContent h2:hover::after {
+  transform: rotate(180deg) scale(1.5);
+  opacity: 1;
+}
+
+.textContent h2:hover {
+  transform: translateX(5px);
+  padding-right: 15px;
+  /* Crea espacio para que el icono no choque */
 }
 
 .longText p {
-  color: #444;
+  color: var(--text-main);
   line-height: 1.8;
   margin-bottom: 20px;
   font-size: 1.05rem;
   text-align: justify;
+  opacity: 0.9;
 }
 
-.gridInfo {
+/* 4 CARDS DE ESPECIFICACIONES */
+.specsWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin-top: 30px;
-  background: #f9f9f9;
-  padding: 30px;
-  border-radius: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
 }
 
-.infoCol h4 {
-  color: #1a1a1a;
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  border-bottom: 2px solid #ddd;
+.specBox {
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--accent-color);
+  /* Resalta el color arriba */
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.specBox:hover {
+  background-color: var(--bg-hover);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px -10px var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.specBox:hover .boxIcon {
+  transform: rotateY(360deg) scale(1.2);
+}
+
+.cascadeAnimation {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUpFade 0.6s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.boxHeader {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.boxIcon {
+  font-size: 2.5rem;
   display: inline-block;
+  margin-bottom: 15px;
+  transition: transform 0.5s ease;
 }
 
-.infoCol ul {
+.boxHeader h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: inline-block;
+  position: relative;
+  padding-bottom: 8px;
+  margin: 0;
+  /* Quitamos el borde estático que teníamos antes */
+  border-bottom: none;
+}
+
+.boxHeader h4::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  /* Un poco más delgada que la del título principal */
+  background-color: var(--accent-color);
+  /* Usa el color de la categoría */
+  border-radius: 2px;
+  transform: translateX(-50%);
+
+  /* Animación: se activa cuando la sección entra en vista */
+  animation: growLine 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 1.8s;
+  /* Aparece después de la línea del título principal */
+}
+
+.boxHeader h4::after {
+  content: "✧";
+  position: absolute;
+  right: -15px;
+  bottom: -2px;
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  opacity: 0;
+  animation: popIcon 0.4s ease-out forwards;
+  animation-delay: 2.6s;
+}
+
+.boxList {
   list-style: none;
   padding: 0;
+  text-align: left;
 }
 
-.infoCol li {
+.boxList li {
   font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 5px;
+  color: var(--text-main);
+  opacity: 0.8;
+  margin-bottom: 12px;
+  padding-left: 20px;
   position: relative;
-  padding-left: 15px;
 }
 
-.infoCol li::before {
-  content: "•";
+.boxList li::before {
+  content: "→";
   position: absolute;
   left: 0;
-  color: inherit;
+  font-weight: bold;
+  color: var(--bullet-color);
+}
+
+@media (max-width: 1024px) {
+  .textContent h2 {
+    font-size: 3rem;
+    border-bottom-width: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .textContent h2 {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom-width: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .textContent h2::after {
+    right: 0;
+    bottom: -25px;
+    /* Lo pone debajo en pantallas muy pequeñas */
+    width: 100%;
+    text-align: center;
+  }
 }
