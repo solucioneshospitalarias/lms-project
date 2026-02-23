@@ -1,138 +1,538 @@
 .statsPage {
-  padding: 80px 20px;
+  padding: 2px 5% 60px;
   background-color: var(--bg-main);
   min-height: 100vh;
-  animation: fadeIn 0.8s ease-out; /* Animación suave al entrar */
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .header {
+  margin-bottom: 40px;
   text-align: center;
-  margin-bottom: 60px;
 }
 
-.badge {
-  background: rgba(194, 40, 33, 0.1);
+.headerLeft {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  text-align: left;
+  border-left: 6px solid var(--primary-red);
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headerLeft h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--text-main) !important;
+}
+
+.headerLeft h1 span {
   color: var(--primary-red);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-.mainTitle {
-  font-size: 2.8rem;
-  color: var(--text-main);
-  margin-top: 15px;
-}
-
-.mainTitle span {
-  color: var(--primary-red);
-}
-
-.description {
+.headerLeft p {
+  font-size: 1.1rem;
   color: var(--primary-gray);
-  max-width: 600px;
-  margin: 15px auto 0;
+  margin-top: 15px;
+  max-width: 850px;
   line-height: 1.6;
 }
 
-/* Cuadrícula de tarjetas */
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
+.headerLeft h1 {
+  color: #f8fafc;
+  font-size: 2.5rem;
 }
 
-.card {
+.headerLeft span {
+  color: #ef4444;
+}
+
+.chartCard {
   background: var(--card-bg);
-  padding: 30px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
   border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
-
-.iconWrapper {
-  width: 55px;
-  height: 55px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Colores suaves para los iconos */
-.blue { background: #e0f2fe; color: #0ea5e9; }
-.red { background: #fee2e2; color: #ef4444; }
-.gray { background: #f3f4f6; color: #6b7280; }
-.gold { background: #fef3c7; color: #d97706; }
-
-.cardInfo h3 {
-  font-size: 1.8rem;
-  margin: 0;
-  color: var(--text-main);
-}
-
-.cardInfo p {
-  margin: 0;
-  color: var(--primary-gray);
-  font-size: 0.9rem;
-}
-
-/* Estilo para la gráfica simulada */
-.chartPlaceholder {
-  margin-top: 50px;
-  background: var(--card-bg);
   padding: 40px;
-  border-radius: 20px;
-  border: 1px solid var(--card-border);
-  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px var(--card-shadow);
+  transition: var(--transition);
 }
 
-.barContainer {
+.chartCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-red);
+}
+
+.chartCard h3 {
+  color: #fff;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--primary-red);
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.cardHeader {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #555;
+  /* Color gris oscuro para modo claro */
+  margin-bottom: 8px;
+  text-transform: uppercase;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  gap: 15px;
-  height: 150px;
+  gap: 10px;
+}
+
+.cardHeader::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--card-border), transparent);
+  margin-left: 15px;
+}
+
+.cardHeader span {
+  color: var(--primary-red);
+  border-bottom: 2px solid var(--primary-red);
+  padding-bottom: 2px;
+}
+
+.gradientBar {
+  display: inline-block;
+  width: 100px;
+  height: 10px;
+  background: linear-gradient(to right, #00FF00, #FFFF00, #FF0000);
+  margin: 0 10px;
+  border-radius: 5px;
+  vertical-align: middle;
+}
+
+.colorScaleContainer {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.chartContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.chartWrapper {
+  width: 100%;
+  background: transparent;
+  /* Eliminado el fondo azul */
+}
+
+:global(.recharts-cartesian-grid-horizontal line) {
+  stroke-opacity: 0.5;
+}
+
+:global(.dark-mode) .linkText {
+  color: #ffffff !important;
+}
+
+:global(.dark-mode) .dbDescription {
+  color: #cccccc !important;
+  /* Un blanco ligeramente grisáceo para la descripción */
+}
+
+:global(.dark-mode) .cardHeader {
+  color: #eeeeee !important;
+}
+
+[data-theme='dark'] .linkText {
+  color: #ffffff !important;
+}
+
+:global(.dark-mode) .linkIcon,
+:global(.dark-mode) .externalArrow {
+  color: #ff4d4d !important;
+}
+
+:global(.dark-mode) .dbLink:hover .linkIcon {
+  color: #ffffff !important;
+}
+
+.dbLink:hover .linkText {
+  color: #ffffff !important;
+}
+
+.cardFooter {
+  margin-top: 25px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 15px;
+  font-size: 0.9rem;
+  color: var(--primary-gray);
+  text-align: center;
+  font-style: italic;
+}
+
+.marginTop {
   margin-top: 20px;
 }
 
-.bar {
-  width: 40px;
-  background: var(--primary-red);
-  border-radius: 8px 8px 0 0;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+:global(.recharts-text) {
+  fill: var(--text-main) !important;
 }
 
-.bar:hover { opacity: 1; }
+:global(.recharts-cartesian-grid-line) {
+  stroke: var(--card-border);
+}
 
-.statsPage {
-  /* Aumenta el espacio superior para que el título respire */
-  padding-top: 140px; 
-  background-color: var(--bg-main);
-  min-height: 100vh;
+:global(.recharts-legend-item-text) {
+  color: var(--text-main) !important;
+}
+
+.chartSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 100%;
+}
+
+.chartsRow {
+  display: flex;
+  flex-direction: row;
+  /* Los pone uno al lado del otro */
+  gap: 20px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.scaleInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--primary-gray);
+  margin-bottom: 20px;
+}
+
+.gradientLine {
+  width: 120px;
+  height: 8px;
+  background: linear-gradient(to right, #48B358, #B7F700, #C22821);
+  border-radius: 4px;
   position: relative;
-  z-index: 1; /* Nivel inferior al Navbar */
+}
+
+.gradientLine::after {
+  content: '22,57 mil';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+}
+
+.dualChartContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.chartHalf {
+  flex: 1;
+  background: var(--card-bg);
+  /* O rgba(0,0,0,0.05) */
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+}
+
+.chartSubtitle {
+  text-align: center;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.chartFooter {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--primary-gray);
+  border-top: 1px solid var(--card-border);
+  padding-top: 10px;
+}
+
+/* --------BASE DE DATOS------------ */
+.databaseContainer {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.databaseContent {
+  display: flex;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  max-width: 1100px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.databaseContent:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.linksSide {
+  flex: 1.2;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+}
+
+.linkIcon {
+  margin-right: 15px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dbDescription {
+  color: #666;
+  /* Gris intermedio */
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 30px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linkText {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  /* Texto más grueso para resaltar */
+  color: inherit;
+  /* Hereda del padre (.dbLink) */
+}
+
+.dbLink:hover .linkText {
+  color: white;
+  /* Resalta el texto al pasar el mouse */
+}
+
+.dbLink {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.03);
+  /* Fondo muy sutil */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #333 !important;
+  /* Forzamos color oscuro para que no se pierda */
+}
+
+.dbLink:hover {
+  background: var(--primary-red);
+  /* Fondo rojo al señalar */
+  border-color: var(--primary-red);
+  transform: translateX(10px);
+  box-shadow: 0 10px 20px rgba(186, 0, 0, 0.2);
+}
+
+/* Al señalar, el texto DEBE ser blanco para contrastar con el fondo rojo */
+.dbLink:hover .linkIcon,
+.dbLink:hover .externalArrow {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  /* Algunos navegadores requieren stroke para SVG */
+}
+
+.externalArrow {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  color: var(--primary-red);
+  /* Flecha roja por defecto */
+}
+
+.dbLink:hover .externalArrow {
+  transform: rotate(-45deg);
+  /* Efecto dinámico en la flecha */
+}
+
+.imageSide {
+  flex: 0.8;
+  position: relative;
+  overflow: hidden;
+}
+
+.sideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) grayscale(0.2);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.databaseContent:hover .sideImage {
+  transform: scale(1.1);
+  filter: brightness(0.8);
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background: var(--primary-red);
+  color: white;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.tabContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* LA BARRA OSCURA */
+.tabBar {
+  display: flex;
+  background-color: #1e293b;
+  /* Azul muy oscuro */
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.tabButton {
+  flex: 1;
+  padding: 20px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-weight: 800;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* BOTÓN ROJO ACTIVO */
+.activeTab {
+  background-color: #ff0000 !important;
+  position: relative;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ff0000;
+}
+
+/* DISEÑO DE DOS COLUMNAS */
+.mainDisplay {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  /* Más espacio al gráfico que al texto */
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.chartArea {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.infoArea {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 5px solid #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.displayTitle {
+  font-size: 1.4rem;
+  color: #1e293b;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ff0000;
+  display: inline-block;
+}
+
+.infoArea h3 {
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.infoArea p {
+  line-height: 1.7;
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+.placeholder {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  font-style: italic;
+}
+
+.dark-mode .container-graficos text {
+  fill: #ffffff !important;
+  /* Cambia el color del texto del SVG a blanco */
+  color: #ffffff !important;
+}
+
+.dark-mode .container-graficos .recharts-cartesian-axis-tick-value {
+  fill: #cccccc;
+  /* Un gris claro para los ejes */
+}
+
+.fadeUp {
+  animation: fadeUpAnim 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fadeUpAnim {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
