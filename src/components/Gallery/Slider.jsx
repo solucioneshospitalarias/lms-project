@@ -1,9 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Gallery.module.css";
 
 export default ({ data, activeSlide: initialSlide }) => {

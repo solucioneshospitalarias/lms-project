@@ -1,14 +1,7 @@
-import React from "react";
 import styles from "./Footer.module.css";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MapPin, Phone, Mail } from "lucide-react";
-import {
-  faFacebookF,
-  faInstagram,
-  faTiktok,
-  faWhatsapp,
-} from "@fortawesome/free-brands-svg-icons";
+import { MapPin, Phone, Mail} from "lucide-react";
+import { faFacebookF, faInstagram, faTiktok, faWhatsapp, } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

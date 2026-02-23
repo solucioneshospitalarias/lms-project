@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./About.module.css";
 
-const Card3D = ({ title, text, icon, color }) => {
+const Card3D = ({ title, text, icon: Icon, color }) => {
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e) => {
@@ -32,7 +31,7 @@ const Card3D = ({ title, text, icon, color }) => {
             }}
         >
             <div className={styles.iconWrapper} style={{ color: color }}>
-                <FontAwesomeIcon icon={icon} size="3x" />
+                {Icon && <Icon size={48} strokeWidth={1.5} />}
             </div>
             <h3>{title}</h3>
             <p>{text}</p>

@@ -1,23 +1,15 @@
 import React from 'react';
 import styles from './AulaVirtual.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faCheckCircle,
-    faChalkboardTeacher,
-    faTasks,
-    faChartLine,
-    faComments
-} from '@fortawesome/free-solid-svg-icons';
-// Importa una imagen de un mockup profesional de plataforma
+import { ListChecks, CircleCheck, MessagesSquare, Computer, ChartLine } from "lucide-react"
 import lmsMockup from "../../assets/Aula.png";
 
 const AulaVirtual = () => {
     const features = [
-        { icon: faTasks, text: "Gestión de Tareas y Actividades" },
-        { icon: faCheckCircle, text: "Evaluaciones Interactivas" },
-        { icon: faComments, text: "Foros y Debates Virtuales" },
-        { icon: faChalkboardTeacher, text: "Sesiones de Clase en Vivo" },
-        { icon: faChartLine, text: "Panel de Informes y Seguimiento" }
+        { icon: ListChecks, text: "Gestión de Tareas y Actividades" },
+        { icon: CircleCheck, text: "Evaluaciones Interactivas" },
+        { icon: MessagesSquare, text: "Foros y Debates Virtuales" },
+        { icon: Computer, text: "Sesiones de Clase en Vivo" },
+        { icon: ChartLine, text: "Panel de Informes y Seguimiento" }
     ];
 
     return (
@@ -50,14 +42,17 @@ const AulaVirtual = () => {
                         </div>
 
                         <ul className={styles.featureList}>
-                            {features.map((item, index) => (
-                                <li key={index} className={styles.featureItem}>
-                                    <div className={styles.iconCircle}>
-                                        <FontAwesomeIcon icon={item.icon} />
-                                    </div>
-                                    <span>{item.text}</span>
-                                </li>
-                            ))}
+                            {features.map((item, index) => {
+                                const Icon = item.icon;
+                                return (
+                                    <li key={index} className={styles.featureItem}>
+                                        <div className={styles.iconCircle}>
+                                            <Icon icon={item.icon} />
+                                        </div>
+                                        <span>{item.text}</span>
+                                    </li>
+                                )
+                            })}
                         </ul>
 
                         <button className={styles.mainBtn}>EXPLORAR LMS</button>

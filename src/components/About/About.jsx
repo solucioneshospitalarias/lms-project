@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./About.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRocket, faEye, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { RocketIcon, Eye, Users, Youtube } from "lucide-react"
 import techImg from "../../assets/quienesSomos.png";
 import pngNiño from "../../assets/plataformaEducativa.png"
 import pngNiña from "../../assets/plataformaAnalisis.png"
@@ -57,21 +55,21 @@ const About = () => {
     {
       title: "Nuestra Misión",
       text: "En Rutas del Saber, entendemos que la educación de niños y adolescentes no ocurren en el vacío. Somos una Organización calificada que articula comunidades, instituciones y actores sociales para responder al reto de una crianza segura y una formación integral.",
-      icon: faRocket,
+      icon: RocketIcon,
       iconColor: missionVisionColor,
       iconClass: "missionVisionIcon", // Clase unificada para misión y visión
     },
     {
       title: "Visión",
       text: "Para el año 2030, Rutas del Saber se consolidará como ecosistema digital y pedagógico líder en Colombia para la transformación social. Habremos logrado articular a más de 1.000 comunidades educativas integrando seguridad vial y cultura de paz.",
-      icon: faEye,
+      icon: Eye,
       iconColor: missionVisionColor, // Mismo color que misión
       iconClass: "missionVisionIcon", // Misma clase que misión
     },
     {
       title: "Valores",
       text: "Compromiso con la innovación educativa, integridad en nuestros procesos pedagógicos y responsabilidad social con cada comunidad del Atlántico para generar un impacto real.",
-      icon: faUsers,
+      icon: Users,
       iconColor: valuesColor,
       iconClass: "valuesIcon",
     },
@@ -113,25 +111,28 @@ const About = () => {
 
       {/* GRILLA DE TARJETAS */}
       <div className={styles.cardsGrid}>
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            className={styles.card3D}
-            onMouseMove={(e) => handleCardMouseMove(e, index)}
-            onMouseLeave={() => resetCardRotation(index)}
-            style={{
-              transform: `rotateX(${cardRotations[index].x}deg) rotateY(${cardRotations[index].y}deg)`,
-              borderTop: `5px solid ${card.iconColor}`,
-            }}
-          >
-            <div className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={card.icon} size="3x" className={`${styles.cardIcon} ${styles[card.iconClass]}`} style={{ color: card.iconColor }} />
+        {cards.map((card, index) => {
+          const Icon = card.icon;
+          return (
+            <div
+              key={index}
+              className={styles.card3D}
+              onMouseMove={(e) => handleCardMouseMove(e, index)}
+              onMouseLeave={() => resetCardRotation(index)}
+              style={{
+                transform: `rotateX(${cardRotations[index].x}deg) rotateY(${cardRotations[index].y}deg)`,
+                borderTop: `5px solid ${card.iconColor}`,
+              }}
+            >
+              <div className={styles.iconWrapper}>
+                <Icon size={48} className={`${styles.cardIcon} ${styles[card.iconClass]}`} color={card.iconColor} />
+              </div>
+              <h3 className={styles.cardTitle}>{card.title}</h3>
+              <p className={styles.cardText}>{card.text}</p>
+              <div className={styles.innerGlow} />
             </div>
-            <h3 className={styles.cardTitle}>{card.title}</h3>
-            <p className={styles.cardText}>{card.text}</p>
-            <div className={styles.innerGlow} />
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       <div className={styles.tabcontainer}>
@@ -220,7 +221,7 @@ const About = () => {
         <div className={styles.youtubeCard}>
           <div className={styles.youtubeInfo}>
             <div className={styles.youtubeBadge}>
-              <FontAwesomeIcon icon={faYoutube} className={styles.ytIcon} />
+              <Youtube className={styles.ytIcon} size={20} />
               <span>CONTENIDO EXCLUSIVO</span>
             </div>
             <h2 className={styles.ytTitle}>Nuestro Canal de <span>YouTube</span></h2>

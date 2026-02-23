@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { ArrowUp } from "lucide-react"
 import styles from "./ScrollToTop.module.css";
 
 const ScrollToTop = () => {
@@ -31,7 +30,7 @@ const ScrollToTop = () => {
     <div className={styles.scrollToTop}>
       {isVisible && (
         <div onClick={scrollToTop} className={styles.backToTopButton}>
-          <FontAwesomeIcon icon={faArrowUp} />
+          <ArrowUp />
         </div>
       )}
     </div>
