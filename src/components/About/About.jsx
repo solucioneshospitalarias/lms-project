@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styles from "./About.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRocket, faEye, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import techImg from "../../assets/quienesSomos.png";
 import pngNiño from "../../assets/plataformaEducativa.png"
 import pngNiña from "../../assets/plataformaAnalisis.png"
 import portatil from "../../assets/portatil.png"
- 
+
 const About = () => {
   const [activeTab, setActiveTab] = useState("escuelas");
   const [mainRotation, setMainRotation] = useState({ x: 0, y: 0 });
@@ -98,8 +99,10 @@ const About = () => {
             <h2 className={styles.title3D}>¿QUIÉNES SOMOS?</h2>
             <div className={styles.divider}></div>
             <p className={styles.mainText}>
-              Somos una solución tecnológica integral diseñada para transformar la educación en los municipios del Atlántico, mediante una plataforma web interactiva de vanguardia. Este ecosistema
-              digital ofrece un acceso personalizado anual para cada estudiante y docente.
+              En Rutas del Saber, somos una plataforma líder dedicada a transformar
+              la educación vial y la convivencia armónica a través de la tecnología. Creemos que el
+              conocimiento es la herramienta más poderosa para salvar vidas y construir una cultura
+              de paz en nuestras comunidades.
             </p>
             <div className={styles.buttonContainer}>
               <button className={styles.platformBtn}>PLATAFORMA PARA COLEGIOS</button>
@@ -144,7 +147,7 @@ const About = () => {
         <div className={styles.schoolsContainer}>
           <div className={styles.schoolsContent}>
             <div className={styles.tabHeader}>
-              <h2 style={{ fontSize:"45px", fontWeight: "bold"}}>Plataforma educativa</h2>
+              <h2 style={{ fontSize: "45px", fontWeight: "bold" }}>Plataforma Educativa</h2>
             </div>
             <div className={styles.tabDivider}></div>
             <div className={styles.mainDescription}>
@@ -165,7 +168,7 @@ const About = () => {
               <p> • Desarrollar competencias en Educación Vial y autocuidado</p>
 
             </div>
-            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize:"20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
+            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize: "20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
             <button className={styles.tabActionBtn}>Ingresar a mi plataforma</button>
           </div>
           <div className={styles.imgSection}>
@@ -178,7 +181,7 @@ const About = () => {
         <div className={styles.analyticsContainer}>
           <div className={styles.analyticsContent}>
             <div className={styles.tabHeader}>
-              <h2 style={{ fontSize:"45px", fontWeight: "bold"}}>Plataforma Analisis</h2>
+              <h2 style={{ fontSize: "45px", fontWeight: "bold" }}>Plataforma Análisis</h2>
             </div>
             <div className={styles.tabDivider}></div>
             <div className={styles.mainDescription}>
@@ -199,7 +202,7 @@ const About = () => {
               <p> • Desarrollar competencias en Educación Vial y autocuidado</p>
 
             </div>
-            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize:"20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
+            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize: "20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
             <button className={styles.tabActionBtnAnalisis}>Ingresar a mi plataforma</button>
           </div>
           <div className={styles.imgSection}>
@@ -210,6 +213,44 @@ const About = () => {
       <div className={styles.educacionContainer}>
         <h3> Impulsando la educación 4.0 para los retos del mañana. </h3>
         <img src={portatil} alt="Portatil" className={styles.portatil} />
+      </div>
+
+      {/* ------------------------------------------------------- */}
+      <div className={`${styles.youtubeSection} fadeUpEffect`}>
+        <div className={styles.youtubeCard}>
+          <div className={styles.youtubeInfo}>
+            <div className={styles.youtubeBadge}>
+              <FontAwesomeIcon icon={faYoutube} className={styles.ytIcon} />
+              <span>CONTENIDO EXCLUSIVO</span>
+            </div>
+            <h2 className={styles.ytTitle}>Nuestro Canal de <span>YouTube</span></h2>
+            <p className={styles.ytText}>
+              Suscríbete para acceder a tutoriales, conferencias y material educativo
+              exclusivo sobre seguridad vial y cultura de paz en el Atlántico.
+            </p>
+            <a
+              href="https://youtube.com/@TuCanal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.subscribeBtn}
+            >
+              Suscribirse ahora
+            </a>
+          </div>
+
+          <div className={styles.videoWrapper}>
+            <div className={styles.videoFrame}>
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className={styles.videoDecoration}></div>
+          </div>
+        </div>
       </div>
     </section>
   );

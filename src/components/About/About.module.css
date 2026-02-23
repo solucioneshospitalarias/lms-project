@@ -15,8 +15,15 @@
 }
 
 @keyframes fadeInEffect {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .outerWrapper {
@@ -158,7 +165,7 @@
   cursor: pointer;
   box-shadow: 0 10px 30px var(--card-shadow);
   overflow: hidden;
-  
+
   /* Propiedades de Paralaje */
   transform-style: preserve-3d;
   will-change: transform;
@@ -263,9 +270,17 @@
 }
 
 @keyframes iconPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* ===== TABS ===== */
@@ -319,7 +334,7 @@
   box-shadow: 0 6px 15px rgba(31, 58, 86, 0.3);
 }
 
-.schoolsContainer{ 
+.schoolsContainer {
   display: flex;
   align-items: center;
   gap: 40px;
@@ -354,7 +369,7 @@
   transform: scale(1.05);
 }
 
-.analyticsContainer{
+.analyticsContainer {
   display: flex;
   align-items: center;
   gap: 40px;
@@ -389,14 +404,135 @@
   transform: scale(1.05);
 }
 
-.educacionContainer{
+.educacionContainer {
   padding: 20px;
   margin-top: 20px;
 }
 
-.portatil{
+.portatil {
   max-width: 900px;
 }
+
+.youtubeSection {
+  padding: 100px 5%;
+  background-color: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.youtubeCard {
+  max-width: 1200px;
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 25px 50px var(--card-shadow);
+
+  border-radius: 30px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.youtubeInfo {
+  flex: 1;
+}
+
+.youtubeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 49, 49, 0.1);
+  color: #ff3131;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 49, 49, 0.2);
+}
+
+.ytIcon {
+  font-size: 1.2rem;
+}
+
+.ytTitle {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.ytTitle span {
+  color: var(--primary-red);
+  text-shadow: 0 0 15px rgba(194, 40, 33, 0.2);
+}
+
+.ytText {
+  color: var(--nav-text);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.subscribeBtn {
+  display: inline-block;
+  background: var(--primary-red);
+  color: var(--white);
+  padding: 15px 35px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.3);
+}
+
+.subscribeBtn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 15px 30px rgba(194, 40, 33, 0.4);
+}
+
+.videoWrapper {
+  flex: 1.2;
+  position: relative;
+}
+
+.videoFrame {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  border: 4px solid rgba(255, 255, 255, 0.05);
+}
+
+.videoFrame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.videoDecoration {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-red);
+  border-radius: 20px;
+  z-index: 1;
+  opacity: 0.15;
+  filter: blur(40px);
+}
+
+
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
@@ -404,7 +540,7 @@
     max-width: 100%;
     border-radius: 30px;
   }
-  
+
   .tabBtn {
     padding: 12px 16px;
     font-size: 14px;
@@ -420,14 +556,14 @@
     transform: none !important;
   }
 
-  .infoSection { 
-    text-align: center; 
+  .infoSection {
+    text-align: center;
   }
-  
-  .divider { 
-    margin: 20px auto; 
+
+  .divider {
+    margin: 20px auto;
   }
-  
+
   .card3D {
     transform: none !important;
     width: 100%;
