@@ -20,8 +20,6 @@ export const productosInformacion = [
         y fortalece la conexión entre la escuela y la vida real.`,
 
 
-
-
         principios: [
             "Educación integral del estudiante.",
             "Aprendizaje permanente.",
@@ -29,14 +27,11 @@ export const productosInformacion = [
             "Participación de la comunidad.",
             "Inclusión y diversidad."],
 
-
-
         objetivos: [
             "Ampliar los espacios y tiempos de aprendizaje.",
             "Desarrollar competencias académicas y socioemocionales.",
             "Reducir brechas educativas.",
             "Potenciar talentos individuales."],
-
 
 
         caracteristicas: [
@@ -46,14 +41,11 @@ export const productosInformacion = [
             "Enfoque en habilidades del siglo XXI."],
 
 
-
         estrategias: [
             "Talleres extracurriculares.",
             "Proyectos comunitarios.",
             "Programas culturales y deportivos.",
             "Redes de apoyo institucional."],
-
-
 
         color: "#4A6D8C"
     },
