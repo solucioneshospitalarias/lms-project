@@ -13,24 +13,26 @@ import Conocenos from "./components/Conocenos/Conocenos";
 import Contacto from "./components/Contacto/Contacto";
 import Terminos from "./components/Legal/Terminos";
 import Privacidad from "./components/Legal/Privacidad";
-import Autorizacion from "./components/Legal/Autorizacion"
+import Autorizacion from "./components/Legal/Autorizacion";
 import WhatsAppQR from "./components/WhatsApp/WhatsAppQR";
 
 function App() {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+
+  // Condición corregida: detecta tanto Login como Register
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
 
   useEffect(() => {
-    if (!isLoginPage) {
+    if (!isAuthPage) {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname, isLoginPage]);
+  }, [location.pathname, isAuthPage]);
 
   return (
     <div className="app-container">
-      {!isLoginPage && <Header />}
+      {!isAuthPage && <Header />}
 
-      <main style={!isLoginPage ? { padding: "50px", textAlign: "center" } : {}}>
+      <main style={!isAuthPage ? { padding: "50px", textAlign: "center" } : {}}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/estadisticas" element={<Estadisticas />} />
@@ -45,10 +47,10 @@ function App() {
           <Route path="/autorizacion" element={<Autorizacion />} />
         </Routes>
 
-        {!isLoginPage && <ScrollToTop />}
+        {!isAuthPage && <ScrollToTop />}
       </main>
 
-      {!isLoginPage && <Footer />}
+      {!isAuthPage && <Footer />}
 
       <WhatsAppQR />
     </div>
