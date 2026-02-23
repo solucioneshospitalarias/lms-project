@@ -12,7 +12,7 @@ const Login = () => {
     const [errors, setErrors] = useState({ email: false, password: false });
 
     const handleGoogleLogin = () => {
-        window.location.href = "https://accounts.google.com/v3/signin/identifier";
+        window.location.href = "https://accounts.google.com/";
     };
 
     // Paso 3: Crear la función que valida al hacer clic en "Iniciar Sesión"
@@ -117,7 +117,7 @@ const Login = () => {
                     </button>
 
                     <p className={styles.footerText}>
-                        ¿No tienes una cuenta? <Link to="/registro">Regístrate ahora</Link>
+                        ¿No tienes una cuenta? <Link to="/register">Regístrate ahora</Link>
                     </p>
                 </div>
             </div>
