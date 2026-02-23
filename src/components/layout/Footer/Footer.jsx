@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Footer.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MapPin, Phone, Mail } from "lucide-react";
 import {
   faFacebookF,
   faInstagram,
@@ -91,19 +92,25 @@ const Footer = () => {
         {/* NUEVA SECCIÓN: Barra de Contacto Horizontal */}
         <div className={styles.footerContactBar}>
           <div className={styles.contactItem}>
-            <span className={styles.contactIcon}>📍</span>
+            <div className={styles.iconCircle}>
+              <MapPin size={20} strokeWidth={2.5} />
+            </div>
             <p>
               Cl. 58 #37 - 05, Suroccidente, Barranquilla, Atlántico
             </p>
           </div>
 
           <div className={styles.contactItem}>
-            <span className={styles.contactIcon}>📞</span>
+            <div className={styles.iconCircle}>
+              <Phone size={20} strokeWidth={2.5} />
+            </div>
             <p>+57 320 788 73 27 / +57 315 856 59 85</p>
           </div>
 
           <div className={styles.contactItem}>
-            <span className={styles.contactIcon}>✉️</span>
+            <div className={styles.iconCircle}>
+              <Mail size={20} strokeWidth={2.5} />
+            </div>
             <p>info@trendigroup.com</p>
           </div>
         </div>
