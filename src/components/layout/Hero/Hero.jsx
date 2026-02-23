@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Hero.module.css";
+import { Link } from 'react-router-dom';
 
-const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc, bgColor }) => {
+const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc, bgColor, linkTo}) => {
   return (
     <div className={styles.heroSection}>
       <div
@@ -25,9 +26,9 @@ const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc, bgColor }) => 
           </div>
 
           <div className={styles.buttonGroup}>
-            <a href="#mision" className={styles.btnRed}>
+            <Link to={`/productos#${linkTo}`} className={styles.btnRed}>
               Conoce más información
-            </a>
+            </Link>
           </div>
         </div>
 
