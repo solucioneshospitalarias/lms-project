@@ -133,6 +133,14 @@
   /* Eliminado el fondo azul */
 }
 
+:global(.dark-mode) .infoArea {
+  background: #2d2d2d;
+}
+
+:global(.recharts-legend-item-text) {
+  color: var(--text-main) !important;
+}
+
 :global(.recharts-cartesian-grid-horizontal line) {
   stroke-opacity: 0.5;
 }
@@ -464,21 +472,23 @@
 }
 
 .chartArea {
-  background: white;
+  background: var(--card-bg, white); /* Usa la variable del tema */
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--card-border, #e2e8f0);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .infoArea {
-  background: #f8fafc;
+  background: var(--bg-secondary, #f8fafc);
   padding: 30px;
   border-radius: 12px;
   border-left: 5px solid #ff0000;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: background 0.3s ease;
 }
 
 .displayTitle {
@@ -495,10 +505,14 @@
   margin-bottom: 15px;
 }
 
+.infoArea h3, .displayTitle {
+  color: var(--text-main, #1e293b);
+}
+
 .infoArea p {
-  line-height: 1.7;
-  color: #64748b;
-  font-size: 1.05rem;
+  color: var(--text-muted, #64748b);
+  white-space: pre-line;
+  line-height: 1.6;
 }
 
 .placeholder {

@@ -10,6 +10,15 @@ import img from '../../assets/BaseDatos.png'
 // FORMATEADOR UNIFICADO: Evita errores de "is not defined"
 const formatK = (tickItem) => tickItem === 0 ? '0' : `${tickItem / 1000} mil`;
 
+const isDark = document.body.classList.contains('dark-mode');
+
+const chartColors = {
+  text: isDark ? '#f8fafc' : '#1e293b',
+  grid: isDark ? 'rgba(255, 255, 255, 0.1)' : '#e2e8f0',
+  tooltipBg: isDark ? '#1e293b' : '#ffffff',
+  tooltipBorder: isDark ? '#334155' : '#e2e8f0'
+};
+
 
 const Estadisticas = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -87,10 +96,10 @@ const Estadisticas = () => {
       componente: (
         <ResponsiveContainer width="100%" height={500}>
           <BarChart data={dataInformeImagen} layout="vertical" margin={{ top: 20, right: 60, left: 40, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
-            <XAxis type="number" tickFormatter={formatK} domain={[0, 55000]} stroke="#666" />
-            <YAxis dataKey="ciclo" type="category" tick={{ fontSize: 11, fontWeight: 'bold' }} width={140} stroke="#666" />
-            <Tooltip cursor={{ fill: 'rgba(0,0,0,0.05)' }} />
+            <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" horizontal={true} vertical={false} />
+            <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} type="number" tickFormatter={formatK} domain={[0, 55000]} />
+            <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" type="category" width={140} />
+            <Tooltip contentStyle={{ backgroundColor: chartColors.tooltipBg, borderColor: chartColors.tooltipBorder, color: chartColors.text }} />
             <Legend verticalAlign="top" align="right" iconType="circle" />
             <Bar dataKey="sexual" name="Delito Sexual" fill="#B30000" barSize={12}>
               <LabelList dataKey="sexual" position="right" style={{ fontSize: '10px' }} />
@@ -107,16 +116,16 @@ const Estadisticas = () => {
           </BarChart>
         </ResponsiveContainer>
       ),
-      descripcion: "Análisis de hechos victimizantes. En la adolescencia, el Delito Sexual alcanza su punto máximo con 47.092 casos."
+      descripcion: "La violencia y la accidentalidad aumentan drásticamente en la adolescencia, etapa donde se concentran los mayores indicadores de riesgo en comparación con la infancia y primera infancia."
     },
     2: {
       titulo: "TOP 10 TOTAL DE DELITOS AMBIENTALES",
       componente: (
         <ResponsiveContainer width="100%" height={500}>
           <BarChart data={dataAmbiental} layout="vertical" margin={{ top: 20, right: 60, left: 40, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#eee" />
-            <XAxis type="number" tickFormatter={formatK} domain={[0, 10000]} stroke="#666" />
-            <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fontWeight: 'bold' }} width={150} stroke="#666" />
+            <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" horizontal={true} vertical={false} />
+            <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} type="number" tickFormatter={formatK} domain={[0, 10000]} />
+            <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="name" type="category" width={150} />
             <Tooltip />
             <Bar dataKey="valor" barSize={20}>
               {dataAmbiental.map((entry, index) => (
@@ -127,25 +136,52 @@ const Estadisticas = () => {
           </BarChart>
         </ResponsiveContainer>
       ),
-      descripcion: "El 'Aprovechamiento ilícito de recursos naturales' lidera la estadística ambiental."
+      descripcion: `El informe identifica como principal infracción el aprovechamiento ilícito de recursos naturales, que lidera la lista con 9.327 casos. Le siguen en relevancia la explotación 
+      ilícita de yacimientos mineros (4.877 casos) y los daños en los recursos naturales (2.130 casos). Delitos como la contaminación ambiental (1.073 casos),
+      la pesca ilegal (116) y el tráfico de fauna (113) presentan una frecuencia considerablemente menor.`
     },
     3: {
       titulo: "AGRESOR MÁS COMUNES: COMPARATIVA NIÑAS VS NIÑOS",
       componente: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            <div style={{ flex: 1, minWidth: '300px', background: '#fff', padding: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-              <h4 style={{ textAlign: 'center', marginBottom: '10px', color: '#B30000' }}>CASOS NIÑAS</h4>
+            {/* TARJETA NIÑAS - Quitamos background: '#fff' y usamos chartColors.cardBg */}
+            <div style={{
+              flex: 1,
+              minWidth: '300px',
+              background: chartColors.cardBg,
+              padding: '15px',
+              borderRadius: '8px',
+              boxShadow: isDark ? 'none' : '0 2px 4px rgba(0,0,0,0.05)',
+            }}>
+              <h4 style={{ textAlign: 'center', marginBottom: '10px', color: isDark ? '#ff4d4d' : '#B30000' }}>
+                CASOS NIÑAS
+              </h4>
               {renderAreaChart(dataNinas)}
             </div>
-            <div style={{ flex: 1, minWidth: '300px', background: '#fff', padding: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-              <h4 style={{ textAlign: 'center', marginBottom: '10px', color: '#004080' }}>CASOS NIÑOS</h4>
+
+            {/* TARJETA NIÑOS */}
+            <div style={{
+              flex: 1,
+              minWidth: '300px',
+              background: chartColors.cardBg,
+              padding: '15px',
+              borderRadius: '8px',
+              boxShadow: isDark ? 'none' : '0 2px 4px rgba(0,0,0,0.05)',
+              border: isDark ? '1px solid #334155' : '1px solid transparent'
+            }}>
+              <h4 style={{ textAlign: 'center', marginBottom: '10px', color: isDark ? '#60a5fa' : '#004080' }}>
+                CASOS NIÑOS
+              </h4>
               {renderAreaChart(dataNinos)}
             </div>
           </div>
         </div>
       ),
-      descripcion: "Comparativa de violencia interpersonal por género. Se observa que en la adolescencia, el número de casos donde el agresor es un amigo o compañero de estudio es similar en ambos géneros, con una ligera tendencia superior en niños para el caso de compañeros de estudio."
+      descripcion: `El análisis se centra en la violencia interpersonal donde el agresor es un amigo, compañero de estudio o profesor.
+      En niñas: Los amigos son el agresor más común, con un pico de 5.220 casos en la adolescencia. Los compañeros de estudio le siguen con 3.336 casos en el mismo rango.
+      En niños: Los compañeros de estudio son los agresores predominantes en la adolescencia (2.234 casos), superando a los amigos (1.091 casos).
+      Hallazgo clave: Las niñas reportan un volumen total de casos considerablemente más alto que los niños, especialmente cuando el agresor es un "amigo". En ambos sexos, el rango de 12 a 17 años es el período crítico.`
     },
 
     4: {
@@ -155,7 +191,7 @@ const Estadisticas = () => {
           <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
             {/* GRÁFICO NIÑA */}
-            <div style={{ flex: 1, minWidth: '400px', background: '#fff', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
+            <div style={{ flex: 1, minWidth: '400px', background: 'transparent', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
               <h4 style={{ textAlign: 'left', fontSize: '16px', marginBottom: '10px', fontWeight: 'bold' }}>Niña</h4>
               <ResponsiveContainer width="100%" height={380}>
                 <AreaChart
@@ -166,9 +202,9 @@ const Estadisticas = () => {
                   ]}
                   margin={{ top: 30, right: 40, left: 10, bottom: 10 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="ciclo" tick={{ fontSize: 10 }} />
-                  <YAxis tickFormatter={formatK} domain={[0, 4000]} tick={{ fontSize: 10 }} />
+                  <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" vertical={false} />
+                  <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" />
+                  <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} tickFormatter={formatK} domain={[0, 4000]} />
                   <Tooltip />
                   <Legend verticalAlign="top" align="left" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '11px' }} />
 
@@ -186,7 +222,7 @@ const Estadisticas = () => {
             </div>
 
             {/* GRÁFICO NIÑO */}
-            <div style={{ flex: 1, minWidth: '400px', background: '#fff', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
+            <div style={{ flex: 1, minWidth: '400px', background: 'transparent', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
               <h4 style={{ textAlign: 'left', fontSize: '16px', marginBottom: '10px', fontWeight: 'bold' }}>Niño</h4>
               <ResponsiveContainer width="100%" height={380}>
                 <AreaChart
@@ -197,9 +233,9 @@ const Estadisticas = () => {
                   ]}
                   margin={{ top: 30, right: 40, left: 10, bottom: 10 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="ciclo" tick={{ fontSize: 10 }} />
-                  <YAxis tickFormatter={formatK} domain={[0, 4000]} tick={{ fontSize: 10 }} />
+                  <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" vertical={false} />
+                  <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" />
+                  <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} tickFormatter={formatK} domain={[0, 4000]} />
                   <Tooltip />
                   <Legend verticalAlign="top" align="left" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '11px' }} />
 
@@ -219,7 +255,10 @@ const Estadisticas = () => {
           </div>
         </div>
       ),
-      descripcion: "Comparativa de accidentalidad vial por género. Se observa que los niños presentan cifras significativamente más altas en la adolescencia, alcanzando 3.501 lesiones y 1.310 muertes, en comparación con las niñas que registran 2.489 lesiones y 383 muertes en el mismo periodo."
+      descripcion: `El riesgo de siniestralidad vial aumenta drásticamente con la edad, siendo la adolescencia el punto crítico.      
+      Lesiones: Se registran 2.489 casos en adolescentes mujeres y 3.501 en adolescentes varones.
+      Mortalidad: La brecha de género es profunda. Los adolescentes varones registran 1.310 muertes, una cifra que triplica los 383 casos de las adolescentes femeninas.
+      Conclusión: Los hombres jóvenes son el grupo de mayor vulnerabilidad ante siniestros viales fatales, lo que sugiere la necesidad de estrategias de prevención diferenciadas.`
     },
 
 
@@ -230,7 +269,7 @@ const Estadisticas = () => {
           <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
             {/* GRÁFICO NIÑA */}
-            <div style={{ flex: 1, minWidth: '400px', background: '#fff', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
+            <div style={{ flex: 1, minWidth: '400px', background: 'transparent', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
               <h4 style={{ textAlign: 'left', fontSize: '16px', marginBottom: '10px', fontWeight: 'bold' }}>Niña</h4>
               <ResponsiveContainer width="100%" height={380}>
                 <AreaChart
@@ -241,9 +280,9 @@ const Estadisticas = () => {
                   ]}
                   margin={{ top: 30, right: 45, left: 10, bottom: 10 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="ciclo" tick={{ fontSize: 10 }} />
-                  <YAxis tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 50000]} tick={{ fontSize: 10 }} />
+                  <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" vertical={false} />
+                  <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" />
+                  <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 50000]} />
                   <Tooltip />
                   <Legend verticalAlign="top" align="left" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '11px' }} />
 
@@ -263,7 +302,7 @@ const Estadisticas = () => {
             </div>
 
             {/* GRÁFICO NIÑO */}
-            <div style={{ flex: 1, minWidth: '400px', background: '#fff', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
+            <div style={{ flex: 1, minWidth: '400px', background: 'transparent', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
               <h4 style={{ textAlign: 'left', fontSize: '16px', marginBottom: '10px', fontWeight: 'bold' }}>Niño</h4>
               <ResponsiveContainer width="100%" height={380}>
                 <AreaChart
@@ -274,9 +313,9 @@ const Estadisticas = () => {
                   ]}
                   margin={{ top: 30, right: 40, left: 10, bottom: 10 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="ciclo" tick={{ fontSize: 10 }} />
-                  <YAxis tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 10000]} tick={{ fontSize: 10 }} />
+                  <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" vertical={false} />
+                  <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" />
+                  <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 10000]} />
                   <Tooltip />
                   <Legend verticalAlign="top" align="left" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '11px' }} />
 
@@ -298,7 +337,9 @@ const Estadisticas = () => {
           </div>
         </div>
       ),
-      descripcion: "El reporte de delitos sexuales presenta una disparidad crítica de género. En las niñas, las cifras crecen exponencialmente con la edad, alcanzando los 47.092 casos en la adolescencia. En los niños, el pico se observa en la infancia (6 a 11 años) con 5.481 casos."
+      descripcion: `El abuso sexual muestra una tendencia creciente y alarmante con la edad, con una marcada disparidad de género.      
+      Población más vulnerable: Las niñas en la adolescencia (12 a 17 años) concentran la cifra más alta con 47.092 casos.
+      Comparativa por género: En las niñas, los casos aumentan drásticamente de la primera infancia (9.148) a la adolescencia (47.092). En los niños, las cifras son significativamente menores, alcanzando su punto máximo en la infancia (6 a 11 años) con 5.481 casos.`
     },
 
     6: {
@@ -308,7 +349,7 @@ const Estadisticas = () => {
           <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
             {/* GRÁFICO NIÑA */}
-            <div style={{ flex: 1, minWidth: '400px', background: '#fff', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
+            <div style={{ flex: 1, minWidth: '400px', background: 'transparent', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
               <h4 style={{ textAlign: 'left', fontSize: '16px', marginBottom: '10px', fontWeight: 'bold' }}>Niña</h4>
               <ResponsiveContainer width="100%" height={380}>
                 <AreaChart
@@ -319,9 +360,9 @@ const Estadisticas = () => {
                   ]}
                   margin={{ top: 30, right: 45, left: 10, bottom: 10 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="ciclo" tick={{ fontSize: 10 }} />
-                  <YAxis tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 8000]} tick={{ fontSize: 10 }} />
+                  <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" vertical={false} />
+                  <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" />
+                  <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 8000]} />
                   <Tooltip />
                   <Legend verticalAlign="top" align="left" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '11px' }} />
 
@@ -341,7 +382,7 @@ const Estadisticas = () => {
             </div>
 
             {/* GRÁFICO NIÑO */}
-            <div style={{ flex: 1, minWidth: '400px', background: '#fff', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
+            <div style={{ flex: 1, minWidth: '400px', background: 'transparent', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
               <h4 style={{ textAlign: 'left', fontSize: '16px', marginBottom: '10px', fontWeight: 'bold' }}>Niño</h4>
               <ResponsiveContainer width="100%" height={380}>
                 <AreaChart
@@ -352,9 +393,9 @@ const Estadisticas = () => {
                   ]}
                   margin={{ top: 30, right: 40, left: 10, bottom: 10 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="ciclo" tick={{ fontSize: 10 }} />
-                  <YAxis tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 4000]} tick={{ fontSize: 10 }} />
+                  <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" vertical={false} />
+                  <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" />
+                  <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} tickFormatter={(value) => value === 0 ? '0' : `${value / 1000} mil`} domain={[0, 4000]} />
                   <Tooltip />
                   <Legend verticalAlign="top" align="left" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '11px' }} />
 
@@ -376,7 +417,11 @@ const Estadisticas = () => {
           </div>
         </div>
       ),
-      descripcion: "Se evidencia un aumento alarmante de desapariciones en la etapa de la adolescencia. En el caso de las niñas, la cifra llega a 7.474 reportes, lo que representa más del doble de los casos registrados en niños para el mismo rango de edad (3.052 casos)."
+      descripcion: `Se registra un total de 12.088 casos de desaparición.
+      Prevalencia de género: Existe una prevalencia femenina significativa: las niñas representan el 68,37% de los casos.
+      Impacto en la adolescencia: Esta es la etapa de mayor riesgo, con 7.474 casos en niñas adolescentes y 3.052 en niños.
+      Estado de los casos: La mayoría de los menores han aparecido vivos (6.807), aunque persiste una cifra de 5.173 desaparecidos y 108 fallecidos.
+      Distribución geográfica: Bogotá D.C. concentra la mayor cantidad de reportes (5.040), seguida por Valle del Cauca (1.201) y Cundinamarca (1.148).`
     },
 
   };
