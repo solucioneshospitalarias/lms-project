@@ -1,5 +1,4 @@
 .galleryWrapper {
-  padding: 100px 0;
   /* Aumentamos el padding para separarlo bien del Hero */
   background-color: var(--bg-main);
   text-align: center;
