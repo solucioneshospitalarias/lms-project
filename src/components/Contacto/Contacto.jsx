@@ -74,15 +74,15 @@ const Contacto = () => {
 
                         <div className={styles.infoList}>
                             <div className={styles.infoItem}>
-                                <MapPin className={styles.iconRed} />
+                                <MapPin className={styles.iconRed} size={45}/>
                                 <p>Cl. 58 #37 - 05, Suroccidente, Barranquilla, Atlántico</p>
                             </div>
                             <div className={styles.infoItem}>
-                                <Phone className={styles.iconRed} />
+                                <Phone className={styles.iconRed} size={45}/>
                                 <p>+57 323 487 6604</p>
                             </div>
                             <div className={styles.infoItem}>
-                                <Mail className={styles.iconRed} />
+                                <Mail className={styles.iconRed} size={45}/>
                                 <p>waltersteven.dev@gmail.com</p>
                             </div>
                         </div>
