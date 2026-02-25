@@ -1,7 +1,8 @@
 import styles from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MapPin, Phone, Mail} from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import { faFacebookF, faInstagram, faTiktok, faWhatsapp, } from "@fortawesome/free-brands-svg-icons";
+import pdf from '../Footer/Docs/TerminosCondiciones.pdf'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -64,19 +65,33 @@ const Footer = () => {
           </div>
           <div className={styles.column}>
             <h3>Legal</h3>
-            <ul>
+            <ul className={styles.legalList}>
               <li>
-                <a href="/terminos">Términos y Condiciones</a>
+                <a
+                  href={pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Términos y Condiciones
+                </a>
               </li>
-            </ul>
-            <ul>
               <li>
-                <a href="/privacidad">Política de Privacidad</a>
+                <a
+                  href={pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Política de Privacidad
+                </a>
               </li>
-            </ul>
-            <ul>
               <li>
-                <a href="/autorizacion">Autorización de Datos</a>
+                <a
+                  href={pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Autorización de Datos
+                </a>
               </li>
             </ul>
           </div>
