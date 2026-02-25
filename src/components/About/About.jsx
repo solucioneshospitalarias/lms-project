@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./About.module.css";
 import { RocketIcon, Eye, Users, Youtube } from "lucide-react"
-import techImg from "../../assets/quienesSomos.png";
+import img from "../../assets/favicon.ico";
 import pngNiño from "../../assets/plataformaEducativa.png"
 import pngNiña from "../../assets/plataformaAnalisis.png"
 import portatil from "../../assets/portatil.png"
@@ -88,7 +88,7 @@ const About = () => {
         >
           <div className={styles.imageSection}>
             <div className={styles.imgContainer}>
-              <img src={techImg} alt="Innovación" className={styles.mainImg} />
+              <img src={img} alt="Innovación" className={styles.mainImg} />
               <div className={styles.floatingBadge}>Atlántico Digital</div>
             </div>
           </div>
@@ -212,8 +212,10 @@ const About = () => {
         </div>
       )}
       <div className={styles.educacionContainer}>
-        <h3> Impulsando la educación 4.0 para los retos del mañana. </h3>
-        <img src={portatil} alt="Portatil" className={styles.portatil} />
+        <h3>Impulsando la educación 4.0 para los retos del mañana.</h3>
+        <div className={styles.portatilWrapper}>
+          <img src={portatil} alt="Portatil" className={styles.portatil} />
+        </div>
       </div>
 
       {/* ------------------------------------------------------- */}
@@ -242,7 +244,7 @@ const About = () => {
           <div className={styles.videoWrapper}>
             <div className={styles.videoFrame}>
               <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&loop=1&playlist=dQw4w9WgXcQ"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
