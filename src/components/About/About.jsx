@@ -153,20 +153,14 @@ const About = () => {
             <div className={styles.tabDivider}></div>
             <div className={styles.mainDescription}>
               <p>
-                Rutas del Saber es una plataforma educativa integral que conecta a la comunidad educativa y facilita el acceso a herramientas, contenidos y proyectos para impulsar la formación, la seguridad y el desarrollo social.
+                Rutas del Saber es una plataforma educativa integral diseñada para conectar a la comunidad y potenciar el desarrollo social. Su enfoque principal es transformar el entorno escolar y ciudadano a través de herramientas pedagógicas modernas.
               </p>
 
-              <p> • Acceder a contenidos educativos estructurados y actualizados.</p>
+              <p> • Formación y Pedagogía: Acceso a contenidos actualizados y proyectos que impulsan el aprendizaje y la transformación social.</p>
 
-              <p> • Implementar proyectos pedagógicos enfocados en la transformación social.</p>
+              <p> • Convivencia y Valores: Promueve una cultura de paz, el respeto por los Derechos Humanos y la prevención de la violencia.</p>
 
-              <p> • Fortalecer la convivencia escolar y la cultura de paz.</p>
-
-              <p> • Promover la sostenibilidad ambiental y la conciencia ciudadana.</p>
-
-              <p> • Prevenir la violencia y fomentar el respeto por los Derechos Humanos.</p>
-
-              <p> • Desarrollar competencias en Educación Vial y autocuidado</p>
+              <p> • Ciudadanía Responsable: Fomenta la conciencia ambiental, la educación vial y el autocuidado.</p>
 
             </div>
             <p style={{ marginTop: "20px", fontWeight: "bold", fontSize: "20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
@@ -187,20 +181,14 @@ const About = () => {
             <div className={styles.tabDivider}></div>
             <div className={styles.mainDescription}>
               <p>
-                Rutas del Saber es una plataforma educativa integral que conecta a la comunidad educativa y facilita el acceso a herramientas, contenidos y proyectos para impulsar la formación, la seguridad y el desarrollo social.
+                Rutas del Saber es un ecosistema digital diseñado para conectar a la comunidad educativa con herramientas de formación integral. Su objetivo es generar un impacto positivo en la sociedad mediante el aprendizaje y la prevención.
               </p>
 
-              <p> • Acceder a contenidos educativos estructurados y actualizados.</p>
+              <p> • Educación de calidad: Contenidos actualizados y proyectos de transformación social.</p>
 
-              <p> • Implementar proyectos pedagógicos enfocados en la transformación social.</p>
+              <p> • Cultura y Valores: Fomento de la paz, los Derechos Humanos y la convivencia escolar.</p>
 
-              <p> • Fortalecer la convivencia escolar y la cultura de paz.</p>
-
-              <p> • Promover la sostenibilidad ambiental y la conciencia ciudadana.</p>
-
-              <p> • Prevenir la violencia y fomentar el respeto por los Derechos Humanos.</p>
-
-              <p> • Desarrollar competencias en Educación Vial y autocuidado</p>
+              <p> • Responsabilidad Ciudadana: Formación en sostenibilidad ambiental, seguridad vial y autocuidado.</p>
 
             </div>
             <p style={{ marginTop: "20px", fontWeight: "bold", fontSize: "20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
@@ -244,7 +232,7 @@ const About = () => {
           <div className={styles.videoWrapper}>
             <div className={styles.videoFrame}>
               <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&loop=1&playlist=dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/V6yMJATvpTU?autoplay=0&loop=1&playlist=V6yMJATvpTU"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
