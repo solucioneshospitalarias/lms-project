@@ -2,7 +2,7 @@ export const productosInformacion = [
     {
         id: "educacion-360",
         title: "Educación 360",
-        image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
+        image: "https://i.imgur.com/AlGqhkC.png",
 
 
         content: `La Educación 360 es un enfoque pedagógico integral que entiende que el aprendizaje 
@@ -53,7 +53,7 @@ export const productosInformacion = [
     {
         id: "cultura-paz",
         title: "Cultura de Paz",
-        image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800",
+        image: "https://i.imgur.com/J3KwW0s.png",
         content: `La Cultura de Paz es una propuesta social y educativa orientada a construir sociedades basadas en el respeto, la justicia, la solidaridad y la no violencia. No se limita únicamente a la ausencia de guerra o conflicto, sino que implica la promoción activa de valores, actitudes y comportamientos que favorezcan la convivencia pacífica y la resolución dialogada de diferencias.`,
         content2: `Este concepto promueve la transformación de conflictos a través del diálogo, la negociación y la mediación, evitando el uso de la violencia física o verbal. En el ámbito educativo, la Cultura de Paz se convierte en un eje fundamental para formar ciudadanos conscientes, responsables y empáticos. Se trabaja desde edades tempranas fomentando la tolerancia, el respeto por la diversidad cultural, religiosa y social, así como la igualdad de género y los derechos humanos.`,
         content3: `Además, la Cultura de Paz busca atender las causas estructurales de la violencia como la desigualdad, la discriminación y la exclusión social. En las escuelas, se promueve mediante programas de mediación escolar, educación emocional y participación democrática.`,
@@ -88,7 +88,7 @@ export const productosInformacion = [
     {
         id: "educacion-ambiental",
         title: "Educación Ambiental",
-        image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+        image: "https://i.imgur.com/9RKjEzK.png",
         content: `La Educación Ambiental es un proceso formativo continuo que busca generar conciencia, conocimientos, actitudes y acciones responsables hacia el medio ambiente. Surge ante la necesidad de enfrentar problemáticas globales como el cambio climático, la contaminación, la pérdida de biodiversidad y el uso inadecuado de los recursos naturales.`,
         content2: `Este tipo de educación no solo transmite información sobre el entorno natural, sino que promueve valores de respeto y responsabilidad hacia la naturaleza. Busca que las personas comprendan la interdependencia entre los seres humanos y el ambiente, reconociendo que nuestras acciones tienen consecuencias directas e indirectas en el planeta.`,
         content3: `La Educación Ambiental fomenta prácticas sostenibles como el reciclaje, el ahorro de agua y energía, la reducción del consumo excesivo y la protección de ecosistemas. En el ámbito escolar, puede integrarse en distintas asignaturas y actividades prácticas como huertos escolares, proyectos de reciclaje y campañas de sensibilización.`,
@@ -122,7 +122,7 @@ export const productosInformacion = [
     {
         id: "convivencia-escolar",
         title: "Convivencia Escolar",
-        image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800",
+        image: "https://i.imgur.com/lv7vN6Z.png",
         content: `La Convivencia Escolar se refiere a la calidad de las relaciones que se establecen entre los miembros de la comunidad educativa. Implica el respeto mutuo, la cooperación, la inclusión y el cumplimiento de normas que regulan la vida escolar.`,
         content2: `Una buena convivencia escolar favorece un ambiente seguro y armonioso donde los estudiantes pueden desarrollarse académica y emocionalmente. Cuando existe un clima escolar positivo, disminuyen los casos de violencia, acoso y discriminación. La convivencia no significa ausencia de conflictos, sino la capacidad de gestionarlos adecuadamente mediante el diálogo y el respeto.`,
         content3: `Este concepto está estrechamente relacionado con la educación en valores, la formación ciudadana y el desarrollo de habilidades socioemocionales. Las instituciones educativas deben promover normas claras, participación estudiantil y espacios de comunicación para fortalecer relaciones saludables.`,
@@ -156,7 +156,7 @@ export const productosInformacion = [
     {
         id: "educacion-vial",
         title: "Educación Vial",
-        image: "https://images.unsplash.com/photo-1545231027-63b3f1600758?auto=format&fit=crop&q=80&w=800",
+        image: "https://i.imgur.com/a8RrdBt.png",
         content: `La Educación Vial es un proceso formativo que tiene como finalidad preparar a las personas para actuar de manera responsable y segura en las vías públicas. No está dirigida únicamente a conductores, sino también a peatones, ciclistas y pasajeros.`,
         content2: `Su importancia radica en la prevención de accidentes de tránsito, que constituyen una de las principales causas de lesiones y muertes en el mundo. La Educación Vial promueve el conocimiento y respeto de las normas de tránsito, el reconocimiento de señales viales y el desarrollo de actitudes responsables y solidarias en la vía pública.`,
         content3: `Desde edades tempranas, se enseña a los estudiantes a cruzar correctamente las calles, respetar semáforos y utilizar dispositivos de seguridad. En niveles más avanzados, se profundiza en normas de conducción, responsabilidad legal y prevención de riesgos.`,
