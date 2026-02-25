@@ -5,7 +5,7 @@ import Footer from "./components/layout/Footer/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop/ScrollToTop";
 import Home from "./components/Home/Home";
 import Productos from "./components/Productos/Productos";
-import Recursos from "./components/Recursos/Recursos";
+// import Recursos from "./components/Recursos/Recursos";
 import Estadisticas from "./components/Estadisticas/Estadisticas";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
@@ -32,12 +32,12 @@ function App() {
     <div className="app-container">
       {!isAuthPage && <Header />}
 
-      <main style={!isAuthPage ? { padding: "50px", textAlign: "center" } : {}}>
+      <main style={!isAuthPage ? {textAlign: "center" } : {}}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/estadisticas" element={<Estadisticas />} />
           <Route path="/productos" element={<Productos />} />
-          <Route path="/recursos" element={<Recursos />} />
+          {/* <Route path="/recursos" element={<Recursos />} /> */}
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
