@@ -315,6 +315,11 @@
         justify-content: center;
         text-align: center;
         gap: 30px;
+        padding: 30px;
+    }
+
+    .floatItem {
+        display: none !important;
     }
 
     .infoSection {
