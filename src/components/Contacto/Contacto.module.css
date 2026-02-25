@@ -279,6 +279,7 @@
 .formSide {
     flex: 1;
     padding: 40px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centra el formulario verticalmente */
@@ -286,14 +287,13 @@
 
 .imageSide {
     flex: 1;
-    /* Usa la variable de fondo de tarjeta de tu sistema o un color base adaptable */
     background: var(--card-bg, #ffffff); 
     padding: 40px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 35px;
-    /* Añade un borde sutil que solo se note en modo claro */
     border: 1px solid var(--card-border, rgba(0, 0, 0, 0.1));
     transition: all 0.3s ease;
 }
