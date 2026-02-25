@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './Productos.module.css';
 import { productosInformacion } from './informacionProductos';
+import ComponentesAula from './ComponentesAula';
+import RecursosLibro from './RecursosLibro';
 
 const Productos = () => {
   const headerRef = useRef(null);
@@ -110,6 +112,9 @@ const Productos = () => {
           </div>
         </section>
       ))}
+
+      <ComponentesAula />
+      <RecursosLibro />
     </div>
   );
 };
