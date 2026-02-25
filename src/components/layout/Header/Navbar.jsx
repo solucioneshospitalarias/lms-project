@@ -36,7 +36,7 @@ const Navbar = () => {
     { path: "/conocenos", label: "Conócenos" },
     { path: "/estadisticas", label: "Estadísticas" },
     { path: "/productos", label: "Productos" },
-    { path: "/recursos", label: "Recursos Educativos" },
+    // { path: "/recursos", label: "Recursos Educativos" },
     { path: "/contacto", label: "Contacto" },
   ];
 
