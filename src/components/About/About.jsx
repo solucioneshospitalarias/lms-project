@@ -232,7 +232,7 @@ const About = () => {
               exclusivo sobre seguridad vial y cultura de paz en el Atlántico.
             </p>
             <a
-              href="https://youtube.com/@TuCanal"
+              href="https://www.youtube.com/channel/UC8vs2Auh70OOSJ0rkcR_rPg"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.subscribeBtn}
