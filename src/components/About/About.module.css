@@ -545,8 +545,6 @@
   filter: blur(40px);
 }
 
-
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .tabcontainer {
@@ -581,5 +579,108 @@
     transform: none !important;
     width: 100%;
     max-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .schoolsContainer,
+  .analyticsContainer {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 25px;
+    gap: 30px;
+  }
+
+  .schoolsContainer img,
+  .analyticsContainer img {
+    display: none !important;
+  }
+
+  .schoolsContainer,
+  .analyticsContainer {
+    text-align: center;
+  }
+
+  .tabActionBtn,
+  .tabActionBtnAnalisis {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 14px 30px; 
+  }
+
+  .youtubeCard {
+    flex-direction: column; /* Apila texto y video verticalmente */
+    padding: 40px 30px;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .youtubeInfo {
+    order: 1; /* El texto aparece primero */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .videoWrapper {
+    order: 2; /* El video aparece después del texto */
+    width: 100%;
+    max-width: 700px; /* Evita que el video sea gigante en tablets */
+  }
+
+  .ytTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .schoolsContainer,
+  .analyticsContainer {
+    padding: 30px 15px;
+    border-radius: 25px;
+  }
+
+  .schoolsContainer h2, 
+  .analyticsContainer h2 {
+    font-size: 1.5rem;
+  }
+  
+  .youtubeCard {
+    gap: 30px;
+  }
+
+  .videoFrame {
+    border-width: 2px; /* Borde más fino en pantallas pequeñas */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .youtubeSection {
+    padding: 60px 20px; /* Reduce el margen exterior en móviles */
+  }
+
+  .youtubeCard {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .ytTitle {
+    font-size: 1.8rem;
+  }
+
+  .ytText {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .subscribeBtn {
+    width: 100%; /* El botón ocupa todo el ancho en móviles */
+    max-width: 280px;
+    padding: 14px 20px;
+  }
+
+  .videoDecoration {
+    display: none; /* Quitamos el adorno en móviles para evitar scrolls raros */
   }
 }
