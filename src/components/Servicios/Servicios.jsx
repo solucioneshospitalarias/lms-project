@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Servicios.module.css';
 import imgServicios from "../../assets/Servicios.png";
+import { Link } from 'react-router-dom';
 
 const Servicios = () => {
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -57,7 +58,12 @@ const Servicios = () => {
                             que hacen de esta la solución más completa para la formación de estudiantes
                             en el departamento del Atlántico.
                         </p>
-                        <button className={styles.btn3D}>CONOCER MÁS</button>
+                        <Link
+                            to="/productos#seccion-componentes"
+                            className={styles.btn3D}
+                        >
+                            CONOCER MÁS
+                        </Link>
                     </div>
                 </div>
             </section>
