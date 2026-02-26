@@ -4,6 +4,7 @@ import styles from './Productos.module.css';
 import { productosInformacion } from './informacionProductos';
 import ComponentesAula from './ComponentesAula';
 import RecursosLibro from './RecursosLibro';
+import CentroCapacitacion from './CentroCapacitacion'
 
 const Productos = () => {
   const headerRef = useRef(null);
@@ -115,6 +116,7 @@ const Productos = () => {
 
       <ComponentesAula />
       <RecursosLibro />
+      <CentroCapacitacion />
     </div>
   );
 };
