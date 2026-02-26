@@ -9,6 +9,7 @@ import Servicios from "../Servicios/Servicios";
 import AulaVirtual from "../AulaVirtual/AulaVirtual";
 import IdentityLinks from "../IdentityLinks/IdentityLinks";
 import PersonalizedService from "../PersonalizedService/PersonalizedService";
+import Innovacion from '../Innovacion/Innovacion';
 
 const Home = () => {
   return (
@@ -90,7 +91,8 @@ const Home = () => {
       <AulaVirtual />
       <Slider data={data} activeSlide={0} />
       <PersonalizedService />
-      
+      <Innovacion />
+
     </div>
   );
 };
