@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './AulaVirtual.module.css';
 import { ListChecks, CircleCheck, MessagesSquare, Computer, ChartLine } from "lucide-react"
 import lmsMockup from "../../assets/Aula.png";
+import { Link } from 'react-router-dom';
 
 const AulaVirtual = () => {
     const features = [
@@ -55,7 +56,9 @@ const AulaVirtual = () => {
                             })}
                         </ul>
 
-                        <button className={styles.mainBtn}>EXPLORAR LMS</button>
+                        <Link to="/productos#seccion-componentes" className={styles.mainBtn}>
+                            Explorar LMS
+                        </Link>
                     </div>
 
                 </div>

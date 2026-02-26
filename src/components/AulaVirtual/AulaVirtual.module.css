@@ -132,19 +132,33 @@
 .mainBtn {
     margin-top: 50px;
     background: var(--primary-red);
-    color: white;
+    color: white !important; /* Forzamos el blanco */
     padding: 18px 45px;
     border-radius: 50px;
     border: none;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 15px 30px rgba(194, 40, 33, 0.3);
+    box-shadow: 0 15px 30px rgba(194, 40, 33, 0.4); /* Sombra más intensa como la imagen */
     transition: all 0.3s ease;
+    
+    /* ESTO ES LO NUEVO PARA EL LINK */
+    display: inline-block;    /* Para que respete el padding y margin */
+    text-decoration: none;    /* Quita la línea azul de link */
+    text-transform: uppercase; /* Para que diga EXPLORAR LMS en mayúsculas */
+    letter-spacing: 1px;
 }
 
 .mainBtn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(194, 40, 33, 0.5);
+    box-shadow: 0 20px 40px rgba(194, 40, 33, 0.6);
+    color: white !important;
+    background: #d42a22; /* Un rojo un poco más vivo al pasar el mouse */
+}
+
+.ctaWrapper {
+    display: flex;
+    justify-content: flex-start; /* Alineado a la izquierda según tu diseño */
+    width: 100%;
 }
 
 /* MOBILE */
