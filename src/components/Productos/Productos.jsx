@@ -61,7 +61,7 @@ const Productos = () => {
           <div className={styles.typewriterContainer}>
             <p className={styles.typewriterText}>
               <span className={styles.typewriterSpan}>
-                Modelos integrales diseñados para la transformación académica.
+                Modelos integrales diseñados para lo académico.
               </span>
             </p>
           </div>
