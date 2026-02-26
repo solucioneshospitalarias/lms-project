@@ -150,7 +150,14 @@
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     will-change: transform, opacity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+
+.loginCard::-webkit-scrollbar {
+    display: none;
+}
+
 
 .loginCard:hover {
     transform: translateY(-10px) rotateX(2deg);
