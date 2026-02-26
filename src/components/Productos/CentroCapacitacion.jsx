@@ -131,9 +131,15 @@ const CentroCapacitacion = () => {
             </div>
 
             <div className={styles.statsBanner}>
-                <CountUpItem end={500} label="Docentes" prefix="+" />
-                <CountUpItem end={100} label="Virtual" suffix="%" />
-                <CountUpItem end={2026} label="Certificado Oficial" />
+                <div className={styles.statsRow}>
+                    <CountUpItem end={500} label="Docentes" prefix="+" />
+                </div>
+                <div className={styles.statsRow}>
+                    <CountUpItem end={100} label="Virtual" suffix="%" />
+                </div>
+                <div className={styles.statsRow}>
+                    <CountUpItem end={2026} label="Certificado Oficial" />
+                </div>
             </div>
         </section>
     );
