@@ -1,0 +1,186 @@
+/* Variables base (Modo Claro) */
+.trainingSection {
+    /* Mapeamos a tus variables globales */
+    --section-bg: var(--bg-main);
+    --card-bg-local: var(--card-bg);
+    --text-primary: var(--text-main);
+    --text-secondary-local: var(--text-secondary, #64748b);
+    --border-local: var(--card-border);
+    --shadow-local: var(--card-shadow);
+
+    padding: 80px 20px;
+    background-color: var(--section-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+/* DETECTAR MODO OSCURO GLOBAL 
+   Usamos :global para salir del scope de CSS Modules y detectar la clase en el body
+*/
+/* Cuando el atributo data-theme='dark' está activo en el html/body */
+:global([data-theme='dark']) .trainingSection {
+    /* Las variables se actualizarán automáticamente porque ya las tienes en global.css */
+    --section-bg: var(--bg-main);
+    --card-bg-local: var(--card-bg);
+}
+
+:global(.dark) .courseCard {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    /* Efecto de vidrio esmerilado */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme='dark']) .statsBanner {
+    background-color: var(--card-bg); /* Gris oscuro profesional que ya definiste */
+    color: #ffffff;
+}
+
+.glassHeader {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 700px;
+}
+
+.glassHeader p {
+    color: var(--text-secondary-local);
+    margin-bottom: 40px;
+}
+
+.mainIcon {
+    font-size: 3rem;
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+.glassHeader h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.gridCapacitacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.courseCard {
+    background-color: var(--card-bg-local);
+    border: 1px solid var(--border-local);
+    box-shadow: 0 10px 15px -3px var(--shadow-local);
+    padding: 40px 30px;
+    border-radius: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.courseCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    border-color: red;
+}
+
+.iconWrapper {
+    font-size: 2rem;
+    color: #3b82f6;
+    margin-bottom: 20px;
+}
+
+.courseCard h3 {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin: 15px 0;
+}
+
+.courseCard p {
+    color: var(--text-secondary-local);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.badge {
+    background: #eff6ff;
+    color: #3b82f6;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.btnInscribirse {
+    margin-top: auto;
+    background-color: var(--primary-red);
+    /* Usamos tu rojo global */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btnInscribirse:hover {
+    opacity: 0.9;
+}
+
+/* Banner de Estadísticas */
+.statsBanner {
+    margin-top: 60px;
+    display: flex;
+    gap: 80px;
+    padding: 30px 60px;
+    border-radius: 100px;
+    
+    /* CAMBIO CLAVE: Usamos tus variables globales */
+    background-color: var(--header-bg); /* O puedes usar var(--header-bg) si quieres que resalte */
+    color: var(--text-main);
+    
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 30px var(--card-shadow);
+    transition: all 0.3s ease;
+}
+
+.statItem {
+    text-align: center;
+}
+
+.statItem strong {
+    font-size: 2.2rem;
+    display: block;
+    color: var(--primary-red);
+    font-family: 'Arial Black', sans-serif;
+    /* Efecto de profundidad */
+    text-shadow: 0 0 15px rgba(194, 40, 33, 0.2); 
+    transition: all 0.3s ease;
+}
+
+:global([data-theme='dark']) .statItem strong {
+    text-shadow: 0 0 20px rgba(194, 40, 33, 0.5);
+    filter: drop-shadow(0 0 5px rgba(194, 40, 33, 0.3));
+}
+
+.statItem p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+    /* Este texto se adaptará automáticamente */
+    color: var(--text-main);
+    opacity: 0.8;
+}
