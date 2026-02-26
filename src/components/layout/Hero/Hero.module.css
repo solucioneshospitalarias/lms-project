@@ -8,15 +8,12 @@
 
 .heroSection {
   width: 100%;
-  min-height: 100vh;
   /* Fondo oscuro sólido */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px 0;
 }
-
-
 
 .mainContainer {
   max-width: 1400px; /* Aumentamos un poco el ancho total para dar más aire */
