@@ -7,7 +7,7 @@ const ComponentesAula = () => {
     const data = componentesData[activeTab];
 
     return (
-        <section className={styles.container}>
+        <section id="seccion-componentes" className={styles.container}>
             <div className={styles.header}>
                 <span className={styles.overline}>COMPONENTES</span>
                 <h2 className={styles.mainTitle}>Conoce cada uno de los componentes de la plataforma</h2>
