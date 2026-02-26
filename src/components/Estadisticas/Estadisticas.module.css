@@ -409,7 +409,7 @@
 }
 
 .headerInfo h2 {
-  color: #fff;
+  color: var(--text-main);
   font-size: clamp(1rem, 2vw, 1.8rem);
   margin: 0;
   font-weight: 800;
