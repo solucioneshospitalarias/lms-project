@@ -447,10 +447,6 @@ const Estadisticas = () => {
           ))}
         </div>
 
-        {/* APLICAMOS LA ANIMACIÓN AQUÍ: 
-      Al poner la key en el mainDisplay, todo lo que está adentro 
-      (título, gráfico, descripción) subirá al mismo tiempo.
-  */}
         <div
           className={`${styles.mainDisplay} ${styles.fadeUp}`}
           key={activeTab}
@@ -477,9 +473,6 @@ const Estadisticas = () => {
           </div>
         </div>
       </div>
-
-
-
 
       <div className={styles.databaseContainer}>
         <div className={styles.databaseContent}>
@@ -554,6 +547,32 @@ const Estadisticas = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className={styles.dashboardContainer}>
+        <div className={styles.dashboardContent}>
+          
+          {/* Cabecera con metadatos */}
+          <div className={styles.cardHeader}>
+            <div className={styles.headerInfo}>
+              <h2>Análisis de Impacto Vial</h2>
+              <p>Visualización de datos oficiales y métricas de seguridad en tiempo real.</p>
+            </div>
+            
+            <div className={styles.liveStatus}>
+              <div className={styles.pulseDot}></div>
+                Sincronizado
+            </div>
+          </div>
+
+          {/* El reporte de Power BI */}
+          <div className={styles.powerBiWrapper}>
+            <iframe 
+              src="https://app.powerbi.com/view?r=eyJrIjoiMDgwZDJkZTEtY2ZlZi00ZDk2LWEyOGQtOGMwYzliYzg0OTI2IiwidCI6ImNiZTM5ZThmLTNlODktNDQ4Zi04M2FlLWVlYWI3MWU1ZjNiMSIsImMiOjR9"
+              allowFullScreen={true}
+            ></iframe>
+          </div>
+
         </div>
       </div>
     </div>
