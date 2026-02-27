@@ -1,0 +1,142 @@
+.container {
+    padding: 80px 5%;
+    background-color: var(--bg-main);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.overline {
+    color: var(--primary-red);
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+.mainTitle {
+    font-size: 2.2rem;
+    color: var(--text-main);
+    margin-top: 10px;
+}
+
+.tabBar {
+    display: flex;
+    background-color: #1e293b;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.tabButton {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+
+.tabButton.active {
+    background-color: #ff0000;
+    position: relative;
+}
+
+/* La flechita hacia abajo del número activo */
+.tabButton.active::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #ff0000;
+}
+
+/* DISPOSICIÓN DE CONTENIDO */
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.mediaSide {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.videoFrame,
+.mainImage {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: block;
+}
+
+.infoSide {
+    padding: 20px;
+}
+
+.infoTitle {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.description {
+    color: var(--primary-gray);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.itemList {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.checkIcon {
+    color: #48B358;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .contentWrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .tabBar {
+        flex-wrap: wrap;
+    }
+
+    .tabButton {
+        flex: unset;
+        width: 33.33%;
+    }
+}

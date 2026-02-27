@@ -1,0 +1,704 @@
+.serviciosContainer {
+  width: 100%;
+  padding: 80px 5%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  box-sizing: border-box;
+}
+
+/* LADO IZQUIERDO: NODOS ANIMADOS */
+.nodesSection {
+  flex: 1;
+  position: relative;
+  height: 400px;
+}
+
+.imageArea {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  transform: translateZ(50px); 
+}
+
+.imgCard {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.imgCard:hover {
+  transform: scale(1.02) translateZ(30px);
+}
+
+.mainImg {
+  width: 100%;
+  max-width: 450px;
+  display: block;
+  object-fit: contain;
+}
+
+.imgReflection {
+  position: absolute;
+  top: 0; 
+  left: -150%;
+  width: 100%; 
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.15), 
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: 0.8s;
+}
+
+.imgCard:hover .imgReflection {
+  left: 150%;
+}
+
+/* ÁREA DE TEXTO */
+.textArea {
+  flex: 1;
+  text-align: left;
+  transform: translateZ(30px);
+}
+
+.node {
+  position: absolute;
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 20px var(--card-shadow);
+  border: 1px solid var(--card-border);
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.mainWrapper {
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.topBadge {
+  color: var(--text-secondary);
+  font-weight: 800;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.mainTitle {
+  font-size: 3rem;
+  color: var(--text-main);
+  margin: 15px 0;
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.redText { 
+    color: var(--primary-red); 
+}
+
+.redLine {
+  width: 70px;
+  height: 5px;
+  background: var(--primary-red);
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.desc {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.1rem;
+  text-align: justify;
+  margin-bottom: 40px;
+}
+
+.btn3D {
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 16px 45px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn3D:hover {
+  transform: scale(1.05) translateY(-3px);
+  background: #a1211b;
+}
+
+.container3D {
+  background: var(--card-bg);
+  max-width: 1100px;
+  width: 100%;
+  padding: 50px;
+  border-radius: 40px;
+  border: 1px solid var(--card-border);
+  box-shadow: 20px 20px 60px var(--card-shadow);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.container3D:hover {
+  transform: rotateX(0deg) rotateY(0deg) translateY(-10px);
+  box-shadow: 0 40px 80px var(--card-shadow);
+}
+
+.gridContent {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* NODOS FLOTANTES */
+.visualArea {
+  flex: 1;
+  position: relative;
+  height: 350px;
+}
+
+.floatingNode {
+  position: absolute;
+  background: var(--bg-main);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.floatingNode:hover { transform: scale(1.1) translateZ(20px); }
+
+.floatingNode svg { color: var(--primary-red); font-size: 1.8rem; margin-bottom: 8px; }
+.floatingNode span { color: var(--text-main); font-weight: bold; font-size: 0.85rem; }
+
+.node svg { font-size: 1.5rem; color: var(--primary-red); margin-bottom: 5px; }
+.node span { font-size: 0.8rem; font-weight: bold; color: var(--text-main); }
+
+.mainNode {
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  border-radius: 50%;
+  background: var(--primary-red);
+}
+.mainNode svg { color: white; font-size: 2.5rem; }
+
+.n1 { top: 0; left: 10%; }
+.n2 { top: 10%; right: 10%; }
+.n3 { bottom: 5%; left: 30%; }
+
+.centerPulse {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--primary-red);
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2.2rem;
+  box-shadow: 0 0 30px var(--primary-red);
+}
+
+/* LADO DERECHO: INFO */
+.infoSection { flex: 1; text-align: left; }
+
+.badge { color: var(--text-secondary); letter-spacing: 2px; font-weight: bold; }
+
+.title {
+  font-size: 3rem;
+  color: var(--text-main);
+  margin: 10px 0;
+}
+
+.textArea { flex: 1.2; text-align: left; }
+
+.highlight { color: var(--primary-red); }
+
+.divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #002147, var(--primary-red));
+  margin-bottom: 30px;
+}
+
+.description {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.btnAction {
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.3);
+}
+
+/* ========== MEDIA QUERIES ========== */
+
+/* 1024px - Tablets horizontales / laptops pequeños */
+@media (max-width: 1024px) {
+  .serviciosContainer {
+    padding: 60px 4%;
+  }
+
+  .wrapper {
+    gap: 40px;
+  }
+
+  .gridContent {
+    gap: 40px;
+  }
+
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+
+  .container3D {
+    padding: 40px;
+  }
+
+  .nodesSection {
+    height: 350px;
+  }
+
+  .visualArea {
+    height: 300px;
+  }
+
+  .mainImg {
+    max-width: 380px;
+  }
+
+  .mainNode {
+    padding: 25px;
+  }
+
+  .mainNode svg {
+    font-size: 2rem;
+  }
+}
+
+/* 768px - Tablets verticales */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .infoSection {
+    text-align: center;
+  }
+
+  .divider {
+    margin: 10px auto 30px;
+  }
+
+  .serviciosContainer {
+    padding: 50px 4%;
+  }
+
+  .gridContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .textArea {
+    text-align: center;
+    transform: none;
+  }
+
+  .redLine {
+    margin: 0 auto 30px;
+  }
+
+  .mainTitle {
+    font-size: 2.2rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .container3D {
+    padding: 30px;
+    border-radius: 30px;
+    transform: none;
+  }
+
+  .container3D:hover {
+    transform: translateY(-5px);
+  }
+
+  .nodesSection {
+    height: 300px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .visualArea {
+    height: 250px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .imageArea {
+    transform: none;
+    margin-bottom: 20px;
+  }
+
+  .mainImg {
+    max-width: 300px;
+  }
+
+  .btn3D, .btnAction {
+    padding: 14px 35px;
+    font-size: 0.95rem;
+  }
+
+  /* Ajustes de nodos flotantes para tablets */
+  .floatingNode {
+    padding: 15px;
+  }
+
+  .floatingNode svg {
+    font-size: 1.5rem;
+  }
+
+  .mainNode {
+    padding: 20px;
+  }
+
+  .mainNode svg {
+    font-size: 1.8rem;
+  }
+
+  .centerPulse {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+}
+
+/* 480px - Móviles grandes */
+@media (max-width: 480px) {
+  .serviciosContainer {
+    padding: 40px 3%;
+  }
+
+  .wrapper {
+    gap: 25px;
+  }
+
+  .mainTitle {
+    font-size: 1.8rem;
+    margin: 10px 0;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .topBadge, .badge {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .container3D {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px var(--card-shadow);
+  }
+
+  .gridContent {
+    gap: 25px;
+  }
+
+  .nodesSection {
+    height: 250px;
+  }
+
+  .visualArea {
+    height: 220px;
+  }
+
+  .node {
+    padding: 10px;
+  }
+
+  .node svg {
+    font-size: 1.2rem;
+  }
+
+  .node span {
+    font-size: 0.7rem;
+  }
+
+  .floatingNode {
+    padding: 12px;
+  }
+
+  .floatingNode svg {
+    font-size: 1.3rem;
+  }
+
+  .floatingNode span {
+    font-size: 0.7rem;
+  }
+
+  .mainNode {
+    padding: 18px;
+  }
+
+  .mainNode svg {
+    font-size: 1.5rem;
+  }
+
+  .centerPulse {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .n1 { top: 0; left: 5%; }
+  .n2 { top: 5%; right: 5%; }
+  .n3 { bottom: 5%; left: 25%; }
+
+  .mainImg {
+    max-width: 250px;
+  }
+
+  .btn3D, .btnAction {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
+
+  .divider {
+    width: 50px;
+    height: 3px;
+    margin-bottom: 25px;
+  }
+
+  .redLine {
+    width: 50px;
+    height: 4px;
+    margin-bottom: 25px;
+  }
+}
+
+/* 348px - Móviles pequeños */
+@media (max-width: 348px) {
+  .serviciosContainer {
+    padding: 30px 3%;
+  }
+
+  .wrapper {
+    gap: 20px;
+  }
+
+  .mainTitle {
+    font-size: 1.5rem;
+    margin: 8px 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .topBadge, .badge {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .container3D {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .gridContent {
+    gap: 20px;
+  }
+
+  .nodesSection {
+    height: 200px;
+  }
+
+  .visualArea {
+    height: 180px;
+  }
+
+  .node {
+    padding: 8px;
+  }
+
+  .node svg {
+    font-size: 1rem;
+  }
+
+  .node span {
+    font-size: 0.6rem;
+  }
+
+  .floatingNode {
+    padding: 8px;
+  }
+
+  .floatingNode svg {
+    font-size: 1.1rem;
+  }
+
+  .floatingNode span {
+    font-size: 0.6rem;
+  }
+
+  .mainNode {
+    padding: 12px;
+  }
+
+  .mainNode svg {
+    font-size: 1.2rem;
+  }
+
+  .centerPulse {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px var(--primary-red);
+  }
+
+  .n1 { top: 0; left: 0; }
+  .n2 { top: 0; right: 0; }
+  .n3 { bottom: 0; left: 20%; }
+
+  .mainImg {
+    max-width: 180px;
+  }
+
+  .btn3D, .btnAction {
+    padding: 10px 25px;
+    font-size: 0.8rem;
+  }
+
+  .divider {
+    width: 40px;
+    height: 3px;
+    margin-bottom: 20px;
+  }
+
+  .redLine {
+    width: 40px;
+    height: 3px;
+    margin-bottom: 20px;
+  }
+
+  .imgCard {
+    border-radius: 15px;
+  }
+
+  .imgReflection {
+    display: none; /* Ocultamos el efecto de reflexión en móviles pequeños para mejorar rendimiento */
+  }
+}
+
+/* 900px - Mantenemos tu media query original ajustada */
+@media (max-width: 900px) {
+  .wrapper { 
+    flex-direction: column; 
+    text-align: center; 
+  }
+  .infoSection { 
+    text-align: center; 
+  }
+  .divider { 
+    margin: 10px auto 30px; 
+  }
+}
+
+/* 968px - Mantenemos tu media query original ajustada */
+@media (max-width: 968px) {
+  .gridContent {
+    flex-direction: column;
+    text-align: center;
+  }
+  .textArea {
+    text-align: center;
+  }
+  .redLine {
+    margin: 0 auto 30px;
+  }
+  .container3D {
+    padding: 30px;
+    transform: none;
+  }
+}

@@ -1,0 +1,343 @@
+.carouselWrapper {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  margin: 30px;
+  /* Asegura que respete la animación del home */
+  animation: fadeInSoft 1s ease-out;
+}
+
+.carouselInner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.slideContent {
+  padding-left: 80px;
+  color: white;
+  z-index: 2;
+  max-width: 500px;
+  text-align: left;
+}
+
+.label {
+  background-color: #F54748;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.slideContent h2 {
+  font-size: 3rem;
+  margin: 15px 0;
+  line-height: 1.2;
+}
+
+.slideContent p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.slideBtn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.slideBtn:hover {
+  background: white;
+  color: #003366;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBtn:hover {
+  background: #F54748;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  background: white;
+  width: 30px;
+  border-radius: 10px;
+}
+
+/* Media Query para 1024px - Tablets horizontales */
+@media (max-width: 1024px) {
+  .carouselWrapper {
+    height: 450px;
+  }
+
+  .slideContent {
+    padding-left: 60px;
+    max-width: 450px;
+  }
+
+  .slideContent h2 {
+    font-size: 2.5rem;
+  }
+
+  .slideContent p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Media Query para 768px - Tablets verticales */
+@media (max-width: 768px) {
+  .carouselWrapper {
+    height: 400px;
+    border-radius: 15px;
+    margin: 15px 0;
+  }
+
+  .slide {
+    align-items: flex-end;
+    padding-bottom: 60px;
+  }
+
+  .slideContent {
+    padding-left: 40px;
+    padding-right: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .slideContent h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
+
+  .slideContent p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .navBtn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}
+
+/* Media Query para 348px - Móviles */
+@media (max-width: 348px) {
+  .carouselWrapper {
+    height: 350px;
+    border-radius: 12px;
+    margin: 10px 0;
+  }
+
+  .slide {
+    padding-bottom: 50px;
+  }
+
+  .slideContent {
+    padding-left: 20px;
+    padding-right: 15px;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .slideContent h2 {
+    font-size: 1.5rem;
+    margin: 8px 0;
+  }
+
+  .slideContent p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .slideBtn {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    border-width: 1.5px;
+  }
+
+  .navBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .prev {
+    left: 8px;
+  }
+
+  .next {
+    right: 8px;
+  }
+
+  .indicators {
+    bottom: 15px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .activeDot {
+    width: 18px;
+  }
+}
+
+/* Media Query para pantallas muy pequeñas */
+@media (max-width: 280px) {
+  .carouselWrapper {
+    height: 300px;
+  }
+
+  .slideContent {
+    padding-left: 15px;
+    padding-right: 10px;
+  }
+
+  .slideContent h2 {
+    font-size: 1.2rem;
+  }
+
+  .slideContent p {
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+
+  .label {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+
+  .slideBtn {
+    padding: 6px 15px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Animación para que coincida con el home */
+@keyframes fadeInSoft {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ajustes para los IDs de scroll */
+[id^="educacion-360"],
+[id^="cultura-paz"],
+[id^="educacion-ambiental"],
+[id^="convivencia-escolar"],
+[id^="educacion-vial"] {
+  scroll-margin-top: 80px;
+}
+
+/* Ajuste del scroll-margin-top para móviles */
+@media (max-width: 768px) {
+  [id^="educacion-360"],
+  [id^="cultura-paz"],
+  [id^="educacion-ambiental"],
+  [id^="convivencia-escolar"],
+  [id^="educacion-vial"] {
+    scroll-margin-top: 60px;
+  }
+}
+
+@media (max-width: 348px) {
+  [id^="educacion-360"],
+  [id^="cultura-paz"],
+  [id^="educacion-ambiental"],
+  [id^="convivencia-escolar"],
+  [id^="educacion-vial"] {
+    scroll-margin-top: 50px;
+  }
+}
