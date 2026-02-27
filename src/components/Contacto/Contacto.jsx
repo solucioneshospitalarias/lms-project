@@ -83,7 +83,7 @@ const Contacto = () => {
                             </div>
                             <div className={styles.infoItem}>
                                 <Mail className={styles.iconRed} size={45}/>
-                                <p>waltersteven.dev@gmail.com</p>
+                                <p>rutasdelsaber41@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -95,19 +95,19 @@ const Contacto = () => {
                     <div className={styles.formSide}>
                         <h3 className={styles.formSubtitle}>FORMULARIO DE CONTACTO</h3>
                         <form className={styles.contactForm}>
-                            <div className={styles.row}>
-                                <input type="text" placeholder="Nombre completo" className={styles.input} />
-                                <div className={styles.inputContainer}>
-                                    <input
-                                        type="email"
-                                        placeholder="Correo electrónico"
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                        className={`${styles.input} ${isValidEmail ? styles.valid : ''}`}
-                                        required
-                                    />
-                                    {isValidEmail && <CheckCircle size={18} className={styles.checkIcon} />}
-                                </div>
+                            <div className={styles.inputContainer}>
+                                    <input type="text" placeholder="Nombre completo" className={styles.input} />
+                            </div>
+                            <div className={styles.inputContainer}>
+                                <input
+                                    type="email"
+                                    placeholder="Correo electrónico"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                    className={`${styles.input} ${isValidEmail ? styles.valid : ''}`}
+                                    required
+                                />
+                                {isValidEmail && <CheckCircle size={18} className={styles.checkIcon} />}
                             </div>
                             <input type="text" placeholder="Asunto" className={styles.input} />
                             <textarea placeholder="Escribe tu mensaje aquí..." rows="4" className={styles.textarea}></textarea>
