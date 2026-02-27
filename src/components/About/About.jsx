@@ -102,9 +102,6 @@ const About = () => {
               conocimiento es la herramienta más poderosa para salvar vidas y construir una cultura
               de paz en nuestras comunidades.
             </p>
-            <div className={styles.buttonContainer}>
-              <button className={styles.platformBtn}>PLATAFORMA PARA COLEGIOS</button>
-            </div>
           </div>
         </div>
       </div>

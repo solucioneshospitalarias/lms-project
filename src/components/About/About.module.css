@@ -117,25 +117,6 @@
   text-align: justify;
 }
 
-.platformBtn {
-  margin-top: 30px;
-  background: transparent;
-  color: var(--primary-red);
-  border: 2px solid var(--primary-red);
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.platformBtn:hover {
-  background: var(--primary-red);
-  color: white;
-  box-shadow: 0 0 20px rgba(194, 40, 33, 0.5);
-  transform: scale(1.05);
-}
-
 /* GRILLA DE TARJETAS CON PERSPECTIVA */
 .cardsGrid {
   display: flex;
