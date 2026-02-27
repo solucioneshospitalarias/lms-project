@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapPin, Phone, Mail } from "lucide-react";
-import { faFacebookF, faInstagram, faTiktok, faWhatsapp, } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faInstagram, faWhatsapp, faYoutube, } from "@fortawesome/free-brands-svg-icons";
 import pdf from '../Footer/Docs/TerminosCondiciones.pdf'
 
 const Footer = () => {
@@ -20,17 +20,17 @@ const Footer = () => {
             tecnología interactiva y compromiso social.
           </p>
           <div className={styles.socials}>
-            <a href="https://www.facebook.com/walter.ad.228863" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=61561207295039" aria-label="Facebook">
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="https://www.instagram.com/walter_ldk/" aria-label="Instagram">
+            <a href="https://www.instagram.com/rutasdelsaber_colombia/" aria-label="Instagram">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
             <a href="https://wa.me/573234876604" aria-label="WhatsApp">
               <FontAwesomeIcon icon={faWhatsapp} />
             </a>
-            <a href="https://www.tiktok.com/@trendigroup" aria-label="TikTok">
-              <FontAwesomeIcon icon={faTiktok} />
+            <a href="https://www.youtube.com/channel/UC8vs2Auh70OOSJ0rkcR_rPg" aria-label="Youtube">
+              <FontAwesomeIcon icon={faYoutube} />
             </a>
           </div>
         </div>
@@ -119,7 +119,7 @@ const Footer = () => {
             <div className={styles.iconCircle}>
               <Mail size={20} strokeWidth={2.5} />
             </div>
-            <p>info@trendigroup.com</p>
+            <p>rutasdelsaber41@gmail.com</p>
           </div>
         </div>
       </div>
