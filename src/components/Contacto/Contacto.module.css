@@ -106,7 +106,6 @@
     margin: 1px auto;
     display: flex;
     flex-direction: column;
-    gap: 50px;
     position: relative;
     z-index: 2;
 }
@@ -123,7 +122,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    margin-bottom: 50px;
 }
 
 .mapWrapper {
@@ -241,7 +239,8 @@
     gap: 40px; /* Aumentamos el espacio real entre las dos tarjetas */
     background-color: transparent; /* IMPORTANTE: Quitamos el fondo para ver el espacio en medio */
     max-width: 1200px;
-    margin: 0 auto;
+    border-radius: 15px;
+    margin: 20px auto;
     border: none; /* Quitamos bordes externos */
     backdrop-filter: none; /* Quitamos el desenfoque del padre */
 }
@@ -356,8 +355,18 @@
     /* Pequeño respiro extra */
 }
 
+input[placeholder="Nombre completo"] {
+    margin-bottom: 20px;
+    /* Espacio entre el nombre y el correo */
+}
+
+input[placeholder="Correo electrónico"] {
+    margin-bottom: 20px;
+    /* Espacio generoso antes del campo de asunto */
+}
+
 input[placeholder="Asunto"] {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     /* Espacio generoso antes del área de mensaje */
 }
 
@@ -422,6 +431,7 @@ input[placeholder="Asunto"] {
     background: var(--extra-info-bg, rgba(255, 255, 255, 0.05));
     border-left: 3px solid var(--primary-red);
     padding: 15px;
+    margin-bottom: 15px;
     border-radius: 12px;
 }
 
