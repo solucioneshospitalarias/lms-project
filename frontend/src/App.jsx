@@ -15,12 +15,16 @@ import Terminos from "./components/Legal/Terminos";
 import Privacidad from "./components/Legal/Privacidad";
 import Autorizacion from "./components/Legal/Autorizacion";
 import WhatsAppQR from "./components/WhatsApp/WhatsAppQR";
+import ForgotPassword from './components/Auth/ForgotPassword';
 
 function App() {
   const location = useLocation();
 
   // Condición corregida: detecta tanto Login como Register
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
+  const isAuthPage =
+    location.pathname === "/login" ||
+    location.pathname === "/register" ||
+    location.pathname === "/forgot-password";
 
   useEffect(() => {
     if (!isAuthPage) {
@@ -32,7 +36,7 @@ function App() {
     <div className="app-container">
       {!isAuthPage && <Header />}
 
-      <main style={!isAuthPage ? {textAlign: "center" } : {}}>
+      <main style={!isAuthPage ? { textAlign: "center" } : {}}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/estadisticas" element={<Estadisticas />} />
@@ -40,6 +44,7 @@ function App() {
           {/* <Route path="/recursos" element={<Recursos />} /> */}
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/conocenos" element={<Conocenos />} />
           <Route path="/terminos" element={<Terminos />} />
