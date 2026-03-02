@@ -1,10 +1,11 @@
 .carouselWrapper {
-  width: 100%;
+  width: 92%;
+  max-width: 3000px;
   height: 500px;
   overflow: hidden;
   position: relative;
   border-radius: 20px;
-  margin: 30px;
+  margin: 30px auto;
   /* Asegura que respete la animación del home */
   animation: fadeInSoft 1s ease-out;
 }
@@ -339,5 +340,14 @@
   [id^="convivencia-escolar"],
   [id^="educacion-vial"] {
     scroll-margin-top: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carouselWrapper {
+    height: 300px; /* Reducimos la altura en celulares */
+    width: 95%;    /* Un poquito más ancho en móvil para aprovechar espacio */
+    margin: 15px auto; /* Menos margen vertical en pantallas pequeñas */
+    border-radius: 15px;
   }
 }
