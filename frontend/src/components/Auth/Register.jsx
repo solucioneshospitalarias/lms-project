@@ -132,7 +132,7 @@ const Register = () => {
                 </button>
 
                 <p className={styles.footerText}>
-                    ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+                    ¿Ya tienes una cuenta? <Link to="/login" replace={true}>Inicia sesión</Link>
                 </p>
             </div>
         </div>
