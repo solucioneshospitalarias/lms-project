@@ -50,7 +50,7 @@ const Register = () => {
                     {/* Fila de Nombres y Apellidos */}
                     <div className={styles.inputRow}>
                         <div className={styles.inputGroup}>
-                            <label>Nombres</label>
+                            <label>Nombres:</label>
                             <div className={styles.inputWrapper}>
                                 <User className={styles.icon} size={18} />
                                 <input
@@ -63,7 +63,7 @@ const Register = () => {
                         </div>
 
                         <div className={styles.inputGroup}>
-                            <label>Apellidos</label>
+                            <label>Apellidos:</label>
                             <div className={styles.inputWrapper}>
                                 <User className={styles.icon} size={18} />
                                 <input
@@ -78,7 +78,7 @@ const Register = () => {
 
                     {/* Correo Electrónico */}
                     <div className={styles.inputGroup}>
-                        <label>Correo Electrónico</label>
+                        <label>Correo Electrónico:</label>
                         <div className={styles.inputWrapper}>
                             <Mail className={styles.icon} size={18} />
                             <input
@@ -92,7 +92,7 @@ const Register = () => {
 
                     {/* Contraseña */}
                     <div className={styles.inputGroup}>
-                        <label>Contraseña</label>
+                        <label>Contraseña:</label>
                         <div className={styles.inputWrapper}>
                             <Lock className={styles.icon} size={18} />
                             <input
@@ -106,7 +106,7 @@ const Register = () => {
 
                     {/* Confirmar Contraseña */}
                     <div className={styles.inputGroup}>
-                        <label>Confirmar Contraseña</label>
+                        <label>Confirmar Contraseña:</label>
                         <div className={styles.inputWrapper}>
                             <ShieldCheck className={styles.icon} size={18} />
                             <input

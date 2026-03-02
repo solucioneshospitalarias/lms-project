@@ -1,15 +1,22 @@
 import React, { useState } from 'react'; // Paso 1: Importar useState
 import styles from './Login.module.css';
-import { Mail, Lock, ArrowRight, Chrome } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Chrome, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Img1 from '../../assets/Item1.png';
 import Img2 from '../../assets/Item2.png';
 import Img3 from '../../assets/Item3.png';
 import Img4 from '../../assets/Item4.png';
 
+
 const Login = () => {
     // Paso 2: Crear el estado para los errores
     const [errors, setErrors] = useState({ email: false, password: false });
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleGoogleLogin = () => {
         window.location.href = "https://accounts.google.com/";
@@ -39,6 +46,7 @@ const Login = () => {
     };
 
     return (
+
         <div className={styles.loginPage}>
             <div className={styles.mainWrapper}>
                 <div className={styles.infoSection}>
@@ -84,10 +92,19 @@ const Login = () => {
                             <div className={styles.inputWrapper}>
                                 <Lock className={styles.icon} size={16} />
                                 <input
-                                    type="password"
-                                    placeholder=""
+                                    type={showPassword ? "text" : "password"} // Si es true, se ve el texto. Si es false, son puntos.
+                                    placeholder="Tu contraseña"
                                     className={errors.password ? styles.inputError : ''}
                                 />
+                                {/* Botón del ojo */}
+                                <button
+                                    type="button"
+                                    className={styles.eyeButton}
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {/* INVERTIMOS: Si showPassword es true (se ve), mostramos el ojo abierto para indicar que ya es visible */}
+                                    {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+                                </button>
                             </div>
                             {errors.password && <span className={styles.errorText}>Este campo es obligatorio</span>}
                         </div>
@@ -96,7 +113,9 @@ const Login = () => {
                             <label className={styles.remember}>
                                 <input type="checkbox" /> <span>Recordarme</span>
                             </label>
-                            <a href="#" className={styles.forgot}>¿Olvidaste tu contraseña?</a>
+                            <Link to="/forgot-password" className={styles.forgotLink}>
+                                ¿Olvidaste tu contraseña?
+                            </Link>
                         </div>
 
                         <button type="submit" className={styles.btnMain}>
@@ -117,7 +136,7 @@ const Login = () => {
                     </button>
 
                     <p className={styles.footerText}>
-                        ¿No tienes una cuenta? <Link to="/register">Regístrate ahora</Link>
+                        ¿No tienes una cuenta? <Link to="/register" replace={true} >Regístrate ahora</Link>
                     </p>
                 </div>
             </div>

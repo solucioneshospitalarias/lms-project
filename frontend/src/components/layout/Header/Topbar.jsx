@@ -25,7 +25,7 @@ const Topbar = () => {
           <a href="https://www.instagram.com/rutasdelsaber_colombia/" target="_blank" rel="noopener noreferrer" className={styles.faInstagram} style={{ fontSize: '16px' }}>
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="https://www.youtube.com/@RutasdelSaberColombia" target="_blank" rel="noopener noreferrer" className={styles.faTiktok} style={{ fontSize: '16px' }}>
+          <a href="https://www.youtube.com/@RutasdelSaberColombia" target="_blank" rel="noopener noreferrer" className={styles.faYoutube} style={{ fontSize: '16px' }}>
             <FontAwesomeIcon icon={faYoutube} />
           </a>
           <a href="https://wa.me/573234876604" target="_blank" rel="noopener noreferrer" className={styles.faWhatsapp} style={{ fontSize: '16px' }}>
