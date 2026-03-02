@@ -8,6 +8,82 @@
   z-index: 1;
 }
 
+.bookWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  perspective: 1500px; /* Crucial para el efecto 3D */
+}
+
+.book {
+  position: relative;
+  width: 350px;
+  height: 450px;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  background: transparent; /* Aseguramos que el fondo sea invisible */
+}
+
+.cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* Esto evita que al girar se vea cualquier cosa por detrás */
+  backface-visibility: hidden; 
+}
+
+.coverBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent !important; /* Lo hacemos invisible */
+  backface-visibility: hidden; /* Evita que se renderice al girar */
+  transform: rotateY(180deg); /* La posicionamos detrás del Front */
+}
+
+/* Estado abierto */
+.bookOpen .cover {
+  transform: rotateY(-150deg); /* Abre la tapa hacia la izquierda */
+}
+
+.coverFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #76d4f2; /* El celeste de tu diseño */
+  border-radius: 0 15px 15px 0;
+  backface-visibility: hidden; /* Doble seguridad */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.1);
+}
+
+.pagesInner {
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  top: 1%;
+  left: 1%;
+  background: white; /* Solo las hojas son blancas */
+  z-index: 1;
+  border-radius: 0 10px 10px 0;
+  padding: 30px;
+  box-shadow: inset 5px 0 10px rgba(0,0,0,0.05);
+}
+
+.resourceListInside {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 @keyframes fadeInSoft {
   from {
     opacity: 0;
