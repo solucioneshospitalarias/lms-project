@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import styles from "./About.module.css";
-import { RocketIcon, Eye, Users, Youtube } from "lucide-react"
+import { RocketIcon, Eye, Users, Youtube } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import img from "../../assets/favicon.ico";
-import pngNiño from "../../assets/plataformaEducativa.png"
-import pngNiña from "../../assets/plataformaAnalisis.png"
-import portatil from "../../assets/portatil.png"
+import pngNiño from "../../assets/plataformaEducativa.png";
+import pngNiña from "../../assets/plataformaAnalisis.png";
+import portatil from "../../assets/portatil.png";
+import videoPortatil from "../../assets/VideoPortatil.mp4";
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    navigate("/login"); // Cambia '/login' por la ruta exacta de tu página de acceso
+  };
+
   const [activeTab, setActiveTab] = useState("escuelas");
   const [mainRotation, setMainRotation] = useState({ x: 0, y: 0 });
 
@@ -97,10 +105,11 @@ const About = () => {
             <h2 className={styles.title3D}>¿QUIÉNES SOMOS?</h2>
             <div className={styles.divider}></div>
             <p className={styles.mainText}>
-              En Rutas del Saber, somos una plataforma líder dedicada a transformar
-              la educación vial y la convivencia armónica a través de la tecnología. Creemos que el
-              conocimiento es la herramienta más poderosa para salvar vidas y construir una cultura
-              de paz en nuestras comunidades.
+              En Rutas del Saber, somos una plataforma líder dedicada a
+              transformar la educación vial y la convivencia armónica a través
+              de la tecnología. Creemos que el conocimiento es la herramienta
+              más poderosa para salvar vidas y construir una cultura de paz en
+              nuestras comunidades.
             </p>
           </div>
         </div>
@@ -122,21 +131,31 @@ const About = () => {
               }}
             >
               <div className={styles.iconWrapper}>
-                <Icon size={48} className={`${styles.cardIcon} ${styles[card.iconClass]}`} color={card.iconColor} />
+                <Icon
+                  size={48}
+                  className={`${styles.cardIcon} ${styles[card.iconClass]}`}
+                  color={card.iconColor}
+                />
               </div>
               <h3 className={styles.cardTitle}>{card.title}</h3>
               <p className={styles.cardText}>{card.text}</p>
               <div className={styles.innerGlow} />
             </div>
-          )
+          );
         })}
       </div>
 
       <div className={styles.tabcontainer}>
-        <button className={`${styles.tabBtn} ${activeTab === "escuelas" ? styles.active : ""}`} onClick={() => setActiveTab("escuelas")}>
+        <button
+          className={`${styles.tabBtn} ${activeTab === "escuelas" ? styles.active : ""}`}
+          onClick={() => setActiveTab("escuelas")}
+        >
           Plataforma para escuelas
         </button>
-        <button className={`${styles.tabBtn} ${activeTab === "analisis" ? styles.active : ""}`} onClick={() => setActiveTab("analisis")}>
+        <button
+          className={`${styles.tabBtn} ${activeTab === "analisis" ? styles.active : ""}`}
+          onClick={() => setActiveTab("analisis")}
+        >
           Plataforma de análisis
         </button>
       </div>
@@ -145,26 +164,61 @@ const About = () => {
         <div className={styles.schoolsContainer}>
           <div className={styles.schoolsContent}>
             <div className={styles.tabHeader}>
-              <h2 style={{ fontSize: "45px", fontWeight: "bold" }}>Plataforma Educativa</h2>
+              <h2 style={{ fontSize: "45px", fontWeight: "bold" }}>
+                Plataforma Educativa
+              </h2>
             </div>
             <div className={styles.tabDivider}></div>
             <div className={styles.mainDescription}>
               <p>
-                Rutas del Saber es una plataforma educativa integral diseñada para conectar a la comunidad y potenciar el desarrollo social. Su enfoque principal es transformar el entorno escolar y ciudadano a través de herramientas pedagógicas modernas.
+                Rutas del Saber es una plataforma educativa integral diseñada
+                para conectar a la comunidad y potenciar el desarrollo social.
+                Su enfoque principal es transformar el entorno escolar y
+                ciudadano a través de herramientas pedagógicas modernas.
               </p>
 
-              <p> • Formación y Pedagogía: Acceso a contenidos actualizados y proyectos que impulsan el aprendizaje y la transformación social.</p>
+              <p>
+                {" "}
+                • Formación y Pedagogía: Acceso a contenidos actualizados y
+                proyectos que impulsan el aprendizaje y la transformación
+                social.
+              </p>
 
-              <p> • Convivencia y Valores: Promueve una cultura de paz, el respeto por los Derechos Humanos y la prevención de la violencia.</p>
+              <p>
+                {" "}
+                • Convivencia y Valores: Promueve una cultura de paz, el respeto
+                por los Derechos Humanos y la prevención de la violencia.
+              </p>
 
-              <p> • Ciudadanía Responsable: Fomenta la conciencia ambiental, la educación vial y el autocuidado.</p>
-
+              <p>
+                {" "}
+                • Ciudadanía Responsable: Fomenta la conciencia ambiental, la
+                educación vial y el autocuidado.
+              </p>
             </div>
-            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize: "20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
-            <button className={styles.tabActionBtn}>Ingresar a mi plataforma</button>
+            <p
+              style={{
+                marginTop: "20px",
+                fontWeight: "bold",
+                fontSize: "20px",
+              }}
+            >
+              Para acceder en la plataforma educativa dale click al boton que
+              aparece abajo.
+            </p>
+            <button
+              className={styles.tabActionBtn}
+              onClick={handleLoginRedirect}
+            >
+              Ingresar a mi plataforma
+            </button>
           </div>
           <div className={styles.imgSection}>
-            <img src={pngNiño} alt="PlataformaEducativa" className={styles.imgNiño} />
+            <img
+              src={pngNiño}
+              alt="PlataformaEducativa"
+              className={styles.imgNiño}
+            />
           </div>
         </div>
       )}
@@ -173,33 +227,83 @@ const About = () => {
         <div className={styles.analyticsContainer}>
           <div className={styles.analyticsContent}>
             <div className={styles.tabHeader}>
-              <h2 style={{ fontSize: "45px", fontWeight: "bold" }}>Plataforma Análisis</h2>
+              <h2 style={{ fontSize: "45px", fontWeight: "bold" }}>
+                Plataforma Análisis
+              </h2>
             </div>
             <div className={styles.tabDivider}></div>
             <div className={styles.mainDescription}>
               <p>
-                Rutas del Saber es un ecosistema digital diseñado para conectar a la comunidad educativa con herramientas de formación integral. Su objetivo es generar un impacto positivo en la sociedad mediante el aprendizaje y la prevención.
+                Rutas del Saber es un ecosistema digital diseñado para conectar
+                a la comunidad educativa con herramientas de formación integral.
+                Su objetivo es generar un impacto positivo en la sociedad
+                mediante el aprendizaje y la prevención.
               </p>
 
-              <p> • Educación de calidad: Contenidos actualizados y proyectos de transformación social.</p>
+              <p>
+                {" "}
+                • Educación de calidad: Contenidos actualizados y proyectos de
+                transformación social.
+              </p>
 
-              <p> • Cultura y Valores: Fomento de la paz, los Derechos Humanos y la convivencia escolar.</p>
+              <p>
+                {" "}
+                • Cultura y Valores: Fomento de la paz, los Derechos Humanos y
+                la convivencia escolar.
+              </p>
 
-              <p> • Responsabilidad Ciudadana: Formación en sostenibilidad ambiental, seguridad vial y autocuidado.</p>
-
+              <p>
+                {" "}
+                • Responsabilidad Ciudadana: Formación en sostenibilidad
+                ambiental, seguridad vial y autocuidado.
+              </p>
             </div>
-            <p style={{ marginTop: "20px", fontWeight: "bold", fontSize: "20px" }}>Para acceder en la plataforma educativa dale click al boton que aparece abajo.</p>
-            <button className={styles.tabActionBtnAnalisis}>Ingresar a mi plataforma</button>
+            <p
+              tabActionBtnAnalisis
+              style={{
+                marginTop: "20px",
+                fontWeight: "bold",
+                fontSize: "20px",
+              }}
+            >
+              Para acceder en la plataforma educativa dale click al boton que
+              aparece abajo.
+            </p>
+            <button
+              className={styles.tabActionBtnAnalisis}
+              onClick={handleLoginRedirect}
+            >
+              Ingresar a mi plataforma
+            </button>
           </div>
           <div className={styles.imgSection}>
-            <img src={pngNiña} alt="PlataformaAnalisis" className={styles.imgNiña} />
+            <img
+              src={pngNiña}
+              alt="PlataformaAnalisis"
+              className={styles.imgNiña}
+            />
           </div>
         </div>
       )}
       <div className={styles.educacionContainer}>
-        <h3>Impulsando la educación 4.0 para los retos del mañana.</h3>
+        <h2 className={styles.professionalTitle}>
+          Impulsando la <span>Educación 4.0</span> para los retos del mañana
+        </h2>
+
         <div className={styles.portatilWrapper}>
+          {/* Imagen del portátil de fondo */}
           <img src={portatil} alt="Portatil" className={styles.portatil} />
+
+          {/* Contenedor del video con una clase específica para la pantalla */}
+          <div className={styles.screenVideoContainer}>
+            <video
+              src={videoPortatil}
+              autoPlay
+              muted
+              loop
+              className={styles.screenVideo}
+            />
+          </div>
         </div>
       </div>
 
@@ -211,10 +315,13 @@ const About = () => {
               <Youtube className={styles.ytIcon} size={20} />
               <span>CONTENIDO EXCLUSIVO</span>
             </div>
-            <h2 className={styles.ytTitle}>Nuestro Canal de <span>YouTube</span></h2>
+            <h2 className={styles.ytTitle}>
+              Nuestro Canal de <span>YouTube</span>
+            </h2>
             <p className={styles.ytText}>
-              Suscríbete para acceder a tutoriales, conferencias y material educativo
-              exclusivo sobre seguridad vial y cultura de paz en el Atlántico.
+              Suscríbete para acceder a tutoriales, conferencias y material
+              educativo exclusivo sobre seguridad vial y cultura de paz en el
+              Atlántico.
             </p>
             <a
               href="https://www.youtube.com/channel/UC8vs2Auh70OOSJ0rkcR_rPg"
