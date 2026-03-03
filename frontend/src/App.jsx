@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+// 1. Importar Helmet
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop/ScrollToTop";
 import Home from "./components/Home/Home";
 import Productos from "./components/Productos/Productos";
-// import Recursos from "./components/Recursos/Recursos";
 import Estadisticas from "./components/Estadisticas/Estadisticas";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
@@ -15,12 +17,11 @@ import Terminos from "./components/Legal/Terminos";
 import Privacidad from "./components/Legal/Privacidad";
 import Autorizacion from "./components/Legal/Autorizacion";
 import WhatsAppQR from "./components/WhatsApp/WhatsAppQR";
-import ForgotPassword from './components/Auth/ForgotPassword';
+import ForgotPassword from "./components/Auth/ForgotPassword";
 
 function App() {
   const location = useLocation();
 
-  // Condición corregida: detecta tanto Login como Register
   const isAuthPage =
     location.pathname === "/login" ||
     location.pathname === "/register" ||
@@ -33,32 +34,48 @@ function App() {
   }, [location.pathname, isAuthPage]);
 
   return (
-    <div className="app-container">
-      {!isAuthPage && <Header />}
+    // 2. Envolver todo en HelmetProvider
+    <HelmetProvider>
+      <div className="app-container">
+        {/* 3. Configuración de SEO Global/Home */}
+        <Helmet>
+          <title>Rutas del Saber | Plataforma Educativa</title>
+          <meta
+            name="description"
+            content="Rutas del Saber es una iniciativa dedicada al fortalecimiento educativo y el aprendizaje significativo. Explora nuestros recursos, productos y estadísticas."
+          />
+          <meta
+            name="keywords"
+            content="educación, rutas del saber, aprendizaje, recursos educativos"
+          />
+          <link rel="canonical" href="https://www.rutasdelsaber.com" />
+        </Helmet>
 
-      <main style={!isAuthPage ? { textAlign: "center" } : {}}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/estadisticas" element={<Estadisticas />} />
-          <Route path="/productos" element={<Productos />} />
-          {/* <Route path="/recursos" element={<Recursos />} /> */}
-          <Route path="/contacto" element={<Contacto />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/conocenos" element={<Conocenos />} />
-          <Route path="/terminos" element={<Terminos />} />
-          <Route path="/privacidad" element={<Privacidad />} />
-          <Route path="/autorizacion" element={<Autorizacion />} />
-        </Routes>
+        {!isAuthPage && <Header />}
 
-        {!isAuthPage && <ScrollToTop />}
-      </main>
+        <main style={!isAuthPage ? { textAlign: "center" } : {}}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/estadisticas" element={<Estadisticas />} />
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/conocenos" element={<Conocenos />} />
+            <Route path="/terminos" element={<Terminos />} />
+            <Route path="/privacidad" element={<Privacidad />} />
+            <Route path="/autorizacion" element={<Autorizacion />} />
+          </Routes>
 
-      {!isAuthPage && <Footer />}
+          {!isAuthPage && <ScrollToTop />}
+        </main>
 
-      <WhatsAppQR />
-    </div>
+        {!isAuthPage && <Footer />}
+
+        <WhatsAppQR />
+      </div>
+    </HelmetProvider>
   );
 }
 
