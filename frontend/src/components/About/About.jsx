@@ -6,7 +6,6 @@ import img from "../../assets/favicon.ico";
 import pngNiño from "../../assets/plataformaEducativa.png";
 import pngNiña from "../../assets/plataformaAnalisis.png";
 import portatil from "../../assets/portatil.png";
-import videoPortatil from "../../assets/VideoPortatil.mp4";
 
 const About = () => {
   const navigate = useNavigate();
@@ -291,18 +290,17 @@ const About = () => {
         </h2>
 
         <div className={styles.portatilWrapper}>
-          {/* Imagen del portátil de fondo */}
           <img src={portatil} alt="Portatil" className={styles.portatil} />
 
-          {/* Contenedor del video con una clase específica para la pantalla */}
           <div className={styles.screenVideoContainer}>
-            <video
-              src={videoPortatil}
-              autoPlay
-              muted
-              loop
+            <iframe
               className={styles.screenVideo}
-            />
+              src="https://www.youtube.com/embed/V6yMJATvpTU?autoplay=1&mute=1&loop=1&playlist=V6yMJATvpTU&controls=0&showinfo=0&rel=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </div>
