@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-// 1. Importar Helmet
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop/ScrollToTop";
@@ -18,62 +16,79 @@ import Privacidad from "./components/Legal/Privacidad";
 import Autorizacion from "./components/Legal/Autorizacion";
 import WhatsAppQR from "./components/WhatsApp/WhatsAppQR";
 import ForgotPassword from "./components/Auth/ForgotPassword";
+import AdminLayout from "./components/layout/AdminLayout";
+import ClassroomHome from "./components/AulaVirtual/ClassroomHome";
+import MisCursos from "./components/AulaVirtual/MisCursos";
+import EstadisticasAula from "./components/AulaVirtual/EstadisticasAula";
+import Comunidad from "./components/AulaVirtual/Comunidad";
+import ConfiguracionAula from "./components/AulaVirtual/ConfiguracionAula";
+import CalendarioAula from './components/AulaVirtual/CalendarioAula';
 
 function App() {
   const location = useLocation();
 
-  const isAuthPage =
+  // Definimos qué páginas NO deben mostrar el Header y Footer de la Landing
+  const isCleanPage =
     location.pathname === "/login" ||
     location.pathname === "/register" ||
-    location.pathname === "/forgot-password";
+    location.pathname === "/forgot-password" ||
+    location.pathname.startsWith("/aula-virtual");
 
   useEffect(() => {
-    if (!isAuthPage) {
+    if (!isCleanPage) {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname, isAuthPage]);
+  }, [location.pathname, isCleanPage]);
 
   return (
-    // 2. Envolver todo en HelmetProvider
     <HelmetProvider>
       <div className="app-container">
-        {/* 3. Configuración de SEO Global/Home */}
         <Helmet>
           <title>Rutas del Saber | Plataforma Educativa</title>
           <meta
             name="description"
-            content="Rutas del Saber es una iniciativa dedicada al fortalecimiento educativo y el aprendizaje significativo. Explora nuestros recursos, productos y estadísticas."
+            content="Rutas del Saber es una iniciativa dedicada al fortalecimiento educativo y el aprendizaje significativo."
           />
-          <meta
-            name="keywords"
-            content="educación, rutas del saber, aprendizaje, recursos educativos"
-          />
-          <link rel="canonical" href="https://www.rutasdelsaber.com" />
         </Helmet>
 
-        {!isAuthPage && <Header />}
+        {/* El Header solo aparece si NO es una página limpia (login o aula virtual) */}
+        {!isCleanPage && <Header />}
 
-        <main style={!isAuthPage ? { textAlign: "center" } : {}}>
+        {/* Quitamos el textAlign center solo para el aula virtual para que no dañe el grid */}
+        <main
+          style={!isCleanPage ? { textAlign: "center" } : { width: "100%" }}
+        >
           <Routes>
+            {/* RUTAS LANDING */}
             <Route path="/" element={<Home />} />
             <Route path="/estadisticas" element={<Estadisticas />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/conocenos" element={<Conocenos />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/conocenos" element={<Conocenos />} />
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/autorizacion" element={<Autorizacion />} />
+
+            {/* RUTAS AULA VIRTUAL (Usando el AdminLayout) */}
+            <Route path="/aula-virtual" element={<AdminLayout />}>
+              <Route index element={<ClassroomHome />} />
+              <Route path="mis-cursos" element={<MisCursos />} />
+              <Route path="estadisticas" element={<EstadisticasAula />} />
+              <Route path="comunidad" element={<Comunidad />} />
+              <Route path="configuracion" element={<ConfiguracionAula />} />
+              <Route path="calendario" element={<CalendarioAula />} /> 
+            </Route>
+
           </Routes>
 
-          {!isAuthPage && <ScrollToTop />}
+          {!isCleanPage && <ScrollToTop />}
         </main>
 
-        {!isAuthPage && <Footer />}
-
-        <WhatsAppQR />
+        {!isCleanPage && <Footer />}
+        {!isCleanPage && <WhatsAppQR />}
       </div>
     </HelmetProvider>
   );
