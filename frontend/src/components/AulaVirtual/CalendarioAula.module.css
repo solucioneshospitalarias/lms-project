@@ -1,0 +1,194 @@
+/* ── Contenedor principal ── */
+.calendarioContainer {
+  background: white;
+  width: 100%;
+  height: calc(100vh - 150px);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── Header superior ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0; /* nunca se encoge */
+}
+
+.leftControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mesDisplay {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #3c4043;
+}
+
+.todayBtn {
+  background: white;
+  border: 1px solid #dadce0;
+  padding: 6px 14px;
+  border-radius: 4px;
+  color: #3c4043;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.todayBtn:hover {
+  background-color: #f1f3f4;
+}
+
+.navegacion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.navBtn:hover {
+  background: #f1f3f4;
+}
+
+.viewSelector {
+  display: flex;
+  background: #f1f3f4;
+  padding: 4px;
+  border-radius: 8px;
+  gap: 2px;
+}
+
+.viewBtn {
+  border: none;
+  background: transparent;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #3c4043;
+  transition: background 0.15s;
+}
+.viewBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.activeView {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: #cc2221;
+}
+
+/* ── Fila de nombres de día (fija, siempre visible) ── */
+.headerDias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.nombreDiaHeader {
+  font-size: 12px;
+  font-weight: 500;
+  color: #70757a;
+  text-transform: lowercase;
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* ── Número del día ── */
+.numeroDia {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 50%;
+  font-weight: 500;
+  color: #3c4043;
+}
+
+.hoy {
+  background-color: #cc2221 !important;
+  color: white !important;
+}
+
+/* ════════════════════════════════
+   VISTA SEMANA
+   ════════════════════════════════ */
+.gridSemana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex-grow: 1; /* ocupa todo el alto restante */
+  border-top: none;
+  overflow: hidden;
+}
+
+.columnaDia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12px; /* número pegado arriba */
+  border-right: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+.columnaDia:last-child {
+  border-right: none;
+}
+
+.espacioEventos {
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* ════════════════════════════════
+   VISTA MES
+   ════════════════════════════════ */
+.gridMes {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex-grow: 1;
+  align-content: start; /* filas compactas arriba */
+  gap: 2px;
+  overflow: auto;
+}
+
+.celdaDia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 4px;
+  border: 1px solid #f1f3f4;
+  min-height: 70px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.diaFuera .numeroDia {
+  color: #ccc;
+}
