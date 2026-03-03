@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './CentroCapacitacion.module.css';
-import { FaGraduationCap, FaChalkboardTeacher, FaCertificate, FaRocket } from 'react-icons/fa';
+import { FaGraduationCap, FaChalkboardTeacher, FaCertificate, FaRocket, FaLeaf } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -96,7 +96,8 @@ const CentroCapacitacion = () => {
     const cursos = [
         { id: 1, icon: <FaRocket />, title: "Seguridad Vial Inicial", desc: "Fundamentos para docentes de transición y primaria.", duracion: "20 Horas", nivel: "Básico" },
         { id: 2, icon: <FaChalkboardTeacher />, title: "Estrategias Lúdicas", desc: "Cómo enseñar leyes de tránsito mediante el juego.", duracion: "15 Horas", nivel: "Intermedio" },
-        { id: 3, icon: <FaCertificate />, title: "Certificación Líder Vial", desc: "Diplomado avanzado en gestión de riesgos escolares.", duracion: "40 Horas", nivel: "Avanzado" }
+        { id: 3, icon: <FaCertificate />, title: "Certificación Líder Vial", desc: "Diplomado avanzado en gestión de riesgos escolares.", duracion: "40 Horas", nivel: "Avanzado" },
+        { id: 4, icon: <FaLeaf />, title: "Movilidad Sostenible", desc: "Integración de modos de transporte limpios en el entorno escolar", duracion: "25 Horas", nivel: "Intermedio"}
     ];
 
     return (
