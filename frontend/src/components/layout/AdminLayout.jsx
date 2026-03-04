@@ -1,12 +1,13 @@
-// src/components/layout/AdminLayout.jsx
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SidebarAdmin from "../AulaVirtual/SidebarAdmin";
 import NavbarAula from "../AulaVirtual/NavbarAula";
 
 const AdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  const location = useLocation();
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
@@ -21,7 +22,9 @@ const AdminLayout = () => {
             transition: "margin-left 0.3s ease",
           }}
         >
-          <Outlet />
+          <div key={location.pathname} className="fadeUpEffect">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

@@ -67,7 +67,7 @@ const CalendarioAula = () => {
     getYear(dia) === getYear(fechaReferencia);
 
   return (
-    <div className={styles.calendarioContainer}>
+    <div className={`${styles.calendarioContainer} ${styles[tipoVista]} fadeUpEffect`}>
       {/* HEADER */}
       <div className={styles.header}>
         <div className={styles.leftControls}>

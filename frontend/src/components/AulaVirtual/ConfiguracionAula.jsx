@@ -2,7 +2,7 @@ import React from "react";
 
 const ConfiguracionAula = () => {
   return (
-    <div style={{ padding: "20px", textAlign: "left" }}>
+    <div className="fadeUpEffect" style={{ padding: "20px", textAlign: "left" }}>
       <h1 style={{ color: "#d32f2f", fontFamily: "Arial" }}>Configuración</h1>
       <hr style={{ border: "0.5px solid #e0e0e0", margin: "20px 0" }} />
 

@@ -21,7 +21,7 @@ const MisCursos = () => {
   );
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} fadeUpEffect`}>
       <h1 className={styles.title}>Mis Cursos Inscritos</h1>
 
       {/* 3. Contenedor del Buscador */}
