@@ -11,6 +11,7 @@ const AdminLayout = () => {
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
+      <title>Rutas del Saber | Classroom</title>
       <NavbarAula toggleSidebar={toggleSidebar} />
       <div style={{ display: "flex" }}>
         <SidebarAdmin isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
