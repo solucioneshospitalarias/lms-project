@@ -1,12 +1,12 @@
 :root {
   /* Paleta Principal */
-  --primary-red: #C22821;    /* Rojo Principal */
-  --primary-gray: #5C6670;   /* Gris Principal */
-  
+  --primary-red: #c22821; /* Rojo Principal */
+  --primary-gray: #5c6670; /* Gris Principal */
+
   /* Paleta Secundaria */
-  --accent-yellow: #F7DC00;
-  --accent-blue: #AAD4E8;
-  --accent-green: #48B358;
+  --accent-yellow: #f7dc00;
+  --accent-blue: #aad4e8;
+  --accent-green: #48b358;
 
   /* Aplicación en UI */
   --topbar-bg: #002147;
@@ -14,51 +14,58 @@
   --nav-hover: var(--primary-red);
   --white: #ffffff;
   --bg-body: #f9f9f9;
-  
+
   --transition: all 0.3s ease;
-  --shadow-sm: 0 2px 10px rgba(0,0,0,0.08);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
 
   /* MODO CLARO (Ajustes para las Cards) */
   --bg-main: #ffffff;
-  --nav-link: #5C6670;
-  --text-main: #5C6670;
-  
+  --nav-link: #5c6670;
+  --text-main: #5c6670;
+
   --header-bg: #ffffff;
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.05); /* Borde sutil claro */
-  --card-shadow: rgba(0, 0, 0, 0.1);    /* Sombra suave */
-  
-  /* Colores de Marca */
-  --primary-red: #C22821;
-  --accent-green: #48B358;
-  --accent-blue: #AAD4E8;
+  --card-shadow: rgba(0, 0, 0, 0.1); /* Sombra suave */
 
-  --footer-bg: #3c4043;     /* Gris claro para el fondo */
-  --footer-text: #1a1a1a;     /* Letras negras */
+  /* Colores de Marca */
+  --primary-red: #c22821;
+  --accent-green: #48b358;
+  --accent-blue: #aad4e8;
+
+  --footer-bg: #3c4043; /* Gris claro para el fondo */
+  --footer-text: #1a1a1a; /* Letras negras */
   --footer-text-links: #2d3748;
   --footer-text-main: #1a202c;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --bg-main: #121212;
   --text-main: #ffffff;
   --text-secondary: #cbd5e0;
   --header-bg: #1e1e1e;
-  --card-bg: #2d2d2d;      /* Fondo gris oscuro profesional */
+  --card-bg: #2d2d2d; /* Fondo gris oscuro profesional */
   --nav-link: #ffffff !important;
-  --card-border: rgba(255, 255, 255, 0.1); /* Borde que resalta en la oscuridad */
-  --card-shadow: rgba(0, 0, 0, 0.5);   
-  --footer-bg: #1a1a1a;       
-  --footer-text-links: #cbd5e0; 
-  --footer-text-main: #ffffff;   /* Sombra más profunda */
+  --card-border: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Borde que resalta en la oscuridad */
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --footer-bg: #1a1a1a;
+  --footer-text-links: #cbd5e0;
+  --footer-text-main: #ffffff; /* Sombra más profunda */
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased; 
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
   background-color: var(--bg-main);
   color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
