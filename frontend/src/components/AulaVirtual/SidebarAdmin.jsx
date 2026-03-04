@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./SidebarAdmin.module.css";
-import { FaHome, FaBook, FaChartLine, FaUsers, FaCog } from "react-icons/fa";
+import { FaHome, FaBook, FaChartLine, FaUsers, FaCog, FaCalendarAlt } from "react-icons/fa";
 
 const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
@@ -46,7 +46,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
-          <FaBook className={styles.icon} />
+          <FaCalendarAlt className={styles.icon} />
           {isOpen && <span>Calendario</span>}
         </NavLink>
 
