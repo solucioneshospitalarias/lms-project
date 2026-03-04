@@ -1,0 +1,239 @@
+/* RegisterProfesor.module.css */
+
+.fullPageContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  /* Fondo global claro o negro */
+  background-color: var(--bg-main);
+  transition: background-color 0.3s ease;
+}
+
+/* El fondo con la imagen del aula desenfocado */
+.backgroundWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/Item4.png") center/cover no-repeat;
+  filter: blur(4px);
+  z-index: 0;
+}
+
+/* Capa que oscurece el fondo automáticamente en Modo Oscuro */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* En modo claro es más tenue, en oscuro es más densa */
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+/* Selector global para cambiar el overlay cuando data-theme="dark" */
+:global([data-theme="dark"]) .overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.registerCard {
+  position: relative;
+  z-index: 10;
+  /* Fondo gris oscuro profesional en Modo Oscuro o blanco en Claro */
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 440px; /* Un poco más ancha para 4 campos */
+  padding: 40px;
+  border-radius: 28px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 40px var(--card-shadow);
+  color: var(--text-main);
+  text-align: center;
+  /* Mantenemos tu clase global de animación fadeUpEffect */
+  transition: var(--transition);
+}
+
+.iconHeader {
+  background: var(--primary-red); /* #c22821 */
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.3);
+}
+
+.subtitle {
+  color: var(--text-main);
+  opacity: 0.8;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Separación interna del formulario */
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  /* Espacio entre cada bloque de (Etiqueta + Input) */
+  margin-bottom: 18px;
+}
+
+.inputGroup label {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  /* ESTA ES LA CLAVE: Separa el texto de la casilla */
+  margin-bottom: 8px;
+  padding-left: 4px;
+  display: block;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 18px;
+  color: var(--primary-gray);
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 12px 15px 12px 50px; /* Padding izquierdo para iconos */
+  padding-right: 45px; /* Espacio para el ojo interactivo */
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.inputWrapper input:focus {
+  outline: none;
+  border-color: var(--primary-red);
+  background: rgba(128, 128, 128, 0.08);
+}
+
+/* Ajuste del Ojo Intercativo */
+.eyeButton {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--primary-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 5; /* Asegura que esté por encima del input */
+}
+
+.eyeButton:hover {
+  color: var(--primary-red);
+}
+
+/* BOTÓN PRINCIPAL (ROJO) */
+.btnMain {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px; /* Espacio con respecto a los inputs */
+  background: linear-gradient(135deg, var(--primary-red) 0%, #a01f1a 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btnMain:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
+}
+
+/* Enlaces y Footer */
+.footerText {
+  margin-top: 25px;
+  font-size: 0.9rem;
+}
+
+.footerText a {
+  color: var(--primary-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* BOTÓN SECUNDARIO GRIS (USANDO TUS VARIABLES GLOBALES) */
+.backButton {
+  width: 100%;
+  padding: 14px;
+  /* CAMBIO CLAVE: Mayor margen superior para separar del texto "Solicitar registro" */
+  margin-top: 35px;
+  margin-bottom: 10px;
+
+  /* Usamos el gris de tu :root (#5c6670) con un degradado oscuro profesional */
+  background: linear-gradient(135deg, var(--primary-gray) 0%, #3d444b 100%);
+
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  transform: scale(1.02);
+  /* Sombra gris para no desentonar con el color del botón */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+.btnMain:disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+  transform: none !important; /* Evita que se mueva al hacer clic si está cargando */
+}
+
+/* Spinner animado */
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

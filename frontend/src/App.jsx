@@ -9,6 +9,8 @@ import Productos from "./components/Productos/Productos";
 import Estadisticas from "./components/Estadisticas/Estadisticas";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import LoginProfesor from './components/Auth/LoginProfesor';
+import RegisterProfesor from './components/Auth/RegisterProfesor';
 import Conocenos from "./components/Conocenos/Conocenos";
 import Contacto from "./components/Contacto/Contacto";
 import Terminos from "./components/Legal/Terminos";
@@ -25,20 +27,22 @@ import ConfiguracionAula from "./components/AulaVirtual/ConfiguracionAula";
 import CalendarioAula from './components/AulaVirtual/CalendarioAula';
 
 function App() {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   // Definimos qué páginas NO deben mostrar el Header y Footer de la Landing
   const isCleanPage =
-    location.pathname === "/login" ||
-    location.pathname === "/register" ||
-    location.pathname === "/forgot-password" ||
-    location.pathname.startsWith("/aula-virtual");
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname === "/login-profesor" ||
+    pathname === "/register-profesor" ||
+    pathname === "/forgot-password" ||
+    pathname.startsWith("/aula-virtual");
 
   useEffect(() => {
     if (!isCleanPage) {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname, isCleanPage]);
+  }, [pathname, isCleanPage]);
 
   return (
     <HelmetProvider>
@@ -66,6 +70,8 @@ function App() {
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/conocenos" element={<Conocenos />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/login-profesor" element={<LoginProfesor />} />
+            <Route path="/register-profesor" element={<RegisterProfesor />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
             <Route path="/terminos" element={<Terminos />} />

@@ -1,0 +1,189 @@
+/* LoginProfesor.module.css */
+
+.fullPageContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-main); /* Usa tu variable global */
+  transition: background-color 0.3s ease;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/Item3.png") center/cover no-repeat;
+  filter: blur(4px);
+  z-index: 0;
+}
+
+/* Capa de ajuste para el Dark Mode */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* En modo claro es tenue, en oscuro es más densa */
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+/* Selector global para cambiar el overlay cuando data-theme="dark" */
+:global([data-theme="dark"]) .overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.loginCard {
+  position: relative;
+  z-index: 10;
+  background: var(--card-bg); /* Cambia de #ffffff a #2d2d2d automáticamente */
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: 28px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 40px var(--card-shadow);
+  color: var(--text-main);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.iconHeader {
+  background: var(--primary-red);
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.3);
+}
+
+.subtitle {
+  color: var(--text-main);
+  opacity: 0.8;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Separación interna del formulario */
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 18px;
+  color: var(--primary-gray);
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 12px 15px 12px 50px;
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.inputWrapper input:focus {
+  outline: none;
+  border-color: var(--primary-red);
+}
+
+.btnMain {
+  width: 100%;
+  padding: 12px; /* Un poco más de cuerpo que 10px para que se vea premium */
+  margin-top: 15px; /* Espacio con respecto a los inputs */
+  margin-bottom: 5px; 
+  background: linear-gradient(135deg, var(--primary-red) 0%, #a01f1a 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btnMain:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
+}
+
+.footerText {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.footerText a {
+  color: var(--primary-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.backButton {
+  width: 100%;
+  padding: 14px;
+  margin-top: 35px; 
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--primary-gray) 0%, #3d444b 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+.eyeButton {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--primary-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+.eyeButton:hover {
+  color: var(--primary-red);
+}
+
+.inputWrapper input {
+  padding-right: 45px;
+}
