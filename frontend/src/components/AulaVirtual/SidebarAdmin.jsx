@@ -18,6 +18,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
         <NavLink
           to="/aula-virtual"
           end
+          replace={true}
           onClick={handleItemClick} // CAMBIADO: de onDoubleClick a onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
@@ -30,6 +31,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
         {/* Mis Cursos */}
         <NavLink
           to="/aula-virtual/mis-cursos"
+          replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
@@ -41,6 +43,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
         <NavLink
           to="/aula-virtual/calendario"
+          replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
@@ -53,6 +56,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
         {/* Estadísticas */}
         <NavLink
           to="/aula-virtual/estadisticas"
+          replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
@@ -65,6 +69,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
         {/* Comunidad */}
         <NavLink
           to="/aula-virtual/comunidad"
+          replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
@@ -79,6 +84,7 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
       <div className={styles.footerSection}>
         <NavLink
           to="/aula-virtual/configuracion"
+          replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
