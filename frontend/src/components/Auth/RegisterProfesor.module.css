@@ -3,12 +3,12 @@
 .fullPageContainer {
   width: 100vw;
   height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  /* Fondo global claro o negro */
   background-color: var(--bg-main);
   transition: background-color 0.3s ease;
 }
@@ -46,18 +46,25 @@
 .registerCard {
   position: relative;
   z-index: 10;
-  /* Fondo gris oscuro profesional en Modo Oscuro o blanco en Claro */
   background: var(--card-bg);
   width: 100%;
-  max-width: 440px; /* Un poco más ancha para 4 campos */
+  overflow-y: auto;
+  max-width: 440px;
+  max-height: 90vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
   padding: 40px;
   border-radius: 28px;
   border: 1px solid var(--card-border);
   box-shadow: 0 20px 40px var(--card-shadow);
   color: var(--text-main);
   text-align: center;
-  /* Mantenemos tu clase global de animación fadeUpEffect */
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .iconHeader {
@@ -89,8 +96,8 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  /* Espacio entre cada bloque de (Etiqueta + Input) */
-  margin-bottom: 18px;
+  gap: 8px;
+  margin-bottom: 15px;
 }
 
 .inputGroup label {
@@ -235,5 +242,205 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.errorMessage {
+  color: #ff4d4d; /* Un rojo vibrante pero elegante */
+  font-size: 0.75rem;
+  margin-top: 6px;
+  margin-left: 4px;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 500;
+  animation: fadeInError 0.3s ease; /* Entrada suave y alegre */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Controla el espacio general entre elementos del form */
+}
+
+@keyframes fadeInError {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inputError {
+  border: 1px solid #dc2626 !important; /* Rojo corporativo */
+  background: rgba(220, 38, 38, 0.05) !important;
+}
+
+/* Ajuste específico para que no choque con la barra de tareas en Laptops */
+@media screen and (max-height: 850px) {
+  .fullPageContainer {
+    /* Agregamos un padding de seguridad para que nunca toque los bordes */
+    padding: 20px 0;
+    align-items: center;
+  }
+
+  .registerCard {
+    /* Reducimos el padding superior e inferior drásticamente */
+    padding: 20px 30px;
+    /* Reducimos un poco el ancho para que se vea más estilizada */
+    max-width: 380px;
+    /* Eliminamos márgenes que puedan empujar la tarjeta hacia abajo */
+    margin: auto;
+  }
+
+  /* Compactamos el icono rojo del encabezado */
+  .iconHeader {
+    /* 1. Centrado Total */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 15px auto !important; /* Centra horizontalmente y da espacio abajo */
+
+    /* 2. Tamaño Proporcional */
+    width: 48px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+
+    /* 3. Evitar deformación */
+    padding: 0 !important;
+    border-radius: 14px !important;
+  }
+
+  .iconHeader svg {
+    width: 24px !important;
+    height: 24px !important;
+    display: block !important;
+  }
+  /* Títulos más pequeños para ahorrar espacio vertical */
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+
+  /* Reducimos el espacio entre los campos del formulario */
+  .form {
+    gap: 10px;
+  }
+
+  .label {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+
+  /* Inputs más delgados */
+  .inputWrapper input {
+    padding: 8px 15px 8px 42px;
+    font-size: 0.85rem;
+  }
+
+  .inputIcon {
+    width: 16px;
+    height: 16px;
+    left: 14px;
+  }
+
+  /* Botón principal más compacto */
+  .btnMain {
+    padding: 10px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+
+  /* Footer y botón volver */
+  .footerText {
+    margin-top: 15px;
+    font-size: 0.8rem;
+  }
+
+  .backButton {
+    margin-top: 15px;
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ESTRATEGIA MOBILE: Pantallas menores a 480px */
+@media screen and (max-width: 480px) {
+  .fullPageContainer {
+    padding: 10px; /* Reducimos el margen externo para ganar espacio */
+  }
+
+  .registerCard {
+    width: 95%; /* La tarjeta ocupa casi todo el ancho del cel */
+    padding: 25px 20px; /* Reducimos el padding interno para que los inputs respiren */
+    border-radius: 20px; /* Bordes un poco más compactos */
+    max-height: 85vh; /* Ajuste para que no choque con los teclados virtuales */
+
+    /* Mantenemos tu scroll interno sin barra */
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .registerCard::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Compactamos los elementos del formulario para móvil */
+  .iconHeader {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 1.15rem; /* Título un poco más pequeño */
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+
+  /* Inputs y etiquetas */
+  .label {
+    font-size: 0.75rem;
+  }
+
+  .inputWrapper input {
+    padding: 10px 12px 10px 40px; /* Ajuste de padding del input */
+    font-size: 0.85rem;
+  }
+
+  .inputIcon {
+    width: 15px;
+    height: 15px;
+    left: 12px;
+  }
+
+  /* Botones táctiles */
+  .btnMain {
+    padding: 12px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+  }
+
+  .footerText {
+    font-size: 0.75rem;
+    margin-top: 12px;
+  }
+
+  .backButton {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 0.8rem;
   }
 }
