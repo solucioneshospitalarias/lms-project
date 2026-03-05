@@ -10,10 +10,10 @@ const Topbar = () => {
         {/* Información de contacto a la izquierda */}
         <div className={styles.contactInfo}>
           <span className={styles.contactItem}>
-            <FontAwesomeIcon icon={faPhone} style={{ fontSize: '14px' }} /> (+57) 323 487 6604
+            <FontAwesomeIcon icon={faPhone} style={{ fontSize: '14px' }} /> (+57) 000 000 000
           </span>
           <span className={styles.contactItem}>
-            <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: '14px' }} /> rutasdelsaber41@gmail.com 
+            <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: '14px' }} /> contactos@rutasdelsaber.com
           </span>
         </div>
 
@@ -28,7 +28,7 @@ const Topbar = () => {
           <a href="https://www.youtube.com/@RutasdelSaberColombia" target="_blank" rel="noopener noreferrer" className={styles.faYoutube} style={{ fontSize: '16px' }}>
             <FontAwesomeIcon icon={faYoutube} />
           </a>
-          <a href="https://wa.me/573234876604" target="_blank" rel="noopener noreferrer" className={styles.faWhatsapp} style={{ fontSize: '16px' }}>
+          <a href="https://wa.me/57000000000" target="_blank" rel="noopener noreferrer" className={styles.faWhatsapp} style={{ fontSize: '16px' }}>
             <FontAwesomeIcon icon={faWhatsapp} />
           </a>
           

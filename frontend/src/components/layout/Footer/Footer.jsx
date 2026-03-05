@@ -1,8 +1,13 @@
 import styles from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapPin, Phone, Mail } from "lucide-react";
-import { faFacebookF, faInstagram, faWhatsapp, faYoutube, } from "@fortawesome/free-brands-svg-icons";
-import pdf from '../Footer/Docs/TerminosCondiciones.pdf'
+import {
+  faFacebookF,
+  faInstagram,
+  faWhatsapp,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import pdf from "../Footer/Docs/TerminosCondiciones.pdf";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,16 +25,25 @@ const Footer = () => {
             tecnología interactiva y compromiso social.
           </p>
           <div className={styles.socials}>
-            <a href="https://www.facebook.com/profile.php?id=61561207295039" aria-label="Facebook">
+            <a
+              href="https://www.facebook.com/profile.php?id=61561207295039"
+              aria-label="Facebook"
+            >
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="https://www.instagram.com/rutasdelsaber_colombia/" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/rutasdelsaber_colombia/"
+              aria-label="Instagram"
+            >
               <FontAwesomeIcon icon={faInstagram} />
             </a>
-            <a href="https://wa.me/573234876604" aria-label="WhatsApp">
+            <a href="https://wa.me/57000000000" aria-label="WhatsApp">
               <FontAwesomeIcon icon={faWhatsapp} />
             </a>
-            <a href="https://www.youtube.com/channel/UC8vs2Auh70OOSJ0rkcR_rPg" aria-label="Youtube">
+            <a
+              href="https://www.youtube.com/channel/UC8vs2Auh70OOSJ0rkcR_rPg"
+              aria-label="Youtube"
+            >
               <FontAwesomeIcon icon={faYoutube} />
             </a>
           </div>
@@ -40,7 +54,6 @@ const Footer = () => {
           <div className={styles.column}>
             <h3>Plataforma</h3>
             <ul>
-
               <li>
                 <a href="/conocenos">¿Quiénes somos?</a>
               </li>
@@ -67,29 +80,17 @@ const Footer = () => {
             <h3>Legal</h3>
             <ul className={styles.legalList}>
               <li>
-                <a
-                  href={pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={pdf} target="_blank" rel="noopener noreferrer">
                   Términos y Condiciones
                 </a>
               </li>
               <li>
-                <a
-                  href={pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={pdf} target="_blank" rel="noopener noreferrer">
                   Política de Privacidad
                 </a>
               </li>
               <li>
-                <a
-                  href={pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={pdf} target="_blank" rel="noopener noreferrer">
                   Autorización de Datos
                 </a>
               </li>
@@ -103,29 +104,29 @@ const Footer = () => {
             <div className={styles.iconCircle}>
               <MapPin size={20} strokeWidth={2.5} />
             </div>
-            <p>
-              Cl. 58 #37 - 05, Suroccidente, Barranquilla, Atlántico
-            </p>
+            <p>Cl. 58 #37 - 05, Suroccidente, Barranquilla, Atlántico</p>
           </div>
 
           <div className={styles.contactItem}>
             <div className={styles.iconCircle}>
               <Phone size={20} strokeWidth={2.5} />
             </div>
-            <p>+57 320 788 73 27 / +57 315 856 59 85</p>
+            <p>+57 000 000 000</p>
           </div>
 
           <div className={styles.contactItem}>
             <div className={styles.iconCircle}>
               <Mail size={20} strokeWidth={2.5} />
             </div>
-            <p>rutasdelsaber41@gmail.com</p>
+            <p>contactos@rutasdelsaber.com</p>
           </div>
         </div>
       </div>
 
       <div className={styles.bottomBar}>
-        <p>&copy; {currentYear} Rutas del Saber. Todos los derechos reservados.</p>
+        <p>
+          &copy; {currentYear} Rutas del Saber. Todos los derechos reservados.
+        </p>
       </div>
     </footer>
   );
