@@ -102,7 +102,7 @@
 }
 
 .mainContainer {
-    max-width: 900px;
+    max-width: 1400px;
     margin: 1px auto;
     display: flex;
     flex-direction: column;
@@ -322,8 +322,25 @@
 }
 
 .inputContainer {
+    margin-bottom: 25px;
     position: relative;
     width: 100%;
+}
+
+.charCounter {
+  position: absolute;
+  right: 5px;
+  bottom: -18px; /* Lo ubica justo debajo del campo */
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-main);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.counterDanger {
+  color: #ef4444 !important; /* Un rojo similar al de tu marca */
+  opacity: 1;
 }
 
 .input.valid {
@@ -372,9 +389,15 @@ input[placeholder="Asunto"] {
 
 
 .textarea {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     resize: none;
+    overflow: hidden; /* Oculta la barra de scroll */
+    scrollbar-width: none; 
     /* Evita que el usuario deforme el diseño */
+}
+
+.textarea::-webkit-scrollbar {
+  display: none; /* Oculta en Chrome, Safari y Edge */
 }
 
 .input:focus,
