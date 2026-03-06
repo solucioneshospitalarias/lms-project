@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LabelList,
   AreaChart, Area
 } from 'recharts';
-import { Car, UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink } from 'lucide-react'
+import { Car, UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink, School, FileText } from 'lucide-react'
 import styles from './Estadisticas.module.css';
 import img from '../../assets/BaseDatos.png'
 
@@ -25,14 +25,23 @@ const Estadisticas = () => {
 
   // --- DATOS ---
 
-  // PESTAÑA 1: image_e4315f.png
+  // PESTAÑA 1: 
+  const dataInformePoblacion = [
+    { ciclo: 'Primera Infancia (03 a 04)', totalmatriculados: 3510, totalpoblacion: 21464 },
+    { ciclo: 'Transición (5 años)', totalmatriculados: 9344, totalpoblacion: 11131 },
+    { ciclo: 'Básica Primaria (6-10 años)', totalmatriculados: 56870, totalpoblacion: 58051 },
+    { ciclo: 'Básica Secundaria (11-14 años)', totalmatriculados: 42350, totalpoblacion: 45778 },
+    { ciclo: 'Media Vocacional(15-16 años)', totalmatriculados: 17853, totalpoblacion: 22264 },
+  ];
+
+  // PESTAÑA 2: image_e4315f.png
   const dataInformeImagen = [
     { ciclo: '(12 a 17) Adolescencia', sexual: 47092, desaparicion: 7474, interpersonal: 12185, lesiones: 2489, intrafamiliar: 5000 },
     { ciclo: '(06 a 11) Infancia', sexual: 24366, desaparicion: 423, interpersonal: 2339, muertes: 102, intrafamiliar: 4415 },
     { ciclo: '(00 a 05) Primera Infancia', sexual: 9148, desaparicion: 368, interpersonal: 1141, muertes: 153, intrafamiliar: 2578 }
   ];
 
-  // PESTAÑA 2: image_e44ffe.png
+  // PESTAÑA 3: image_e44ffe.png
   const dataAmbiental = [
     { name: 'APROVECHAMIENTO...', valor: 9327 },
     { name: 'EXPLOTACION ILICIT...', valor: 4877 },
@@ -46,7 +55,7 @@ const Estadisticas = () => {
     { name: 'MANEJO ILICITO DE...', valor: 36 },
   ];
 
-  // PESTAÑA 3: image_e4b1d4.png (Agresores Interpersonal)
+  // PESTAÑA 4: image_e4b1d4.png (Agresores Interpersonal)
   // DATOS NIÑAS (Basados en tendencias de tus imágenes)
   const dataNinas = [
     { ciclo: 'P. Infancia', amigo: 254, companero: 60, profesor: 10 },
@@ -92,6 +101,27 @@ const Estadisticas = () => {
 
   const tabData = {
     1: {
+      titulo: "TOTAL DE MATRICULADOS POR TOTAL POBLACIÓN",
+      componente: (
+        <ResponsiveContainer width="100%" height={500}>
+          <BarChart data={dataInformePoblacion} layout="vertical" margin={{ top: 20, right: 60, left: 40, bottom: 20 }}>
+            <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" horizontal={true} vertical={false} />
+            <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} type="number" tickFormatter={formatK} domain={[0, 55000]} />
+            <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" type="category" width={140} />
+            <Tooltip contentStyle={{ backgroundColor: chartColors.tooltipBg, borderColor: chartColors.tooltipBorder, color: chartColors.text }} />
+            <Legend verticalAlign="top" align="right" iconType="circle" />
+            <Bar dataKey="totalmatriculados" name="Total matriculados" fill="#B30000" barSize={12}>
+              <LabelList dataKey="totalmatriculados" position="right" style={{ fontSize: '10px' }} />
+            </Bar>
+            <Bar dataKey="totalpoblacion" name="Total Población" fill="#5c6670" barSize={12}>
+              <LabelList dataKey="totalpoblacion" position="right" style={{ fontSize: '10px' }} />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      ),
+      descripcion: "La situación de la primera infancia en el sistema educativo es un abismo crítico donde la educación inicial dista mucho de ser universal. Con una población de 21,464 niños de entre 3 y 4 años, solo 3,510 logran matricularse, lo que deja a un alarmante 83.6% en la invisibilidad escolar. Esta exclusión masiva provoca que la mayoría de los infantes ingresen al sistema formal recién a los 5 años, enfrentándose a una desventaja pedagógica profunda al carecer de los procesos de aprestamiento previos que son esenciales para su desarrollo."
+    },
+    2: {
       titulo: "CASOS POR TIPO DE ACCIDENTE / CONTEXTO DEL HECHO",
       componente: (
         <ResponsiveContainer width="100%" height={500}>
@@ -118,7 +148,7 @@ const Estadisticas = () => {
       ),
       descripcion: "La violencia y la accidentalidad aumentan drásticamente en la adolescencia, etapa donde se concentran los mayores indicadores de riesgo en comparación con la infancia y primera infancia."
     },
-    2: {
+    3: {
       titulo: "TOP 10 TOTAL DE DELITOS AMBIENTALES",
       componente: (
         <ResponsiveContainer width="100%" height={500}>
@@ -140,7 +170,7 @@ const Estadisticas = () => {
       ilícita de yacimientos mineros (4.877 casos) y los daños en los recursos naturales (2.130 casos). Delitos como la contaminación ambiental (1.073 casos),
       la pesca ilegal (116) y el tráfico de fauna (113) presentan una frecuencia considerablemente menor.`
     },
-    3: {
+    4: {
       titulo: "AGRESOR MÁS COMUNES: COMPARATIVA NIÑAS VS NIÑOS",
       componente: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -184,7 +214,7 @@ const Estadisticas = () => {
       Hallazgo clave: Las niñas reportan un volumen total de casos considerablemente más alto que los niños, especialmente cuando el agresor es un "amigo". En ambos sexos, el rango de 12 a 17 años es el período crítico.`
     },
 
-    4: {
+    5: {
       titulo: "CASOS DE LESIONES Y MUERTES POR CICLO VITAL Y SEXO DE LA VÍCTIMA",
       componente: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -262,7 +292,7 @@ const Estadisticas = () => {
     },
 
 
-    5: {
+    6: {
       titulo: "CASOS DE DELITO SEXUAL POR CICLO VITAL Y SEXO DE LA VÍCTIMA",
       componente: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -342,7 +372,7 @@ const Estadisticas = () => {
       Comparativa por género: En las niñas, los casos aumentan drásticamente de la primera infancia (9.148) a la adolescencia (47.092). En los niños, las cifras son significativamente menores, alcanzando su punto máximo en la infancia (6 a 11 años) con 5.481 casos.`
     },
 
-    6: {
+    7: {
       titulo: "CASOS DE DESAPARICIÓN POR CICLO VITAL Y SEXO DE LA VÍCTIMA",
       componente: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -436,7 +466,7 @@ const Estadisticas = () => {
       {/* Contenedor de las pestañas y el contenido */}
       <div className={styles.tabContainer}>
         <div className={styles.tabBar}>
-          {[1, 2, 3, 4, 5, 6].map((num) => (
+          {[1, 2, 3, 4, 5, 6, 7].map((num) => (
             <button
               key={num}
               className={`${styles.tabButton} ${activeTab === num ? styles.activeTab : ''}`}
@@ -488,6 +518,16 @@ const Estadisticas = () => {
 
             <div className={styles.linkList}>
               {[
+                {
+                  name: "Listado de instituciones educativas Oficiales y no Oficiales",
+                  url: "https://www.datos.gov.co/Educaci-n/Listado-de-Instituciones-Educativas-Oficiales-y-No/7tec-5fhs/about_data",
+                  icon: <School size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
+                },
+                {
+                  name: "Boletin estadistico",
+                  url: "https://www.atlantico.gov.co/images/stories/adjuntos/educacion/Planeacion/Boletin_Estadistico2024Educacion.pdf",
+                  icon: <FileText size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
+                },
                 {
                   name: "Muertes por eventos de transporte",
                   url: "https://www.datos.gov.co/Justicia-y-Derecho/Muertes-por-eventos-de-transporte-Colombia-a-os-20/s65h-7665/about_data",
@@ -555,8 +595,7 @@ const Estadisticas = () => {
           {/* Cabecera con metadatos */}
           <div className={styles.cardHeader}>
             <div className={styles.headerInfo}>
-              <h2>Análisis de Impacto Vial</h2>
-              <p>Visualización de datos oficiales y métricas de seguridad en tiempo real.</p>
+              <h2>Datos de Impacto</h2>
             </div>
             
             <div className={styles.liveStatus}>
