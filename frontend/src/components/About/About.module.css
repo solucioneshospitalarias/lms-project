@@ -609,6 +609,49 @@
   filter: blur(40px);
 }
 
+.schoolsContainer img,
+.analyticsContainer img {
+  width: 100%; /* Ocupa todo el ancho de su columna de la rejilla */
+  height: auto; /* Mantiene la proporción */
+  object-fit: cover; /* Importante: la imagen llena el espacio sin deformarse */
+
+  /* Ajustes estéticos */
+  border-radius: 25px;
+  transform: translateZ(55px); /* Un poco más de profundidad */
+  filter: drop-shadow(15px 15px 30px rgba(0, 0, 0, 0.4));
+
+  /* Eliminamos cualquier max-width rígido previo */
+  max-width: none !important;
+}
+
+.schoolsContainer,
+.analyticsContainer {
+  display: grid;
+  /* Creamos dos columnas: una para el texto, otra para la imagen */
+  grid-template-columns: 1fr 1fr;
+  align-items: center; /* Centrado vertical */
+  gap: 50px; /* Espacio entre columnas */
+
+  /* Mantenemos tus estilos de contenedor */
+  padding: 60px; /* Un poco más de aire */
+  border-radius: 40px;
+  margin: 40px;
+  border: 1px solid var(--card-border);
+  box-shadow: 20px 20px 60px var(--card-shadow);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.1s ease-out,
+    box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Asegurar que la sección de texto no se comprima demasiado */
+.schoolsContainer .infoSection,
+.analyticsContainer .infoSection {
+  text-align: left; /* Volvemos a alineación a la izquierda */
+  transform: translateZ(30px);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .tabcontainer {
@@ -650,20 +693,21 @@
 @media (max-width: 1024px) {
   .schoolsContainer,
   .analyticsContainer {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
     text-align: center;
-    padding: 40px 25px;
     gap: 30px;
+  }
+
+  .schoolsContainer .infoSection,
+  .analyticsContainer .infoSection {
+    text-align: center;
   }
 
   .schoolsContainer img,
   .analyticsContainer img {
-    display: none !important;
-  }
-
-  .schoolsContainer,
-  .analyticsContainer {
-    text-align: center;
+    max-width: 400px !important;
+    margin: 0 auto;
   }
 
   .tabActionBtn,
@@ -674,7 +718,7 @@
   }
 
   .youtubeCard {
-    flex-direction: column; /* Apila texto y video verticalmente */
+    flex-direction: column;
     padding: 40px 30px;
     gap: 40px;
     text-align: center;
