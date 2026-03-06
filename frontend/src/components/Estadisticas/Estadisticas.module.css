@@ -394,7 +394,7 @@
   background: linear-gradient(to right, rgba(255, 255, 255, 0.05), transparent);
   border-bottom: 1px solid var(--card-border);
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
@@ -403,7 +403,7 @@
 }
 
 .headerInfo {
-  max-width: 70%;
+  min-width: 200px;
   box-sizing: border-box;
 }
 
@@ -424,6 +424,7 @@
 }
 
 .liveStatus {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -610,7 +611,6 @@
   
   .cardHeader {
     padding: 20px;
-    flex-direction: column;
     text-align: center;
   }
   
