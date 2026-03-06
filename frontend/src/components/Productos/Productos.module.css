@@ -14,19 +14,19 @@
 
 /* ========== HEADER ========== */
 .mainHeader {
-  text-align: center;
-  margin: 0 auto 80px;
-  position: relative;
-  padding: 80px 20px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: hidden;
-  cursor: crosshair;
-  width: 95%;
+  width: 100%;
   max-width: 1300px;
-  box-sizing: border-box;
+  margin: 60px auto 40px;
+  padding: 0 5%;
+  display: flex;
+  justify-content: flex-start;
+  background: none; /* Eliminamos el fondo de cristal anterior */
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  cursor: default;
+  overflow: visible;
+  text-align: left;
 }
 
 .mouseFollower {
@@ -35,9 +35,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y),
-      rgba(194, 40, 33, 0.15),
-      transparent 40%);
+  background: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(194, 40, 33, 0.15),
+    transparent 40%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -50,43 +52,156 @@
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
-    radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px);
-  background-size: 550px 550px, 350px 350px;
-  background-position: 0 0, 40px 60px;
+    radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 30px);
+  background-size:
+    550px 550px,
+    350px 350px;
+  background-position:
+    0 0,
+    40px 60px;
   opacity: 0.1;
   z-index: 1;
 }
 
-.headerContent {
+.minimalistHeader {
+  width: 100%;
+  max-width: 1300px;
+  margin: 60px auto 40px;
+  padding: 0 5%;
+  display: flex;
+  justify-content: flex-start;
+  background: none;
+  text-align: left;
+}
+
+.minimalistHeader {
+  animation: headerFadeIn 0.8s ease-out forwards;
+}
+
+.headerTitleWrapper {
   position: relative;
-  z-index: 5;
-  transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
-  transition: transform 0.1s ease-out;
+  padding: 10px 0 10px 35px; /* Espacio para la barra roja */
+  text-align: left;
   max-width: 100%;
 }
 
-.mainHeader h1 {
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  font-weight: 900;
-  background: linear-gradient(135deg, #ffffff 0%, var(--primary-red) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
+.headerTitleWrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 100%;
+  background-color: var(--primary-red);
+  border-radius: 4px;
+}
+
+.mainTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+  font-weight: 800 !important;
+  color: #444b54 !important; /* Gris institucional */
+  margin: 0 !important;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
   position: relative;
   z-index: 2;
-  line-height: 1.2;
-  word-wrap: break-word;
+}
+
+.mainTitle span {
+  color: var(--primary-red) !important;
+}
+
+/* Subtítulo */
+.subTitle {
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  color: #6c757d !important;
+  margin: 15px 0 0 0 !important;
+  font-weight: 400;
+  text-align: left !important;
+  opacity: 0.9;
+}
+
+.fadeUpEffect {
+  animation: headerFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+:global(.dark-mode) .mainHeader h1 {
+  color: #ffffff !important;
+}
+
+:global(.dark-mode) .mainHeader p {
+  color: #adb5bd !important;
+}
+
+:global(.dark-mode) .mainTitle {
+  color: #ffffff !important;
+}
+
+:global(.dark-mode) .subTitle {
+  color: #adb5bd !important;
+}
+
+.mouseFollower,
+.mainHeader::before,
+.typewriterContainer,
+.typewriterText {
+  display: none !important;
+}
+
+.headerContent {
+  position: relative;
+  padding: 10px 0 10px 35px; /* Espacio para la barra roja */
+  text-align: left;
+  transform: none !important; /* Eliminamos la rotación 3D anterior */
+  transition: none;
+  max-width: 100%;
+}
+
+.headerContent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 100%;
+  background-color: var(--primary-red);
+  border-radius: 4px;
+}
+
+.mainHeader h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+  font-weight: 800 !important;
+  color: #444b54 !important; /* Gris oscuro institucional */
+  margin: 0 !important;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  position: relative;
+  z-index: 2;
 }
 
 .mainHeader p {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  max-width: 700px;
-  margin: 0 auto;
-  color: var(--text-secondary);
-  position: relative;
-  z-index: 2;
-  padding: 0 20px;
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  color: #6c757d !important; /* Gris secundario */
+  margin: 15px 0 0 0 !important;
+  font-weight: 400;
+  text-align: left !important;
+  max-width: none !important;
+  padding: 0 !important;
+  opacity: 0.9;
 }
 
 .typewriterText {
@@ -96,18 +211,37 @@
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 1px;
-  animation: typing 3.5s steps(60, end), blink-caret .75s step-end infinite;
+  animation:
+    typing 3.5s steps(60, end),
+    blink-caret 0.75s step-end infinite;
   max-width: 100%;
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--primary-red); }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--primary-red);
+  }
+}
+
+.mainHeader,
+.mouseFollower,
+.mainHeader::before,
+.typewriterContainer,
+.typewriterText {
+  display: none !important;
 }
 
 /* ========== SECCIONES DE PRODUCTOS ========== */
@@ -188,8 +322,12 @@
 }
 
 @keyframes growLine {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .textContent h2::after {
@@ -362,19 +500,19 @@
   .section {
     padding: 50px 4%;
   }
-  
+
   .productMainContent {
     gap: 40px;
   }
-  
+
   .productImg {
     height: 400px;
   }
-  
+
   .specsWrapper {
     gap: 15px;
   }
-  
+
   .specBox {
     padding: 20px;
   }
@@ -386,30 +524,30 @@
     padding: 60px 20px;
     margin-bottom: 60px;
   }
-  
+
   .section {
     padding: 40px 4%;
     gap: 30px;
   }
-  
+
   .productMainContent {
     gap: 30px;
   }
-  
+
   .productImg {
     height: 350px;
     border-radius: 25px;
   }
-  
+
   .specsWrapper {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  
+
   .textContent h2 {
     margin-bottom: 20px;
   }
-  
+
   .textContent h2::after {
     right: -30px;
     font-size: 1.3rem;
@@ -423,39 +561,39 @@
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .imageWrapper {
     max-width: 100%;
     width: 100%;
   }
-  
+
   .productImg {
     height: 400px;
     max-width: 100%;
   }
-  
+
   .textContent {
     text-align: center;
   }
-  
+
   .textContent h2 {
     display: block;
     text-align: center;
     padding-bottom: 20px;
   }
-  
+
   .textContent h2::after {
     right: -20px;
   }
-  
+
   .longText p {
     text-align: center;
   }
-  
+
   .mainHeader h1 {
     font-size: 3rem;
   }
-  
+
   .typewriterText {
     white-space: normal;
     border-right: none;
@@ -470,66 +608,66 @@
     margin-bottom: 50px;
     border-radius: 30px;
   }
-  
+
   .mainHeader h1 {
     font-size: 2.5rem;
   }
-  
+
   .mainHeader p {
     font-size: 1rem;
     padding: 0 10px;
   }
-  
+
   .section {
     padding: 30px 3%;
     gap: 25px;
   }
-  
+
   .productMainContent {
     gap: 25px;
   }
-  
+
   .productImg {
     height: 350px;
     border-radius: 20px;
   }
-  
+
   .textContent h2 {
     font-size: 2.2rem;
     letter-spacing: -1px;
   }
-  
+
   .textContent h2::before {
     height: 5px;
   }
-  
+
   .textContent h2::after {
     right: -15px;
     font-size: 1.2rem;
   }
-  
+
   .specsWrapper {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
-  
+
   .specBox {
     padding: 18px;
   }
-  
+
   .boxIcon {
     font-size: 2rem;
   }
-  
+
   .boxHeader h4 {
     font-size: 1rem;
   }
-  
+
   .boxHeader h4::after {
     right: -12px;
     font-size: 0.7rem;
   }
-  
+
   .boxList li {
     font-size: 0.85rem;
     margin-bottom: 10px;
@@ -543,66 +681,66 @@
     margin-bottom: 40px;
     border-radius: 25px;
   }
-  
+
   .mainHeader h1 {
     font-size: 2rem;
   }
-  
+
   .section {
     padding: 25px 3%;
   }
-  
+
   .productImg {
     height: 280px;
     border-radius: 18px;
   }
-  
+
   .textContent h2 {
     font-size: 1.8rem;
     padding-bottom: 15px;
   }
-  
+
   .textContent h2::before {
     height: 4px;
   }
-  
+
   .textContent h2::after {
     display: none;
   }
-  
+
   .longText p {
     font-size: 0.9rem;
     line-height: 1.6;
   }
-  
+
   .specsWrapper {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .specBox {
     padding: 18px;
   }
-  
+
   .boxHeader {
     margin-bottom: 15px;
     padding-bottom: 12px;
   }
-  
+
   .boxIcon {
     font-size: 2rem;
     margin-bottom: 10px;
   }
-  
+
   .boxHeader h4 {
     font-size: 1.1rem;
   }
-  
+
   .boxList li {
     font-size: 0.9rem;
     margin-bottom: 10px;
   }
-  
+
   .cascadeAnimation {
     animation-delay: calc(var(--animation-delay, 0s) * 0.5);
   }
@@ -615,60 +753,60 @@
     margin-bottom: 30px;
     border-radius: 20px;
   }
-  
+
   .mainHeader h1 {
     font-size: 1.8rem;
     margin-bottom: 15px;
   }
-  
+
   .mainHeader p {
     font-size: 0.9rem;
   }
-  
+
   .section {
     padding: 20px 3%;
     gap: 20px;
   }
-  
+
   .productImg {
     height: 220px;
     border-radius: 15px;
   }
-  
+
   .textContent h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
     padding-bottom: 12px;
   }
-  
+
   .textContent h2::before {
     height: 3px;
   }
-  
+
   .longText p {
     font-size: 0.85rem;
     margin-bottom: 15px;
   }
-  
+
   .specBox {
     padding: 15px;
   }
-  
+
   .boxIcon {
     font-size: 1.8rem;
     margin-bottom: 8px;
   }
-  
+
   .boxHeader h4 {
     font-size: 1rem;
   }
-  
+
   .boxList li {
     font-size: 0.8rem;
     padding-left: 18px;
     margin-bottom: 8px;
   }
-  
+
   .boxList li::before {
     font-size: 0.8rem;
   }
@@ -679,40 +817,40 @@
   .mainHeader {
     padding: 25px 10px;
   }
-  
+
   .mainHeader h1 {
     font-size: 1.5rem;
   }
-  
+
   .mainHeader p {
     font-size: 0.8rem;
   }
-  
+
   .productImg {
     height: 180px;
     border-radius: 12px;
   }
-  
+
   .textContent h2 {
     font-size: 1.3rem;
   }
-  
+
   .longText p {
     font-size: 0.8rem;
   }
-  
+
   .specBox {
     padding: 12px;
   }
-  
+
   .boxIcon {
     font-size: 1.5rem;
   }
-  
+
   .boxHeader h4 {
     font-size: 0.9rem;
   }
-  
+
   .boxList li {
     font-size: 0.75rem;
     padding-left: 15px;
@@ -724,31 +862,31 @@
   .mainHeader h1 {
     font-size: 1.3rem;
   }
-  
+
   .mainHeader p {
     font-size: 0.75rem;
   }
-  
+
   .productImg {
     height: 150px;
   }
-  
+
   .textContent h2 {
     font-size: 1.1rem;
   }
-  
+
   .longText p {
     font-size: 0.75rem;
   }
-  
+
   .boxIcon {
     font-size: 1.3rem;
   }
-  
+
   .boxHeader h4 {
     font-size: 0.8rem;
   }
-  
+
   .boxList li {
     font-size: 0.7rem;
   }
