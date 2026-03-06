@@ -7,6 +7,8 @@ import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
 const Contacto = () => {
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [asunto, setAsunto] = useState("");
+  const [mensaje, setMensaje] = useState("");
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -98,7 +100,6 @@ const Contacto = () => {
 
         {/* FORMULARIO CON GLASSMORPHISM */}
         <div className={styles.formCard}>
-          {/* Columna Izquierda: El Formulario */}
           <div className={styles.formSide}>
             <h3 className={styles.formSubtitle}>FORMULARIO DE CONTACTO</h3>
             <form className={styles.contactForm}>
@@ -109,6 +110,7 @@ const Contacto = () => {
                   className={styles.input}
                 />
               </div>
+
               <div className={styles.inputContainer}>
                 <input
                   type="email"
@@ -118,20 +120,39 @@ const Contacto = () => {
                   className={`${styles.input} ${isValidEmail ? styles.valid : ""}`}
                   required
                 />
-                {isValidEmail && (
-                  <CheckCircle size={18} className={styles.checkIcon} />
-                )}
+                {isValidEmail && <CheckCircle size={18} className={styles.checkIcon} />}
               </div>
-              <input
-                type="text"
-                placeholder="Asunto"
-                className={styles.input}
-              />
-              <textarea
-                placeholder="Escribe tu mensaje aquí..."
-                rows="4"
-                className={styles.textarea}
-              ></textarea>
+
+              {/* ASUNTO CON CONTADOR */}
+              <div className={styles.inputContainer}>
+                <input
+                  type="text"
+                  placeholder="Asunto"
+                  className={styles.input}
+                  maxLength={50} // Límite de 50
+                  value={asunto}
+                  onChange={(e) => setAsunto(e.target.value)}
+                />
+                <span className={`${styles.charCounter} ${asunto.length >= 45 ? styles.counterDanger : ""}`}>
+                  {asunto.length} / 50
+                </span>
+              </div>
+
+              {/* TEXTAREA CON CONTADOR */}
+              <div className={styles.inputContainer}>
+                <textarea
+                  placeholder="Escribe tu mensaje aquí..."
+                  rows="4"
+                  className={styles.textarea}
+                  maxLength={500} // Límite de 500
+                  value={mensaje}
+                  onChange={(e) => setMensaje(e.target.value)}
+                ></textarea>
+                <span className={`${styles.charCounter} ${mensaje.length >= 480 ? styles.counterDanger : ""}`}>
+                  {mensaje.length} / 500
+                </span>
+              </div>
+
               <button type="submit" className={styles.submitBtn}>
                 Enviar Mensaje <Send size={18} />
               </button>
