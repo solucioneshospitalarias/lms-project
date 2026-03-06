@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Hero.module.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc, bgColor, linkTo}) => {
+const Hero = ({
+  badge,
+  title,
+  p1,
+  p2,
+  highlight,
+  quote,
+  videoSrc,
+  bgColor,
+  linkTo,
+}) => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [videoSrc]);
+
   return (
     <div className={styles.heroSection}>
       <div
@@ -34,9 +52,34 @@ const Hero = ({ badge, title, p1, p2, highlight, quote, videoSrc, bgColor, linkT
 
         <div className={styles.videoColumn}>
           <div className={styles.videoWrapper}>
-            <video autoPlay loop muted playsInline className={styles.sideVideo}>
-              <source src={videoSrc} type="video/mp4" />
-            </video>
+            {videoSrc.includes("youtube.com") ||
+            videoSrc.includes("youtu.be") ? (
+              <iframe
+                key={videoSrc}
+                className={styles.sideVideo}
+                src={
+                  videoSrc.replace("watch?v=", "embed/") +
+                  "?autoplay=1&mute=1&loop=1&playlist=" +
+                  videoSrc.split("v=")[1]
+                }
+                title={title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <video
+                key={videoSrc}
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={styles.sideVideo}
+              >
+                <source src={videoSrc} type="video/mp4" />
+              </video>
+            )}
           </div>
         </div>
       </div>
