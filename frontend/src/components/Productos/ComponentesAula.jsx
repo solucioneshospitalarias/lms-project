@@ -32,21 +32,11 @@ const ComponentesAula = () => {
       {/* Contenido Dinámico con Animación */}
       <div className={styles.contentWrapper} key={activeTab}>
         <div className={styles.mediaSide}>
-          {data.videoUrl ? (
-            <iframe
-              className={styles.videoFrame}
-              src={data.videoUrl}
-              title={data.titulo}
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-          ) : (
-            <img
-              src={data.imagen}
-              alt={data.titulo}
-              className={styles.mainImage}
-            />
-          )}
+          <img
+            src={data.imageUrl}
+            alt={data.titulo}
+            className={styles.mainImage}
+          />
         </div>
 
         <div className={styles.infoSide}>

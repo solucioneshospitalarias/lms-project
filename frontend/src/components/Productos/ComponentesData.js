@@ -10,7 +10,7 @@ export const componentesData = {
       "Foros de discusión",
       "Seguimiento de progreso",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU", // Reemplaza con tu video de YouTube
+    imageUrl: "https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg", 
   },
   2: {
     titulo: "Guías Didácticas Interactivas",
@@ -23,7 +23,7 @@ export const componentesData = {
       "Actividades de refuerzo",
       "Diseño adaptable (Responsive)",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU" // Si es null, mostrará la imagen por defecto
+    imageUrl: "https://images.pexels.com/photos/8535181/pexels-photo-8535181.jpeg",
   },
   3: {
     titulo: "Canal de YouTube Educativo",
@@ -36,7 +36,7 @@ export const componentesData = {
       "Listas de reproducción temáticas",
       "Acceso 24/7 desde cualquier dispositivo",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000",
   },
   4: {
     titulo: "Repositorio de Recursos",
@@ -49,7 +49,7 @@ export const componentesData = {
       "Material descargable",
       "Actualización constante",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.pexels.com/photos/2952871/pexels-photo-2952871.jpeg",
   },
   5: {
     titulo: "Laboratorios Virtuales",
@@ -62,7 +62,7 @@ export const componentesData = {
       "Resultados inmediatos",
       "Fomento de la curiosidad",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.pexels.com/photos/34987122/pexels-photo-34987122.jpeg",
   },
   6: {
     titulo: "Sistema de Mensajería",
@@ -75,7 +75,7 @@ export const componentesData = {
       "Notificaciones en tiempo real",
       "Historial de conversaciones",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.pexels.com/photos/10638075/pexels-photo-10638075.jpeg",
   },
   7: {
     titulo: "Panel de Informes y Seguimiento",
@@ -88,7 +88,7 @@ export const componentesData = {
       "Alertas de bajo desempeño",
       "Exportación de notas",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg",
   },
   8: {
     titulo: "Juegos Educativos (Gamificación)",
@@ -101,7 +101,7 @@ export const componentesData = {
       "Aprendizaje basado en juegos",
       "Competencia sana",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.pexels.com/photos/278890/pexels-photo-278890.jpeg",
   },
   9: {
     titulo: "Soporte Técnico y Ayuda",
@@ -114,6 +114,6 @@ export const componentesData = {
       "Preguntas frecuentes (FAQ)",
       "Asistencia técnica",
     ],
-    videoUrl: "https://www.youtube.com/embed/V6yMJATvpTU",
+    imageUrl: "https://images.pexels.com/photos/5453809/pexels-photo-5453809.jpeg",
   },
 };
