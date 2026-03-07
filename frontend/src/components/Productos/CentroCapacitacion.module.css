@@ -95,10 +95,30 @@
   border-color: red;
 }
 
+.courseCard:hover .iconWrapper {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
 .iconWrapper {
-  font-size: clamp(1.8rem, 3vw, 2rem);
-  color: #3b82f6;
-  margin-bottom: 20px;
+  width: 85px; /* Tamaño del círculo */
+  height: 85px;
+  margin: 0 auto 1.2rem; /* Centra el círculo y da espacio al título */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff; /* Fondo blanco para que los colores resalten */
+  border-radius: 50%; /* Forma circular */
+  padding: 18px; /* ESTO es lo que hace que el icono se vea más pequeño y elegante */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+  transition: transform 0.3s ease;
+}
+
+/* La imagen dentro del contenedor */
+.iconWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Mantiene la proporción sin estirarse */
 }
 
 .courseCard h3 {
@@ -226,22 +246,26 @@
 /* 1200px - Laptops grandes */
 @media (max-width: 1200px) {
   .statsBanner {
-    padding: 25px 40px;
-    max-width: 600px;
+    max-width: 1000px; /* Aumentado para que respire */
+    gap: 20px;
   }
 }
 
 /* 1024px - Laptops medianos */
 @media (max-width: 1024px) {
   .trainingSection {
-    padding: 70px 20px;
+    padding: 60px 20px;
   }
 
   .statsBanner {
-    padding: 25px 30px;
-    border-radius: 35px;
-    max-width: 550px;
-    flex-direction: row;
+    max-width: 90%;
+    flex-wrap: wrap; /* Permite que los ítems bajen si no hay espacio */
+    justify-content: center;
+  }
+
+  .statsRow {
+    flex: 1 1 calc(50% - 25px); /* Se ponen de a 2 por fila en tablets */
+    min-width: 250px;
   }
 }
 
@@ -284,105 +308,77 @@
   }
 }
 
+/* 768px - Tablets verticales */
+@media (max-width: 768px) {
+  .trainingSection {
+    padding: 50px 15px;
+  }
+
+  .gridCapacitacion {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .statsBanner {
+    gap: 15px;
+  }
+
+  .statsRow {
+    padding: 20px 15px;
+  }
+
+  .statItem p {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
 /* 600px - Móviles grandes */
 @media (max-width: 600px) {
-  .trainingSection {
-    padding: 50px 12px;
-  }
-
-  .glassHeader {
-    margin-bottom: 40px;
-    padding: 0 10px;
-  }
-
   .glassHeader h2 {
     font-size: 1.8rem;
   }
 
   .gridCapacitacion {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 10px;
-  }
-
-  .courseCard {
-    padding: 30px 20px;
   }
 
   .statsBanner {
-    padding: 25px 20px;
-    border-radius: 20px;
-    max-width: 400px;
-    gap: 18px;
-    margin: 40px auto 0;
+    flex-direction: column; /* Una sola columna en móviles */
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .statsRow {
+    width: 100%;
+    min-width: unset;
   }
 
   .statItem strong {
     font-size: 2rem;
   }
-
-  .statItem p {
-    font-size: 0.9rem;
-  }
 }
-
 /* 480px - Móviles */
 @media (max-width: 480px) {
   .trainingSection {
     padding: 40px 10px;
   }
 
-  .glassHeader h2 {
-    font-size: 1.5rem;
-  }
-
-  .glassHeader p {
-    font-size: 0.85rem;
-    margin-bottom: 30px;
-  }
-
   .courseCard {
-    padding: 25px 15px;
-    border-radius: 20px;
-  }
-
-  .iconWrapper {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-  }
-
-  .courseCard h3 {
-    font-size: 1.2rem;
-    margin: 10px 0;
-  }
-
-  .courseCard p {
-    font-size: 0.85rem;
+    padding: 25px 20px;
   }
 
   .cardFooter {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
-  }
-
-  .badge {
-    align-self: flex-start;
   }
 
   .statsBanner {
-    padding: 22px 15px;
-    gap: 16px;
-    border-radius: 18px;
-    max-width: 350px;
+    gap: 12px;
   }
 
   .statItem strong {
     font-size: 1.8rem;
-  }
-
-  .statItem p {
-    font-size: 0.85rem;
   }
 }
 
@@ -436,25 +432,10 @@
 /* 320px - Pantallas muy pequeñas */
 @media (max-width: 320px) {
   .glassHeader h2 {
-    font-size: 1.2rem;
-  }
-
-  .glassHeader p {
-    font-size: 0.75rem;
-  }
-
-  .statsBanner {
-    padding: 15px 10px;
-    gap: 12px;
-    border-radius: 14px;
-    max-width: 280px;
+    font-size: 1.3rem;
   }
 
   .statItem strong {
-    font-size: 1.4rem;
-  }
-
-  .statItem p {
-    font-size: 0.7rem;
+    font-size: 1.5rem;
   }
 }
