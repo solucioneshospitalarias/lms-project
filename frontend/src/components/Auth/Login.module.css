@@ -149,7 +149,7 @@
   position: relative;
   background: var(--card-bg);
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   padding: 40px; /* Más espacio interno */
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -308,17 +308,22 @@
   right: 15px;
   background: none;
   border: none;
-  color: #888; /* Color gris suave por defecto */
+  color: var(--primary-gray);
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
   padding: 0;
-  transition: color 0.3s ease;
+  transition: color 0.2s;
+  z-index: 2;
 }
 
 .eyeButton:hover {
-  color: #ff3131; /* El rojo de tu marca al pasar el mouse */
+  color: #ff3131;
+}
+
+.inputWrapper input[type="password"],
+.inputWrapper input[type="text"] {
+  padding-right: 45px;
 }
 
 .inputWrapper input:focus {
@@ -577,6 +582,94 @@
   opacity: 0.8;
 }
 
+/* Estilo unificado para Select y Date */
+.selectInput,
+.dateInput {
+  width: 100%;
+  padding: 12px 15px 12px 50px;
+  border-radius: 16px;
+  border: 2px solid var(--card-border);
+  background: var(--card-bg); /* Se adapta al tema */
+  color: var(--text-main); /* Se adapta al tema */
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.selectInput:focus,
+.dateInput:focus {
+  border-color: #ff3131;
+  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.1);
+}
+
+/* Ajuste para que las opciones del select se vean bien en modo oscuro */
+.selectInput option {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}
+
+.selectInput {
+  width: 100%;
+  padding: 12px 35px 12px 50px; /* 50px a la izquierda para el icono */
+  border-radius: 16px;
+  border: 2px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  appearance: none; /* Quita la flecha nativa para look 3D */
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.selectInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.inputWrapper::after {
+  content: "▼";
+  font-size: 0.7rem;
+  position: absolute;
+  right: 15px;
+  color: var(--primary-gray);
+  pointer-events: none;
+}
+
+/* Estilo para el ícono del calendario en el input date */
+.dateInput::-webkit-calendar-picker-indicator {
+  filter: invert(
+    var(--calendar-invert, 0)
+  ); /* Invertirá el color del icono en dark mode */
+  cursor: pointer;
+}
+
+/* Estilos para el prefijo de teléfono */
+.phonePrefix {
+  position: absolute;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.flagIcon {
+  width: 18px;
+  height: auto;
+  border-radius: 2px;
+}
+
+/* Ajuste del padding para que el texto no pise el +57 */
+.inputPhone {
+  padding-left: 75px !important; /* Más espacio a la izquierda */
+}
+
 /* Animación de entrada por la derecha */
 @keyframes slideInRight {
   from {
@@ -608,6 +701,11 @@
 
   .logoText {
     font-size: 2.5rem;
+    margin-top: 100px;
+  }
+
+  .logoText {
+    font-size: 2.5rem;
   }
 
   .description {
@@ -624,3 +722,5 @@
     margin: 20px;
   }
 }
+
+

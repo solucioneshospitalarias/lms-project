@@ -117,7 +117,7 @@ const LoginProfesor = () => {
           )}
 
           <button type="submit" className={styles.btnMain}>
-            Entrar al Panel <ArrowRight size={20} />
+            Entrar al Panel
           </button>
         </form>
 

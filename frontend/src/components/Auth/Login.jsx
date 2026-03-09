@@ -246,7 +246,7 @@ const Login = () => {
                 <span className={styles.spinner}></span>
               ) : (
                 <>
-                  Iniciar Sesión <ArrowRight size={18} />
+                  Iniciar Sesión
                 </>
               )}
             </button>
