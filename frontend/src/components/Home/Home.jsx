@@ -18,7 +18,7 @@ const Home = () => {
       {/* 1. EDUCACIÓN 360 */}
       <div id="educacion-360">
         <Hero
-          videoSrc=" https://www.youtube.com/watch?v=Zr1UzrxVuyc"
+          videoSrc="https://www.shutterstock.com/shutterstock/videos/3921325447/preview/stock-footage-children-sit-at-desks-using-laptops-surrounded-by-luminous-digital-lines-symbolizing-virtual.webm"
           bgColor="#4A6D8C"
           badge="Formacion Completa"
           title="Educación 360"
@@ -32,7 +32,7 @@ const Home = () => {
       {/* 2. CULTURA DE PAZ */}
       <div id="cultura-paz">
         <Hero
-          videoSrc="https://www.youtube.com/watch?v=gU_ayjh5Y6g"
+          videoSrc="https://www.shutterstock.com/shutterstock/videos/3890917555/preview/stock-footage-peace-dove-flying-freely-in-the-sky.webm"
           bgColor="#7A8C99"
           badge="Convivencia Armónica"
           title="Cultura de Paz"
@@ -46,7 +46,7 @@ const Home = () => {
       {/* 3. EDUCACIÓN AMBIENTAL */}
       <div id="educacion-ambiental">
         <Hero
-          videoSrc="https://www.youtube.com/watch?v=Gpc1s9qSeVM&t=69s"
+          videoSrc="https://www.shutterstock.com/shutterstock/videos/3771814657/preview/stock-footage-outdoor-hand-and-person-by-bush-of-plants-for-sustainability-eco-friendly-or-horticulture-nature.webm"
           bgColor="#5E7D5E"
           badge="Transformación Colectiva"
           title="Educación Ambiental"
@@ -60,7 +60,7 @@ const Home = () => {
       {/* 4. CONVIVENCIA ESCOLAR */}
       <div id="convivencia-escolar">
         <Hero
-          videoSrc="https://www.youtube.com/watch?v=ZjZHxOEv1p8"
+          videoSrc="https://www.shutterstock.com/shutterstock/videos/3847416933/preview/stock-footage-low-angle-view-of-happy-little-children-in-circle-look-at-camera-embrace-and-laugh-in-summer-park.webm"
           bgColor="#A67B5B"
           badge="Respeto Mutuo"
           title="Convivencia Escolar"
@@ -74,7 +74,7 @@ const Home = () => {
       {/* 5. EDUCACIÓN VIAL */}
       <div id="educacion-vial">
         <Hero
-          videoSrc="https://www.youtube.com/watch?v=XyHdFT1OQr4"
+          videoSrc="https://www.shutterstock.com/shutterstock/videos/3595557119/preview/stock-footage-naperville-il-usa-aug-yellow-school-bus-transiting-in-street.webm"
           bgColor="#8C7A30"
           badge="Movilidad Segura"
           title="Educación Vial"
