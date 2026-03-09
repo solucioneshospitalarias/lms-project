@@ -295,12 +295,13 @@ const About = () => {
           <div className={styles.screenVideoContainer}>
             <iframe
               className={styles.screenVideo}
-              src="https://www.youtube.com/embed/V6yMJATvpTU?autoplay=1&mute=1&loop=1&playlist=V6yMJATvpTU&controls=0&showinfo=0&rel=0"
+              src="https://www.youtube.com/embed/V6yMJATvpTU?autoplay=1&mute=1&loop=1&playlist=V6yMJATvpTU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
               title="YouTube video player"
               frameBorder="0"
+              scrolling="no"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe>
+            />
           </div>
         </div>
       </div>

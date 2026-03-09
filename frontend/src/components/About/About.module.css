@@ -459,31 +459,39 @@
   height: auto;
   display: block;
   position: relative;
-  z-index: 1; /* La imagen del portátil va debajo del video */
+  z-index: 3; /* ← CLAVE: la imagen del portátil va ENCIMA del video */
+  pointer-events: none;
 }
 
 .portatilWrapper {
-  position: relative; /* Contenedor de referencia para el video absoluto */
-  display: inline-block;
-  max-width: 900px; /* Mantén tu ancho máximo */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 900px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .screenVideoContainer {
   position: absolute;
-  top: 9%;
-  left: 13%;
-  width: 70.4%;
-  height: 57%;
-  z-index: 2;
+  top: 10.1%;
+  left: 15.2%;
+  width: 69.5%;
+  height: 55%;
+  z-index: 2; /* ← CLAVE: el video va DEBAJO del portátil */
   overflow: hidden;
   background-color: #000;
+  border-radius: 2px;
 }
 
 .screenVideo {
-  width: 100%;
-  height: 100%;
-  /* object-fit: fill;  */
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  margin: -2px;
+  display: block;
+  border: none;
+  pointer-events: none;
 }
 
 :global(.dark-mode) .portatil {
