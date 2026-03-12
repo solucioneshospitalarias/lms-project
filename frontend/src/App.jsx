@@ -25,6 +25,7 @@ import EstadisticasAula from "./components/AulaVirtual/EstadisticasAula";
 import Comunidad from "./components/AulaVirtual/Comunidad";
 import ConfiguracionAula from "./components/AulaVirtual/ConfiguracionAula";
 import CalendarioAula from './components/AulaVirtual/CalendarioAula';
+import PanelProfesor from './components/AulaVirtual/PanelProfesor/PanelProfesor'
 
 function App() {
   const { pathname } = useLocation();
@@ -36,7 +37,8 @@ function App() {
     pathname === "/login-profesor" ||
     pathname === "/register-profesor" ||
     pathname === "/forgot-password" ||
-    pathname.startsWith("/aula-virtual");
+    pathname === "/panel-profesor"
+  pathname.startsWith("/aula-virtual");
 
   useEffect(() => {
     if (!isCleanPage) {
@@ -78,6 +80,8 @@ function App() {
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/autorizacion" element={<Autorizacion />} />
 
+            <Route path="/panel-profesor" element={<PanelProfesor />} />
+
             {/* RUTAS AULA VIRTUAL (Usando el AdminLayout) */}
             <Route path="/aula-virtual" element={<AdminLayout />}>
               <Route index element={<ClassroomHome />} />
@@ -85,7 +89,7 @@ function App() {
               <Route path="estadisticas" element={<EstadisticasAula />} />
               <Route path="comunidad" element={<Comunidad />} />
               <Route path="configuracion" element={<ConfiguracionAula />} />
-              <Route path="calendario" element={<CalendarioAula />} /> 
+              <Route path="calendario" element={<CalendarioAula />} />
             </Route>
 
           </Routes>

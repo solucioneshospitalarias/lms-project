@@ -55,7 +55,9 @@ const LoginProfesor = () => {
 
     if (Object.keys(newErrors).length === 0) {
       console.log("Login exitoso, disparando confeti...");
-      // Aquí disparas tu animación de éxito
+
+      // AGREGAR ESTA LÍNEA:
+      navigate("/panel-profesor");
     }
   };
 
