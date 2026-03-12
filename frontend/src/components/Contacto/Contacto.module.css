@@ -120,8 +120,11 @@
 
 .topSection {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(20px, 4vw, 50px);
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .mapWrapper {
@@ -132,7 +135,10 @@
     border: 1px solid var(--card-border);
     box-shadow: var(--card-shadow);
     background-color: #242424;
-    /* Color de fondo mientras carga */
+    aspect-ratio: 16 / 9;
+    min-height: 300px;
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 :global([data-theme='dark']) .mapWrapper iframe {
@@ -168,15 +174,14 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
-    /* Forzamos que el texto de la fila siga el tema */
-    color: var(--text-main, #1a1a1a); 
+    color: var(--text-main, #1a1a1a);
     margin-bottom: 5px;
 }
 
 .infoRow strong {
-    /* Aseguramos que los nombres de los días también cambien */
     color: var(--text-main, #000000);
 }
+
 .whatsappBtn {
     background-color: #25D366;
     color: white;
@@ -236,13 +241,17 @@
 .formCard {
     display: flex;
     align-items: stretch;
-    gap: 40px; /* Aumentamos el espacio real entre las dos tarjetas */
-    background-color: transparent; /* IMPORTANTE: Quitamos el fondo para ver el espacio en medio */
+    gap: 40px;
+    /* Aumentamos el espacio real entre las dos tarjetas */
+    background-color: transparent;
+    /* IMPORTANTE: Quitamos el fondo para ver el espacio en medio */
     max-width: 1200px;
     border-radius: 15px;
     margin: 20px auto;
-    border: none; /* Quitamos bordes externos */
-    backdrop-filter: none; /* Quitamos el desenfoque del padre */
+    border: none;
+    /* Quitamos bordes externos */
+    backdrop-filter: none;
+    /* Quitamos el desenfoque del padre */
 }
 
 :global([data-theme='dark']) .formCard {
@@ -251,10 +260,11 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.formSide, .imageSide {
+.formSide,
+.imageSide {
     flex: 1;
     /* Usamos exactamente el mismo fondo para ambas */
-    background-color: var(--card-bg, rgba(255, 255, 255, 0.05)); 
+    background-color: var(--card-bg, rgba(255, 255, 255, 0.05));
     backdrop-filter: blur(15px);
     border-radius: 35px;
     border: 1px solid var(--card-border, rgba(255, 255, 255, 0.1));
@@ -281,12 +291,13 @@
     margin: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el formulario verticalmente */
+    justify-content: center;
+    /* Centra el formulario verticalmente */
 }
 
 .imageSide {
     flex: 1;
-    background: var(--card-bg, #ffffff); 
+    background: var(--card-bg, #ffffff);
     padding: 40px;
     margin: 20px;
     display: flex;
@@ -297,13 +308,13 @@
     transition: all 0.3s ease;
 }
 
-.supportTitle, 
-.supportText, 
-.infoRow, 
+.supportTitle,
+.supportText,
+.infoRow,
 .infoRow strong,
 .formSubtitle {
     /* La variable --text-main debe estar definida como negro en tu modo claro */
-    color: var(--text-main, #ffffff); 
+    color: var(--text-main, #ffffff);
     transition: color 0.3s ease;
 }
 
@@ -328,19 +339,21 @@
 }
 
 .charCounter {
-  position: absolute;
-  right: 5px;
-  bottom: -18px; /* Lo ubica justo debajo del campo */
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--text-main);
-  opacity: 0.5;
-  transition: all 0.3s ease;
+    position: absolute;
+    right: 5px;
+    bottom: -18px;
+    /* Lo ubica justo debajo del campo */
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-main);
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
 .counterDanger {
-  color: #ef4444 !important; /* Un rojo similar al de tu marca */
-  opacity: 1;
+    color: #ef4444 !important;
+    /* Un rojo similar al de tu marca */
+    opacity: 1;
 }
 
 .input.valid {
@@ -391,13 +404,15 @@ input[placeholder="Asunto"] {
 .textarea {
     margin-bottom: 5px;
     resize: none;
-    overflow: hidden; /* Oculta la barra de scroll */
-    scrollbar-width: none; 
+    overflow: hidden;
+    /* Oculta la barra de scroll */
+    scrollbar-width: none;
     /* Evita que el usuario deforme el diseño */
 }
 
 .textarea::-webkit-scrollbar {
-  display: none; /* Oculta en Chrome, Safari y Edge */
+    display: none;
+    /* Oculta en Chrome, Safari y Edge */
 }
 
 .input:focus,
@@ -425,7 +440,7 @@ input[placeholder="Asunto"] {
 
 .supportTitle {
     /* Esta variable cambiará a negro en modo claro y blanco en oscuro */
-    color: var(--text-main, #1a1a1a); 
+    color: var(--text-main, #1a1a1a);
     font-size: 2.2rem;
     font-weight: 800;
     line-height: 1.1;
@@ -437,7 +452,8 @@ input[placeholder="Asunto"] {
     color: var(--primary-red);
     /* Color resaltado */
     display: block;
-    font-size: 1.8rem; /* Un poco más pequeño para que encaje mejor */
+    font-size: 1.8rem;
+    /* Un poco más pequeño para que encaje mejor */
     margin-bottom: 15px;
 }
 
@@ -461,15 +477,18 @@ input[placeholder="Asunto"] {
 .supportImage {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantiene la proporción sin deformar */
+    object-fit: cover;
+    /* Mantiene la proporción sin deformar */
 }
 
 .supportImageContainer {
     width: 100%;
-    height: 180px; /* Altura fija para la imagen para que no desplace el texto */
+    height: 180px;
+    /* Altura fija para la imagen para que no desplace el texto */
     overflow: hidden;
     border-radius: 20px;
-    margin-top: auto; /* Empuja la imagen al fondo de su columna */
+    margin-top: auto;
+    /* Empuja la imagen al fondo de su columna */
 }
 
 @media (max-width: 900px) {
@@ -509,11 +528,32 @@ input[placeholder="Asunto"] {
 
 /* Responsividad */
 @media (max-width: 850px) {
-    .topSection {
-        grid-template-columns: 1fr;
+    .mainContainer {
+        padding: 0 20px;
     }
 
     .row {
         grid-template-columns: 1fr;
+        /* Apila los inputs del formulario */
+        gap: 15px;
+    }
+
+    .formCard {
+        flex-direction: column;
+        /* Apila las dos tarjetas de contacto */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mapWrapper {
+        aspect-ratio: 4 / 3;
+        /* Mapa más compacto para celulares */
+        min-height: 250px;
+    }
+
+    .supportTitle {
+        font-size: 1.5rem;
+        /* Texto más pequeño para que no se rompa */
     }
 }
