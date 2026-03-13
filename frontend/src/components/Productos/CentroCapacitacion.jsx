@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom'
 import styles from "./CentroCapacitacion.module.css";
 import confetti from "canvas-confetti";
 import toast, { Toaster } from "react-hot-toast";
@@ -53,6 +54,8 @@ const CountUpItem = ({ end, label, suffix = "", prefix = "" }) => {
 };
 
 const CentroCapacitacion = () => {
+  const navigate = useNavigate();
+
   const handleInscribirse = (cursoTitle) => {
     toast.success(`¡Inscripción exitosa a ${cursoTitle}!`, {
       duration: 4000,
@@ -97,6 +100,11 @@ const CentroCapacitacion = () => {
         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
       });
     }, 250);
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 3200);
+
   };
 
   const cursos = [
@@ -105,7 +113,7 @@ const CentroCapacitacion = () => {
       // Icono colorido de semáforo con nubes (más alegre)
       icon: (
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2855/2855648.png"
+          src="https://i.pinimg.com/736x/54/83/48/5483482bf74b760147c591ec5288cf68.jpg"
           alt="Icono Vial"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
@@ -120,7 +128,7 @@ const CentroCapacitacion = () => {
       // Icono colorido de manos entrelazadas formando un corazón con paz (más alegre)
       icon: (
         <img
-          src="https://cdn-icons-png.flaticon.com/512/3843/3843236.png"
+          src="https://i.pinimg.com/1200x/81/da/73/81da736409a51ca9e2ccfd1d5a93f91f.jpg"
           alt="Icono Paz"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
@@ -135,7 +143,7 @@ const CentroCapacitacion = () => {
       // Icono colorido de una planta creciendo en una mano verde (más alegre)
       icon: (
         <img
-          src="https://cdn-icons-png.flaticon.com/512/11186/11186716.png"
+          src="https://i.pinimg.com/736x/4d/6c/84/4d6c845fb9b160daa96d759ab1cd7e24.jpg"
           alt="Icono Ambiental"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
@@ -150,7 +158,7 @@ const CentroCapacitacion = () => {
       // Icono colorido de niños abrazados y sonriendo (más alegre)
       icon: (
         <img
-          src="https://cdn-icons-png.flaticon.com/512/1000/1000389.png"
+          src="https://i.pinimg.com/1200x/a3/34/77/a334775a1437b9df4969d8251758e65f.jpg"
           alt="Icono Convivencia"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
@@ -202,10 +210,10 @@ const CentroCapacitacion = () => {
 
       <div className={styles.statsBanner}>
         <div className={styles.statsRow}>
-          <CountUpItem end={1103} label="Municipios" prefix="+" />
+          <CountUpItem end={1103} label="Municipios" />
         </div>
         <div className={styles.statsRow}>
-          <CountUpItem end={19652} label="Colegios" suffix="%" />
+          <CountUpItem end={19652} label="Colegios" />
         </div>
         <div className={styles.statsRow}>
           <CountUpItem end={324092} label="Docentes" />
