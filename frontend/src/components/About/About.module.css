@@ -9,9 +9,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 0px 20px 40px 20px;
   background-color: transparent;
   animation: fadeInEffect 0.8s ease-out forwards;
+  margin-top: 0;
 }
 
 @keyframes fadeInEffect {
@@ -77,20 +78,6 @@
   transition: transform 0.3s ease;
 }
 
-.floatingBadge {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%) translateZ(30px);
-  background: var(--primary-red);
-  color: white;
-  padding: 10px 25px;
-  border-radius: 15px;
-  font-weight: bold;
-  box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
-  white-space: nowrap;
-}
-
 .infoSection {
   flex: 1.2;
   text-align: left;
@@ -127,12 +114,19 @@
   gap: 30px;
   flex-wrap: wrap;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 10px;
+  margin: -20px auto 0 auto;
+  /* Mantenemos tu margen negativo */
+  padding: 0px 10px 40px 10px;
   perspective: 1000px;
+  position: relative;
+  z-index: 10;
+
+  /* Agregamos esto para ayudar al navegador a identificar el contenedor */
+  scroll-snap-align: start;
 }
 
 /* ===== ESTILOS DE TARJETAS - VERSIÓN OPTIMIZADA ===== */
+/* Busca esta clase en tu archivo CSS */
 .card3D {
   flex: 1;
   min-width: 300px;
@@ -148,6 +142,8 @@
   cursor: pointer;
   box-shadow: 0 10px 30px var(--card-shadow);
   overflow: hidden;
+  scroll-margin-top: 280px;
+  scroll-behavior: smooth;
 
   /* Propiedades de Paralaje */
   transform-style: preserve-3d;
@@ -177,11 +173,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.08) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle at center,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 70%);
   pointer-events: none;
   z-index: 0;
   opacity: 0;
@@ -279,15 +273,24 @@
   width: 100%;
   max-width: 700px;
   margin: 0 auto 40px auto;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px;
   border-radius: 60px;
   border: 1px solid var(--card-border);
-  box-shadow: 0 4px 15px rgba(161, 39, 39, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
+  position: sticky;
+  top: 100px;
+  z-index: 100;
+  align-self: center;
+}
+
+.educacionContenedorPadre {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tabBtn {
@@ -405,8 +408,12 @@
 }
 
 .educacionContainer {
+  position: relative;
+  /* CLAVE: Define el área de movimiento */
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 60px;
+  overflow: visible;
+  width: 100%;
 }
 
 .professionalTitle {
@@ -414,14 +421,16 @@
   font-weight: 800;
   text-align: center;
   color: var(--text-main);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  /* Reducimos el margen para que esté cerca de los botones */
   letter-spacing: -1px;
   line-height: 1.2;
-  text-transform: uppercase; /* Opcional: para un look más corporativo */
-
-  /* Efecto de profundidad */
+  text-transform: uppercase;
   text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
-  animation: fadeInDown 0.8s ease-out;
+
+  /* Esto asegura que el título se mantenga arriba de los botones al bajar */
+  position: relative;
+  z-index: 1001;
 }
 
 .professionalTitle span {
@@ -448,6 +457,7 @@
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -459,7 +469,8 @@
   height: auto;
   display: block;
   position: relative;
-  z-index: 3; /* ← CLAVE: la imagen del portátil va ENCIMA del video */
+  z-index: 3;
+  /* ← CLAVE: la imagen del portátil va ENCIMA del video */
   pointer-events: none;
 }
 
@@ -479,7 +490,8 @@
   left: 15.2%;
   width: 69.5%;
   height: 55%;
-  z-index: 2; /* ← CLAVE: el video va DEBAJO del portátil */
+  z-index: 2;
+  /* ← CLAVE: el video va DEBAJO del portátil */
   overflow: hidden;
   background-color: #000;
   border-radius: 2px;
@@ -619,13 +631,17 @@
 
 .schoolsContainer img,
 .analyticsContainer img {
-  width: 100%; /* Ocupa todo el ancho de su columna de la rejilla */
-  height: auto; /* Mantiene la proporción */
-  object-fit: cover; /* Importante: la imagen llena el espacio sin deformarse */
+  width: 100%;
+  /* Ocupa todo el ancho de su columna de la rejilla */
+  height: auto;
+  /* Mantiene la proporción */
+  object-fit: cover;
+  /* Importante: la imagen llena el espacio sin deformarse */
 
   /* Ajustes estéticos */
   border-radius: 25px;
-  transform: translateZ(55px); /* Un poco más de profundidad */
+  transform: translateZ(55px);
+  /* Un poco más de profundidad */
   filter: drop-shadow(15px 15px 30px rgba(0, 0, 0, 0.4));
 
   /* Eliminamos cualquier max-width rígido previo */
@@ -637,11 +653,14 @@
   display: grid;
   /* Creamos dos columnas: una para el texto, otra para la imagen */
   grid-template-columns: 1fr 1fr;
-  align-items: center; /* Centrado vertical */
-  gap: 50px; /* Espacio entre columnas */
+  align-items: center;
+  /* Centrado vertical */
+  gap: 50px;
+  /* Espacio entre columnas */
 
   /* Mantenemos tus estilos de contenedor */
-  padding: 60px; /* Un poco más de aire */
+  padding: 60px;
+  /* Un poco más de aire */
   border-radius: 40px;
   margin: 40px;
   border: 1px solid var(--card-border);
@@ -656,22 +675,25 @@
 /* Asegurar que la sección de texto no se comprima demasiado */
 .schoolsContainer .infoSection,
 .analyticsContainer .infoSection {
-  text-align: left; /* Volvemos a alineación a la izquierda */
+  text-align: left;
+  /* Volvemos a alineación a la izquierda */
   transform: translateZ(30px);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .tabcontainer {
-    max-width: 100%;
-    border-radius: 20px;
+    top: 60px;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
   }
 
   .tabBtn {
-    padding: 12px 16px;
-    font-size: 14px;
-    max-width: 200px;
-    min-height: 46px;
+    font-size: 11px;
+    padding: 10px 15px;
+    white-space: nowrap;
   }
 }
 
@@ -699,6 +721,7 @@
 }
 
 @media (max-width: 1024px) {
+
   .schoolsContainer,
   .analyticsContainer {
     grid-template-columns: 1fr;
@@ -733,16 +756,19 @@
   }
 
   .youtubeInfo {
-    order: 1; /* El texto aparece primero */
+    order: 1;
+    /* El texto aparece primero */
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   .videoWrapper {
-    order: 2; /* El video aparece después del texto */
+    order: 2;
+    /* El video aparece después del texto */
     width: 100%;
-    max-width: 700px; /* Evita que el video sea gigante en tablets */
+    max-width: 700px;
+    /* Evita que el video sea gigante en tablets */
   }
 
   .ytTitle {
@@ -751,6 +777,7 @@
 }
 
 @media (max-width: 480px) {
+
   .schoolsContainer,
   .analyticsContainer {
     padding: 30px 15px;
@@ -767,14 +794,16 @@
   }
 
   .videoFrame {
-    border-width: 2px; /* Borde más fino en pantallas pequeñas */
+    border-width: 2px;
+    /* Borde más fino en pantallas pequeñas */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   }
 }
 
 @media (max-width: 768px) {
   .youtubeSection {
-    padding: 60px 20px; /* Reduce el margen exterior en móviles */
+    padding: 60px 20px;
+    /* Reduce el margen exterior en móviles */
   }
 
   .youtubeCard {
@@ -792,13 +821,15 @@
   }
 
   .subscribeBtn {
-    width: 100%; /* El botón ocupa todo el ancho en móviles */
+    width: 100%;
+    /* El botón ocupa todo el ancho en móviles */
     max-width: 280px;
     padding: 14px 20px;
   }
 
   .videoDecoration {
-    display: none; /* Quitamos el adorno en móviles para evitar scrolls raros */
+    display: none;
+    /* Quitamos el adorno en móviles para evitar scrolls raros */
   }
 }
 
