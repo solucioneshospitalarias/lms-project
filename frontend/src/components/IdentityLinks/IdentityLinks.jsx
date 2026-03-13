@@ -17,7 +17,7 @@ const IdentityLinks = () => {
                     <p className={styles.subtitle}>Descubre los pilares que guían el futuro de la educación.</p>
 
                     <div className={styles.buttonGrid}>
-                        <button onClick={() => navigate('/conocenos')} className={styles.premiumBtn}>
+                        <button onClick={() => navigate('/conocenos#mision')} className={styles.premiumBtn}>
                             <div className={styles.btnContent}>
                                 <RocketIcon className={styles.icon} />
                                 <span>Ver Misión</span>
@@ -25,7 +25,7 @@ const IdentityLinks = () => {
                             <ChevronRight className={styles.arrow} />
                         </button>
 
-                        <button onClick={() => navigate('/conocenos')} className={styles.premiumBtn}>
+                        <button onClick={() => navigate('/conocenos#vision')} className={styles.premiumBtn}>
                             <div className={styles.btnContent}>
                                 <Eye className={styles.icon} />
                                 <span>Ver Visión</span>
@@ -33,7 +33,7 @@ const IdentityLinks = () => {
                             <ChevronRight className={styles.arrow} />
                         </button>
 
-                        <button onClick={() => navigate('/conocenos')} className={styles.premiumBtn}>
+                        <button onClick={() => navigate('/conocenos#valores')} className={styles.premiumBtn}>
                             <div className={styles.btnContent}>
                                 <Gem className={styles.icon} />
                                 <span>Ver Valores</span>
