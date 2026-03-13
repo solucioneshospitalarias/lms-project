@@ -48,7 +48,7 @@ const AulaVirtual = () => {
                                 return (
                                     <li key={index} className={styles.featureItem}>
                                         <div className={styles.iconCircle}>
-                                            <Icon icon={item.icon} />
+                                            <Icon size={24} />
                                         </div>
                                         <span>{item.text}</span>
                                     </li>
