@@ -67,7 +67,7 @@
 .minimalistHeader {
   width: 100%;
   max-width: 1300px;
-  margin: 60px auto 40px;
+  margin: 20px auto 20px;
   padding: 0 5%;
   display: flex;
   justify-content: flex-start;
@@ -248,7 +248,7 @@
 .section {
   display: flex;
   flex-direction: column;
-  padding: 60px 5%;
+  padding: 20px 5% 60px;
   gap: 40px;
   border-bottom: 1px solid var(--card-border);
   width: 100%;
