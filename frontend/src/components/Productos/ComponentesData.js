@@ -62,7 +62,7 @@ export const componentesData = {
       "Resultados inmediatos",
       "Fomento de la curiosidad",
     ],
-    imageUrl: "https://images.pexels.com/photos/34987122/pexels-photo-34987122.jpeg",
+    imageUrl: "https://images.pexels.com/photos/3405456/pexels-photo-3405456.jpeg",
   },
   6: {
     titulo: "Sistema de Mensajería",

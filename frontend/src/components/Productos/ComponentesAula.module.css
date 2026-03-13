@@ -1,8 +1,9 @@
 .container {
-    padding: 80px 5%;
+    padding: 4rem 2rem;
     background-color: var(--bg-main);
     max-width: 1200px;
     margin: 0 auto;
+    scroll-margin-top: 70px;
 }
 
 .header {
@@ -127,6 +128,11 @@
 
 /* Responsivo */
 @media (max-width: 768px) {
+    .container {
+        scroll-margin-top: 150px;
+        padding: 2rem 1rem;
+    }
+
     .contentWrapper {
         grid-template-columns: 1fr;
     }
