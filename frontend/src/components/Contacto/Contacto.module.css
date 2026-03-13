@@ -263,15 +263,30 @@
 .formSide,
 .imageSide {
     flex: 1;
-    /* Usamos exactamente el mismo fondo para ambas */
-    background-color: var(--card-bg, rgba(255, 255, 255, 0.05));
-    backdrop-filter: blur(15px);
-    border-radius: 35px;
-    border: 1px solid var(--card-border, rgba(255, 255, 255, 0.1));
+    /* Fondo gris humo en modo claro para contraste */
+    background-color: var(--contact-card-bg, #f4f4f6);
     padding: 40px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
+    border-radius: 35px;
+    /* Borde casi invisible inicialmente */
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.05));
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    /* Transición suave para todos los cambios */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.formSide:hover,
+.imageSide:hover {
+    transform: translateY(-5px);
+    /* Borde rojo suave de tu marca */
+    border-color: rgba(194, 40, 33, 0.4);
+    /* Sombra más profunda para dar efecto de elevación */
+    box-shadow: 0 15px 35px rgba(194, 40, 33, 0.1);
+    background-color: var(--contact-card-hover, #ffffff);
 }
 
 
@@ -285,40 +300,56 @@
     text-transform: uppercase;
 }
 
+.formSubtitle,
+.supportTitle {
+    color: var(--text-main);
+    transition: transform 0.3s ease;
+}
+
+.formSide:hover .formSubtitle,
+.imageSide:hover .supportTitle {
+    transform: scale(1.02);
+}
+
 .formSide {
     flex: 1;
+    background-color: var(--contact-card-bg, #f8f9fa);
     padding: 40px;
     margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Centra el formulario verticalmente */
+    border-radius: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.05));
+    transition: all 0.3s ease;
 }
 
 .imageSide {
     flex: 1;
-    background: var(--card-bg, #ffffff);
+    background-color: var(--contact-card-bg, #f8f9fa);
     padding: 40px;
     margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 35px;
-    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.1));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.05));
     transition: all 0.3s ease;
 }
+
+
 
 .supportTitle,
 .supportText,
 .infoRow,
 .infoRow strong,
 .formSubtitle {
-    /* La variable --text-main debe estar definida como negro en tu modo claro */
     color: var(--text-main, #ffffff);
     transition: color 0.3s ease;
 }
 
-/* Mantén el color rojo de la marca para que resalte en ambos modos */
 .supportTitle span {
     color: var(--primary-red);
 }
@@ -372,27 +403,23 @@
 
 .input,
 .textarea {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--input-bg, rgba(255, 255, 255, 0.8));
+    border: 1px solid rgba(0, 0, 0, 0.1);
     color: var(--text-main);
     padding: 18px 22px;
-    /* Aumentamos el acolchado interno horizontal */
     border-radius: 15px;
     font-size: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     margin-bottom: 5px;
-    /* Pequeño respiro extra */
 }
 
 input[placeholder="Nombre completo"] {
     margin-bottom: 20px;
-    /* Espacio entre el nombre y el correo */
 }
 
 input[placeholder="Correo electrónico"] {
     margin-bottom: 20px;
-    /* Espacio generoso antes del campo de asunto */
 }
 
 input[placeholder="Asunto"] {
@@ -431,6 +458,22 @@ input[placeholder="Asunto"] {
     transform: translateY(-1px);
 }
 
+:global([data-theme='dark']) .formSide,
+:global([data-theme='dark']) .imageSide {
+    /* Negro profundo para resaltar sobre el fondo dark */
+    background-color: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+:global([data-theme='dark']) .formSide:hover,
+:global([data-theme='dark']) .imageSide:hover {
+    /* En modo oscuro el borde rojo puede brillar un poco más */
+    border-color: rgba(255, 49, 49, 0.6);
+    box-shadow: 0 0 25px rgba(255, 49, 49, 0.15);
+    background-color: #181818;
+}
+
 :global([data-theme='dark']) .input:focus,
 :global([data-theme='dark']) .textarea:focus {
     box-shadow: 0 0 18px rgba(255, 49, 49, 0.3);
@@ -467,7 +510,8 @@ input[placeholder="Asunto"] {
 }
 
 .extraInfo {
-    background: var(--extra-info-bg, rgba(255, 255, 255, 0.05));
+    /* Ajuste de fondo para que no se pierda con el nuevo color del contenedor */
+    background: rgba(194, 40, 33, 0.05);
     border-left: 3px solid var(--primary-red);
     padding: 15px;
     margin-bottom: 15px;
