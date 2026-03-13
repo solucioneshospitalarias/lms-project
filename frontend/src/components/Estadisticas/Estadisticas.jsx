@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LabelList,
-  AreaChart, Area
+  AreaChart, Area, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import { Car, UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink, School, FileText } from 'lucide-react'
 import styles from './Estadisticas.module.css';
@@ -33,6 +33,15 @@ const Estadisticas = () => {
     { ciclo: 'Básica Secundaria (11-14 años)', totalmatriculados: 42350, totalpoblacion: 45778 },
     { ciclo: 'Media Vocacional(15-16 años)', totalmatriculados: 17853, totalpoblacion: 22264 },
   ];
+
+  const dataRadar = dataInformePoblacion.map(item => ({
+    // Acortamos el nombre para que quepa mejor en el círculo
+    subject: item.ciclo.split('(')[0].trim(),
+    A: item.totalpoblacion,
+    B: item.totalmatriculados,
+    fullMark: 60000,
+  }));
+
 
   // PESTAÑA 2: image_e4315f.png
   const dataInformeImagen = [
@@ -104,19 +113,49 @@ const Estadisticas = () => {
       titulo: "TOTAL DE MATRICULADOS POR TOTAL POBLACIÓN",
       componente: (
         <ResponsiveContainer width="100%" height={500}>
-          <BarChart data={dataInformePoblacion} layout="vertical" margin={{ top: 20, right: 60, left: 40, bottom: 20 }}>
-            <CartesianGrid stroke={chartColors.grid} strokeDasharray="3 3" horizontal={true} vertical={false} />
-            <XAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} type="number" tickFormatter={formatK} domain={[0, 55000]} />
-            <YAxis stroke={chartColors.text} tick={{ fill: chartColors.text }} dataKey="ciclo" type="category" width={140} />
-            <Tooltip contentStyle={{ backgroundColor: chartColors.tooltipBg, borderColor: chartColors.tooltipBorder, color: chartColors.text }} />
+          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={dataRadar}>
+            <PolarGrid stroke={chartColors.grid} />
+            <PolarAngleAxis
+              dataKey="subject"
+              tick={{ fill: chartColors.text, fontSize: 11, fontWeight: 'bold' }}
+            />
+            <PolarRadiusAxis angle={30} domain={[0, 60000]} tick={false} axisLine={false} />
+
+            {/* CAPA 1: TOTAL POBLACIÓN */}
+            <Radar
+              name="Total Población"
+              dataKey="A"
+              stroke="#5c6670"
+              fill="#5c6670"
+              fillOpacity={0.2}
+            >
+              {/* Etiqueta para Población: la ponemos un poco más afuera (top) */}
+              <LabelList dataKey="A" position="top" style={{ fontSize: '10px', fill: '#5c6670', fontWeight: 'bold' }} />
+            </Radar>
+
+            {/* CAPA 2: MATRICULADOS */}
+            <Radar
+              name="Total Matriculados"
+              dataKey="B"
+              stroke="#B30000"
+              fill="#B30000"
+              fillOpacity={0.6}
+              dot={{ r: 5, fill: '#B30000' }}
+            >
+              {/* Etiqueta para Matriculados: la ponemos justo en el punto (center) o abajo */}
+              <LabelList dataKey="B" position="bottom" offset={10} style={{ fontSize: '11px', fill: '#B30000', fontWeight: 'bold' }} />
+            </Radar>
+
+            <Tooltip
+              contentStyle={{
+                backgroundColor: chartColors.tooltipBg,
+                borderColor: chartColors.tooltipBorder,
+                color: chartColors.text,
+                borderRadius: '10px'
+              }}
+            />
             <Legend verticalAlign="top" align="right" iconType="circle" />
-            <Bar dataKey="totalmatriculados" name="Total matriculados" fill="#B30000" barSize={12}>
-              <LabelList dataKey="totalmatriculados" position="right" style={{ fontSize: '10px' }} />
-            </Bar>
-            <Bar dataKey="totalpoblacion" name="Total Población" fill="#5c6670" barSize={12}>
-              <LabelList dataKey="totalpoblacion" position="right" style={{ fontSize: '10px' }} />
-            </Bar>
-          </BarChart>
+          </RadarChart>
         </ResponsiveContainer>
       ),
       descripcion: "La situación de la primera infancia en el sistema educativo es un abismo crítico donde la educación inicial dista mucho de ser universal. Con una población de 21,464 niños de entre 3 y 4 años, solo 3,510 logran matricularse, lo que deja a un alarmante 83.6% en la invisibilidad escolar. Esta exclusión masiva provoca que la mayoría de los infantes ingresen al sistema formal recién a los 5 años, enfrentándose a una desventaja pedagógica profunda al carecer de los procesos de aprestamiento previos que son esenciales para su desarrollo."
@@ -591,22 +630,22 @@ const Estadisticas = () => {
       </div>
       <div className={styles.dashboardContainer}>
         <div className={styles.dashboardContent}>
-          
+
           {/* Cabecera con metadatos */}
           <div className={styles.cardHeader}>
             <div className={styles.headerInfo}>
               <h2>Datos de Impacto</h2>
             </div>
-            
+
             <div className={styles.liveStatus}>
               <div className={styles.pulseDot}></div>
-                Sincronizado
+              Sincronizado
             </div>
           </div>
 
           {/* El reporte de Power BI */}
           <div className={styles.powerBiWrapper}>
-            <iframe 
+            <iframe
               src="https://app.powerbi.com/view?r=eyJrIjoiMDgwZDJkZTEtY2ZlZi00ZDk2LWEyOGQtOGMwYzliYzg0OTI2IiwidCI6ImNiZTM5ZThmLTNlODktNDQ4Zi04M2FlLWVlYWI3MWU1ZjNiMSIsImMiOjR9"
               allowFullScreen={true}
             ></iframe>
