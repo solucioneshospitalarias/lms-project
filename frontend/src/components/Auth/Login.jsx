@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
-import { Mail, Lock, ArrowRight, Chrome, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, ArrowRight, Chrome, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 import Img1 from "../../assets/Item1.png";
@@ -174,6 +174,12 @@ const Login = () => {
         </div>
 
         <div className={styles.loginCard}>
+          <button
+            className={styles.btnBackHeader}
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft size={16} /> Regresar al inicio
+          </button>
           <div className={styles.cardGlow}></div>
 
           <div className={styles.header}>
@@ -251,18 +257,9 @@ const Login = () => {
               )}
             </button>
 
-            <div className={styles.profesorAccess}>
-              <p className={styles.dividerText}>
-                ¿Eres parte del equipo docente?
-              </p>
-              <button
-                type="button"
-                className={styles.btnProfesor}
-                onClick={() => navigate("/login-profesor")}
-              >
-                Ingresar como Profesor
-              </button>
-            </div>
+            <p className={styles.footerText}>
+              ¿Listo para potenciar tu futuro? <Link to="/register">Regístrate ahora</Link>
+            </p>
           </form>
 
           <div className={styles.divider}>
@@ -277,9 +274,18 @@ const Login = () => {
             <Chrome size={20} /> Google
           </button>
 
-          <p className={styles.footerText}>
-            ¿No tienes una cuenta? <Link to="/register">Regístrate ahora</Link>
-          </p>
+          <div className={styles.profesorAccess}>
+            <p className={styles.dividerText}>
+              ¿Eres parte del equipo docente?
+            </p>
+            <button
+              type="button"
+              className={styles.btnProfesor}
+              onClick={() => navigate("/login-profesor")}
+            >
+              Ingresar como Profesor
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   Mail,
   Lock,
-  ArrowRight,
   Users,
   User,
   Eye,
@@ -11,10 +10,7 @@ import {
   ChevronLeft,
   ShieldCheck,
   Calendar,
-  Settings,
-  School,
-  Phone,
-  BookOpen,
+  ArrowLeft,
 } from "lucide-react";
 import styles from "./RegisterProfesor.module.css";
 
@@ -41,8 +37,6 @@ const RegisterProfesor = () => {
     especialidad: "",
     password: "",
     confirmPassword: "",
-    estadoAcceso: "ACTIVO", // Valor predeterminado según ENUM
-    idColegio: "",
   });
 
   const handleChange = (e) => {
@@ -363,6 +357,15 @@ const RegisterProfesor = () => {
               </>
             )}
           </button>
+
+          <button
+            type="button"
+            className={styles.btnBackRegister}
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft size={16} /> Regresar al inicio
+          </button>
+
         </form>
 
         <div className={styles.footerText}>

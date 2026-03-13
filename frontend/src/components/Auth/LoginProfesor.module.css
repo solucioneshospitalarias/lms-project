@@ -8,7 +8,8 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background-color: var(--bg-main); /* Usa tu variable global */
+  background-color: var(--bg-main);
+  /* Usa tu variable global */
   transition: background-color 0.3s ease;
 }
 
@@ -44,7 +45,8 @@
 .loginCard {
   position: relative;
   z-index: 10;
-  background: var(--card-bg); /* Cambia de #ffffff a #2d2d2d automáticamente */
+  background: var(--card-bg);
+  /* Cambia de #ffffff a #2d2d2d automáticamente */
   width: 100%;
   max-width: 700px;
   padding: 40px;
@@ -78,7 +80,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Separación interna del formulario */
+  gap: 20px;
+  /* Separación interna del formulario */
 }
 
 .inputWrapper {
@@ -111,8 +114,10 @@
 
 .btnMain {
   width: 100%;
-  padding: 12px; /* Un poco más de cuerpo que 10px para que se vea premium */
-  margin-top: 15px; /* Espacio con respecto a los inputs */
+  padding: 12px;
+  /* Un poco más de cuerpo que 10px para que se vea premium */
+  margin-top: 15px;
+  /* Espacio con respecto a los inputs */
   margin-bottom: 5px;
   background: linear-gradient(135deg, var(--primary-red) 0%, #a01f1a 100%);
   color: white;
@@ -132,10 +137,35 @@
   box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
 }
 
+.btnBackRegister {
+  width: 100%;
+  height: 48px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  color: #0066ff;
+  border: 2px solid #0066ff;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnBackRegister:hover {
+  background-color: #0066ff;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+}
+
 .footerText {
   margin-top: 20px;
-  font-size: 0.9rem;
-  color: var(--text-main);
+  text-align: center;
+  font-size: 0.85rem;
 }
 
 .footerText a {
@@ -189,13 +219,16 @@
 }
 
 .errorMessage {
-  color: #ff4d4d; /* Un rojo vibrante pero elegante */
+  color: #ff4d4d;
+  /* Un rojo vibrante pero elegante */
   font-size: 0.75rem;
-  margin-top: -8px; /* Lo pega un poco más al input */
+  margin-top: -8px;
+  /* Lo pega un poco más al input */
   margin-bottom: 8px;
   display: block;
   font-weight: 500;
-  animation: fadeInError 0.3s ease; /* Entrada suave y alegre */
+  animation: fadeInError 0.3s ease;
+  /* Entrada suave y alegre */
 }
 
 @keyframes fadeInError {
@@ -203,6 +236,7 @@
     opacity: 0;
     transform: translateY(-5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -210,7 +244,8 @@
 }
 
 .inputError {
-  border: 1px solid #dc2626 !important; /* Rojo corporativo */
+  border: 1px solid #dc2626 !important;
+  /* Rojo corporativo */
   background: rgba(220, 38, 38, 0.05) !important;
 }
 
@@ -218,31 +253,41 @@
 
 /* Esta regla se aplica cuando la pantalla es ancha (laptop) pero baja,
    o para laptops estándar de hasta 1440px de ancho. */
-@media screen and (max-width: 1440px), screen and (max-height: 800px) {
+@media screen and (max-width: 1440px),
+screen and (max-height: 800px) {
+
   /* 1. Ajuste del contenedor principal para asegurar centrado vertical */
   .fullPageContainer {
     display: flex;
-    align-items: center; /* Centrado vertical estricto */
+    align-items: center;
+    /* Centrado vertical estricto */
     justify-content: center;
-    min-height: 100vh; /* Ocupa al menos toda la altura de la pantalla */
-    padding: 20px 0; /* Pequeño resguardo superior/inferior */
+    min-height: 100vh;
+    /* Ocupa al menos toda la altura de la pantalla */
+    padding: 20px 0;
+    /* Pequeño resguardo superior/inferior */
   }
 
   /* 2. Compactación de la tarjeta */
   .registerCard,
   .loginCard {
     width: 90%;
-    max-width: 400px; /* Un poco más estrecha en laptops */
-    padding: 25px 30px; /* Reducción de padding interno (Arriba/Abajo Izq/Der) */
-    border-radius: 24px; /* Bordes ligeramente más suaves */
-    margin: auto; /* Ayuda al centrado en flex container */
+    max-width: 400px;
+    /* Un poco más estrecha en laptops */
+    padding: 25px 30px;
+    /* Reducción de padding interno (Arriba/Abajo Izq/Der) */
+    border-radius: 24px;
+    /* Bordes ligeramente más suaves */
+    margin: auto;
+    /* Ayuda al centrado en flex container */
   }
 
   .iconHeader {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin: 0 auto 15px auto !important; /* Centra horizontalmente y da espacio abajo */
+    margin: 0 auto 15px auto !important;
+    /* Centra horizontalmente y da espacio abajo */
     width: 48px !important;
     height: 48px !important;
     min-height: 48px !important;
@@ -257,59 +302,76 @@
   }
 
   h2 {
-    font-size: 1.3rem; /* Título más compacto */
+    font-size: 1.3rem;
+    /* Título más compacto */
     margin-bottom: 5px;
   }
 
   .subtitle {
-    font-size: 0.85rem; /* Subtítulo más pequeño */
-    margin-bottom: 20px; /* Menos espacio antes del formulario */
+    font-size: 0.85rem;
+    /* Subtítulo más pequeño */
+    margin-bottom: 20px;
+    /* Menos espacio antes del formulario */
   }
 
   /* 4. Compactación del Formulario */
   .form {
-    gap: 12px; /* Menos espacio entre grupos de input */
+    gap: 12px;
+    /* Menos espacio entre grupos de input */
   }
 
   .inputGroup {
-    margin-bottom: 0; /* Usamos el gap del form en su lugar */
+    margin-bottom: 0;
+    /* Usamos el gap del form en su lugar */
   }
 
   .label {
-    font-size: 0.85rem; /* Etiquetas más pequeñas */
-    margin-bottom: 6px; /* Menos espacio bajo la etiqueta */
+    font-size: 0.85rem;
+    /* Etiquetas más pequeñas */
+    margin-bottom: 6px;
+    /* Menos espacio bajo la etiqueta */
   }
 
   /* Inputs más bajos */
   .inputWrapper input {
-    padding: 10px 15px 10px 45px; /* Reducción de padding vertical interno */
-    font-size: 0.9rem; /* Fuente interna ligeramente más pequeña */
-    border-radius: 10px; /* Bordes más ajustados */
+    padding: 10px 15px 10px 45px;
+    /* Reducción de padding vertical interno */
+    font-size: 0.9rem;
+    /* Fuente interna ligeramente más pequeña */
+    border-radius: 10px;
+    /* Bordes más ajustados */
   }
 
   .inputIcon {
-    left: 15px; /* Ajuste de posición del icono */
-    width: 18px; /* Icono más pequeño */
+    left: 15px;
+    /* Ajuste de posición del icono */
+    width: 18px;
+    /* Icono más pequeño */
     height: 18px;
   }
 
   /* 5. Ajuste de Botones */
   .btnMain {
-    padding: 12px; /* Botón principal más bajo */
+    padding: 12px;
+    /* Botón principal más bajo */
     font-size: 0.95rem;
-    margin-top: 10px; /* Menos espacio superior */
+    margin-top: 10px;
+    /* Menos espacio superior */
     border-radius: 12px;
   }
 
   /* 6. Textos de pie de página y botones secundarios */
   .footerText {
-    margin-top: 20px; /* Menos espacio superior */
+    margin-top: 20px;
+    /* Menos espacio superior */
     font-size: 0.85rem;
   }
 
   .backButton {
-    margin-top: 20px; /* Menos espacio antes del botón volver */
-    padding: 10px; /* Botón volver más bajo */
+    margin-top: 20px;
+    /* Menos espacio antes del botón volver */
+    padding: 10px;
+    /* Botón volver más bajo */
     font-size: 0.85rem;
     border-radius: 10px;
   }

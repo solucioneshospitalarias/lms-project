@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { FaEnvelope, FaArrowLeft, FaCheckCircle } from "react-icons/fa"; // Añadimos FaCheckCircle
 import styles from "./Login.module.css";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -128,6 +131,14 @@ const ForgotPassword = () => {
               ) : (
                 "ENVIAR INSTRUCCIONES"
               )}
+            </button>
+
+            <button
+              type="button"
+              className={styles.btnBackRegister}
+              onClick={() => navigate("/")}
+            >
+              <ArrowLeft size={16} /> Regresar al inicio
             </button>
 
             <div className={styles.divider}>

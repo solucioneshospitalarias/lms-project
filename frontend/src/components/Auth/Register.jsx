@@ -5,17 +5,18 @@ import {
   Mail,
   Lock,
   Calendar,
-  Phone,
   MapPin,
   ShieldCheck,
-  ArrowRight,
+  ArrowLeft,
   Chrome,
   Eye,
   EyeOff,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [errors, setErrors] = useState({});
   const [departamentoSel, setDepartamentoSel] = useState("");
 
@@ -363,6 +364,14 @@ const Register = () => {
 
           <button type="submit" className={styles.btnMain}>
             Registrarse
+          </button>
+
+          <button
+            type="button"
+            className={styles.btnBackRegister}
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft size={16} /> Regresar al inicio
           </button>
         </form>
 

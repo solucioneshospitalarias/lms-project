@@ -66,6 +66,7 @@
 }
 
 @keyframes floatAnim {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
@@ -94,8 +95,10 @@
 @keyframes fadeUpResponsive {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* Solo subimos un poco */
+    transform: translateY(20px);
+    /* Solo subimos un poco */
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -107,6 +110,7 @@
     opacity: 0;
     transform: rotateX(-30deg) translateZ(-100px) translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: none;
@@ -199,18 +203,18 @@
   width: 100%;
   height: 100%;
   border-radius: 28px;
-  background: radial-gradient(
-    circle at top left,
-    rgba(194, 40, 33, 0.1),
-    transparent 70%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(194, 40, 33, 0.1),
+      transparent 70%);
   pointer-events: none;
 }
 
 .header {
-  width: 100%; /* Ocupa todo el ancho */
+  width: 100%;
+  /* Ocupa todo el ancho */
   text-align: center;
-  margin-bottom: 20px; /* Espacio con el formulario */
+  margin-bottom: 20px;
+  /* Espacio con el formulario */
   display: block;
   opacity: 0;
   animation: fadeUp 0.8s ease-out forwards;
@@ -219,21 +223,25 @@
 
 .header p {
   margin-top: 12px;
-  line-height: 1.5; /* Mejora la lectura de la descripción */
+  line-height: 1.5;
+  /* Mejora la lectura de la descripción */
 }
 
 .form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espacio entre inputs */
+  gap: 15px;
+  /* Espacio entre inputs */
   opacity: 0;
   animation: fadeUp 0.8s ease-out forwards;
-  animation-delay: 0.3s; /* Entra un poquito después del header */
+  animation-delay: 0.3s;
+  /* Entra un poquito después del header */
 }
 
 .header h2 {
-  font-size: 2.5rem; /* Un poco más grande y claro */
+  font-size: 2.5rem;
+  /* Un poco más grande y claro */
   color: var(--text-main);
   margin: 0;
 }
@@ -245,7 +253,8 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px; /* Separa un bloque de otro */
+  margin-bottom: 20px;
+  /* Separa un bloque de otro */
 }
 
 .inputGroup label {
@@ -254,7 +263,8 @@
   font-weight: 600;
   /* ESTO ELEVA EL NOMBRE: */
   margin-bottom: 10px;
-  padding-left: 4px; /* Opcional: alinea un poco con el icono */
+  padding-left: 4px;
+  /* Opcional: alinea un poco con el icono */
   display: block;
   text-align: left;
 }
@@ -383,11 +393,35 @@
   box-shadow: 0 15px 30px rgba(194, 40, 33, 0.4);
 }
 
+.btnBackHeader {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #0066ff;
+  border: 1.5px solid #0066ff;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.btnBackHeader:hover {
+  background-color: #0066ff;
+  color: #ffffff;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+}
+
 .btnGoogle {
   width: 100%;
-  /* CAMBIO: Padding vertical reducido de 14px a 11px */
   padding: 11px;
-  /* CAMBIO: Reducido de 30px a 10px */
   margin-bottom: 10px;
   background: #1a1a1a;
   border: 1px solid var(--card-border);
@@ -404,16 +438,67 @@
 .btnMain:disabled {
   opacity: 0.8;
   cursor: not-allowed;
-  background: var(
-    --primary-red
-  ); /* Mantiene el color pero sin efectos de hover */
+  background: var(--primary-red);
 }
+
+.btnBackRegister {
+  width: 100%;
+  height: 48px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  color: #0066ff;
+  /* Azul de tu marca */
+  border: 2px solid #0066ff;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  /* Transición suave para que el efecto hover no sea brusco */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnBackRegister:hover {
+  background-color: #0066ff;
+  /* Se rellena de azul */
+  color: #ffffff;
+  /* El texto y la flecha pasan a blanco */
+  transform: translateY(-3px);
+  /* Se eleva un poquito */
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+  /* Sombra azulada */
+}
+
+.btnBackRegister:active {
+  transform: translateY(-1px);
+}
+
+:global([data-theme='dark']) .btnBackRegister {
+  color: #4da3ff;
+  border-color: #4da3ff;
+}
+
+:global([data-theme='dark']) .btnBackRegister:hover {
+  background-color: #4da3ff;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(77, 163, 255, 0.4);
+}
+
+/* Modo oscuro para coherencia */
+:global([data-theme='dark']) .btnBackRegister {
+  color: #4da3ff;
+  border-color: #4da3ff;
+}
+
 
 .spinner {
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.2); /* Fondo semi-transparente */
-  border-top-color: #ffffff; /* Siempre blanco para resaltar sobre el fondo rojo/oscuro del botón */
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ffffff;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   display: inline-block;
@@ -439,14 +524,16 @@
 }
 
 .footerText a {
-  color: #ff3131; /* El rojo característico de tu logo */
+  color: #ff3131;
+  /* El rojo característico de tu logo */
   text-decoration: none;
   font-weight: 700;
   transition: all 0.3s ease;
 }
 
 .footerText a:hover {
-  color: #d22727; /* Un rojo un poco más oscuro al pasar el mouse */
+  color: #d22727;
+  /* Un rojo un poco más oscuro al pasar el mouse */
   text-decoration: underline;
 }
 
@@ -504,7 +591,8 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px); /* Efecto profesional de desenfoque */
+  backdrop-filter: blur(8px);
+  /* Efecto profesional de desenfoque */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -520,13 +608,15 @@
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
   max-width: 350px;
   width: 90%;
-  animation: fadeUp 0.5s ease-out; /* Reutilizamos tu animación fadeUp */
+  animation: fadeUp 0.5s ease-out;
+  /* Reutilizamos tu animación fadeUp */
 }
 
 .successIconWrapper {
   width: 80px;
   height: 80px;
-  background: #dc2626; /* Tu rojo corporativo se mantiene vibrante en ambos temas */
+  background: #dc2626;
+  /* Tu rojo corporativo se mantiene vibrante en ambos temas */
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -541,10 +631,12 @@
 }
 
 @keyframes arrowBounce {
+
   0%,
   100% {
     transform: translateX(-5px);
   }
+
   50% {
     transform: translateX(5px);
   }
@@ -569,7 +661,8 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: var(--card-bg); /* Fondo oscuro elegante */
+  background: var(--card-bg);
+  /* Fondo oscuro elegante */
   color: var(--text-main);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -579,7 +672,8 @@
   align-items: center;
   gap: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border-left: 4px solid #4caf50; /* Verde de éxito */
+  border-left: 4px solid #4caf50;
+  /* Verde de éxito */
   z-index: 10000;
   animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
@@ -610,8 +704,10 @@
   padding: 12px 15px 12px 50px;
   border-radius: 16px;
   border: 2px solid var(--card-border);
-  background: var(--card-bg); /* Se adapta al tema */
-  color: var(--text-main); /* Se adapta al tema */
+  background: var(--card-bg);
+  /* Se adapta al tema */
+  color: var(--text-main);
+  /* Se adapta al tema */
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
@@ -631,13 +727,15 @@
 
 .selectInput {
   width: 100%;
-  padding: 12px 35px 12px 50px; /* 50px a la izquierda para el icono */
+  padding: 12px 35px 12px 50px;
+  /* 50px a la izquierda para el icono */
   border-radius: 16px;
   border: 2px solid var(--card-border);
   background: var(--card-bg);
   color: var(--text-main);
   font-size: 0.95rem;
-  appearance: none; /* Quita la flecha nativa para look 3D */
+  appearance: none;
+  /* Quita la flecha nativa para look 3D */
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease;
@@ -660,9 +758,8 @@
 
 /* Estilo para el ícono del calendario en el input date */
 .dateInput::-webkit-calendar-picker-indicator {
-  filter: invert(
-    var(--calendar-invert, 0)
-  ); /* Invertirá el color del icono en dark mode */
+  filter: invert(var(--calendar-invert, 0));
+  /* Invertirá el color del icono en dark mode */
   cursor: pointer;
 }
 
@@ -688,7 +785,8 @@
 
 /* Ajuste del padding para que el texto no pise el +57 */
 .inputPhone {
-  padding-left: 75px !important; /* Más espacio a la izquierda */
+  padding-left: 75px !important;
+  /* Más espacio a la izquierda */
 }
 
 /* Animación de entrada por la derecha */
@@ -697,6 +795,7 @@
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -705,16 +804,14 @@
 
 @media (max-width: 900px) {
   .loginPage {
-    /* Permitimos que el contenido dicte el alto y habilitamos scroll */
     height: auto !important;
     min-height: 100vh;
     overflow-y: auto;
-    /* Alineamos todo al inicio (arriba) para que el título sea lo primero */
     display: flex;
     flex-direction: column;
     justify-content: flex-start !important;
     align-items: center;
-    padding: 30px 15px; /* Espacio para que no pegue a los bordes */
+    padding: 30px 15px;
   }
 
   .mainWrapper {
@@ -723,7 +820,8 @@
     align-items: center;
     width: 100%;
     padding: 0;
-    gap: 20px; /* Espacio entre el título y la tarjeta */
+    gap: 20px;
+    /* Espacio entre el título y la tarjeta */
     margin: 0;
     perspective: none !important;
     transform: none !important;
@@ -741,7 +839,8 @@
   }
 
   .logoText {
-    font-size: 2.2rem; /* Reducimos para que quepa mejor en una línea */
+    font-size: 2.2rem;
+    /* Reducimos para que quepa mejor en una línea */
     margin-top: 0;
     margin-bottom: 0;
     text-align: center;
@@ -766,7 +865,8 @@
     gap: 0;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     animation: fadeUpResponsive 0.6s ease-out forwards;
-    transform: none !important; /* Fuerza renderizado limpio */
+    transform: none !important;
+    /* Fuerza renderizado limpio */
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
     perspective: none !important;
@@ -781,5 +881,14 @@
   .floatItem,
   .description {
     display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .btnBackHeader {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    top: 10px;
+    right: 10px;
   }
 }

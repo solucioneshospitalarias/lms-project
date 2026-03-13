@@ -52,10 +52,13 @@
   overflow-y: auto;
   max-width: 700px;
   max-height: 90vh;
+
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; /* IE and Edge */
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
   scrollbar-width: none;
   padding: 40px;
   border-radius: 28px;
@@ -69,7 +72,8 @@
 }
 
 .iconHeader {
-  background: var(--primary-red); /* #c22821 */
+  background: var(--primary-red);
+  /* #c22821 */
   width: 64px;
   height: 64px;
   border-radius: 10px;
@@ -91,7 +95,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Separación interna del formulario */
+  gap: 15px;
+  /* Separación interna del formulario */
 }
 
 .inputGroup {
@@ -104,7 +109,8 @@
 
 .inputGroup label {
   color: var(--text-main);
-  font-size: 0.85rem; /* Un poco más pequeña para elegancia */
+  font-size: 0.85rem;
+  /* Un poco más pequeña para elegancia */
   font-weight: 600;
   margin-bottom: 6px;
   opacity: 0.9;
@@ -119,7 +125,8 @@
 
 .inputIcon {
   position: absolute;
-  left: 15px; /* Ajustado para mayor simetría */
+  left: 15px;
+  /* Ajustado para mayor simetría */
   color: var(--primary-gray);
   pointer-events: none;
   z-index: 2;
@@ -127,8 +134,10 @@
 
 .inputWrapper input {
   width: 100%;
-  padding: 12px 15px 12px 50px; /* Padding izquierdo para iconos */
-  padding-right: 45px; /* Espacio para el ojo interactivo */
+  padding: 12px 15px 12px 50px;
+  /* Padding izquierdo para iconos */
+  padding-right: 45px;
+  /* Espacio para el ojo interactivo */
   background: rgba(128, 128, 128, 0.05);
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -137,10 +146,11 @@
   transition: var(--transition);
 }
 
-.inputWrapper input, 
+.inputWrapper input,
 .inputWrapper select {
   width: 100%;
-  padding: 12px 15px 12px 45px; /* Espacio exacto para el icono izquierdo */
+  padding: 12px 15px 12px 45px;
+  /* Espacio exacto para el icono izquierdo */
   background: rgba(128, 128, 128, 0.05);
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -157,9 +167,11 @@
 
 .inputRow {
   display: flex;
-  gap: 12px; /* Espacio ligeramente más estrecho para verse compacto */
+  gap: 12px;
+  /* Espacio ligeramente más estrecho para verse compacto */
   width: 100%;
-  margin-bottom: 5px; /* Pequeño ajuste para no separar demasiado las filas */
+  margin-bottom: 5px;
+  /* Pequeño ajuste para no separar demasiado las filas */
 }
 
 /* Asegura que en las filas dobles, los grupos crezcan por igual */
@@ -176,7 +188,8 @@
   gap: 8px;
   padding-right: 10px;
   border-right: 1px solid var(--card-border);
-  height: 50%; /* Altura centrada */
+  height: 50%;
+  /* Altura centrada */
   pointer-events: none;
   z-index: 2;
 }
@@ -194,12 +207,14 @@
 }
 
 .inputPhone {
-  padding-left: 90px !important; /* Ajuste para que el número no toque el prefijo */
+  padding-left: 90px !important;
+  /* Ajuste para que el número no toque el prefijo */
 }
 
 .inputWrapper select {
   cursor: pointer;
-  padding-right: 35px; /* Espacio para una flecha personalizada si la pones */
+  padding-right: 35px;
+  /* Espacio para una flecha personalizada si la pones */
 }
 
 .inputWrapper select:focus {
@@ -237,7 +252,8 @@
 .btnMain {
   width: 100%;
   padding: 14px;
-  margin-top: 10px; /* Espacio con respecto a los inputs */
+  margin-top: 10px;
+  /* Espacio con respecto a los inputs */
   background: linear-gradient(135deg, var(--primary-red) 0%, #a01f1a 100%);
   color: white;
   border: none;
@@ -254,6 +270,32 @@
 .btnMain:hover {
   transform: scale(1.02);
   box-shadow: 0 10px 20px rgba(194, 40, 33, 0.4);
+}
+
+.btnBackRegister {
+  width: 100%;
+  height: 48px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  color: #0066ff;
+  /* Azul característico de la plataforma */
+  border: 2px solid #0066ff;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnBackRegister:hover {
+  background-color: #0066ff;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
 }
 
 /* Enlaces y Footer */
@@ -301,7 +343,8 @@
 .btnMain:disabled {
   opacity: 0.85;
   cursor: not-allowed;
-  transform: none !important; /* Evita que se mueva al hacer clic si está cargando */
+  transform: none !important;
+  /* Evita que se mueva al hacer clic si está cargando */
 }
 
 /* Spinner animado */
@@ -322,20 +365,23 @@
 }
 
 .errorMessage {
-  color: #ff4d4d; /* Un rojo vibrante pero elegante */
+  color: #ff4d4d;
+  /* Un rojo vibrante pero elegante */
   font-size: 0.75rem;
   margin-top: 6px;
   margin-left: 4px;
   margin-bottom: 8px;
   display: block;
   font-weight: 500;
-  animation: fadeInError 0.3s ease; /* Entrada suave y alegre */
+  animation: fadeInError 0.3s ease;
+  /* Entrada suave y alegre */
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Controla el espacio general entre elementos del form */
+  gap: 10px;
+  /* Controla el espacio general entre elementos del form */
 }
 
 @keyframes fadeInError {
@@ -343,6 +389,7 @@
     opacity: 0;
     transform: translateY(-5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -350,7 +397,8 @@
 }
 
 .inputError {
-  border: 1px solid #dc2626 !important; /* Rojo corporativo */
+  border: 1px solid #dc2626 !important;
+  /* Rojo corporativo */
   background: rgba(220, 38, 38, 0.05) !important;
 }
 
@@ -377,7 +425,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin: 0 auto 15px auto !important; /* Centra horizontalmente y da espacio abajo */
+    margin: 0 auto 15px auto !important;
+    /* Centra horizontalmente y da espacio abajo */
 
     /* 2. Tamaño Proporcional */
     width: 48px !important;
@@ -394,6 +443,7 @@
     height: 24px !important;
     display: block !important;
   }
+
   /* Títulos más pequeños para ahorrar espacio vertical */
   h2 {
     font-size: 1.2rem;
@@ -450,7 +500,8 @@
 /* ESTRATEGIA MOBILE: Pantallas menores a 480px */
 @media screen and (max-width: 480px) {
   .fullPageContainer {
-    padding: 10px; /* Reducimos el margen externo para ganar espacio */
+    padding: 10px;
+    /* Reducimos el margen externo para ganar espacio */
   }
 
   .inputRow {
@@ -463,10 +514,14 @@
   }
 
   .registerCard {
-    width: 95%; /* La tarjeta ocupa casi todo el ancho del cel */
-    padding: 25px 20px; /* Reducimos el padding interno para que los inputs respiren */
-    border-radius: 20px; /* Bordes un poco más compactos */
-    max-height: 85vh; /* Ajuste para que no choque con los teclados virtuales */
+    width: 95%;
+    /* La tarjeta ocupa casi todo el ancho del cel */
+    padding: 25px 20px;
+    /* Reducimos el padding interno para que los inputs respiren */
+    border-radius: 20px;
+    /* Bordes un poco más compactos */
+    max-height: 85vh;
+    /* Ajuste para que no choque con los teclados virtuales */
 
     /* Mantenemos tu scroll interno sin barra */
     overflow-y: auto;
@@ -486,7 +541,8 @@
   }
 
   h2 {
-    font-size: 1.15rem; /* Título un poco más pequeño */
+    font-size: 1.15rem;
+    /* Título un poco más pequeño */
     line-height: 1.2;
   }
 
@@ -501,7 +557,8 @@
   }
 
   .inputWrapper input {
-    padding: 10px 12px 10px 40px; /* Ajuste de padding del input */
+    padding: 10px 12px 10px 40px;
+    /* Ajuste de padding del input */
     font-size: 0.85rem;
   }
 

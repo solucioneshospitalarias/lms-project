@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   Mail,
   Lock,
-  ArrowRight,
+  ArrowLeft,
   Users,
   ChevronLeft,
   Eye,
@@ -120,6 +120,14 @@ const LoginProfesor = () => {
 
           <button type="submit" className={styles.btnMain}>
             Entrar al Panel
+          </button>
+
+          <button
+            type="button"
+            className={styles.btnBackRegister}
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft size={16} /> Regresar al inicio
           </button>
         </form>
 
