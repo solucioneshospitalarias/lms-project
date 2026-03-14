@@ -101,7 +101,7 @@ const Contacto = () => {
         {/* FORMULARIO CON GLASSMORPHISM */}
         <div className={styles.formCard}>
           <div className={styles.formSide}>
-            <h3 className={styles.formSubtitle}>FORMULARIO DE MESSIIIIIIIIIII</h3>
+            <h3 className={styles.formSubtitle}>FORMULARIO DE CONTACTO</h3>
             <form className={styles.contactForm}>
               <div className={styles.inputContainer}>
                 <input
