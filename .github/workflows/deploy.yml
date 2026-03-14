@@ -29,8 +29,10 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # Vite genera la carpeta 'dist' dentro de frontend
           local-dir: ./frontend/dist/ 
-          # Asegúrate de que esta sea la ruta correcta en tu cPanel
           server-dir: ./
           protocol: ftp
+          port: 21
+          timeout: 90000
+          passive: true
+          dangerous-clean-slate: false

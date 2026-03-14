@@ -129,7 +129,7 @@ const About = () => {
             <h2 className={styles.title3D}>¿QUIÉNES SOMOS?</h2>
             <div className={styles.divider}></div>
             <p className={styles.mainText}>
-              soy leonel messi
+              soy walter y estoy probando el action
             </p>
           </div>
         </div>
