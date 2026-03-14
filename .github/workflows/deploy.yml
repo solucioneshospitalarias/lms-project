@@ -1,0 +1,35 @@
+name: Deploy Automático LMS
+
+on:
+  push:
+    branches:
+      - master  # Solo se activa cuando los cambios llegan a la rama master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Obtener código
+        uses: actions/checkout@v3
+
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 3. Build del Frontend (React + Vite)
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: 4. Subir a cPanel vía FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Vite genera la carpeta 'dist' dentro de frontend
+          local-dir: ./frontend/dist/ 
+          # Asegúrate de que esta sea la ruta correcta en tu cPanel
+          server-dir: ./public_html/
