@@ -33,3 +33,4 @@ jobs:
           local-dir: ./frontend/dist/ 
           # Asegúrate de que esta sea la ruta correcta en tu cPanel
           server-dir: ./
+          protocol: ftp
