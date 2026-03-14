@@ -129,10 +129,11 @@ const About = () => {
             <h2 className={styles.title3D}>¿QUIÉNES SOMOS?</h2>
             <div className={styles.divider}></div>
             <p className={styles.mainText}>
-              En Rutas del Saber, no solo enseñamos normas; construimos una cultura de prevención
-              y respeto en las vías. Somos la plataforma líder en educación vial interactiva,
-              diseñada para que conductores, estudiantes y docentes dominen las señales de
-              tránsito de forma dinámica y efectiva.
+              En Rutas del Saber, somos una plataforma líder dedicada a
+              transformar la educación vial y la convivencia armónica a través
+              de la tecnología. Creemos que el conocimiento es la herramienta
+              más poderosa para salvar vidas y construir una cultura de paz en
+              nuestras comunidades.
             </p>
           </div>
         </div>
