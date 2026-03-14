@@ -32,4 +32,4 @@ jobs:
           # Vite genera la carpeta 'dist' dentro de frontend
           local-dir: ./frontend/dist/ 
           # Asegúrate de que esta sea la ruta correcta en tu cPanel
-          server-dir: ./public_html/
+          server-dir: ./
