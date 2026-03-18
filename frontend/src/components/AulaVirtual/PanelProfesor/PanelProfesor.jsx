@@ -2,25 +2,48 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import styles from './PanelProfesor.module.css';
-import CapiLogo from '../../../assets/favicon.ico'
+import CapiLogo from '../../../assets/logoRutas.png';
+import sexto from '../../../assets/Servicios.png'
+import septimo from '../../../assets/logoRutas.png'
+import octavo from '../../../assets/loginProfesor.png'
 
 const PanelProfesor = () => {
     const navigate = useNavigate();
 
     const misGrados = [
-        { id: '1', grado: '6°', nombre: 'Sexto A', guias: 4, color: '#c22821' },
-        { id: '2', grado: '7°', nombre: 'Séptimo B', guias: 3, color: '#e63946' },
-        { id: '3', grado: '8°', nombre: 'Octavo C', guias: 5, color: '#b21e17' },
+        {
+            id: '1',
+            grado: '6°',
+            nombre: 'Sexto A',
+            guias: 4,
+            color: '#c22821',
+            imagen: sexto
+        },
+        {
+            id: '2',
+            grado: '7°',
+            nombre: 'Séptimo B',
+            guias: 3,
+            color: '#e63946',
+            imagen: septimo
+        },
+        {
+            id: '3',
+            grado: '8°',
+            nombre: 'Octavo C',
+            guias: 5,
+            color: '#b21e17',
+            imagen: octavo
+        },
     ];
 
     const handleLogout = () => {
-        // Aquí podrías limpiar el localStorage si guardas tokens
         navigate('/login-profesor');
     };
 
     return (
         <div className={styles.mainWrapper}>
-            {/* --- NAVBAR SUPERIOR EXCLUSIVA --- */}
+            {/* --- NAVBAR SUPERIOR --- */}
             <nav className={styles.topNav}>
                 <div className={styles.logoSection}>
                     <img src={CapiLogo} alt='Logo Capi' className={styles.capiImage} />
@@ -46,14 +69,22 @@ const PanelProfesor = () => {
                             className={styles.card}
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            <div className={styles.iconBox} style={{ backgroundColor: item.color }}>
-                                {item.grado}
+                            {/* 1. Imagen ahora va arriba para el diseño horizontal de la grid */}
+                            <div className={styles.imageSide}>
+                                <img src={item.imagen} alt={item.nombre} loading="lazy" />
                             </div>
-                            <div className={styles.info}>
-                                <h3>{item.nombre}</h3>
-                                <p>{item.guias} Guías Pedagógicas</p>
+
+                            {/* 2. Información debajo */}
+                            <div className={styles.infoSide}>
+                                <div className={styles.iconBox} style={{ backgroundColor: item.color }}>
+                                    {item.grado}
+                                </div>
+                                <div className={styles.info}>
+                                    <h3>{item.nombre}</h3>
+                                    <p>{item.guias} Guías Pedagógicas</p>
+                                </div>
+                                <button className={styles.btn}>Entrar a la Guía</button>
                             </div>
-                            <button className={styles.btn}>Entrar a la Guía</button>
                         </div>
                     ))}
                 </div>
