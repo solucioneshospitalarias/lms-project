@@ -21,8 +21,8 @@ import ForgotPassword from "./components/Auth/ForgotPassword";
 import AdminLayout from "./components/layout/AdminLayout";
 import ClassroomHome from "./components/AulaVirtual/ClassroomHome";
 import MisCursos from "./components/AulaVirtual/MisCursos";
-import EstadisticasAula from "./components/AulaVirtual/EstadisticasAula";
-import Comunidad from "./components/AulaVirtual/Comunidad";
+import Noticias from "./components/AulaVirtual/Noticias";
+import Desempeños from "./components/AulaVirtual/Desempeños";
 import ConfiguracionAula from "./components/AulaVirtual/ConfiguracionAula";
 import CalendarioAula from './components/AulaVirtual/CalendarioAula';
 import PanelProfesor from './components/AulaVirtual/PanelProfesor/PanelProfesor'
@@ -30,15 +30,8 @@ import PanelProfesor from './components/AulaVirtual/PanelProfesor/PanelProfesor'
 function App() {
   const { pathname } = useLocation();
 
-  // Definimos qué páginas NO deben mostrar el Header y Footer de la Landing
-  const isCleanPage =
-    pathname === "/login" ||
-    pathname === "/register" ||
-    pathname === "/login-profesor" ||
-    pathname === "/register-profesor" ||
-    pathname === "/forgot-password" ||
-    pathname === "/panel-profesor"
-  pathname.startsWith("/aula-virtual");
+  const cleanRoutes = ["/login", "/register", "/login-profesor", "/register-profesor", "/forgot-password", "/panel-profesor"];
+  const isCleanPage = cleanRoutes.includes(pathname) || pathname.startsWith("/aula-virtual");
 
   useEffect(() => {
     if (!isCleanPage) {
@@ -57,15 +50,12 @@ function App() {
           />
         </Helmet>
 
-        {/* El Header solo aparece si NO es una página limpia (login o aula virtual) */}
         {!isCleanPage && <Header />}
 
-        {/* Quitamos el textAlign center solo para el aula virtual para que no dañe el grid */}
         <main
           style={!isCleanPage ? { textAlign: "center" } : { width: "100%" }}
         >
           <Routes>
-            {/* RUTAS LANDING */}
             <Route path="/" element={<Home />} />
             <Route path="/estadisticas" element={<Estadisticas />} />
             <Route path="/productos" element={<Productos />} />
@@ -82,12 +72,11 @@ function App() {
 
             <Route path="/panel-profesor" element={<PanelProfesor />} />
 
-            {/* RUTAS AULA VIRTUAL (Usando el AdminLayout) */}
             <Route path="/aula-virtual" element={<AdminLayout />}>
               <Route index element={<ClassroomHome />} />
               <Route path="mis-cursos" element={<MisCursos />} />
-              <Route path="estadisticas" element={<EstadisticasAula />} />
-              <Route path="comunidad" element={<Comunidad />} />
+              <Route path="noticias" element={<Noticias />} />
+              <Route path="desempeños" element={<Desempeños />} />
               <Route path="configuracion" element={<ConfiguracionAula />} />
               <Route path="calendario" element={<CalendarioAula />} />
             </Route>
