@@ -1,26 +1,280 @@
-/* ClassroomHome.module.css */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  padding: 20px;
+/* Contenedor del Grid (uno al lado del otro en escritorio) */
+.classroomGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 40px 0;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.card {
-  border: 1px solid #dadce0;
-  border-radius: 8px;
+/* La tarjeta horizontal estilo "Rutas del Saber" */
+.studentCard {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 20px;
   overflow: hidden;
-  transition: box-shadow 0.2s;
-  background: white;
+  /* ¡CRÍTICO! Corta cualquier cosa que intente salir de la card */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f2f2f2;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    border-color 0.3s ease;
+
+  /* AJUSTE SENIOR: Establecemos un alto máximo fijo para toda la card */
+  height: 320px;
+  /* Alto fijo profesional para el dashboard */
+}
+
+/* Efecto hover profesional */
+.studentCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+  border-color: rgba(194, 40, 33, 0.1);
+}
+
+.studentCard:hover .courseImageSide img {
+  transform: scale(1.06);
+  /* Zoom sutil hacia adentro, como en el panel docente */
+}
+
+/* Sección de Información (Izquierda) */
+.courseInfoSide {
+  flex: 1.1;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  /* Para asegurar que el texto no empuje el alto */
+  overflow: hidden;
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.courseInfoSide h3 {
+  font-size: 1.9rem;
+  margin: 0 0 8px 0;
+  color: #2d3436;
+}
+
+.teacherName {
+  font-size: 1rem;
+  color: #636e72;
+  margin-bottom: 25px;
+}
+
+.instructorBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  /* Separación entre el instructor y el botón rojo */
+}
+
+.btnAccess {
+  display: block;
+  /* Asegura que sea un bloque para respetar márgenes */
+  background-color: #c22821;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.3s ease;
+
+  /* Margen superior e inferior para dar aire por ambos lados */
+  margin-top: 5px;
+  margin-bottom: 25px;
+  width: fit-content;
+  /* Para que no ocupe todo el ancho si es block */
 }
 
-.card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.btnAccess:hover {
+  background-color: #a0201a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(194, 40, 33, 0.25);
 }
 
-.cardHeader {
-  padding: 16px;
+.cardFooter {
+  display: flex;
+  gap: 15px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.footerIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footerIcon:hover {
+  opacity: 0.7;
+}
+
+.cardFooter,
+.footerIcon {
+  display: none;
+}
+
+/* Sección de Imagen (Derecha) */
+.courseImageSide {
+  width: 380px;
+  /* Ancho fijo para la imagen de inmersión */
+  height: 100%;
+  /* Ocupar todo el alto fijo de la card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Corta la imagen sobrante */
+  background-color: #fcfcfc;
+}
+
+.courseImageSide img {
+  width: 100%;
+  height: 100%;
+
+  /* object-fit: cover asegura que la imagen llene el espacio sin deformarse */
+  object-fit: cover;
+  /* La imagen se encoge/recorta hasta llenar el cuadro perfectamente */
+
+  object-position: center;
+  /* Asegura que el centro de la imagen sea lo más visible */
+
+  transition: transform 0.6s ease;
+}
+
+/* Efecto hover de la imagen (Inmersión) */
+.studentCard:hover .courseImageSide img {
+  transform: scale(1.08);
+  /* Zoom sutil hacia adentro */
+}
+
+.secondaryActions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  /* Cambiamos el margen inferior para que la card 
+     termine con un espaciado equilibrado */
+  margin-bottom: 5px;
+}
+
+.secondaryActions button {
+  flex: 1;
+  /* Para que ocupen el mismo ancho */
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* Espacio entre icono y texto */
+}
+
+.btnOpen {
+  background-color: #1a73e8;
+  /* Azul profesional */
   color: white;
-  height: 100px;
+  box-shadow: 0 4px 10px rgba(26, 115, 232, 0.2);
+}
+
+.btnOpen:hover {
+  background-color: #1557b0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
+}
+
+.btnNotes {
+  background-color: #7f8c8d;
+  color: white;
+  box-shadow: 0 4px 10px rgba(127, 140, 141, 0.2);
+}
+
+.btnNotes:hover {
+  background-color: #6c7678;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(127, 140, 141, 0.3);
+}
+
+/* --- Responsive para Móviles y Tablets --- */
+@media (max-width: 768px) {
+  .classroomGrid {
+    padding: 20px 15px;
+    gap: 20px;
+  }
+
+  .studentCard {
+    flex-direction: column-reverse;
+    height: auto;
+    max-height: none;
+    min-height: 450px;
+  }
+
+  .courseImageSide {
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .courseInfoSide {
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    flex: none;
+  }
+
+  .badge {
+    margin-bottom: 10px;
+  }
+
+  .instructorBadge {
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .btnAccess {
+    width: 100%;
+    margin: 10px 0 20px 0;
+  }
+
+  .secondaryActions {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .secondaryActions button {
+    flex: 1;
+    font-size: 0.85rem;
+    padding: 12px 5px;
+  }
+
+  @media (max-width: 480px) {
+    .secondaryActions {
+      flex-direction: column;
+    }
+
+    .courseInfoSide h3 {
+      font-size: 1.5rem;
+    }
+  }
 }
