@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SidebarAdmin from "../AulaVirtual/SidebarAdmin";
 import NavbarAula from "../AulaVirtual/NavbarAula";
@@ -8,6 +8,10 @@ const AdminLayout = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
