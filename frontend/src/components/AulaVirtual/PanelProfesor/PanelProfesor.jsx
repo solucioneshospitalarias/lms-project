@@ -5,7 +5,7 @@ import styles from './PanelProfesor.module.css';
 import CapiLogo from '../../../assets/logoRutas.png';
 import sexto from '../../../assets/Servicios.png'
 import septimo from '../../../assets/logoRutas.png'
-import octavo from '../../../assets/loginProfesor.png'
+import octavo from '../../../assets/LoginProfesor.png'
 
 const PanelProfesor = () => {
     const navigate = useNavigate();
