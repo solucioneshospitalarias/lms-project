@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./SidebarAdmin.module.css";
-import { FaHome, FaBook, FaChartLine, FaUsers, FaCog, FaCalendarAlt } from "react-icons/fa";
+import { FaHome, FaBook, FaRegNewspaper, FaGraduationCap, FaCog, FaCalendarAlt } from "react-icons/fa";
 
 const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
@@ -55,28 +55,28 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
         {/* Estadísticas */}
         <NavLink
-          to="/aula-virtual/estadisticas"
+          to="/aula-virtual/noticias"
           replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
-          <FaChartLine className={styles.icon} />
-          {isOpen && <span>Estadísticas</span>}
+          <FaRegNewspaper className={styles.icon} />
+          {isOpen && <span>Noticias</span>}
         </NavLink>
 
         {/* Comunidad */}
         <NavLink
-          to="/aula-virtual/comunidad"
+          to="/aula-virtual/desempeños"
           replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
-          <FaUsers className={styles.icon} />
-          {isOpen && <span>Comunidad</span>}
+          <FaGraduationCap className={styles.icon} />
+          {isOpen && <span>Mis Desempeños</span>}
         </NavLink>
       </nav>
 
