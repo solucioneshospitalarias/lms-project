@@ -23,8 +23,9 @@ const AdminLayout = () => {
           style={{
             flexGrow: 1,
             padding: "20px",
-            marginLeft: isSidebarOpen ? "260px" : "72px",
+            marginLeft: window.innerWidth <= 768 ? "0" : (isSidebarOpen ? "260px" : "72px"),
             transition: "margin-left 0.3s ease",
+            minWidth: 0,
           }}
         >
           <div key={location.pathname} className="fadeUpEffect">
