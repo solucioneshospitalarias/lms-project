@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"; // Quitamos useState porque ya no usaremos modales
+import { useNavigate } from "react-router-dom";
 import styles from "./ClassroomHome.module.css";
 import { BookOpenText, User, BookCheck, ClipboardList } from 'lucide-react';
 import img1 from '../../assets/Servicios.png'
@@ -7,41 +8,15 @@ import img3 from '../../assets/Identidad.png'
 import img4 from '../../assets/FormularioContacto.png'
 
 const courses = [
-  {
-    id: 1,
-    category: "Matemáticas",
-    grade: "Grado 9",
-    teacher: "Walter",
-    color: "#d93025",
-    image: img1
-  },
-  {
-    id: 2,
-    category: "Lenguaje",
-    grade: "Grado 9",
-    teacher: "Samir",
-    color: "#FFB300",
-    image: img2
-  },
-  {
-    id: 3,
-    category: "Ciencias Naturales",
-    grade: "Grado 9",
-    teacher: "Jons",
-    color: "#1e8e3e",
-    image: img3
-  },
-  {
-    id: 4,
-    category: "Ciencias Sociales",
-    grade: "Grado 9",
-    teacher: "Samuel",
-    color: "#1a73e8",
-    image: img4
-  },
+  { id: 1, category: "Matemáticas", grade: "Periodo 1", teacher: "Walter", color: "#d93025", image: img1 },
+  { id: 2, category: "Lenguaje", grade: "Periodo 2", teacher: "Samir", color: "#FFB300", image: img2 },
+  { id: 3, category: "Ciencias Naturales", grade: "Periodo 3", teacher: "Jons", color: "#1e8e3e", image: img3 },
+  { id: 4, category: "Ciencias Sociales", grade: "Periodo 4", teacher: "Samuel", color: "#1a73e8", image: img4 },
 ];
 
 const ClassroomHome = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.classroomGrid}>
       {courses.map((course, index) => (
@@ -50,7 +25,6 @@ const ClassroomHome = () => {
           className={`${styles.studentCard} fadeUpEffect`}
           style={{ animationDelay: `${index * 0.1}s` }}
         >
-          {/* --- SECCIÓN IZQUIERDA: Información del Curso --- */}
           <div className={styles.courseInfoSide}>
             <div className={styles.badge} style={{ backgroundColor: course.color + '20', color: course.color }}>
               <BookOpenText size={16} />
@@ -59,39 +33,38 @@ const ClassroomHome = () => {
 
             <h3>{course.grade}</h3>
 
-            {/* Instructor */}
             <div className={styles.instructorBadge}>
               <User size={16} color="#636e72" />
               <span>Instructor: {course.teacher}</span>
             </div>
 
-            {/* Botón Principal Acceder */}
             <button className={styles.btnAccess}>Acceder al Curso</button>
 
-            {/* Botones Secundarios: Abrir y Mis notas */}
             <div className={styles.secondaryActions}>
               <button className={styles.btnOpen}>
                 <BookCheck size={18} />
                 Abrir
               </button>
-              <button className={styles.btnNotes}>
+
+              {/* ✅ NAVEGACIÓN LIMPIA: Esto te llevará a la pantalla completa */}
+              <button
+                className={styles.btnNotes}
+                onClick={() => navigate("/visor-notas")}
+              >
                 <ClipboardList size={18} />
                 Mis notas
               </button>
             </div>
           </div>
 
-          {/* --- SECCIÓN DERECHA: Imagen de Inmersión --- */}
           <div className={styles.courseImageSide}>
-            <img
-              src={course.image}
-              alt={`Imagen de inmersión para Grado 9 ${course.category}`}
-              loading="lazy"
-              decoding="async"
-            />
+            <img src={course.image} alt={course.category} loading="lazy" />
           </div>
         </div>
       ))}
+
+      {/* ❌ ELIMINAMOS EL COMPONENTE VisorNotas DE AQUÍ 
+          Porque ahora es una ruta independiente en App.jsx */}
     </div>
   );
 };
