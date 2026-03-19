@@ -16,17 +16,34 @@
   cursor: pointer;
 }
 
+.largeAvatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
 .accountMenu {
   position: absolute;
-  top: 45px;
+  top: 50px;
   right: 0;
-  width: 250px;
+  width: 260px;
   background: white;
-  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px 0;
+  z-index: 1000;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  padding: 0 20px 15px 20px;
 }
 
 .accountItem {
@@ -137,6 +154,58 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+}
+
+.userName {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+.userCode {
+  color: #7f8c8d;
+  font-size: 13px;
+  margin: 2px 0 8px 0;
+}
+
+.viewProfileBtn {
+  background: #ff2d55;
+  /* Color rosado del botón 'Ver perfil' */
+  color: white;
+  border: none;
+  padding: 4px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.menuDivider {
+  height: 1px;
+  background: #eee;
+  margin: 10px 0;
+}
+
+.menuOptionItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menuOptionItem:hover {
+  background: #f9f9f9;
+}
+
+.optionIcon {
+  margin-right: 12px;
+  color: #7f8c8d;
 }
 
 .menuBtn {
