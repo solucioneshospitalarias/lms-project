@@ -178,7 +178,7 @@ const Login = () => {
             className={styles.btnBackHeader}
             onClick={() => navigate("/")}
           >
-            <ArrowLeft size={16} /> Regresar al inicio
+            <ArrowLeft size={16} /> Regresar
           </button>
           <div className={styles.cardGlow}></div>
 
