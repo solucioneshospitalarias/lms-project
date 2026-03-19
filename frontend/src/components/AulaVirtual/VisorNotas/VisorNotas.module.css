@@ -1,0 +1,266 @@
+.pageContainer {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 10000;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sidebar {
+    width: 280px;
+    background: #ffffff;
+    border-right: 1px solid #dcdfe6;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Botón superior en el sidebar para regresar */
+.backBtn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: #c22821;
+    /* Tu color institucional guinda */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.backBtn:hover {
+    background: #a51f1a;
+}
+
+.sidebarHeader {
+    padding: 20px;
+    background: #34495e;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tabsContainer {
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+    background: #ecf0f1;
+}
+
+.tabBtn {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #bdc3c7;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.activeTab {
+    background: #c22821;
+    color: white;
+    border-color: #c22821;
+}
+
+/* Visor PDF Principal */
+.viewerMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewerHeader {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.pdfWrapper {
+    flex: 1;
+    background: #525659;
+    /* Color gris oscuro estándar de lectores PDF */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdfIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.btnClose {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.btnClose:hover {
+    color: #c22821;
+}
+
+/* Lista de contenidos en el sidebar */
+.indiceSimulado {
+    padding: 20px;
+}
+
+.indiceSimulado p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.indiceSimulado ul {
+    list-style: none;
+    padding: 0;
+}
+
+.indiceSimulado li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #606266;
+}
+
+/* --- RESPONSIVE PARA EL VISOR DE NOTAS --- */
+
+/* Tablets y Laptops pequeñas */
+/* --- RESPONSIVE DEL VISOR DE NOTAS --- */
+
+/* Tablets y Laptops pequeñas */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 240px;
+        /* Reducimos un poco el ancho del sidebar vertical */
+    }
+}
+
+/* Celulares y Tablets pequeñas (Modo Vertical) <--- ESTA ES LA CLAVE */
+@media (max-width: 768px) {
+
+    /* 1. El contenedor cambia de fila a columna */
+    .pageContainer {
+        flex-direction: column;
+    }
+
+    /* 2. El sidebar se vuelve una barra horizontal superior compacta */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        /* Ocupa solo el alto de su contenido */
+        border-right: none;
+        border-bottom: 1px solid #dcdfe6;
+        display: flex;
+        flex-direction: column;
+        /* Apila el botón volver sobre las unidades */
+        background: #f8f9fa;
+    }
+
+    /* 3. Botón Volver más compacto */
+    .backBtn {
+        padding: 10px 15px;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    /* Ocultamos el texto "Volver" y solo dejamos el icono si el espacio es muy crítico */
+    /* .backBtn span { display: none; } */
+
+    /* 4. Ocultamos el Header gris de "Unidades" */
+    .sidebarHeader {
+        display: none;
+    }
+
+    /* 5. Ajustamos el contenedor de botones U1, U2... */
+    .tabsContainer {
+        display: flex;
+        flex-direction: row;
+        /* Unidades en fila */
+        padding: 8px 15px;
+        gap: 8px;
+        background: white;
+        width: 100%;
+        justify-content: center;
+        /* Centra las unidades */
+    }
+
+    /* Botones de unidades más pequeños y tocables */
+    .tabBtn {
+        flex: 0 1 auto;
+        /* No se estiran para llenar todo el ancho */
+        padding: 6px 12px;
+        font-size: 13px;
+        border-radius: 6px;
+        min-width: 45px;
+        /* Tamaño mínimo para el dedo */
+    }
+
+    /* 6. Ocultamos la lista de contenido ("Introducción", "Desarrollo"...) */
+    .indiceSimulado {
+        display: none;
+    }
+
+    /* 7. El visor de PDF se estira para llenar el resto de la pantalla */
+    .viewerMain {
+        flex: 1;
+        width: 100%;
+        height: calc(100vh - 100px);
+        /* Resta el alto de la nueva barra superior */
+    }
+
+    /* Encabezado del visor más compacto */
+    .viewerHeader {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Optimización para cuando el celular está de lado (Landscape) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        flex-direction: row;
+        /* Todo en una sola línea horizontal */
+        align-items: center;
+        background: #f8f9fa;
+    }
+
+    .backBtn {
+        width: auto;
+        padding: 10px 15px;
+    }
+
+    .tabsContainer {
+        width: auto;
+        padding: 0 15px;
+        background: transparent;
+    }
+}

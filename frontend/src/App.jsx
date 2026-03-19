@@ -21,16 +21,17 @@ import ForgotPassword from "./components/Auth/ForgotPassword";
 import AdminLayout from "./components/layout/AdminLayout";
 import ClassroomHome from "./components/AulaVirtual/ClassroomHome";
 import MisCursos from "./components/AulaVirtual/MisCursos";
-import Noticias from "./components/AulaVirtual/Noticias";
+import RestablecerContraseña from "./components/AulaVirtual/RestablecerContraseña";
 import Desempeños from "./components/AulaVirtual/Desempeños";
 import ConfiguracionAula from "./components/AulaVirtual/ConfiguracionAula";
 import CalendarioAula from './components/AulaVirtual/CalendarioAula';
+import VisorNotas from './components/AulaVirtual/VisorNotas/VisorNotas'
 import PanelProfesor from './components/AulaVirtual/PanelProfesor/PanelProfesor'
 
 function App() {
   const { pathname } = useLocation();
 
-  const cleanRoutes = ["/login", "/register", "/login-profesor", "/register-profesor", "/forgot-password", "/panel-profesor"];
+  const cleanRoutes = ["/login", "/register", "/login-profesor", "/register-profesor", "/forgot-password", "/panel-profesor", "/visor-notas"];
   const isCleanPage = cleanRoutes.includes(pathname) || pathname.startsWith("/aula-virtual");
 
   useEffect(() => {
@@ -75,11 +76,13 @@ function App() {
             <Route path="/aula-virtual" element={<AdminLayout />}>
               <Route index element={<ClassroomHome />} />
               <Route path="mis-cursos" element={<MisCursos />} />
-              <Route path="noticias" element={<Noticias />} />
+              <Route path="restablecer-contraseña" element={<RestablecerContraseña />} />
               <Route path="desempeños" element={<Desempeños />} />
               <Route path="configuracion" element={<ConfiguracionAula />} />
               <Route path="calendario" element={<CalendarioAula />} />
             </Route>
+
+            <Route path="/visor-notas" element={<VisorNotas />} />
 
           </Routes>
 
