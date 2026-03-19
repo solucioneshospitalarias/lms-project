@@ -1,5 +1,3 @@
-/* LoginProfesor.module.css */
-
 .fullPageContainer {
   width: 100vw;
   height: 100vh;
@@ -9,7 +7,6 @@
   position: relative;
   overflow: hidden;
   background-color: var(--bg-main);
-  /* Usa tu variable global */
   transition: background-color 0.3s ease;
 }
 
@@ -31,13 +28,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* En modo claro es tenue, en oscuro es más densa */
   background: rgba(255, 255, 255, 0.3);
   z-index: 1;
   transition: background 0.3s ease;
 }
 
-/* Selector global para cambiar el overlay cuando data-theme="dark" */
 :global([data-theme="dark"]) .overlay {
   background: rgba(0, 0, 0, 0.7);
 }
@@ -46,16 +41,24 @@
   position: relative;
   z-index: 10;
   background: var(--card-bg);
-  /* Cambia de #ffffff a #2d2d2d automáticamente */
   width: 100%;
   max-width: 700px;
+  max-height: 90vh;
   padding: 40px;
   border-radius: 28px;
   border: 1px solid var(--card-border);
   box-shadow: 0 20px 40px var(--card-shadow);
   color: var(--text-main);
-  text-align: center;
+  text-align: left;
   transition: var(--transition);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.loginCard h2,
+.subtitle {
+  text-align: center;
 }
 
 .iconHeader {
@@ -66,7 +69,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto 20px auto;
   box-shadow: 0 10px 20px rgba(194, 40, 33, 0.3);
 }
 
@@ -81,7 +84,16 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* Separación interna del formulario */
+}
+
+.form label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  margin-top: 10px;
+  color: var(--text-main);
 }
 
 .inputWrapper {
@@ -115,9 +127,7 @@
 .btnMain {
   width: 100%;
   padding: 12px;
-  /* Un poco más de cuerpo que 10px para que se vea premium */
   margin-top: 15px;
-  /* Espacio con respecto a los inputs */
   margin-bottom: 5px;
   background: linear-gradient(135deg, var(--primary-red) 0%, #a01f1a 100%);
   color: white;
@@ -220,15 +230,12 @@
 
 .errorMessage {
   color: #ff4d4d;
-  /* Un rojo vibrante pero elegante */
   font-size: 0.75rem;
   margin-top: -8px;
-  /* Lo pega un poco más al input */
   margin-bottom: 8px;
   display: block;
   font-weight: 500;
   animation: fadeInError 0.3s ease;
-  /* Entrada suave y alegre */
 }
 
 @keyframes fadeInError {
@@ -245,134 +252,286 @@
 
 .inputError {
   border: 1px solid #dc2626 !important;
-  /* Rojo corporativo */
   background: rgba(220, 38, 38, 0.05) !important;
 }
 
-/* --- RESPONSIVE PARA LAPTOPS Y PANTALLAS MEDIANAS --- */
+/* SPINNER */
+.spinner {
+  animation: spin 1s linear infinite;
+}
 
-/* Esta regla se aplica cuando la pantalla es ancha (laptop) pero baja,
-   o para laptops estándar de hasta 1440px de ancho. */
-@media screen and (max-width: 1440px),
-screen and (max-height: 800px) {
-
-  /* 1. Ajuste del contenedor principal para asegurar centrado vertical */
-  .fullPageContainer {
-    display: flex;
-    align-items: center;
-    /* Centrado vertical estricto */
-    justify-content: center;
-    min-height: 100vh;
-    /* Ocupa al menos toda la altura de la pantalla */
-    padding: 20px 0;
-    /* Pequeño resguardo superior/inferior */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
 
-  /* 2. Compactación de la tarjeta */
-  .registerCard,
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btnMain:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 480px) {
+  .fullPageContainer {
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .backgroundWrapper {
+    filter: blur(8px);
+  }
+
   .loginCard {
-    width: 90%;
-    max-width: 400px;
-    /* Un poco más estrecha en laptops */
-    padding: 25px 30px;
-    /* Reducción de padding interno (Arriba/Abajo Izq/Der) */
-    border-radius: 24px;
-    /* Bordes ligeramente más suaves */
-    margin: auto;
-    /* Ayuda al centrado en flex container */
+    width: 100%;
+    min-height: 100vh;
+    max-width: none;
+    padding: 30px 20px;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    text-align: left;
   }
 
   .iconHeader {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 auto 15px auto !important;
-    /* Centra horizontalmente y da espacio abajo */
-    width: 48px !important;
-    height: 48px !important;
-    min-height: 48px !important;
-    padding: 0 !important;
-    border-radius: 14px !important;
+    width: 50px;
+    height: 50px;
+    margin: 0 0 20px 0;
+    border-radius: 14px;
   }
 
-  .iconHeader svg {
-    width: 24px !important;
-    height: 24px !important;
-    display: block !important;
-  }
-
-  h2 {
-    font-size: 1.3rem;
-    /* Título más compacto */
-    margin-bottom: 5px;
+  .loginCard h2 {
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
   }
 
   .subtitle {
-    font-size: 0.85rem;
-    /* Subtítulo más pequeño */
-    margin-bottom: 20px;
-    /* Menos espacio antes del formulario */
-  }
-
-  /* 4. Compactación del Formulario */
-  .form {
-    gap: 12px;
-    /* Menos espacio entre grupos de input */
-  }
-
-  .inputGroup {
-    margin-bottom: 0;
-    /* Usamos el gap del form en su lugar */
-  }
-
-  .label {
-    font-size: 0.85rem;
-    /* Etiquetas más pequeñas */
-    margin-bottom: 6px;
-    /* Menos espacio bajo la etiqueta */
-  }
-
-  /* Inputs más bajos */
-  .inputWrapper input {
-    padding: 10px 15px 10px 45px;
-    /* Reducción de padding vertical interno */
     font-size: 0.9rem;
-    /* Fuente interna ligeramente más pequeña */
-    border-radius: 10px;
-    /* Bordes más ajustados */
+    margin-bottom: 25px;
   }
 
-  .inputIcon {
-    left: 15px;
-    /* Ajuste de posición del icono */
-    width: 18px;
-    /* Icono más pequeño */
-    height: 18px;
+  .form {
+    gap: 15px;
   }
 
-  /* 5. Ajuste de Botones */
-  .btnMain {
-    padding: 12px;
-    /* Botón principal más bajo */
-    font-size: 0.95rem;
-    margin-top: 10px;
-    /* Menos espacio superior */
+  .form label {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .inputWrapper input {
+    height: 54px;
+    padding: 12px 15px 12px 55px;
+    font-size: 1rem;
     border-radius: 12px;
   }
 
-  /* 6. Textos de pie de página y botones secundarios */
+  .inputIcon {
+    left: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .eyeButton {
+    right: 20px;
+  }
+
+  .btnMain {
+    height: 54px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 16px;
+    margin-top: 25px;
+  }
+
+  .btnBackRegister {
+    height: 50px;
+    font-size: 0.9rem;
+  }
+
   .footerText {
-    margin-top: 20px;
-    /* Menos espacio superior */
-    font-size: 0.85rem;
+    margin-top: 25px;
+    font-size: 0.8rem;
   }
 
   .backButton {
-    margin-top: 20px;
-    /* Menos espacio antes del botón volver */
-    padding: 10px;
-    /* Botón volver más bajo */
-    font-size: 0.85rem;
-    border-radius: 10px;
+    margin-top: 30px;
+    height: 50px;
+    border-radius: 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .fullPageContainer {
+    padding: 20px;
+  }
+
+  .loginCard {
+    width: 90%;
+    max-width: 420px;
+    padding: 25px 30px;
+    border-radius: 24px;
+  }
+
+  .iconHeader {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .inputWrapper input {
+    padding: 11px 15px 11px 48px;
+    font-size: 0.95rem;
+  }
+
+  .btnMain,
+  .btnBackRegister,
+  .backButton {
+    height: 48px;
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1440px) {
+  .loginCard {
+    max-width: 400px;
+    padding: 30px;
+  }
+
+  .iconHeader {
+    margin: 0 auto 20px auto !important;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .loginCard {
+    max-width: 750px;
+    padding: 50px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .form label {
+    font-size: 1.1rem;
+  }
+
+  .inputWrapper input {
+    font-size: 1.2rem;
+    padding: 15px 15px 15px 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .fullPageContainer {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .loginCard {
+    width: 90%;
+    max-width: 380px;
+    margin: auto;
+    border-radius: 32px !important;
+    height: auto;
+    min-height: auto;
+    margin: 20px auto;
+    padding: 25px 20px;
+  }
+
+  .loginCard::-webkit-scrollbar {
+    display: none;
+  }
+
+  .iconHeader {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 12px auto !important;
+  }
+
+  .loginCard h2,
+  .subtitle {
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+
+  .form {
+    gap: 10px;
+  }
+
+  .form label {
+    text-align: left;
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    margin-top: 5px;
+  }
+
+  .inputWrapper input {
+    height: 44px;
+    font-size: 0.9rem;
+    padding-left: 42px;
+  }
+
+  .inputIcon {
+    left: 12px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .btnMain {
+    height: 46px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+
+  .btnBackRegister,
+  .backButton {
+    height: 42px;
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+
+  .footerText {
+    margin-top: 15px;
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .loginCard {
+    max-width: 450px;
+    padding: 40px;
   }
 }
