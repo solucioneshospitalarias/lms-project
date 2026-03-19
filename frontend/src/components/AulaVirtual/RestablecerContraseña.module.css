@@ -1,0 +1,237 @@
+.containerPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 80vh;
+    background-color: transparent;
+    /* Evita fondos que choquen con el layout principal */
+    padding: 40px 20px;
+}
+
+.formCard {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    /* Sombra única y suave */
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerSection {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.iconContainer {
+    background-color: #d93025;
+    /* Tu rojo institucional */
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 16px rgba(217, 48, 37, 0.2);
+}
+
+.titlePage {
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.subtitlePage {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.inputGroup label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 14px;
+    color: #999;
+}
+
+.inputWrapper input {
+    width: 100%;
+    padding: 12px 40px 12px 42px;
+    border: 1.5px solid #eee;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.inputWrapper input:focus {
+    border-color: #d93025;
+    outline: none;
+    background-color: #fff;
+}
+
+.eyeBtn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 8px 0;
+}
+
+.btnSubmit {
+    background-color: #d93025;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btnSubmit:hover:not(:disabled) {
+    background-color: #b7281f;
+    transform: translateY(-2px);
+}
+
+.btnSubmit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.fieldError {
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.statusMessage {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.success {
+    background: #e6f7ed;
+    color: #1e7e34;
+}
+
+.error {
+    background: #fdf2f2;
+    color: #d93025;
+}
+
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid white;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+@media (max-width: 576px) {
+    .containerPage {
+        padding: 20px 15px;
+        align-items: flex-start;
+    }
+
+    .formCard {
+        padding: 30px 20px;
+        border-radius: 15px;
+    }
+
+    .iconContainer {
+        width: 48px;
+        height: 48px;
+    }
+
+    .titlePage {
+        font-size: 20px;
+    }
+
+    .subtitlePage {
+        font-size: 13px;
+        max-width: 100%;
+    }
+
+    .inputWrapper input {
+        font-size: 14px;
+        padding: 10px 35px 10px 38px;
+    }
+
+    .btnSubmit {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .formCard {
+        max-width: 90%;
+    }
+}
+
+@media (max-height: 600px) {
+    .containerPage {
+        align-items: flex-start;
+    }
+
+    .formCard {
+        margin-top: 10px;
+    }
+}
