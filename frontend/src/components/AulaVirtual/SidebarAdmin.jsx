@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./SidebarAdmin.module.css";
-import { FaHome, FaBook, FaRegNewspaper, FaGraduationCap, FaCog, FaCalendarAlt } from "react-icons/fa";
+import { FaHome, FaBook, FaLock, FaGraduationCap, FaCog, FaCalendarAlt } from "react-icons/fa";
 
 const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
@@ -55,15 +55,15 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
         {/* Estadísticas */}
         <NavLink
-          to="/aula-virtual/noticias"
+          to="/aula-virtual/restablecer-contraseña"
           replace={true}
           onClick={handleItemClick} // CAMBIADO: onClick
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
-          <FaRegNewspaper className={styles.icon} />
-          {isOpen && <span>Noticias</span>}
+          <FaLock className={styles.icon} />
+          {isOpen && <span>Contraseña</span>}
         </NavLink>
 
         {/* Comunidad */}
