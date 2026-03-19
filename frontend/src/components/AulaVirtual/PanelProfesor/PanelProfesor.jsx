@@ -38,7 +38,7 @@ const PanelProfesor = () => {
     ];
 
     const handleLogout = () => {
-        navigate('/login-profesor');
+        navigate('/login-profesor', { replace: true });
     };
 
     return (

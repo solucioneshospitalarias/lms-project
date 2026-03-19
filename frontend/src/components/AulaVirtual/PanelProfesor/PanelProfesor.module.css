@@ -71,17 +71,18 @@
     box-shadow: 0 5px 15px rgba(194, 40, 33, 0.1);
 }
 
-/* 4. Layout de Contenido */
 .container {
     padding: 60px 20px;
     max-width: 1000px;
-    /* Reducimos un poco para que las filas no sean infinitas */
     margin: 0 auto;
 }
 
 .header {
+    position: relative;
     text-align: center;
+    z-index: 1;
     margin-bottom: 50px;
+    background: transparent;
 }
 
 .header h1 {
@@ -101,11 +102,9 @@
     font-size: 1.15rem;
 }
 
-/* 5. Grid y Tarjetas (Cards) Premium */
 .grid {
     display: grid;
-    /* Crea columnas automáticas de mínimo 320px */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
@@ -114,15 +113,14 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 35px;
     display: flex;
-    flex-direction: column; /* Cambiamos a vertical para el diseño de rejilla */
+    flex-direction: column;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
-    height: 100%; /* Para que todas midan lo mismo */
+    height: 100%;
 }
 
-/* El efecto de brillo (Shine) que querías mantener */
 .card::before {
     content: "";
     position: absolute;
@@ -155,11 +153,11 @@
     color: white;
     font-size: 1.5rem;
     font-weight: 900;
-    margin-top: -60px; /* Sube el icono para que flote sobre la imagen */
+    margin-top: -60px;
     margin-bottom: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     z-index: 5;
-    border: 4px solid #fff; /* Contorno blanco para resaltar sobre la imagen */
+    border: 4px solid #fff;
 }
 
 .info {
@@ -182,14 +180,14 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centramos el contenido para este estilo */
+    align-items: center;
     text-align: center;
     flex-grow: 1;
 }
 
 .imageSide {
     width: 100%;
-    height: 200px; /* Altura fija para la parte visual superior */
+    height: 200px;
     overflow: hidden;
     position: relative;
 }
@@ -197,7 +195,7 @@
 .imageSide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantenemos el llenado total que te gustó */
+    object-fit: cover;
     transition: transform 0.6s ease;
 }
 
@@ -205,9 +203,8 @@
     transform: scale(1.1);
 }
 
-/* 6. Botón de Acción con efecto de elevación */
 .btn {
-    margin-top: auto; /* Empuja el botón siempre al fondo */
+    margin-top: auto;
     width: 100%;
     padding: 14px;
     border-radius: 18px;
@@ -226,28 +223,90 @@
 
 /* Responsive optimizado */
 @media (max-width: 768px) {
+
+    .container {
+        padding: 30px 15px;
+    }
+
+    .header {
+        margin-bottom: 30px;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+    }
+
+    .topNav {
+        padding: 0 15px;
+        height: 65px;
+    }
+
+    .logoSection span {
+        display: none;
+    }
+
+    .capiImage {
+        height: 40px;
+    }
+
+    .logoutBtn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
     .card {
-        flex-direction: column-reverse;
-        min-height: auto;
+        flex-direction: column;
+        border-radius: 28px;
+        transform: none !important;
     }
 
     .imageSide {
-        height: 180px;
-        width: 100%;
-        border-left: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        height: 160px;
+        order: -1;
     }
 
     .infoSide {
-        padding: 30px;
+        padding: 20px 25px 25px;
         align-items: center;
-    }
-
-    .info {
         text-align: center;
     }
 
+    .iconBox {
+        width: 50px;
+        height: 50px;
+        margin-top: -45px;
+        font-size: 1.2rem;
+        border-width: 3px;
+    }
+
+    .info h3 {
+        font-size: 1.5rem;
+    }
+
+    .info p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
     .btn {
-        width: 100%;
+        padding: 16px;
+        font-size: 1rem;
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .imageSide {
+        height: 140px;
     }
 }
