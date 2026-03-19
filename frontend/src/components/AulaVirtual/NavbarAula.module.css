@@ -24,7 +24,7 @@
   background: white;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 10px;
   z-index: 2000;
 }
@@ -53,8 +53,17 @@
   font-size: 12px;
 }
 
-.accName { margin: 0; font-size: 14px; font-weight: 500; }
-.accEmail { margin: 0; font-size: 12px; color: #5f6368; }
+.accName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.accEmail {
+  margin: 0;
+  font-size: 12px;
+  color: #5f6368;
+}
 
 .logoutBtn {
   width: 100%;
@@ -69,7 +78,8 @@
 .avatar {
   width: 35px;
   height: 35px;
-  background-color: #d93025; /* Tu rojo institucional */
+  background-color: #d93025;
+  /* Tu rojo institucional */
   color: white;
   border-radius: 50%;
   display: flex;
@@ -119,7 +129,8 @@
 .userAvatar {
   width: 35px;
   height: 35px;
-  background-color: #d93025; /* Tu rojo institucional */
+  background-color: #d93025;
+  /* Tu rojo institucional */
   color: white;
   border-radius: 50%;
   display: flex;
@@ -150,4 +161,52 @@
   font-size: 20px;
   color: #5f6368;
   font-family: "Roboto", sans-serif;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 8px;
+    height: 56px;
+  }
+
+  .brandName {
+    display: none;
+  }
+
+  .logo {
+    height: 28px;
+  }
+
+  .leftSection {
+    gap: 5px;
+  }
+
+  .accountMenu {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-width: none;
+  }
+
+  .iconBtn {
+    padding: 8px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .right {
+    gap: 4px;
+  }
+
+  .avatar,
+  .userAvatar {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
 }
