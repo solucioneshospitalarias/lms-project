@@ -1,30 +1,26 @@
 .sidebar {
   width: 260px;
-  height: calc(100vh - 64px); /* Altura total menos el Navbar superior */
+  height: calc(100vh - 64px);
   display: flex;
-  flex-direction: column; /* Organiza los elementos en vertical */
+  flex-direction: column;
   background-color: #ffffff;
   border-right: 1px solid #e0e0e0;
   position: fixed;
   left: 0;
   top: 64px;
-  transition: width 0.3s ease;
-  padding-bottom: 20px; /* Espacio al final */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-bottom: 20px;
+  z-index: 1100;
+  /* Por encima del contenido */
 }
 
 .closed {
-  width: 72px; /* Ancho cuando está cerrado estilo Classroom */
-}
-
-.logoSection {
-  padding: 0 24px 30px;
-  color: #c22821; /* Color azul institucional */
-  font-size: 1.2rem;
-  font-weight: bold;
+  width: 72px;
 }
 
 .navMenu {
-  flex-grow: 1; /* Esto hace que el menú superior ocupe todo el espacio disponible */
+  flex-grow: 1;
+  padding-top: 10px;
 }
 
 .navItem {
@@ -33,48 +29,42 @@
   padding: 12px 24px;
   color: #5f6368;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 0 50px 50px 0; /* Mantiene el estilo redondeado de Google */
+  transition: background 0.2s;
+  border-radius: 0 50px 50px 0;
   margin-right: 10px;
-  text-decoration: none;
-  padding: 25px;
-}
-
-.navItem span {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-  text-decoration: none;
-}
-
-.closed .navItem span {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.navItem:hover {
-  background-color: #fce8e6; /* Un rojo muy claro de fondo */
-  color: #d93025; /* Rojo intenso para el texto */
-}
-
-.active {
-  background-color: #fce8e6; /* Fondo rojo suave */
-  color: #d93025; /* Texto e icono en rojo */
-  font-weight: 500;
   text-decoration: none;
 }
 
 .icon {
-  min-width: 24px; /* Asegura que el icono no se mueva al cerrar */
+  min-width: 24px;
   font-size: 20px;
   margin-right: 16px;
 }
 
-.active .icon {
+.active {
+  background-color: #fce8e6;
   color: #d93025;
+  font-weight: 500;
 }
 
-.footerSection {
-  margin-top: auto; /* ESTO ES LO MÁS IMPORTANTE: Empuja la configuración al fondo */
-  border-top: 1px solid #f1f3f4; /* Opcional: una línea sutil divisoria */
-  padding-top: 10px;
+/* --- RESPONSIVE --- */
+
+@media (max-width: 768px) {
+  .sidebar {
+    top: 56px;
+    height: calc(100vh - 56px);
+    width: 280px;
+    left: 0;
+    box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .closed {
+    left: -280px;
+    width: 280px;
+  }
+
+  .navItem {
+    padding: 18px 24px;
+    margin-bottom: 5px;
+  }
 }

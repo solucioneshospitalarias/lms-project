@@ -6,7 +6,7 @@ import { FaHome, FaBook, FaRegNewspaper, FaGraduationCap, FaCog, FaCalendarAlt }
 const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
   const handleItemClick = () => {
-    if (!isOpen) {
+    if (window.innerWidth <= 768) {
       toggleSidebar();
     }
   };
