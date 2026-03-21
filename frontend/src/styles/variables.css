@@ -1,14 +1,9 @@
 :root {
-  /* Paleta Principal */
-  --primary-red: #c22821; /* Rojo Principal */
-  --primary-gray: #5c6670; /* Gris Principal */
-
-  /* Paleta Secundaria */
+  --primary-red: #c22821;
+  --primary-gray: #5c6670;
   --accent-yellow: #f7dc00;
   --accent-blue: #aad4e8;
   --accent-green: #48b358;
-
-  /* Aplicación en UI */
   --topbar-bg: #002147;
   --nav-text: var(--primary-gray);
   --nav-hover: var(--primary-red);
@@ -18,23 +13,20 @@
   --transition: all 0.3s ease;
   --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
 
-  /* MODO CLARO (Ajustes para las Cards) */
   --bg-main: #ffffff;
   --nav-link: #5c6670;
   --text-main: #5c6670;
-
   --header-bg: #ffffff;
   --card-bg: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.05); /* Borde sutil claro */
-  --card-shadow: rgba(0, 0, 0, 0.1); /* Sombra suave */
+  --card-border: rgba(0, 0, 0, 0.05);
+  --card-shadow: rgba(0, 0, 0, 0.1);
 
-  /* Colores de Marca */
   --primary-red: #c22821;
   --accent-green: #48b358;
   --accent-blue: #aad4e8;
 
-  --footer-bg: #3c4043; /* Gris claro para el fondo */
-  --footer-text: #1a1a1a; /* Letras negras */
+  --footer-bg: #3c4043;
+  --footer-text: #1a1a1a;
   --footer-text-links: #2d3748;
   --footer-text-main: #1a202c;
 }
@@ -44,49 +36,56 @@
   --text-main: #ffffff;
   --text-secondary: #cbd5e0;
   --header-bg: #1e1e1e;
-  --card-bg: #2d2d2d; /* Fondo gris oscuro profesional */
+  --card-bg: #2d2d2d;
   --nav-link: #ffffff !important;
-  --card-border: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Borde que resalta en la oscuridad */
+  --card-border: rgba(255,
+      255,
+      255,
+      0.1);
   --card-shadow: rgba(0, 0, 0, 0.5);
   --footer-bg: #1a1a1a;
   --footer-text-links: #cbd5e0;
-  --footer-text-main: #ffffff; /* Sombra más profunda */
+  --footer-text-main: #ffffff;
 }
 
 body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-main);
   color: var(--text-main);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  will-change: background-color, color;
 }
 
 html {
   scroll-behavior: smooth;
+  touch-action: manipulation;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0, 20px, 0);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .fadeUpEffect {
   animation: fadeInUp 0.6s ease-out forwards;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+img {
+  content-visibility: auto;
 }
