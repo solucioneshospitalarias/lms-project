@@ -69,11 +69,10 @@ const RestablecerContraseña = () => {
                 type={showCurrent ? "text" : "password"}
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder="••••••••••••"
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowCurrent(!showCurrent)}>
-                {showCurrent ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showCurrent ? <Eye size={18} /> : <EyeOff size={18} />}
               </button>
             </div>
           </div>
@@ -92,7 +91,7 @@ const RestablecerContraseña = () => {
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowNew(!showNew)}>
-                {showNew ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showNew ? <Eye size={18} /> : <EyeOff size={18} />}
               </button>
             </div>
             {newPassword.length > 0 && !isPasswordValid && (
@@ -112,7 +111,7 @@ const RestablecerContraseña = () => {
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowConfirm(!showConfirm)}>
-                {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showConfirm ? <Eye size={18} /> : <EyeOff size={18} />}
               </button>
             </div>
             {confirmPassword.length > 0 && !passwordsMatch && (
