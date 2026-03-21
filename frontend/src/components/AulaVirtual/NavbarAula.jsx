@@ -36,7 +36,7 @@ const NavbarAula = ({ toggleSidebar }) => {
           <FaBars />
         </button>
         <img src={logo} alt="Logo" className={styles.logo} />
-        <span className={styles.brand}>Rutas del Saber | Plataforma en Línea</span>
+        <span className={styles.brandName}>Rutas del Saber | Plataforma en Línea</span>
       </div>
 
       <div className={styles.right}>

@@ -134,11 +134,15 @@
   border-radius: 50%;
   font-weight: 500;
   color: #3c4043;
+  transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .hoy {
   background-color: #cc2221 !important;
   color: white !important;
+  box-shadow: 0 2px 4px rgba(204, 34, 33, 0.3);
+  z-index: 10;
 }
 
 /* ════════════════════════════════
@@ -237,9 +241,8 @@
   .gridMes,
   .headerDias {
     display: grid;
-    grid-template-columns: repeat(7, minmax(100px, 1fr));
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    grid-template-columns: repeat(7, minmax(60px, 1fr));
+    overflow-x: hidden;
   }
 
   .calendarioContainer::-webkit-scrollbar {
@@ -252,9 +255,16 @@
   }
 
   .numeroDia {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .hoy {
+    background-color: #cc2221 !important;
+    color: white !important;
+    margin: 0 auto;
+    display: flex !important;
   }
 
   .nombreDiaHeader {
@@ -280,10 +290,24 @@
    ════════════════════════════════ */
 @media (max-width: 480px) {
 
+  .mesDisplay {
+    font-size: 0.9rem;
+  }
+
+  .leftControls {
+    gap: 5px;
+  }
+
   .headerDias,
   .gridSemana,
   .gridMes {
-    min-width: 700px;
+    min-width: 100%;
+  }
+
+  .columnaDia,
+  .celdaDia {
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .header {
@@ -291,7 +315,7 @@
   }
 
   .todayBtn {
-    padding: 4px 10px;
-    font-size: 13px;
+    padding: 2px 8px;
+    font-size: 11px;
   }
 }

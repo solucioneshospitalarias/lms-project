@@ -137,17 +137,18 @@
   gap: 15px;
 }
 
-.brand {
-  font-size: 22px;
+.brandName {
+  font-size: 20px;
   color: #5f6368;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
+  white-space: nowrap;
+  display: block;
 }
 
 .userAvatar {
   width: 35px;
   height: 35px;
   background-color: #d93025;
-  /* Tu rojo institucional */
   color: white;
   border-radius: 50%;
   display: flex;
@@ -171,7 +172,6 @@
 
 .viewProfileBtn {
   background: #ff2d55;
-  /* Color rosado del botón 'Ver perfil' */
   color: white;
   border: none;
   padding: 4px 15px;
@@ -232,50 +232,95 @@
   font-family: "Roboto", sans-serif;
 }
 
-/* --- RESPONSIVE DESIGN --- */
 
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0 8px;
-    height: 56px;
-  }
-
   .brandName {
-    display: none;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
   }
 
-  .logo {
-    height: 28px;
-  }
-
-  .leftSection {
-    gap: 5px;
-  }
-
-  .accountMenu {
-    position: fixed;
-    top: 60px;
-    right: 10px;
-    left: 10px;
-    width: auto;
-    max-width: none;
-  }
-
-  .iconBtn {
-    padding: 8px;
-    font-size: 18px;
+  .left {
+    gap: 8px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 380px) {
+  .brandName {
+    max-width: 100px;
+    font-size: 13px;
+  }
+
+  .left,
   .right {
     gap: 4px;
   }
 
+  .logo {
+    height: 24px;
+  }
+
+  .iconBtn,
+  .menuBtn {
+    padding: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+
+  .left,
+  .right {
+    gap: 2px;
+  }
+
+  .iconBtn,
+  .menuBtn {
+    padding: 6px;
+    font-size: 16px;
+  }
+
   .avatar,
   .userAvatar {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .brandName {
+    font-size: 16px;
+    display: block !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar {
+    padding: 0 4px;
+    justify-content: space-between;
+  }
+
+  .left,
+  .right {
+    gap: 4px;
+  }
+
+  .iconBtn,
+  .menuBtn {
+    padding: 6px;
+    font-size: 18px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
     font-size: 12px;
+  }
+
+  .brandName {
+    display: none !important;
   }
 }
