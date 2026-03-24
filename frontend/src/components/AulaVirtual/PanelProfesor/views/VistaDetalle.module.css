@@ -1,0 +1,293 @@
+.vista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.btnVolver {
+    background: none;
+    border: none;
+    color: #c22821;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    align-self: flex-start;
+    transition: opacity 0.2s;
+}
+
+.btnVolver:hover {
+    opacity: 0.7;
+}
+
+/* ── Header ── */
+.detalleHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.8rem 2rem;
+    border-radius: 20px;
+    color: white;
+}
+
+.headerIcon {
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerTexto h2 {
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.headerTexto p {
+    margin: 4px 0 0;
+    opacity: 0.75;
+    font-size: 0.88rem;
+}
+
+.headerKpis {
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+}
+
+.headerKpi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.headerKpi span {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.headerKpi small {
+    font-size: 0.72rem;
+    opacity: 0.7;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ── Dos columnas ── */
+.dosCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .dosCol {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Bloque compartido ── */
+.bloque {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 33, 71, 0.08);
+}
+
+.bloqueHeader {
+    margin-bottom: 1rem;
+}
+
+.bloqueHeader h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #002147;
+    margin: 0;
+}
+
+/* ── Tabla estudiantes ── */
+.tablaHeader {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #94a3b8;
+    padding: 6px 10px;
+    margin-bottom: 4px;
+}
+
+.tablaFila {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.tablaFila:hover {
+    background: #f4f6fb;
+}
+
+.estudianteNombre {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #002147;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.estudianteBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.barBg {
+    flex: 1;
+    height: 5px;
+    background: #e9ecef;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+}
+
+.estadoBadge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.bien {
+    background: #edfaf1;
+    color: #48b358;
+}
+
+.alerta {
+    background: #fff0ef;
+    color: #c22821;
+}
+
+/* ── Guías ── */
+.guiaItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 33, 71, 0.06);
+}
+
+.guiaItem:last-child {
+    border-bottom: none;
+}
+
+.guiaIcon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.guiaTitulo {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 4px;
+}
+
+.guiaBarra {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.guiaBarBg {
+    flex: 1;
+    height: 5px;
+    background: #e9ecef;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.guiaBarFill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1.2s ease;
+}
+
+.guiaEstado {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+.guiaFin {
+    background: #edfaf1;
+    color: #48b358;
+}
+
+.guiaCurso {
+    background: #fff8ed;
+    color: #e07b00;
+}
+
+@media (max-width: 768px) {
+    .detalleHeader {
+        flex-wrap: wrap;
+    }
+
+    .headerKpis {
+        margin-left: 0;
+    }
+}

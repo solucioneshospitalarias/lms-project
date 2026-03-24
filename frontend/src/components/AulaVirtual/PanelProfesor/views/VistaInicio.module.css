@@ -1,0 +1,338 @@
+.vista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ── KPI Grid ── */
+.kpiGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.kpiCard {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 33, 71, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: slideUp 0.4s ease both;
+}
+
+.kpiCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 33, 71, 0.08);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.kpiIcon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.kpiTexto {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpiValor {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.kpiLabel {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+}
+
+.kpiDelta {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+/* ── Dos columnas ── */
+.dosCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .dosCol {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Bloque compartido ── */
+.bloque {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 33, 71, 0.08);
+}
+
+.bloqueHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+}
+
+.bloqueHeader h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #002147;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.btnVerTodo {
+    background: none;
+    border: none;
+    color: #c22821;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+}
+
+.btnVerTodo:hover {
+    opacity: 0.7;
+}
+
+.badgeLive {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #48b358;
+    letter-spacing: 0.5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.contadorBadge {
+    background: #c22821;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Grados lista ── */
+.gradosLista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.gradoFila {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.gradoFila:hover {
+    background: #f4f6fb;
+    border-color: rgba(0, 33, 71, 0.08);
+}
+
+.gradoIcon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.gradoInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gradoNombre {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #002147;
+}
+
+.gradoSub {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.gradoRing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.gradoPct {
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ── Actividad ── */
+.actividadLista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.actividadItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.actividadItem:hover {
+    background: #f4f6fb;
+}
+
+.actividadIcon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.actividadTexto {
+    display: flex;
+    flex-direction: column;
+}
+
+.actividadTexto span {
+    font-size: 0.83rem;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.actividadTexto small {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+/* ── Tareas ── */
+.tareasGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.tareaCard {
+    background: #f4f6fb;
+    border-radius: 14px;
+    padding: 1rem;
+    border: 1px solid rgba(0, 33, 71, 0.08);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tareaCard:hover {
+    box-shadow: 0 4px 16px rgba(0, 33, 71, 0.08);
+    transform: translateY(-2px);
+}
+
+.tareaTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+}
+
+.tareaVence {
+    font-size: 0.72rem;
+    color: #94a3b8;
+}
+
+.tareaTitulo {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #002147;
+    margin: 0 0 0.4rem;
+    line-height: 1.4;
+}
+
+.tareaGrado {
+    font-size: 0.75rem;
+    color: #64748b;
+    background: white;
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 33, 71, 0.08);
+}
+
+@media (max-width: 480px) {
+    .kpiGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .tareasGrid {
+        grid-template-columns: 1fr;
+    }
+}

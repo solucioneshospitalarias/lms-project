@@ -1,0 +1,202 @@
+.sidebar {
+    width: 260px;
+    background-color: #5c6670;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.collapsed {
+    width: 68px;
+}
+
+.sidebarTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    min-height: 72px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.logoMark {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logoImage {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.brandNombre {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+}
+
+.toggleBtn {
+    background: rgba(255, 255, 255, 0.07);
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.toggleBtn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: white;
+}
+
+/* ── Navegación ── */
+.navMenu {
+    flex: 1;
+    padding: 1rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+}
+
+.navBtn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 11px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.navBtn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.navBtnActive {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border-left: 3px solid #c22821;
+}
+
+.navIcon {
+    font-size: 1.1rem;
+    min-width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navLabel {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* ── Footer: perfil ── */
+.sidebarFooter {
+    padding: 1rem 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.profeCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.profeAvatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background-color: #c22821;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.profeNombre {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profeCargo {
+    display: block;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 68px !important;
+    }
+
+    .brandNombre,
+    .navLabel,
+    .sidebarFooter {
+        display: none !important;
+    }
+}
