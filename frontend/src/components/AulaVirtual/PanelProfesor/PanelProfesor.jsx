@@ -1,94 +1,68 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LogOut } from 'lucide-react';
+import { useState } from 'react';
 import styles from './PanelProfesor.module.css';
-import CapiLogo from '../../../assets/logoRutas.png';
-import sexto from '../../../assets/Servicios.png'
-import septimo from '../../../assets/logoRutas.png'
-import octavo from '../../../assets/LoginProfesor.png'
+
+// ── Layout ──
+import Sidebar from './components/SidebarProfesor';
+import TopBar from './components/TopBar';
+
+// ── Vistas ──
+import VistaInicio from './views/VistaInicio';
+import VistaGrupos from './views/VistaGrupos';
+import VistaDetalle from './views/VistaDetalle';
+import VistaAnalitica from './views/VistaAnalitica';
+
+// ── Data ──
+import { GRADOS, TITULOS_VISTAS } from './constants/Data';
 
 const PanelProfesor = () => {
-    const navigate = useNavigate();
+    const [activeTab, setActiveTab] = useState('inicio');
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [gradoSeleccionado, setGradoSeleccionado] = useState(null);
 
-    const misGrados = [
-        {
-            id: '1',
-            grado: '6°',
-            nombre: 'Sexto A',
-            guias: 4,
-            color: '#c22821',
-            imagen: sexto
-        },
-        {
-            id: '2',
-            grado: '7°',
-            nombre: 'Séptimo B',
-            guias: 3,
-            color: '#e63946',
-            imagen: septimo
-        },
-        {
-            id: '3',
-            grado: '8°',
-            nombre: 'Octavo C',
-            guias: 5,
-            color: '#b21e17',
-            imagen: octavo
-        },
-    ];
-
-    const handleLogout = () => {
-        navigate('/login-profesor', { replace: true });
-    };
+    const titulo = activeTab === 'detalle' && gradoSeleccionado
+        ? `Detalle — ${gradoSeleccionado.nombre}`
+        : TITULOS_VISTAS[activeTab];
 
     return (
-        <div className={styles.mainWrapper}>
-            {/* --- NAVBAR SUPERIOR --- */}
-            <nav className={styles.topNav}>
-                <div className={styles.logoSection}>
-                    <img src={CapiLogo} alt='Logo Capi' className={styles.capiImage} />
-                    <span>Rutas del Saber <strong>Docente</strong></span>
+        <div className={`${styles.root} ${sidebarOpen ? styles.expanded : styles.collapsed}`}>
+
+            <Sidebar
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                isOpen={sidebarOpen}
+                onToggle={() => setSidebarOpen(v => !v)}
+            />
+
+            <main className={styles.main}>
+                <TopBar titulo={titulo} />
+
+                <div className={styles.contenido} key={activeTab}>
+                    {activeTab === 'inicio' && (
+                        <VistaInicio
+                            grados={GRADOS}
+                            setActiveTab={setActiveTab}
+                            setGradoSeleccionado={setGradoSeleccionado}
+                        />
+                    )}
+                    {activeTab === 'grupos' && (
+                        <VistaGrupos
+                            grados={GRADOS}
+                            setActiveTab={setActiveTab}
+                            setGradoSeleccionado={setGradoSeleccionado}
+                        />
+                    )}
+                    {activeTab === 'detalle' && (
+                        <VistaDetalle
+                            grado={gradoSeleccionado}
+                            setActiveTab={setActiveTab}
+                        />
+                    )}
+                    {activeTab === 'analitica' && (
+                        <VistaAnalitica grados={GRADOS} />
+                    )}
                 </div>
-                <button className={styles.logoutBtn} onClick={handleLogout}>
-                    <LogOut size={20} />
-                    <span>Cerrar Sesión</span>
-                </button>
-            </nav>
+            </main>
 
-            {/* --- CONTENIDO PRINCIPAL --- */}
-            <div className={`${styles.container} fadeUpEffect`}>
-                <header className={styles.header}>
-                    <h1>Entorno del <span>Docente</span></h1>
-                    <p>Gestiona el material pedagógico de tus grados asignados.</p>
-                </header>
-
-                <div className={styles.grid}>
-                    {misGrados.map((item, index) => (
-                        <div
-                            key={item.id}
-                            className={styles.card}
-                            style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                            {/* 1. Imagen ahora va arriba para el diseño horizontal de la grid */}
-                            <div className={styles.imageSide}>
-                                <img src={item.imagen} alt={item.nombre} loading="lazy" />
-                            </div>
-
-                            {/* 2. Información debajo */}
-                            <div className={styles.infoSide}>
-                                <div className={styles.iconBox} style={{ backgroundColor: item.color }}>
-                                    {item.grado}
-                                </div>
-                                <div className={styles.info}>
-                                    <h3>{item.nombre}</h3>
-                                    <p>{item.guias} Guías Pedagógicas</p>
-                                </div>
-                                <button className={styles.btn}>Entrar a la Guía</button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
         </div>
     );
 };
