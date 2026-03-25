@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './PanelProfesor.module.css';
 
 // ── Layout ──
@@ -19,12 +19,23 @@ const PanelProfesor = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [gradoSeleccionado, setGradoSeleccionado] = useState(null);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTo(0, 0);
+        document.body.scrollTo(0, 0);
+        const mainCont = document.querySelector('main');
+        if (mainCont) mainCont.scrollTo(0, 0);
+
+    }, [activeTab]);
+
     const titulo = activeTab === 'detalle' && gradoSeleccionado
         ? `Detalle — ${gradoSeleccionado.nombre}`
         : TITULOS_VISTAS[activeTab];
 
     return (
         <div className={`${styles.root} ${sidebarOpen ? styles.expanded : styles.collapsed}`}>
+
+            <title>Rutas del Saber | Panel Profesor</title>
 
             <Sidebar
                 activeTab={activeTab}
