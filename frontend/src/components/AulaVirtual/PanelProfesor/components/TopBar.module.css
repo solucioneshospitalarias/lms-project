@@ -1,0 +1,270 @@
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 33, 71, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #002147;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.fecha {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    text-transform: capitalize;
+}
+
+/* ── Acciones ── */
+.acciones {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.iconBtn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background: #f4f6fb;
+    border: 1px solid rgba(0, 33, 71, 0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+.iconBtn:hover {
+    background: #e9edf5;
+}
+
+.notifDot {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 7px;
+    height: 7px;
+    background: #c22821;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+/* ── Panel notificaciones ── */
+.notifPanel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 320px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 33, 71, 0.14);
+    border: 1px solid rgba(0, 33, 71, 0.08);
+    overflow: hidden;
+    z-index: 200;
+    animation: fadeDown 0.2s ease;
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notifPanelHeader {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #002147;
+    border-bottom: 1px solid rgba(0, 33, 71, 0.08);
+    background: #f4f6fb;
+}
+
+.notifItem {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 33, 71, 0.06);
+    font-size: 0.82rem;
+    align-items: flex-start;
+}
+
+.notifItem p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.notifItem small {
+    color: #94a3b8;
+}
+
+/* ── Avatar ── */
+.avatar {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #c22821, #e05d57);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(194, 40, 33, 0.3);
+}
+
+.perfilContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.userMenu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 200px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 33, 71, 0.12);
+    border: 1px solid rgba(0, 33, 71, 0.06);
+    padding: 8px;
+    z-index: 1000;
+    animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    color: #475569;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.menuItem:hover {
+    background-color: #f4f6fb;
+    color: #002147;
+}
+
+.menuDivider {
+    height: 1px;
+    background: rgba(0, 33, 71, 0.06);
+    margin: 6px 0;
+}
+
+.logoutItem:hover {
+    background-color: #fff1f0;
+    color: #c22821;
+}
+
+@media (max-width: 768px) {
+    .topBar {
+        padding: 0.8rem 1rem;
+        min-height: 64px;
+    }
+
+    .titulo {
+        font-size: 1.15rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
+    .acciones {
+        gap: 8px;
+    }
+
+    .btnLogout {
+        padding: 8px;
+        min-width: 38px;
+        justify-content: center;
+    }
+
+    .btnLogout span {
+        display: none !important;
+    }
+
+    .btnLogout svg {
+        margin: 0;
+        width: 20px;
+        height: 20px;
+    }
+
+    .iconBtn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.7rem;
+        background: #c22821;
+        box-shadow: 0 2px 5px rgba(194, 40, 33, 0.2);
+    }
+
+    .notifPanel {
+        width: 280px;
+        right: -50px;
+    }
+
+    .userMenu {
+        width: 180px;
+        right: -10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .titulo {
+        display: none;
+    }
+
+    .topBar {
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,285 @@
+.vista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.vistaHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vistaHeader h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #002147;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.vistaHeader span {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* ── Grid de tarjetas ── */
+.gruposGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.grupoCard {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 33, 71, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: slideUp 0.4s ease both;
+}
+
+.grupoCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 33, 71, 0.14);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Cabecera coloreada ── */
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1.4rem 1.2rem;
+    color: white;
+}
+
+.cardHeader h3 {
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.cardHeader p {
+    margin: 2px 0 0;
+    font-size: 0.78rem;
+    opacity: 0.75;
+}
+
+.cardHeaderIcon {
+    font-size: 1.8rem;
+    background: rgba(255, 255, 255, 0.15);
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Cuerpo ── */
+.cardBody {
+    padding: 1.2rem;
+}
+
+.statsRow {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 33, 71, 0.07);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat span {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #002147;
+    line-height: 1.1;
+}
+
+.stat small {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 2px;
+}
+
+/* ── Progreso ── */
+.progresoBarra {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.progresoFill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+}
+
+.progresoLabel {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+}
+
+/* ── Próxima actividad ── */
+.proximaAct {
+    background: #f4f6fb;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 33, 71, 0.07);
+}
+
+.proximaLabel {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.proximaTexto {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #002147;
+}
+
+/* ── Botón ── */
+.btnGestionar {
+    width: 100%;
+    padding: 11px 16px;
+    background: #f4f6fb;
+    color: #002147;
+    border: 1.5px solid rgba(0, 33, 71, 0.1);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btnGestionar:hover {
+    background: var(--color, #c22821);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.01);
+}
+
+@media (max-width: 768px) {
+    .vista {
+        gap: 1.2rem;
+    }
+
+    .vistaHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding-bottom: 0.5rem;
+    }
+
+    .vistaHeader h2 {
+        font-size: 1.3rem;
+    }
+
+    .gruposGrid {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        gap: 1rem;
+    }
+
+    .grupoCard {
+        border-radius: 16px;
+    }
+
+    .grupoCard:hover {
+        transform: translateY(-3px);
+    }
+
+    .cardHeader {
+        padding: 1rem;
+        gap: 12px;
+    }
+
+    .cardHeaderIcon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        font-size: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .cardHeader h3 {
+        font-size: 1.1rem;
+    }
+
+    .statsRow {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+
+    .stat span {
+        font-size: 1.3rem;
+    }
+
+    .stat small {
+        font-size: 0.65rem;
+    }
+
+    .proximaAct {
+        padding: 6px 10px;
+    }
+
+    .proximaTexto {
+        font-size: 0.78rem;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 400px) {
+    .cardBody {
+        padding: 1rem;
+    }
+
+    .stat span {
+        font-size: 1.1rem;
+    }
+
+    .btnGestionar {
+        padding: 10px;
+        font-size: 0.82rem;
+    }
+}
