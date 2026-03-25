@@ -1,16 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './TopBar.module.css';
 import { PROFESOR, ACTIVIDAD_RECIENTE } from '../constants/Data';
-import { LogOut } from 'lucide-react'
+import { LogOut, User, Settings, Bell } from 'lucide-react';
 
 const TopBar = ({ titulo }) => {
   const [hora, setHora] = useState(new Date());
   const [notifAbierta, setNotifAbierta] = useState(false);
+  const [perfilAbierto, setPerfilAbierto] = useState(false);
+
+  const notifRef = useRef(null);
+  const perfilRef = useRef(null);
 
   const handleLogout = () => {
-    console.log("Cerrando sesión...");
-    window.location.href = "/login-profesor";
+    window.location.replace("/login-profesor");
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (notifRef.current && !notifRef.current.contains(event.target)) {
+        setNotifAbierta(false);
+      }
+      if (perfilRef.current && !perfilRef.current.contains(event.target)) {
+        setPerfilAbierto(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setHora(new Date()), 60000);
@@ -22,27 +39,21 @@ const TopBar = ({ titulo }) => {
 
   return (
     <header className={styles.topBar}>
-
-      <title>Rutas del Saber | Panel Profesor</title>
-
-      {/* Título + fecha */}
       <div>
         <h1 className={styles.titulo}>{titulo}</h1>
         <p className={styles.fecha}>{fechaStr} · {horaStr}</p>
       </div>
 
-      {/* Acciones */}
       <div className={styles.acciones}>
-
-        <button className={styles.btnLogout} onClick={handleLogout}>
-          <LogOut size={18} />
-          <span>Cerrar Sesión</span>
-        </button>
-
-        {/* Notificaciones */}
-        <div style={{ position: 'relative' }}>
-          <button className={styles.iconBtn} onClick={() => setNotifAbierta(v => !v)}>
-            🔔
+        <div style={{ position: 'relative' }} ref={notifRef}>
+          <button
+            className={styles.iconBtn}
+            onClick={() => {
+              setNotifAbierta(!notifAbierta);
+              setPerfilAbierto(false);
+            }}
+          >
+            <Bell size={20} />
             <span className={styles.notifDot} />
           </button>
 
@@ -52,20 +63,40 @@ const TopBar = ({ titulo }) => {
               {ACTIVIDAD_RECIENTE.slice(0, 3).map((a) => (
                 <div key={a.id} className={styles.notifItem}>
                   <span style={{ color: a.color }}>{a.icon}</span>
-                  <div>
-                    <p>{a.texto}</p>
-                    <small>{a.tiempo}</small>
-                  </div>
+                  <div><p>{a.texto}</p><small>{a.tiempo}</small></div>
                 </div>
               ))}
             </div>
           )}
         </div>
 
-        {/* Avatar docente */}
-        <div className={styles.avatar}>{PROFESOR.iniciales}</div>
-      </div>
+        <div className={styles.perfilContainer} ref={perfilRef}>
+          <div
+            className={styles.avatar}
+            onClick={() => {
+              setPerfilAbierto(!perfilAbierto);
+              setNotifAbierta(false);
+            }}
+          >
+            {PROFESOR.iniciales}
+          </div>
 
+          {perfilAbierto && (
+            <div className={styles.userMenu}>
+              <button className={styles.menuItem}>
+                <User size={16} /> <span>Mi Perfil</span>
+              </button>
+              <button className={styles.menuItem}>
+                <Settings size={16} /> <span>Configuración</span>
+              </button>
+              <div className={styles.menuDivider} />
+              <button className={`${styles.menuItem} ${styles.logoutItem}`} onClick={handleLogout}>
+                <LogOut size={16} /> <span>Salir del Sistema</span>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </header>
   );
 };
