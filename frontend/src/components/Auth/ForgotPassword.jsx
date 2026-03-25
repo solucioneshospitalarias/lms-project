@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { solicitarRestablecimiento } from "../../services/api"; // Esta función llama a tu API
 import { ArrowLeft } from "lucide-react";
-import { FaEnvelope, FaArrowLeft, FaCheckCircle } from "react-icons/fa"; // Añadimos FaCheckCircle
+import { FaEnvelope, FaArrowLeft, FaCheckCircle } from "react-icons/fa";
 import styles from "./Login.module.css";
 
 const ForgotPassword = () => {
@@ -17,7 +18,7 @@ const ForgotPassword = () => {
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email.trim()) {
@@ -25,39 +26,55 @@ const ForgotPassword = () => {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setError("Por favor, ingresa un correo válido");
-      return;
-    }
-
     setError("");
     setIsLoading(true);
     setShowToast(false);
 
-    setTimeout(() => {
-      setIsLoading(false); // Quitamos spinner
-      setShowToast(true); // Mostramos aviso de éxito
-      setEmail(""); // Limpiamos el input
-
-      // El aviso se quita solo después de 4 segundos
+    try {
+      // Llamada a la API que generará la contraseña temporal en el backend
+      await solicitarRestablecimiento(email); 
+      
+      setIsLoading(false);
+      setShowToast(true); // "¡Enviado! Revisa tu bandeja de entrada"
+      
+      // Esperamos 4 segundos para que el usuario lea el mensaje y redirigimos al login
       setTimeout(() => {
-        setShowToast(false);
-      }, 4000);
+        navigate("/login");
+      }, 4000); 
 
-      console.log("Instrucciones enviadas a:", email);
-    }, 2000);
+    } catch (err) {
+      setIsLoading(false);
+
+      if (err.response && err.response.data) {
+        const data = err.response.data;
+
+        // error personalizado del backend
+        if (data.error) {
+          setError(data.error);
+          return;
+        }
+
+        // por si algún día mandas validaciones tipo serializer
+        if (data.email) {
+          setError(Array.isArray(data.email) ? data.email[0] : data.email);
+          return;
+        }
+
+        setError("Error del servidor");
+      } else {
+        setError("No se pudo conectar con el servidor");
+      }
+    }
   };
 
   return (
     <div className={styles.loginPage}>
-      {/* --- NOTIFICACIÓN (TOAST) --- */}
       {showToast && (
         <div className={styles.toastNotification}>
           <FaCheckCircle className={styles.toastIcon} />
           <div className={styles.toastText}>
-            <strong>¡Enviado!</strong>
-            <span>Revisa tu bandeja de entrada</span>
+            <strong>¡Contraseña Enviada!</strong>
+            <span>Hemos enviado una clave temporal a tu correo.</span>
           </div>
         </div>
       )}
@@ -78,31 +95,16 @@ const ForgotPassword = () => {
 
           <header className={styles.header}>
             <h2>
-              Recuperar <span>Clave</span>
+              Recuperar <span>Acceso</span>
             </h2>
-            <p
-              style={{
-                color: "var(--primary-gray)",
-                marginTop: "10px",
-                fontSize: "0.9rem",
-              }}
-            >
-              Introduce tu correo electrónico para enviarte las instrucciones de
-              restablecimiento.
+            <p style={{ color: "var(--primary-gray)", marginTop: "10px", fontSize: "0.9rem" }}>
+              Introduce tu correo para recibir una <b>contraseña temporal</b> de acceso inmediato.
             </p>
           </header>
 
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <div className={styles.inputGroup}>
-              <label
-                style={{
-                  color: "var(--text-main)",
-                  fontSize: "0.9rem",
-                  fontWeight: "600",
-                  marginBottom: "8px",
-                  display: "block",
-                }}
-              >
+              <label style={{ color: "var(--text-main)", fontSize: "0.9rem", fontWeight: "600", marginBottom: "8px", display: "block" }}>
                 Correo Electrónico:
               </label>
               <div className={styles.inputWrapper}>
@@ -116,6 +118,7 @@ const ForgotPassword = () => {
                     if (error) setError("");
                   }}
                   className={error ? styles.inputError : ""}
+                  disabled={isLoading || showToast}
                 />
               </div>
               {error && <span className={styles.errorText}>{error}</span>}
@@ -124,12 +127,12 @@ const ForgotPassword = () => {
             <button
               type="submit"
               className={styles.btnMain}
-              disabled={isLoading}
+              disabled={isLoading || showToast}
             >
               {isLoading ? (
                 <div className={styles.spinner}></div>
               ) : (
-                "ENVIAR INSTRUCCIONES"
+                "SOLICITAR NUEVA CLAVE"
               )}
             </button>
 
@@ -137,6 +140,7 @@ const ForgotPassword = () => {
               type="button"
               className={styles.btnBackRegister}
               onClick={() => navigate("/")}
+              disabled={isLoading}
             >
               <ArrowLeft size={16} /> Regresar al inicio
             </button>
@@ -148,7 +152,6 @@ const ForgotPassword = () => {
             <Link
               to="/login"
               className={styles.btnGoogle}
-              replace={true}
               style={{ textDecoration: "none" }}
             >
               <FaArrowLeft /> VOLVER AL LOGIN
