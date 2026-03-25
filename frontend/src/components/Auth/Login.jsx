@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
+import { login } from "../../services/api.js";
 import { Mail, Lock, ArrowRight, Chrome, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
@@ -12,27 +13,28 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false); // ESTADO PARA EL CUADRO DE ÉXITO
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [errors, setErrors] = useState({ email: false, password: false });
+  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [apiError, setApiError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleGoogleLogin = () => {
-    window.location.href = "https://accounts.google.com/";
-  };
-
   useEffect(() => {
     const savedEmail = localStorage.getItem("userEmail");
+    const savedPassword = localStorage.getItem("userPassword");
     if (savedEmail) {
       setEmail(savedEmail);
       setRememberMe(true);
+      if (savedPassword) {
+        setPassword(savedPassword);
+      }
     }
   }, []);
 
@@ -41,10 +43,49 @@ const Login = () => {
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const triggerConfetti = () => {
+    const duration = 2 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 10000,
+    };
 
-    // 1. Validaciones previas
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        }),
+      );
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        }),
+      );
+    }, 250);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setApiError("");
+    setErrors({ email: "", password: "" });
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let emailError = "";
     let passwordError = "";
@@ -59,74 +100,84 @@ const Login = () => {
       passwordError = "Este campo es obligatorio";
     }
 
-    setErrors({ email: emailError, password: passwordError });
+    if (emailError || passwordError) {
+      setErrors({ email: emailError, password: passwordError });
+      return;
+    }
 
-    // 2. Si no hay errores, iniciar proceso
-    if (!emailError && !passwordError) {
-      setIsLoading(true);
+    setIsLoading(true);
 
-      // Guardar email si "Recordarme" está activo
-      if (rememberMe) {
-        localStorage.setItem("userEmail", email);
-      } else {
-        localStorage.removeItem("userEmail");
+    try {
+      const response = await login(email, password);
+
+      console.log("Login exitoso:", response);
+
+      if (response.user) {
+        localStorage.setItem("userData", JSON.stringify(response.user));
       }
 
-      // Simulación de respuesta del servidor
+      if (rememberMe) {
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPassword", password);
+      } else {
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userPassword");
+      }
+
+      setIsLoading(false);
+      setIsSuccess(true);
+      triggerConfetti();
+
       setTimeout(() => {
-        setIsLoading(false);
-        setIsSuccess(true);
+        if (response.user.user_type === "profesor") {
+          navigate("/dashboard-profesor");
+        } else if (response.user.user_type === "alumno") {
+          navigate("/aula-virtual");
+        } else {
+          navigate("/dashboard");
+        }
+      }, 2000);
 
-        // 2. DISPARAR EL CONFETI ALEGRE Y PROFESIONAL
-        // Configuramos una explosión lateral profesional pero festiva
-        const duration = 2 * 1000; // 2 segundos de confeti
-        const animationEnd = Date.now() + duration;
-        const defaults = {
-          startVelocity: 30,
-          spread: 360,
-          ticks: 60,
-          zIndex: 10000,
-        }; // Z-Index alto para estar sobre el overlay
+    } catch (error) {
+      console.error("Error completo en login:", error);
+      setIsLoading(false);
 
-        function randomInRange(min, max) {
-          return Math.random() * (max - min) + min;
+      const serverData = error.response?.data; // Accedemos a la data de Axios
+      
+      let newErrors = { email: "", password: "" };
+      let newApiError = "";
+
+      if (serverData) {
+        // 1. Capturar errores generales (El banner rojo que ya tienes)
+        if (serverData.non_field_errors) {
+          newApiError = Array.isArray(serverData.non_field_errors) 
+            ? serverData.non_field_errors[0] 
+            : serverData.non_field_errors;
+        } 
+        
+        // 2. Capturar errores de campos específicos (opcional, por si el backend cambia)
+        if (serverData.password) {
+          newErrors.password = Array.isArray(serverData.password) ? serverData.password[0] : serverData.password;
+        }
+        if (serverData.email) {
+          newErrors.email = Array.isArray(serverData.email) ? serverData.email[0] : serverData.email;
         }
 
-        const interval = setInterval(function () {
-          const timeLeft = animationEnd - Date.now();
+        // 3. Si no hay mensajes de texto pero hay un error_type, podrías personalizarlo
+        if (!newApiError && serverData.error_type?.includes("email_not_found")) {
+          newApiError = "El correo electrónico no está registrado.";
+        }
+      } else {
+        newApiError = "Ocurrió un error inesperado. Inténtalo más tarde.";
+      }
 
-          if (timeLeft <= 0) {
-            return clearInterval(interval);
-          }
-
-          const particleCount = 50 * (timeLeft / duration);
-
-          // Disparos desde las esquinas inferiores
-          confetti(
-            Object.assign({}, defaults, {
-              particleCount,
-              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-            }),
-          );
-          confetti(
-            Object.assign({}, defaults, {
-              particleCount,
-              origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-            }),
-          );
-        }, 250);
-
-        // Redirigir después de 2 segundos para que se vea el mensaje
-        setTimeout(() => {
-          navigate("/aula-virtual");
-        }, 2000);
-      }, 1500);
+      setErrors(newErrors);
+      setApiError(newApiError); // Esto actualizará el banner rojo en tu componente
     }
   };
 
   return (
     <div className={styles.loginPage}>
-      {/* --- CONTENEDOR DE ÉXITO (OVERLAY) --- */}
       {isSuccess && (
         <div className={styles.successOverlay}>
           <div className={`${styles.successCard} fadeUpEffect`}>
@@ -142,26 +193,10 @@ const Login = () => {
       <div className={styles.mainWrapper}>
         <div className={styles.infoSection}>
           <div className={styles.floatingDecorations}>
-            <img
-              src={Img1}
-              className={`${styles.floatItem} ${styles.item1}`}
-              alt="decoracion"
-            />
-            <img
-              src={Img2}
-              className={`${styles.floatItem} ${styles.item2}`}
-              alt="decoracion"
-            />
-            <img
-              src={Img3}
-              className={`${styles.floatItem} ${styles.item3}`}
-              alt="decoracion"
-            />
-            <img
-              src={Img4}
-              className={`${styles.floatItem} ${styles.item4}`}
-              alt="decoracion"
-            />
+            <img src={Img1} className={`${styles.floatItem} ${styles.item1}`} alt="decoracion" />
+            <img src={Img2} className={`${styles.floatItem} ${styles.item2}`} alt="decoracion" />
+            <img src={Img3} className={`${styles.floatItem} ${styles.item3}`} alt="decoracion" />
+            <img src={Img4} className={`${styles.floatItem} ${styles.item4}`} alt="decoracion" />
           </div>
 
           <h1 className={styles.logoText}>
@@ -174,10 +209,7 @@ const Login = () => {
         </div>
 
         <div className={styles.loginCard}>
-          <button
-            className={styles.btnBackHeader}
-            onClick={() => navigate("/")}
-          >
+          <button className={styles.btnBackHeader} onClick={() => navigate("/")}>
             <ArrowLeft size={16} /> Regresar
           </button>
           <div className={styles.cardGlow}></div>
@@ -186,6 +218,12 @@ const Login = () => {
             <h2>Bienvenido</h2>
             <p>Ingresa a tu cuenta para continuar.</p>
           </div>
+
+          {apiError && (
+            <div className={styles.apiErrorBanner}>
+              <p>{apiError}</p>
+            </div>
+          )}
 
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
@@ -198,11 +236,10 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={errors.email ? styles.inputError : ""}
+                  disabled={isLoading}
                 />
               </div>
-              {errors.email && (
-                <span className={styles.errorText}>{errors.email}</span>
-              )}
+              {errors.email && <span className={styles.errorText}>{errors.email}</span>}
             </div>
 
             <div className={styles.inputGroup}>
@@ -215,18 +252,18 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={errors.password ? styles.inputError : ""}
+                  disabled={isLoading}
                 />
                 <button
                   type="button"
                   className={styles.eyeButton}
                   onClick={togglePasswordVisibility}
+                  disabled={isLoading}
                 >
                   {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
               </div>
-              {errors.password && (
-                <span className={styles.errorText}>{errors.password}</span>
-              )}
+              {errors.password && <span className={styles.errorText}>{errors.password}</span>}
             </div>
 
             <div className={styles.options}>
@@ -235,6 +272,7 @@ const Login = () => {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
+                  disabled={isLoading}
                 />
                 <span>Recordarme</span>
               </label>
@@ -246,15 +284,9 @@ const Login = () => {
             <button
               type="submit"
               className={styles.btnMain}
-              disabled={isLoading || isSuccess} // Deshabilitar si está cargando o ya entró
+              disabled={isLoading || isSuccess}
             >
-              {isLoading ? (
-                <span className={styles.spinner}></span>
-              ) : (
-                <>
-                  Iniciar Sesión
-                </>
-              )}
+              {isLoading ? <span className={styles.spinner}></span> : "Iniciar Sesión"}
             </button>
 
             <p className={styles.footerText}>
@@ -263,25 +295,16 @@ const Login = () => {
           </form>
 
           <div className={styles.divider}>
-            <span>O continuar con</span>
+            <span></span>
           </div>
 
-          <button
-            type="button"
-            className={styles.btnGoogle}
-            onClick={handleGoogleLogin}
-          >
-            <Chrome size={20} /> Google
-          </button>
-
           <div className={styles.profesorAccess}>
-            <p className={styles.dividerText}>
-              ¿Eres parte del equipo docente?
-            </p>
+            <p className={styles.dividerText}>¿Eres parte del equipo docente?</p>
             <button
               type="button"
               className={styles.btnProfesor}
               onClick={() => navigate("/login-profesor")}
+              disabled={isLoading}
             >
               Ingresar como Profesor
             </button>
