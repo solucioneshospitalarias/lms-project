@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link, replace } from "react-router-dom";
-import {
-  Mail,
-  Lock,
-  ArrowLeft,
-  Users,
-  ChevronLeft,
-  Eye,
-  EyeOff,
-  Loader2, // Importamos el icono de carga
-} from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
+import { Mail, Lock, ArrowLeft, Users, ChevronLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import styles from "./LoginProfesor.module.css";
+import { login } from "../../services/api.js";
 
 const LoginProfesor = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Nuevo estado para el spinner
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -23,6 +15,7 @@ const LoginProfesor = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState(""); // Error del backend
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
@@ -32,30 +25,83 @@ const LoginProfesor = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    
+    // Limpiar errores al escribir
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
     }
+    setApiError(""); // Limpiar error de API
   };
 
   const handleBack = () => {
     navigate("/login", { replace: true });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError(""); // Limpiar errores previos
+
+    // Validaciones frontend
     let newErrors = {};
 
-    if (!formData.email.trim()) newErrors.email = "Este campo es obligatorio";
-    if (!formData.password.trim()) newErrors.password = "Este campo es obligatorio";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Este campo es obligatorio";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Formato de correo inválido";
+    }
+
+    if (!formData.password.trim()) {
+      newErrors.password = "Este campo es obligatorio";
+    }
 
     setErrors(newErrors);
 
+    // Si no hay errores, hacer login
     if (Object.keys(newErrors).length === 0) {
-      setIsLoading(true); // Activamos el spinner
+      setIsLoading(true);
 
-      setTimeout(() => {
-        navigate("/panel-profesor", { replace: true });   // { replace: true } por si llega a pasar un error de devolver
-      }, 1500);
+      try {
+        // Llamada a la API real
+        const response = await login(formData.email, formData.password);
+
+        // Verificar que sea un profesor
+        if (response.user.user_type !== "profesor") {
+          setIsLoading(false);
+          setApiError("Esta cuenta no es de tipo profesor. Por favor, usa el acceso de alumnos.");
+          return;
+        }
+
+        // Guardar información adicional del usuario
+        if (response.user) {
+          localStorage.setItem("userData", JSON.stringify(response.user));
+        }
+
+        // Pequeño delay para mejor UX
+        setTimeout(() => {
+          navigate("/panel-profesor", { replace: true });
+        }, 500);
+
+      } catch (error) {
+        console.error("Error en login profesor:", error);
+        setIsLoading(false);
+
+        // Manejar diferentes tipos de errores del backend
+        if (error.detail) {
+          setApiError(error.detail);
+        } else if (error.email) {
+          setErrors(prev => ({ ...prev, email: error.email[0] }));
+        } else if (error.password) {
+          setErrors(prev => ({ ...prev, password: error.password[0] }));
+        } else if (error.non_field_errors) {
+          setApiError(error.non_field_errors[0]);
+        } else if (typeof error === 'string') {
+          setApiError(error);
+        } else {
+          setApiError("Error al iniciar sesión. Por favor, intenta de nuevo.");
+        }
+      }
     }
   };
 
@@ -73,6 +119,13 @@ const LoginProfesor = () => {
         <p className={styles.subtitle}>
           Gestione sus cursos y alumnos de forma interactiva.
         </p>
+
+        {/* Banner de error de la API */}
+        {apiError && (
+          <div className={styles.apiErrorBanner}>
+            <p>{apiError}</p>
+          </div>
+        )}
 
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <label>Ingresa tu correo electrónico:</label>
@@ -108,6 +161,7 @@ const LoginProfesor = () => {
               type="button"
               className={styles.eyeButton}
               onClick={() => setShowPassword(!showPassword)}
+              disabled={isLoading}
             >
               {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
             </button>
