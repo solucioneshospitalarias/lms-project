@@ -149,6 +149,7 @@
 .inputWrapper input,
 .inputWrapper select {
   width: 100%;
+  height: 50px;
   padding: 12px 15px 12px 45px;
   /* Espacio exacto para el icono izquierdo */
   background: rgba(128, 128, 128, 0.05);
@@ -402,6 +403,169 @@
   background: rgba(220, 38, 38, 0.05) !important;
 }
 
+.apiErrorBanner {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  animation: slideDown 0.3s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.apiErrorBanner p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Checkbox wrapper */
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.checkboxWrapper input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+}
+
+.checkboxWrapper label {
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.checkboxWrapper a {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Overlay de éxito */
+.successOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.successCard {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.successIconWrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 0.5s ease-out;
+}
+
+.successCheck {
+  color: white;
+}
+
+.successCard h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.successCard p {
+  color: #666;
+  font-size: 16px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Asegurar que la card de registro tenga scroll si es necesario */
+.registerCard {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.registerCard::-webkit-scrollbar {
+  width: 6px;
+}
+
+.registerCard::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.registerCard::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.registerCard::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 /* Ajuste específico para que no choque con la barra de tareas en Laptops */
 @media screen and (max-height: 850px) {
   .fullPageContainer {
@@ -414,7 +578,7 @@
     /* Reducimos el padding superior e inferior drásticamente */
     padding: 20px 30px;
     /* Reducimos un poco el ancho para que se vea más estilizada */
-    max-width: 380px;
+    max-width: 500px;
     /* Eliminamos márgenes que puedan empujar la tarjeta hacia abajo */
     margin: auto;
   }
