@@ -197,8 +197,89 @@
     transform: scale(1.01);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .vista {
+        gap: 1.2rem;
+    }
+
+    .vistaHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding-bottom: 0.5rem;
+    }
+
+    .vistaHeader h2 {
+        font-size: 1.3rem;
+    }
+
     .gruposGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        gap: 1rem;
+    }
+
+    .grupoCard {
+        border-radius: 16px;
+    }
+
+    .grupoCard:hover {
+        transform: translateY(-3px);
+    }
+
+    .cardHeader {
+        padding: 1rem;
+        gap: 12px;
+    }
+
+    .cardHeaderIcon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        font-size: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .cardHeader h3 {
+        font-size: 1.1rem;
+    }
+
+    .statsRow {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+
+    .stat span {
+        font-size: 1.3rem;
+    }
+
+    .stat small {
+        font-size: 0.65rem;
+    }
+
+    .proximaAct {
+        padding: 6px 10px;
+    }
+
+    .proximaTexto {
+        font-size: 0.78rem;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 400px) {
+    .cardBody {
+        padding: 1rem;
+    }
+
+    .stat span {
+        font-size: 1.1rem;
+    }
+
+    .btnGestionar {
+        padding: 10px;
+        font-size: 0.82rem;
     }
 }

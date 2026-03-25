@@ -8,9 +8,11 @@
     left: 0;
     top: 0;
     bottom: 0;
-    z-index: 100;
-    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    /* Elevado para superponerse en móvil */
+    transition: transform 0.3s ease, width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .collapsed {
@@ -188,15 +190,69 @@
     text-overflow: ellipsis;
 }
 
-/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .brandNombre {
+        font-size: 0.95rem;
+    }
+}
+
 @media (max-width: 768px) {
+
     .sidebar {
         width: 68px !important;
     }
 
     .brandNombre,
     .navLabel,
-    .sidebarFooter {
+    .profeNombre,
+    .profeCargo,
+    .toggleBtn {
         display: none !important;
+    }
+
+    .sidebarTop {
+        justify-content: center;
+        padding: 1rem 0;
+    }
+
+    .navBtn {
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .navIcon {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .sidebarFooter {
+        display: flex !important;
+        justify-content: center;
+        padding: 1rem 0;
+    }
+
+    .profeCard {
+        background: none;
+        padding: 0;
+        width: auto;
+        justify-content: center;
+    }
+
+    .profeAvatar {
+        margin: 0;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-height: 600px) {
+    .navMenu {
+        gap: 2px;
+        padding: 0.5rem;
+    }
+
+    .sidebarTop {
+        min-height: 60px;
+        padding: 0.5rem;
     }
 }

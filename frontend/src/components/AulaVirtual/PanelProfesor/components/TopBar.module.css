@@ -34,33 +34,6 @@
     gap: 16px;
 }
 
-.btnLogout {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: #ffffff;
-    color: #475569;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btnLogout:hover {
-    background-color: #fff1f0;
-    border-color: #c22821;
-    color: #c22821;
-    box-shadow: 0 2px 8px rgba(194, 40, 33, 0.1);
-}
-
-.btnLogout svg {
-    display: block;
-    stroke-width: 2.5px;
-}
-
 .iconBtn {
     position: relative;
     width: 38px;
@@ -163,12 +136,135 @@
     box-shadow: 0 2px 8px rgba(194, 40, 33, 0.3);
 }
 
+.perfilContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.userMenu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 200px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 33, 71, 0.12);
+    border: 1px solid rgba(0, 33, 71, 0.06);
+    padding: 8px;
+    z-index: 1000;
+    animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    color: #475569;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.menuItem:hover {
+    background-color: #f4f6fb;
+    color: #002147;
+}
+
+.menuDivider {
+    height: 1px;
+    background: rgba(0, 33, 71, 0.06);
+    margin: 6px 0;
+}
+
+.logoutItem:hover {
+    background-color: #fff1f0;
+    color: #c22821;
+}
+
 @media (max-width: 768px) {
     .topBar {
-        padding: 1rem;
+        padding: 0.8rem 1rem;
+        min-height: 64px;
     }
 
     .titulo {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
+    .acciones {
+        gap: 8px;
+    }
+
+    .btnLogout {
+        padding: 8px;
+        min-width: 38px;
+        justify-content: center;
+    }
+
+    .btnLogout span {
+        display: none !important;
+    }
+
+    .btnLogout svg {
+        margin: 0;
+        width: 20px;
+        height: 20px;
+    }
+
+    .iconBtn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.7rem;
+        background: #c22821;
+        box-shadow: 0 2px 5px rgba(194, 40, 33, 0.2);
+    }
+
+    .notifPanel {
+        width: 280px;
+        right: -50px;
+    }
+
+    .userMenu {
+        width: 180px;
+        right: -10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .titulo {
+        display: none;
+    }
+
+    .topBar {
+        justify-content: flex-end;
     }
 }

@@ -327,12 +327,102 @@
     border: 1px solid rgba(0, 33, 71, 0.08);
 }
 
+@media (max-width: 1024px) {
+    .kpiGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .vista {
+        gap: 1.2rem;
+    }
+
+    .kpiGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .kpiCard {
+        padding: 1rem;
+        gap: 0.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .kpiIcon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 1.1rem;
+    }
+
+    .kpiValor {
+        font-size: 1.4rem;
+    }
+
+    .bloque {
+        padding: 1.2rem;
+        border-radius: 16px;
+    }
+
+    .bloqueHeader h2 {
+        font-size: 1rem;
+    }
+
+    .gradoFila {
+        padding: 8px 10px;
+    }
+
+    .gradoIcon {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 1rem;
+    }
+
+    .gradoNombre {
+        font-size: 0.85rem;
+    }
+
+    .actividadItem {
+        padding: 6px 8px;
+    }
+
+    .actividadTexto span {
+        font-size: 0.78rem;
+    }
+
+    .tareasGrid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+}
+
 @media (max-width: 480px) {
     .kpiGrid {
         grid-template-columns: 1fr;
     }
 
-    .tareasGrid {
-        grid-template-columns: 1fr;
+    .kpiCard {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .dosCol {
+        gap: 1rem;
+    }
+
+    .btnVerTodo {
+        font-size: 0.75rem;
+    }
+
+    .kpiDelta {
+        display: none;
+    }
+    
+    .gradoSub {
+        font-size: 0.7rem;
     }
 }

@@ -215,3 +215,88 @@
     letter-spacing: 0.5px;
     margin-top: 3px;
 }
+
+@media (max-width: 1024px) {
+    .vista {
+        gap: 1.2rem;
+    }
+
+    .indicadoresGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .vistaHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .vistaHeader h2 {
+        font-size: 1.25rem;
+    }
+
+    .bloque {
+        padding: 1.2rem 1rem;
+        border-radius: 16px;
+    }
+
+    .chartBarras {
+        height: 180px;
+        gap: 0.5rem;
+        justify-content: space-between;
+    }
+
+    .barraWrap {
+        max-width: 32px;
+        height: 130px;
+    }
+
+    .barraLabel {
+        font-size: 0.65rem;
+        max-width: 45px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .resumenInfo {
+        min-width: 40px;
+    }
+
+    .resumenNombre {
+        font-size: 0.8rem;
+    }
+
+    .resumenSub {
+        display: none;
+    }
+
+    .resumenPct {
+        font-size: 0.9rem;
+        min-width: 35px;
+    }
+
+    .indicadoresGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .indicadorCard {
+        padding: 0.8rem 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .chartBarras {
+        padding-top: 0.5rem;
+    }
+
+    .barraWrap {
+        max-width: 24px;
+    }
+
+    .indicadorValor {
+        font-size: 1.3rem;
+    }
+}

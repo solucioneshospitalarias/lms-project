@@ -283,11 +283,100 @@
 }
 
 @media (max-width: 768px) {
+    .vista {
+        gap: 1rem;
+    }
+
     .detalleHeader {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        text-align: left;
+    }
+
+    .headerIcon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        font-size: 1.8rem;
+    }
+
+    .headerTexto h2 {
+        font-size: 1.35rem;
     }
 
     .headerKpis {
+        width: 100%;
         margin-left: 0;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .headerKpi span {
+        font-size: 1.4rem;
+    }
+
+    .headerKpi small {
+        font-size: 0.65rem;
+    }
+
+    .tablaHeader {
+        display: none;
+    }
+
+    .tablaFila {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        padding: 12px;
+        gap: 0.8rem;
+        border-bottom: 1px solid rgba(0, 33, 71, 0.05);
+    }
+
+    .estudianteNombre {
+        grid-column: 1;
+        font-size: 0.9rem;
+    }
+
+    .estadoBadge {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    .estudianteBar {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        width: 100%;
+    }
+
+    .guiaItem {
+        position: relative;
+        padding: 12px 0;
+    }
+
+    .guiaTitulo {
+        font-size: 0.82rem;
+        max-width: 80%;
+    }
+
+    .guiaEstado {
+        position: absolute;
+        top: 12px;
+        right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerKpis {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .btnVolver {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
     }
 }
