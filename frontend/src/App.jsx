@@ -35,10 +35,8 @@ function App() {
   const isCleanPage = cleanRoutes.includes(pathname) || pathname.startsWith("/aula-virtual");
 
   useEffect(() => {
-    if (!isCleanPage) {
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, isCleanPage]);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <HelmetProvider>
@@ -86,7 +84,7 @@ function App() {
 
           </Routes>
 
-          {!isCleanPage && <ScrollToTop />}
+          <ScrollToTop />
         </main>
 
         {!isCleanPage && <Footer />}
