@@ -118,7 +118,7 @@
 }
 
 .btnSecondary:disabled {
-    color:  #0f172a;
+    color: #0f172a;
     opacity: 1 !important;
     cursor: not-allowed;
     background-color: #334155;
@@ -333,7 +333,6 @@
     width: 60px;
     height: 60px;
     background: #e11d48;
-    /* Tu rojo institucional */
     color: white;
     border-radius: 50%;
     display: flex;
@@ -363,5 +362,41 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .btnAction,
+    .btnSecondary,
+    .btnConfirm {
+        width: 100%;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+        line-height: 1.2;
+        margin-top: 0.5rem;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .btnAction {
+        margin-left: 0;
+        align-self: center;
+    }
+
+    .input {
+        width: 100%;
+        margin-top: 0.5rem;
     }
 }
