@@ -1,0 +1,367 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #e11d48;
+}
+
+.divider {
+    height: 1px;
+    background: #f1f5f9;
+    margin: 2rem 0;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+.info p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.btnAction {
+    background: #1e293b;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+}
+
+.btnAction:hover {
+    background: #0f172a;
+}
+
+.btnSecondary {
+    background: #1e293b;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnSecondary:hover {
+    background-color: #0f172a;
+}
+
+.btnSecondary:disabled {
+    color:  #0f172a;
+    opacity: 1 !important;
+    cursor: not-allowed;
+    background-color: #334155;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e8f0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.switch input:checked+.slider {
+    background-color: #e11d48;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+.storageBarContainer {
+    margin-top: 1rem;
+}
+
+.storageInfo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.progressBar {
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: #e11d48;
+    border-radius: 10px;
+}
+
+.sectionSupport {
+    background: #f8fafc;
+    border: 1px dashed #e2e8f0;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+}
+
+.supportContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btnWhatsapp {
+    background: #1e293b;
+    color: white;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.btnWhatsapp:hover {
+    background: #0f172a;
+    transform: translateY(-2px);
+}
+
+.btnSecondary:disabled {
+    cursor: not-allowed;
+    background: #f1f5f9;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 2.5rem;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: #e11d48;
+}
+
+.modalHeader h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1e293b;
+}
+
+.modalHeader p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+}
+
+.modalBody {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.btnConfirm {
+    background: #0f172a;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: opacity 0.2s;
+}
+
+.btnConfirm:hover {
+    opacity: 0.9;
+}
+
+.successContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.successIcon {
+    width: 60px;
+    height: 60px;
+    background: #e11d48;
+    /* Tu rojo institucional */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(225, 29, 72, 0.3);
+}
+
+.successContainer h4 {
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.successContainer p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
