@@ -10,7 +10,8 @@ import VistaInicio from './views/VistaInicio';
 import VistaGrupos from './views/VistaGrupos';
 import VistaDetalle from './views/VistaDetalle';
 import VistaAnalitica from './views/VistaAnalitica';
-
+import VistaPerfil from './views/VistaPerfil';
+import VistaConfiguracion from './views/VistaConfiguracion';
 // ── Data ──
 import { GRADOS, TITULOS_VISTAS } from './constants/Data';
 
@@ -45,7 +46,7 @@ const PanelProfesor = () => {
             />
 
             <main className={styles.main}>
-                <TopBar titulo={titulo} />
+                <TopBar titulo={titulo} setActiveTab={setActiveTab} />
 
                 <div className={styles.contenido} key={activeTab}>
                     {activeTab === 'inicio' && (
@@ -71,6 +72,15 @@ const PanelProfesor = () => {
                     {activeTab === 'analitica' && (
                         <VistaAnalitica grados={GRADOS} />
                     )}
+
+                    {activeTab === 'perfil' && (
+                        <VistaPerfil />
+                    )}
+
+                    {activeTab === 'configuracion' && (
+                        <VistaConfiguracion />
+                    )}
+
                 </div>
             </main>
 
