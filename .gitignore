@@ -1,5 +1,6 @@
-# DEPENDECIAS
+# --- DEPENDENCIAS Y ENTORNOS ---
 node_modules/
+frontend/node_modules/
 venv/
 env/
 .venv/
@@ -8,48 +9,53 @@ lib/
 share/
 Include/
 
-# CONFIGURACION Y SECRETOS
+# --- CONFIGURACIÓN Y SECRETOS ---
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+*.local
+# Ignora certificados de seguridad
+*.pem
+*.pub
+*.key
 
-# Archivos de base de datos local (SQLLite)
+# --- BASE DE DATOS ---
 *.sqlite3
-
-# Credenciales de base de datos o backups de Postgres
 *.sql
 *.dump
 
-
-# Python / Django
+# --- PYTHON / DJANGO ---
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Django media y static locales
 /media
 /static
 !/static/admin
 
-# Frontend
-# Carpetas de compilacion
+# --- FRONTEND (React / Vite) ---
 dist/
+frontend/dist/
+frontend/dist-ssr/
 build/
+.vite/
 
-Logs de errores de npm/yarn
+# --- LOGS DE ERRORES ---
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Archivos del sistema y editores
+# --- ARCHIVOS DE SISTEMA Y EDITORES ---
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
 *.swp
-
-# Despliegue (CI-CD)
-*.pem
-*.pub
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+# Configuración de VS Code (mantiene recomendaciones de extensiones)
+.vscode/*
+!.vscode/extensions.json
