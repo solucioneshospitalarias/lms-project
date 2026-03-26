@@ -1,8 +1,9 @@
 export const PROFESOR = {
     nombre: 'SR. WALTER',
     iniciales: 'W',
-    cargo: 'Desarrollador de Software',
-    avatar: null,
+    rol: 'Desarrollador de Software', 
+    correo: 'walter@rutasdelsaber.com',
+    foto: null,
 };
 
 export const GRADOS = [
@@ -104,7 +105,7 @@ export const TAREAS_PENDIENTES = [
     { id: 1, titulo: 'Calificar guía #2 — Sexto A', grado: 'Sexto A', prioridad: 'alta', vence: 'Hoy' },
     { id: 2, titulo: 'Subir material semana 8', grado: 'Séptimo B', prioridad: 'media', vence: 'Mañana' },
     { id: 3, titulo: 'Responder foro de preguntas', grado: 'Octavo C', prioridad: 'baja', vence: 'Jul 20' },
-    { id: 4, titulo: 'Revisar plan de recuperación', grado: 'Noveno A', prioridad: 'alta', vence: 'Hoy' },
+    { id: 2, titulo: 'Revisar plan de recuperación', grado: 'Noveno A', prioridad: 'alta', vence: 'Hoy' },
 ];
 
 export const NAV_ITEMS = [
@@ -118,4 +119,6 @@ export const TITULOS_VISTAS = {
     grupos: 'Mis Grupos',
     analitica: 'Analítica Académica',
     detalle: 'Detalle de Grado',
+    perfil: 'Mi Perfil de Usuario',
+    configuracion: 'Configuración del Sistema'
 };

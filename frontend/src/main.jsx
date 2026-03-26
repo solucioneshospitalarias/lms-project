@@ -1,13 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom' // 1. Importamos esto
+import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import './styles/variables.css' // Tus variables globales
+import './styles/variables.css'
+
+import { UserProvider } from './context/UserContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter> {/* 2. Envolvemos la App aquí */}
-      <App />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>,
 )

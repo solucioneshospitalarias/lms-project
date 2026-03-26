@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './TopBar.module.css';
-import { PROFESOR, ACTIVIDAD_RECIENTE } from '../constants/Data';
+import { ACTIVIDAD_RECIENTE } from '../constants/Data';
 import { LogOut, User, Settings, Bell } from 'lucide-react';
+import { useUser } from '../../../../context/UserContext';
 
-const TopBar = ({ titulo }) => {
+const TopBar = ({ titulo, setActiveTab }) => {
+  const { userData } = useUser();
+
   const [hora, setHora] = useState(new Date());
   const [notifAbierta, setNotifAbierta] = useState(false);
   const [perfilAbierto, setPerfilAbierto] = useState(false);
@@ -78,15 +81,23 @@ const TopBar = ({ titulo }) => {
               setNotifAbierta(false);
             }}
           >
-            {PROFESOR.iniciales}
+            {userData.foto ? (
+              <img
+                src={userData.foto}
+                alt="Perfil"
+                style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
+              />
+            ) : (
+              userData.iniciales
+            )}
           </div>
 
           {perfilAbierto && (
             <div className={styles.userMenu}>
-              <button className={styles.menuItem}>
+              <button className={styles.menuItem} onClick={() => { setActiveTab('perfil'); setPerfilAbierto(false); }}>
                 <User size={16} /> <span>Mi Perfil</span>
               </button>
-              <button className={styles.menuItem}>
+              <button className={styles.menuItem} onClick={() => { setActiveTab('configuracion'); setPerfilAbierto(false); }}>
                 <Settings size={16} /> <span>Configuración</span>
               </button>
               <div className={styles.menuDivider} />

@@ -1,8 +1,11 @@
 import styles from './SidebarProfesor.module.css';
 import { NAV_ITEMS, PROFESOR } from '../constants/Data';
 import icono from '../../../../assets/favicon.ico'
+import { useUser } from '../../../../context/UserContext';
 
 const SidebarProfesor = ({ activeTab, setActiveTab, isOpen, onToggle }) => {
+    const { userData } = useUser();
+
     return (
         <aside className={`${styles.sidebar} ${!isOpen ? styles.collapsed : ''}`}>
 
@@ -19,7 +22,6 @@ const SidebarProfesor = ({ activeTab, setActiveTab, isOpen, onToggle }) => {
                 </div>
             </div>
 
-            {/* ── Navegación ── */}
             <nav className={styles.navMenu}>
                 {NAV_ITEMS.map((item) => {
                     const isActive = activeTab === item.key || (item.key === 'grupos' && activeTab === 'detalle');
@@ -37,14 +39,24 @@ const SidebarProfesor = ({ activeTab, setActiveTab, isOpen, onToggle }) => {
                 })}
             </nav>
 
-            {/* ── Perfil docente (solo cuando está abierto) ── */}
             {isOpen && (
                 <div className={styles.sidebarFooter}>
                     <div className={styles.profeCard}>
-                        <div className={styles.profeAvatar}>{PROFESOR.iniciales}</div>
+                        <div className={styles.profeAvatar}>
+                            {userData.foto ? (
+                                <img
+                                    src={userData.foto}
+                                    alt="Perfil"
+                                    style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
+                                />
+                            ) : (
+                                userData.iniciales
+                            )}
+                        </div>
+
                         <div className={styles.profeInfo}>
-                            <span className={styles.profeNombre}>{PROFESOR.nombre}</span>
-                            <span className={styles.profeCargo}>{PROFESOR.cargo}</span>
+                            <span className={styles.profeNombre}>{userData.nombre}</span>
+                            <span className={styles.profeCargo}>{userData.rol}</span>
                         </div>
                     </div>
                 </div>
