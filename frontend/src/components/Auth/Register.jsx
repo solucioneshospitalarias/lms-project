@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { registrarAlumno } from "../../services/api.js";
 import styles from "./Login.module.css";
-import { 
-  User, Mail, Lock, Calendar, MapPin, ShieldCheck, ArrowLeft, 
-  Chrome, Eye, EyeOff, Loader2, CheckCircle, AlertCircle 
+import {
+  User, Mail, Lock, Calendar, MapPin, ShieldCheck, ArrowLeft,
+  Chrome, Eye, EyeOff, Loader2, CheckCircle, AlertCircle
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
@@ -136,17 +136,17 @@ const Register = () => {
     if (!formData.apellido2.trim()) newErrors.apellido2 = "Este campo es obligatorio";
     if (!formData.departamento) newErrors.departamento = "Este campo es obligatorio";
     if (!formData.municipio) newErrors.municipio = "Este campo es obligatorio";
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "Este campo es obligatorio";
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = "Formato de correo inválido";
     }
-    
+
     if (!formData.fechaNacimiento) newErrors.fechaNacimiento = "Este campo es obligatorio";
     if (!formData.fechaExpedicion) newErrors.fechaExpedicion = "Este campo es obligatorio";
     if (!formData.telefono.trim()) newErrors.telefono = "Este campo es obligatorio";
-    
+
     if (!formData.password) {
       newErrors.password = "Este campo es obligatorio";
     } else if (formData.password.length < 8) {
@@ -191,7 +191,7 @@ const Register = () => {
         };
 
         const response = await registrarAlumno(registroData);
-        
+
         console.log("Registro exitoso:", response);
 
         // Guardar datos del usuario
@@ -231,7 +231,7 @@ const Register = () => {
         } else if (typeof error === 'string') {
           setApiError(error);
         } else {
-          setApiError("Error al registrar. Verifica que tu documento esté en el padrón de alumnos.");
+          setApiError("Acceso restringido: Documento no autorizado en el sistema");
         }
       }
     }
@@ -595,8 +595,8 @@ const Register = () => {
             <span className={styles.errorText}>{errors.aceptar_terminos}</span>
           )}
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className={styles.btnMain}
             disabled={isLoading}
           >
