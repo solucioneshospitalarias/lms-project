@@ -1,4 +1,4 @@
-name: Deploy Automático LMS (Full Stack)
+name: Deploy Automático LMS (Full Stack - Fix Rutas)
 
 on:
   push:
@@ -23,26 +23,28 @@ jobs:
           npm install
           npm run build
 
-      - name: 4. Subir Frontend a public_html
+      - name: 4. Actualizar Frontend en public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./frontend/dist/ 
-          server-dir: ./public_html/  # Forzamos la ruta del front
-          protocol: ftp
+          local-dir: ./frontend/dist/
+          # IMPORTANTE: Sin el punto inicial para que entre a la carpeta existente
+          server-dir: public_html/ 
+          state-name: .ftp-deploy-sync-state-frontend.json
 
-      - name: 5. Subir Backend (Django) a lms-project
+      - name: 5. Agregar archivos Backend a lms-project
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./backend/       # Sube tu carpeta de Django
-          server-dir: ./lms-project/  # Destino en la raíz de cPanel
-          protocol: ftp
-          exclude: |                  # Evitamos subir archivos innecesarios
+          local-dir: ./backend/
+          # IMPORTANTE: Entra directo a la carpeta lms-project que está afuera
+          server-dir: lms-project/ 
+          state-name: .ftp-deploy-sync-state-backend.json
+          exclude: |
             **/venv/**
             **/.env
             **/__pycache__/**
