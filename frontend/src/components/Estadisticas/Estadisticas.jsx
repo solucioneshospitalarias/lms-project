@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LabelList,
-  AreaChart, Area, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
+  AreaChart, Area
 } from 'recharts';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 import { Car, UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink, School, FileText } from 'lucide-react'
 import styles from './Estadisticas.module.css';
 import img from '../../assets/BaseDatos.png'
 
-// FORMATEADOR UNIFICADO: Evita errores de "is not defined"
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+let DefaultIcon = L.icon({ iconUrl: markerIcon, shadowUrl: markerShadow, iconSize: [25, 41], iconAnchor: [12, 41] });
+L.Marker.prototype.options.icon = DefaultIcon;
+
 const formatK = (tickItem) => tickItem === 0 ? '0' : `${tickItem / 1000} mil`;
 
 const isDark = document.body.classList.contains('dark-mode');
@@ -22,25 +29,72 @@ const chartColors = {
 
 const Estadisticas = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [geoData, setGeoData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/mapascolombia/colombia/master/atlantico.json")
+      .then(res => res.json())
+      .then(data => setGeoData(data));
+  }, []);
 
   // --- DATOS ---
 
   // PESTAÑA 1: 
-  const dataInformePoblacion = [
-    { ciclo: 'Primera Infancia (03 a 04)', totalmatriculados: 3510, totalpoblacion: 21464 },
-    { ciclo: 'Transición (5 años)', totalmatriculados: 9344, totalpoblacion: 11131 },
-    { ciclo: 'Básica Primaria (6-10 años)', totalmatriculados: 56870, totalpoblacion: 58051 },
-    { ciclo: 'Básica Secundaria (11-14 años)', totalmatriculados: 42350, totalpoblacion: 45778 },
-    { ciclo: 'Media Vocacional(15-16 años)', totalmatriculados: 17853, totalpoblacion: 22264 },
+  const dataEquiposPorEstudiante = [
+    { municipio: "Manati", valor: 0.04, portatiles: 200, tabletas: 150, desktops: 10 },
+    { municipio: "Campo de la Cruz", valor: 0.07, portatiles: 350, tabletas: 180, desktops: 5 },
+    { municipio: "Santa Lucia", valor: 0.09, portatiles: 210, tabletas: 100, desktops: 0 },
+    { municipio: "Puerto Colombia", valor: 0.09, portatiles: 480, tabletas: 20, desktops: 15 },
+    { municipio: "Luruaco", valor: 0.14, portatiles: 450, tabletas: 200, desktops: 5 },
+    { municipio: "Ponedera", valor: 0.15, portatiles: 400, tabletas: 150, desktops: 10 },
+    { municipio: "Palmar de Varela", valor: 0.16, portatiles: 550, tabletas: 50, desktops: 20 },
+    { municipio: "Galapa", valor: 0.16, portatiles: 800, tabletas: 250, desktops: 150 },
+    { municipio: "Sabanagrande", valor: 0.17, portatiles: 700, tabletas: 100, desktops: 50 },
+    { municipio: "Santo Tomas", valor: 0.17, portatiles: 500, tabletas: 10, desktops: 0 },
+    { municipio: "Baranoa", valor: 0.19, portatiles: 950, tabletas: 400, desktops: 20 },
+    { municipio: "Juan de Acosta", valor: 0.20, portatiles: 500, tabletas: 150, desktops: 10 },
+    { municipio: "Sabanalarga", valor: 0.20, portatiles: 2600, tabletas: 250, desktops: 30 },
+    { municipio: "Polonuevo", valor: 0.23, portatiles: 550, tabletas: 20, desktops: 5 },
+    { municipio: "Repelon", valor: 0.23, portatiles: 1100, tabletas: 150, desktops: 40 },
+    { municipio: "Candelaria", valor: 0.27, portatiles: 600, tabletas: 200, desktops: 10 },
+    { municipio: "Tubara", valor: 0.31, portatiles: 350, tabletas: 250, desktops: 15 },
+    { municipio: "Usiacuri", valor: 0.36, portatiles: 200, tabletas: 350, desktops: 5 },
+    { municipio: "Piojo", valor: 0.43, portatiles: 150, tabletas: 120, desktops: 0 },
+    { municipio: "Suan", valor: 0.63, portatiles: 500, tabletas: 650, desktops: 10 },
   ];
 
-  const dataRadar = dataInformePoblacion.map(item => ({
-    // Acortamos el nombre para que quepa mejor en el círculo
-    subject: item.ciclo.split('(')[0].trim(),
-    A: item.totalpoblacion,
-    B: item.totalmatriculados,
-    fullMark: 60000,
-  }));
+  const getColor = (valor) => {
+    if (valor < 0.10) return "#B30000"; // Crítico
+    if (valor < 0.15) return "#E67E22"; // Bajo
+    if (valor < 0.25) return "#2E86C1"; // Medio
+    return "#239B56"; // Alto
+  };
+
+  const styleMap = (feature) => {
+    const nombre = feature.properties.MPIO_CNMBR || feature.properties.nombre;
+    const info = dataEquiposPorEstudiante.find(
+      d => d.municipio.toLowerCase() === nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    );
+    return {
+      fillColor: info ? getColor(info.valor) : "#ccc",
+      weight: 1,
+      opacity: 1,
+      color: 'white',
+      fillOpacity: 0.8
+    };
+  };
+
+  const onEachMunicipio = (feature, layer) => {
+    const nombre = feature.properties.MPIO_CNMBR || feature.properties.nombre;
+    const info = dataEquiposPorEstudiante.find(
+      d => d.municipio.toLowerCase() === nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    );
+    layer.bindPopup(`<strong>${nombre}</strong><br/>Equipos: ${info ? info.valor : 'Sin datos'}`);
+    layer.on({
+      mouseover: (e) => { e.target.setStyle({ fillOpacity: 1, fillColor: '#FFD600' }); },
+      mouseout: (e) => { layer.setStyle(styleMap(feature)); }
+    });
+  };
 
 
   // PESTAÑA 2: image_e4315f.png
@@ -110,55 +164,37 @@ const Estadisticas = () => {
 
   const tabData = {
     1: {
-      titulo: "TOTAL DE MATRICULADOS POR TOTAL POBLACIÓN",
+      titulo: "ÍNDICE DE EQUIPOS COMPUTACIONALES POR ESTUDIANTE",
       componente: (
-        <ResponsiveContainer width="100%" height={500}>
-          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={dataRadar}>
-            <PolarGrid stroke={chartColors.grid} />
-            <PolarAngleAxis
-              dataKey="subject"
-              tick={{ fill: chartColors.text, fontSize: 11, fontWeight: 'bold' }}
-            />
-            <PolarRadiusAxis angle={30} domain={[0, 60000]} tick={false} axisLine={false} />
+        <div style={{ width: '100%', height: '500px', borderRadius: '15px', overflow: 'hidden', border: `1px solid ${chartColors.grid}` }}>
+          {/* Leyenda Flotante */}
+          <div style={{
+            position: 'absolute', bottom: '20px', left: '20px',
+            backgroundColor: isDark ? '#1e293b' : 'white',
+            padding: '10px', borderRadius: '8px', zIndex: 1000, boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
+          }}>
+            <small style={{ color: chartColors.text, fontWeight: 'bold' }}>Leyenda</small>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '10px', marginTop: '5px' }}>
+              <div style={{ width: '10px', height: '10px', backgroundColor: '#B30000' }}></div> <span style={{ color: chartColors.text }}>Crítico</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '10px' }}>
+              <div style={{ width: '10px', height: '10px', backgroundColor: '#239B56' }}></div> <span style={{ color: chartColors.text }}>Alto</span>
+            </div>
+          </div>
 
-            {/* CAPA 1: TOTAL POBLACIÓN */}
-            <Radar
-              name="Total Población"
-              dataKey="A"
-              stroke="#5c6670"
-              fill="#5c6670"
-              fillOpacity={0.2}
-            >
-              {/* Etiqueta para Población: la ponemos un poco más afuera (top) */}
-              <LabelList dataKey="A" position="top" style={{ fontSize: '10px', fill: '#5c6670', fontWeight: 'bold' }} />
-            </Radar>
-
-            {/* CAPA 2: MATRICULADOS */}
-            <Radar
-              name="Total Matriculados"
-              dataKey="B"
-              stroke="#B30000"
-              fill="#B30000"
-              fillOpacity={0.6}
-              dot={{ r: 5, fill: '#B30000' }}
-            >
-              {/* Etiqueta para Matriculados: la ponemos justo en el punto (center) o abajo */}
-              <LabelList dataKey="B" position="bottom" offset={10} style={{ fontSize: '11px', fill: '#B30000', fontWeight: 'bold' }} />
-            </Radar>
-
-            <Tooltip
-              contentStyle={{
-                backgroundColor: chartColors.tooltipBg,
-                borderColor: chartColors.tooltipBorder,
-                color: chartColors.text,
-                borderRadius: '10px'
-              }}
-            />
-            <Legend verticalAlign="top" align="right" iconType="circle" />
-          </RadarChart>
-        </ResponsiveContainer>
+          <MapContainer center={[10.45, -74.95]} zoom={9} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {geoData && (
+              <GeoJSON
+                data={geoData}
+                style={styleMap}
+                onEachFeature={onEachMunicipio}
+              />
+            )}
+          </MapContainer>
+        </div>
       ),
-      descripcion: "La situación de la primera infancia en el sistema educativo es un abismo crítico donde la educación inicial dista mucho de ser universal. Con una población de 21,464 niños de entre 3 y 4 años, solo 3,510 logran matricularse, lo que deja a un alarmante 83.6% en la invisibilidad escolar. Esta exclusión masiva provoca que la mayoría de los infantes ingresen al sistema formal recién a los 5 años, enfrentándose a una desventaja pedagógica profunda al carecer de los procesos de aprestamiento previos que son esenciales para su desarrollo."
+      descripcion: "El mapa interactivo permite visualizar la brecha digital en el Atlántico. Actualmente, municipios como Manatí y Campo de la Cruz se encuentran en estado crítico con menos de 0.1 equipos por estudiante. En contraste, Suan lidera el departamento con un índice de 0.63, demostrando una mejor cobertura tecnológica para sus alumnos. Esta herramienta facilita la identificación de zonas que requieren intervención urgente para garantizar la equidad educativa."
     },
     2: {
       titulo: "CASOS POR TIPO DE ACCIDENTE / CONTEXTO DEL HECHO",
