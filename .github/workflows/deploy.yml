@@ -23,30 +23,30 @@ jobs:
           npm install
           npm run build
 
-      # ─── DEPLOY FRONTEND → public_html (raíz del FTP) ────────────
+      # ─── DEPLOY FRONTEND → /home/rutasdel/public_html ────────────
       - name: 4. Subir Frontend a public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          username: ${{ secrets.FTP_USERNAME }}   # → rutasdel
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/dist/
-          server-dir: /                      # ← raíz del FTP = public_html
+          server-dir: /public_html/               # desde /home/rutasdel/
           protocol: ftp
           port: 21
           timeout: 90000
           passive: true
           dangerous-clean-slate: false
 
-      # ─── DEPLOY BACKEND → lms-project (un nivel arriba de public_html) ───
+      # ─── DEPLOY BACKEND → /home/rutasdel/lms-project ─────────────
       - name: 5. Subir Backend Python a lms-project
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          username: ${{ secrets.FTP_USERNAME }}   # → rutasdel
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./backend/
-          server-dir: /../lms-project/       # ← sube un nivel y entra a lms-project
+          server-dir: /lms-project/               # desde /home/rutasdel/
           protocol: ftp
           port: 21
           timeout: 90000
