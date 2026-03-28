@@ -1,4 +1,4 @@
-name: Deploy Automático LMS (Full Stack - Fix Rutas)
+name: Deploy Automático LMS (Full Stack - Ruta Absoluta)
 
 on:
   push:
@@ -30,19 +30,17 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/dist/
-          # IMPORTANTE: Sin el punto inicial para que entre a la carpeta existente
-          server-dir: public_html/ 
+          server-dir: /public_html/ 
           state-name: .ftp-deploy-sync-state-frontend.json
 
-      - name: 5. Agregar archivos Backend a lms-project
+      - name: 5. Agregar archivos Backend a lms-project (AFUERA)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./backend/
-          # IMPORTANTE: Entra directo a la carpeta lms-project que está afuera
-          server-dir: lms-project/ 
+          server-dir: /lms-project/ 
           state-name: .ftp-deploy-sync-state-backend.json
           exclude: |
             **/venv/**
