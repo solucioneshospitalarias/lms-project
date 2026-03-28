@@ -1,9 +1,9 @@
-name: Deploy Automático LMS
+name: Deploy Automático LMS (Full Stack)
 
 on:
   push:
     branches:
-      - master  # Solo se activa cuando los cambios llegan a la rama master
+      - master
 
 jobs:
   build-and-deploy:
@@ -23,16 +23,26 @@ jobs:
           npm install
           npm run build
 
-      - name: 4. Subir a cPanel vía FTP
+      - name: 4. Subir Frontend a public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/dist/ 
-          server-dir: ./
+          server-dir: ./public_html/  # Forzamos la ruta del front
           protocol: ftp
-          port: 21
-          timeout: 90000
-          passive: true
-          dangerous-clean-slate: false
+
+      - name: 5. Subir Backend (Django) a lms-project
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./backend/       # Sube tu carpeta de Django
+          server-dir: ./lms-project/  # Destino en la raíz de cPanel
+          protocol: ftp
+          exclude: |                  # Evitamos subir archivos innecesarios
+            **/venv/**
+            **/.env
+            **/__pycache__/**
