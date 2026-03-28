@@ -1,4 +1,4 @@
-name: Deploy Automático LMS (Full Stack - Ruta Absoluta)
+name: Deploy Automático LMS
 
 on:
   push:
@@ -23,26 +23,38 @@ jobs:
           npm install
           npm run build
 
-      - name: 4. Actualizar Frontend en public_html
+      # ─── DEPLOY FRONTEND → public_html ───────────────────────────
+      - name: 4. Subir Frontend a public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./frontend/dist/
-          server-dir: /public_html/ 
-          state-name: .ftp-deploy-sync-state-frontend.json
+          local-dir: ./frontend/dist/       # lo que genera Vite
+          server-dir: /public_html/          # carpeta ya existente en cPanel
+          protocol: ftp
+          port: 21
+          timeout: 90000
+          passive: true
+          dangerous-clean-slate: false       # NO borra lo que ya hay
 
-      - name: 5. Agregar archivos Backend a lms-project (AFUERA)
+      # ─── DEPLOY BACKEND → lms-project ────────────────────────────
+      - name: 5. Subir Backend Python a lms-project
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./backend/
-          server-dir: /lms-project/ 
-          state-name: .ftp-deploy-sync-state-backend.json
+          local-dir: ./backend/              # carpeta de tu backend en el repo
+          server-dir: /lms-project/          # carpeta ya existente en cPanel
+          protocol: ftp
+          port: 21
+          timeout: 90000
+          passive: true
+          dangerous-clean-slate: false       # NO borra lo que ya hay
           exclude: |
+            **/.git*
+            **/__pycache__/**
+            **/*.pyc
             **/venv/**
             **/.env
-            **/__pycache__/**
