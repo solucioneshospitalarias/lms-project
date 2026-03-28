@@ -130,7 +130,7 @@ const About = () => {
             <div className={styles.divider}></div>
             <p className={styles.mainText}>
               En Rutas del Saber, somos una plataforma líder dedicada a
-              transformar la educación vial y la convivencia armónica a través
+              transformar la educación y la convivencia armónica a través
               de la tecnología. Creemos que el conocimiento es la herramienta
               más poderosa para salvar vidas y construir una cultura de paz en
               nuestras comunidades.
