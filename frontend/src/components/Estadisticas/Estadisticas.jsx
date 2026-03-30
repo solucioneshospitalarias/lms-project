@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LabelList,
   AreaChart, Area
 } from 'recharts';
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Car, UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink, School, FileText } from 'lucide-react'
@@ -41,26 +41,26 @@ const Estadisticas = () => {
 
   // PESTAÑA 1: 
   const dataEquiposPorEstudiante = [
-    { municipio: "Manati", valor: 0.04, portatiles: 200, tabletas: 150, desktops: 10 },
-    { municipio: "Campo de la Cruz", valor: 0.07, portatiles: 350, tabletas: 180, desktops: 5 },
-    { municipio: "Santa Lucia", valor: 0.09, portatiles: 210, tabletas: 100, desktops: 0 },
-    { municipio: "Puerto Colombia", valor: 0.09, portatiles: 480, tabletas: 20, desktops: 15 },
-    { municipio: "Luruaco", valor: 0.14, portatiles: 450, tabletas: 200, desktops: 5 },
-    { municipio: "Ponedera", valor: 0.15, portatiles: 400, tabletas: 150, desktops: 10 },
-    { municipio: "Palmar de Varela", valor: 0.16, portatiles: 550, tabletas: 50, desktops: 20 },
-    { municipio: "Galapa", valor: 0.16, portatiles: 800, tabletas: 250, desktops: 150 },
-    { municipio: "Sabanagrande", valor: 0.17, portatiles: 700, tabletas: 100, desktops: 50 },
-    { municipio: "Santo Tomas", valor: 0.17, portatiles: 500, tabletas: 10, desktops: 0 },
-    { municipio: "Baranoa", valor: 0.19, portatiles: 950, tabletas: 400, desktops: 20 },
-    { municipio: "Juan de Acosta", valor: 0.20, portatiles: 500, tabletas: 150, desktops: 10 },
-    { municipio: "Sabanalarga", valor: 0.20, portatiles: 2600, tabletas: 250, desktops: 30 },
-    { municipio: "Polonuevo", valor: 0.23, portatiles: 550, tabletas: 20, desktops: 5 },
-    { municipio: "Repelon", valor: 0.23, portatiles: 1100, tabletas: 150, desktops: 40 },
-    { municipio: "Candelaria", valor: 0.27, portatiles: 600, tabletas: 200, desktops: 10 },
-    { municipio: "Tubara", valor: 0.31, portatiles: 350, tabletas: 250, desktops: 15 },
-    { municipio: "Usiacuri", valor: 0.36, portatiles: 200, tabletas: 350, desktops: 5 },
-    { municipio: "Piojo", valor: 0.43, portatiles: 150, tabletas: 120, desktops: 0 },
-    { municipio: "Suan", valor: 0.63, portatiles: 500, tabletas: 650, desktops: 10 },
+    { municipio: "Manatí", valor: 22.53, lat: 10.444, lng: -74.959, portatiles: 200, tabletas: 150, desktops: 10 },
+    { municipio: "Campo de la Cruz", valor: 14.25, lat: 10.379, lng: -74.885, portatiles: 350, tabletas: 180, desktops: 5 },
+    { municipio: "Santa Lucía", valor: 11.33, lat: 10.324, lng: -74.957, portatiles: 210, tabletas: 100, desktops: 0 },
+    { municipio: "Puerto Colombia", valor: 10.77, lat: 11.011, lng: -74.887, portatiles: 480, tabletas: 20, desktops: 15 },
+    { municipio: "Luruaco", valor: 9.70, lat: 10.612, lng: -75.143, portatiles: 450, tabletas: 200, desktops: 5 },
+    { municipio: "Ponedera", valor: 8.91, lat: 10.640, lng: -74.750, portatiles: 400, tabletas: 150, desktops: 10 },
+    { municipio: "Palmar de Varela", valor: 8.35, lat: 10.740, lng: -74.750, portatiles: 550, tabletas: 50, desktops: 20 },
+    { municipio: "Galapa", valor: 8.17, lat: 10.890, lng: -74.880, portatiles: 800, tabletas: 250, desktops: 150 },
+    { municipio: "Sabanagrande", valor: 7.25, lat: 10.790, lng: -74.760, portatiles: 700, tabletas: 100, desktops: 50 },
+    { municipio: "Santo Tomás", valor: 7.10, lat: 10.760, lng: -74.750, portatiles: 500, tabletas: 10, desktops: 0 },
+    { municipio: "Baranoa", valor: 6.57, lat: 10.790, lng: -74.910, portatiles: 950, tabletas: 400, desktops: 20 },
+    { municipio: "Juan de Acosta", valor: 5.88, lat: 10.830, lng: -75.040, portatiles: 500, tabletas: 150, desktops: 10 },
+    { municipio: "Sabanalarga", valor: 5.79, lat: 10.630, lng: -74.920, portatiles: 2600, tabletas: 250, desktops: 30 },
+    { municipio: "Polonuevo", valor: 4.39, lat: 10.780, lng: -74.850, portatiles: 550, tabletas: 20, desktops: 5 },
+    { municipio: "Repelón", valor: 4.31, lat: 10.490, lng: -75.120, portatiles: 1100, tabletas: 150, desktops: 40 },
+    { municipio: "Candelaria", valor: 3.61, lat: 10.460, lng: -74.880, portatiles: 600, tabletas: 200, desktops: 10 },
+    { municipio: "Tubará", valor: 3.13, lat: 10.870, lng: -74.980, portatiles: 350, tabletas: 250, desktops: 15 },
+    { municipio: "Usiacurí", valor: 2.75, lat: 10.740, lng: -74.980, portatiles: 200, tabletas: 350, desktops: 5 },
+    { municipio: "Piojó", valor: 2.33, lat: 10.700, lng: -75.110, portatiles: 150, tabletas: 120, desktops: 0 },
+    { municipio: "Suan", valor: 1.59, lat: 10.330, lng: -74.880, portatiles: 500, tabletas: 650, desktops: 10 },
   ];
 
   const getColor = (valor) => {
@@ -119,7 +119,6 @@ const Estadisticas = () => {
   ];
 
   // PESTAÑA 4: image_e4b1d4.png (Agresores Interpersonal)
-  // DATOS NIÑAS (Basados en tendencias de tus imágenes)
   const dataNinas = [
     { ciclo: 'P. Infancia', amigo: 254, companero: 60, profesor: 10 },
     { ciclo: 'Infancia', amigo: 1188, companero: 255, profesor: 323 },
@@ -166,24 +165,11 @@ const Estadisticas = () => {
     1: {
       titulo: "ÍNDICE DE EQUIPOS COMPUTACIONALES POR ESTUDIANTE",
       componente: (
-        <div style={{ width: '100%', height: '500px', borderRadius: '15px', overflow: 'hidden', border: `1px solid ${chartColors.grid}` }}>
-          {/* Leyenda Flotante */}
-          <div style={{
-            position: 'absolute', bottom: '20px', left: '20px',
-            backgroundColor: isDark ? '#1e293b' : 'white',
-            padding: '10px', borderRadius: '8px', zIndex: 1000, boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
-          }}>
-            <small style={{ color: chartColors.text, fontWeight: 'bold' }}>Leyenda</small>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '10px', marginTop: '5px' }}>
-              <div style={{ width: '10px', height: '10px', backgroundColor: '#B30000' }}></div> <span style={{ color: chartColors.text }}>Crítico</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '10px' }}>
-              <div style={{ width: '10px', height: '10px', backgroundColor: '#239B56' }}></div> <span style={{ color: chartColors.text }}>Alto</span>
-            </div>
-          </div>
-
-          <MapContainer center={[10.45, -74.95]} zoom={9} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
+        <div style={{ width: '100%', height: '500px', borderRadius: '15px', overflow: 'hidden', position: 'relative' }}>
+          <MapContainer center={[10.6, -74.9]} zoom={9} style={{ height: "100%", width: "100%" }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+            {/* Capa de polígonos (colores de fondo) */}
             {geoData && (
               <GeoJSON
                 data={geoData}
@@ -191,10 +177,27 @@ const Estadisticas = () => {
                 onEachFeature={onEachMunicipio}
               />
             )}
+
+            {/* NUEVO: Capa de Marcadores (Puntos) */}
+            {dataEquiposPorEstudiante.map((muni, idx) => (
+              <Marker key={idx} position={[muni.lat, muni.lng]}>
+                <Popup>
+                  <div style={{ textAlign: 'center' }}>
+                    <strong>{muni.municipio}</strong><br />
+                    <span style={{ color: getColor(muni.valor), fontWeight: 'bold' }}>
+                      Índice Estudiantes por Equipos: {muni.valor}
+                    </span>
+                    <hr style={{ margin: '5px 0' }} />
+                    <small> Población: {muni.portatiles}</small><br />
+                    <small> Equipos: {muni.tabletas}</small>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
           </MapContainer>
         </div>
       ),
-      descripcion: "El mapa interactivo permite visualizar la brecha digital en el Atlántico. Actualmente, municipios como Manatí y Campo de la Cruz se encuentran en estado crítico con menos de 0.1 equipos por estudiante. En contraste, Suan lidera el departamento con un índice de 0.63, demostrando una mejor cobertura tecnológica para sus alumnos. Esta herramienta facilita la identificación de zonas que requieren intervención urgente para garantizar la equidad educativa."
+      descripcion: "El despliegue estratégico de la plataforma Rutas del Saber contaría con su mayor área de influencia en una población estudiantil robusta y segmentada, que alcanza un total de 93.881 alumnos distribuidos en los municipios del Atlántico. Al analizar la estructura demográfica escolar, se identifica una concentración crítica en la Educación Básica Secundaria, liderada por el grado Sexto con 9.185 estudiantes (equivalente al 9,35% de la matrícula total), lo que representa el punto de mayor demanda operativa para el sistema. Asimismo, la Básica Primaria se consolida como el bloque de usuarios más voluminoso con 39.847 alumnos (40,6%), evidenciando que el éxito de la herramienta depende de una interfaz adaptada a procesos de aprendizaje tempranos."
     },
     2: {
       titulo: "CASOS POR TIPO DE ACCIDENTE / CONTEXTO DEL HECHO",
