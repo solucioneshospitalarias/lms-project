@@ -1,0 +1,413 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.libraryContainer {
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.libraryTitle {
+    color: #2d3436;
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: 800;
+    font-size: 2.2rem;
+}
+
+/* --- BUSCADOR --- */
+.searchBarContainer {
+    position: relative;
+    flex: 1;
+    /* Esto hace que el buscador use el espacio sobrante */
+    max-width: 500px;
+    margin: 0 !important;
+    /* Resetea el margen que tenía antes */
+}
+
+.searchBarIcon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    font-size: 1.1rem;
+}
+
+.searchBarInput {
+    width: 100%;
+    padding: 14px 20px 14px 55px;
+    border-radius: 50px;
+    border: 2px solid #edf2f7;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.searchBarInput:focus {
+    border-color: #c22821;
+    box-shadow: 0 0 0 4px rgba(194, 40, 33, 0.1);
+}
+
+/* --- SECCIÓN DE ESTANTE Y GRADOS --- */
+.gradeShelfSection {
+    margin-bottom: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Etiqueta flotante roja */
+.gradeBadgeWood {
+    position: absolute;
+    top: -28px;
+    left: 40px;
+    background-color: #c22821;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(194, 40, 33, 0.3);
+    border: 2.5px solid white;
+}
+
+.shelfFullWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.booksOnShelf {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: -15px;
+    /* Los libros "pisan" la madera */
+    z-index: 2;
+}
+
+/* --- MADERA DEL ESTANTE --- */
+.shelfBaseWood {
+    width: 100%;
+    height: 28px;
+    background: linear-gradient(to bottom, #8d5524, #5d3a1a);
+    border-radius: 5px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.shelfWoodFront {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 5px 5px 0 0;
+}
+
+/* --- LIBRO PREMIUM --- */
+.premiumBookContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 130px;
+}
+
+.premiumBookContainer:hover {
+    transform: translateY(-20px) rotate(-3deg);
+}
+
+.premiumBook {
+    width: 130px;
+    height: 180px;
+    background-color: #eee;
+    border-radius: 4px 18px 18px 4px;
+    position: relative;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bookHardCover {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* La imagen de portada externa */
+.bookCoverImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ajusta la imagen al libro sin deformarla */
+    display: block;
+}
+
+/* Lomo del libro (Spine) */
+.bookSpine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    height: 100%;
+    background-color: var(--book-accent-color);
+    box-shadow: inset -3px 0 5px rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Icono que aparece al hacer hover */
+.openBookIcon {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.premiumBookContainer:hover .openBookIcon {
+    opacity: 1;
+}
+
+.bookProgressBadge {
+    position: absolute;
+    bottom: 12px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #222;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 800;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --- ETIQUETAS --- */
+.subjectLabel {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    color: #2d3436;
+}
+
+.teacherLabel {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #636e72;
+    font-weight: 500;
+}
+
+.noResultsLibrary {
+    text-align: center;
+    color: #a0aec0;
+    margin-top: 50px;
+}
+
+.modalOverlay {
+    position: fixed;
+    /* Esto lo ancla a la ventana del navegador, no al scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    /* Fondo un poco más oscuro para resaltar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Lo pega al techo de la pantalla */
+    padding-top: 10px;
+    /* Un pequeño margen estético arriba */
+    z-index: 9999;
+    /* Valor muy alto para que nada lo tape */
+    backdrop-filter: blur(5px);
+}
+
+.modalContent {
+    width: 95%;
+    max-width: 1100px;
+    height: 95vh;
+    /* Ocupa casi todo el alto de la pantalla */
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 0;
+    /* Eliminamos cualquier margen que lo baje */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalEntrada 0.4s ease-out;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: #ffffff;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.modalHeader h3 {
+    margin: 0;
+    color: #2d3436;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.closeBtn {
+    background: #f1f2f6;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #636e72;
+}
+
+.closeBtn:hover {
+    background-color: var(--hover-color);
+    /* Esto toma el color que pasamos por el style del JSX */
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Contenedor del Iframe */
+.pdfViewerContainer {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background: #525659;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.filterSection {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+}
+
+.selectWrapper {
+    position: relative;
+    min-width: 180px;
+}
+
+.gradeSelect {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 50px;
+    border: 2px solid #edf2f7;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3436;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a0aec0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+}
+
+.gradeSelect:focus {
+    border-color: #c22821;
+    box-shadow: 0 0 0 4px rgba(194, 40, 33, 0.1);
+}
+
+
+.pdfViewerContainer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0;
+    /* Forza el pegado al techo del modal */
+    left: 0;
+}
+
+@keyframes modalEntrada {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .booksOnShelf {
+        gap: 20px;
+    }
+
+    .premiumBook {
+        width: 100px;
+        height: 140px;
+    }
+
+    .premiumBookContainer {
+        width: 100px;
+    }
+
+    .gradeBadgeWood {
+        left: 20px;
+        font-size: 0.8rem;
+        padding: 6px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .filterSection {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .selectWrapper,
+    .searchBarContainer {
+        width: 100%;
+        max-width: 100%;
+    }
+}
