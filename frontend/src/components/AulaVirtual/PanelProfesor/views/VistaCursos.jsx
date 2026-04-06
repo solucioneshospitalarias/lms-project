@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaBookOpen, FaTimes, FaFilePdf } from "react-icons/fa";
 import styles from "./VistaCursos.module.css";
-import pdf from '../../../layout/Footer/Docs/TerminosCondiciones.pdf';
+import pdfTransicion1 from '../PDFS/0-GPSV-Grado Transición.pdf';
+import pdfTransicionGral from '../PDFS/0-P1-GPSV-Grado Transición.pdf';
 
 const VistaCursos = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -12,183 +13,183 @@ const VistaCursos = () => {
         {
             id: 1,
             category: "Matemáticas",
-            grade: "1°",
+            grade: "Transicion°",
             teacher: "Prof. Walter",
             progress: 75,
-            color: "#d93025",
+            color: "#0061f2",
             coverUrl: "https://i.imgur.com/JnM1HUb.png",
-            pdfUrl: pdf
+            pdfUrl: pdfTransicion1
         },
         {
             id: 2,
             category: "Ciencias Sociales",
-            grade: "1°",
+            grade: "Transicion°",
             teacher: "Prof. Walter",
             progress: 75,
-            color: "#d93025",
+            color: "#f6ad55",
             coverUrl: "https://i.imgur.com/JnM1HUb.png",
-            pdfUrl: pdf
+            pdfUrl: pdfTransicionGral
         },
         {
             id: 3,
             category: "Lenguaje",
-            grade: "1°",
+            grade: "Transicion°",
             teacher: "Prof. Walter",
             progress: 75,
-            color: "#d93025",
+            color: "#38a169",
             coverUrl: "https://i.imgur.com/JnM1HUb.png",
-            pdfUrl: pdf
+            pdfUrl: pdfTransicionGral
         },
-        {
-            id: 4,
-            category: "Ciencias Naturales",
-            grade: "2°",
-            teacher: "Prof. Samir",
-            progress: 40,
-            color: "#1e8e3e",
-            coverUrl: "https://i.imgur.com/zgBoWvN.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 5,
-            category: "Historia",
-            grade: "2°",
-            teacher: "Prof. Jons",
-            progress: 90,
-            color: "#1a73e8",
-            coverUrl: "https://i.imgur.com/PgEjXoY.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 6,
-            category: "Lenguaje",
-            grade: "2°",
-            teacher: "Prof. Samuel",
-            progress: 10,
-            color: "#FFB300",
-            coverUrl: "https://i.imgur.com/NB9d5SN.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 7,
-            category: "Inglés",
-            grade: "3°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 8,
-            category: "Lenguajes",
-            grade: "3°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 9,
-            category: "Estadisticas",
-            grade: "3°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 10,
-            category: "Fisica",
-            grade: "4°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 11,
-            category: "Historia",
-            grade: "4°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 12,
-            category: "Quimica",
-            grade: "4°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 13,
-            category: "Ciencias Naturales",
-            grade: "5°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 14,
-            category: "Filosofia",
-            grade: "5°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 15,
-            category: "Comprension Lectora",
-            grade: "5°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 16,
-            category: "Comprension Lectora",
-            grade: "6°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 17,
-            category: "Comprension Lectora",
-            grade: "6°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
-        {
-            id: 18,
-            category: "Comprension Lectora",
-            grade: "6°",
-            teacher: "Dra. Elena",
-            progress: 60,
-            color: "#8e44ad",
-            coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
-            pdfUrl: pdf
-        },
+        //     {
+        //         id: 4,
+        //         category: "Ciencias Naturales",
+        //         grade: "2°",
+        //         teacher: "Prof. Samir",
+        //         progress: 40,
+        //         color: "#1e8e3e",
+        //         coverUrl: "https://i.imgur.com/zgBoWvN.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 5,
+        //         category: "Historia",
+        //         grade: "2°",
+        //         teacher: "Prof. Jons",
+        //         progress: 90,
+        //         color: "#1a73e8",
+        //         coverUrl: "https://i.imgur.com/PgEjXoY.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 6,
+        //         category: "Lenguaje",
+        //         grade: "2°",
+        //         teacher: "Prof. Samuel",
+        //         progress: 10,
+        //         color: "#FFB300",
+        //         coverUrl: "https://i.imgur.com/NB9d5SN.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 7,
+        //         category: "Inglés",
+        //         grade: "3°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 8,
+        //         category: "Lenguajes",
+        //         grade: "3°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 9,
+        //         category: "Estadisticas",
+        //         grade: "3°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 10,
+        //         category: "Fisica",
+        //         grade: "4°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 11,
+        //         category: "Historia",
+        //         grade: "4°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 12,
+        //         category: "Quimica",
+        //         grade: "4°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 13,
+        //         category: "Ciencias Naturales",
+        //         grade: "5°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 14,
+        //         category: "Filosofia",
+        //         grade: "5°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 15,
+        //         category: "Comprension Lectora",
+        //         grade: "5°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 16,
+        //         category: "Comprension Lectora",
+        //         grade: "6°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 17,
+        //         category: "Comprension Lectora",
+        //         grade: "6°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
+        //     {
+        //         id: 18,
+        //         category: "Comprension Lectora",
+        //         grade: "6°",
+        //         teacher: "Dra. Elena",
+        //         progress: 60,
+        //         color: "#8e44ad",
+        //         coverUrl: "https://i.imgur.com/T8OoGqM.jpeg",
+        //         pdfUrl: pdf
+        //     },
     ];
 
     const uniqueGrades = ["Todos", ...new Set(cursosEnrolled.map(c => c.grade))].sort();
@@ -253,7 +254,7 @@ const VistaCursos = () => {
                     >
                         {uniqueGrades.map(grade => (
                             <option key={grade} value={grade}>
-                                {grade === "Todos" ? "Todos los Grados" : `${grade} Grado`}
+                                {grade === "Todos" ? "Todos los Grados" : `${grade} grado`}
                             </option>
                         ))}
                     </select>
