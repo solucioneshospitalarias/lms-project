@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./SidebarAdmin.module.css";
-import { FaHome, FaBook, FaLock, FaGraduationCap, FaCog, FaCalendarAlt } from "react-icons/fa";
+import { FaHome, FaBook, FaLock, FaGraduationCap, FaCalendarAlt } from "react-icons/fa";
 
 const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
 
@@ -79,21 +79,6 @@ const SidebarAdmin = ({ isOpen, toggleSidebar }) => {
           {isOpen && <span>Mis Desempeños</span>}
         </NavLink>
       </nav>
-
-      {/* Sección de abajo para Configuración */}
-      <div className={styles.footerSection}>
-        <NavLink
-          to="/aula-virtual/configuracion"
-          replace={true}
-          onClick={handleItemClick} // CAMBIADO: onClick
-          className={({ isActive }) =>
-            `${styles.navItem} ${isActive ? styles.active : ""}`
-          }
-        >
-          <FaCog className={styles.icon} />
-          {isOpen && <span>Configuración</span>}
-        </NavLink>
-      </div>
     </aside>
   );
 };
