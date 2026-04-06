@@ -3,17 +3,65 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 24px;
   background: white;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #f0f0f0;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.avatarContainer {
-  position: relative;
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notificationBtn {
+  background: #f8f9fa;
+  border: 1px solid #eee;
+  padding: 8px;
+  border-radius: 10px;
+  color: #5f6368;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.notificationBtn:hover {
+  background: #f1f3f4;
+}
+
+.dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  background: #c22821;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(194, 40, 33, 0.2);
+  transition: transform 0.2s;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
 }
 
 .largeAvatar {
@@ -30,14 +78,17 @@
 
 .accountMenu {
   position: absolute;
-  top: 50px;
+  top: 55px;
   right: 0;
-  width: 260px;
+  width: 200px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 15px 0;
-  z-index: 1000;
+  border-radius: 16px;
+  /* Bordes bien redondeados */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  padding: 8px;
+  border: 1px solid #f0f0f0;
+  z-index: 1001;
 }
 
 .profileHeader {
@@ -80,6 +131,15 @@
   margin: 0;
   font-size: 12px;
   color: #5f6368;
+}
+
+.logout {
+  color: #5f6368;
+}
+
+.logout:hover {
+  background: #fff0ef;
+  color: #c22821;
 }
 
 .logoutBtn {
@@ -138,11 +198,8 @@
 }
 
 .brandName {
-  font-size: 20px;
-  color: #5f6368;
-  font-family: "Roboto", sans-serif;
-  white-space: nowrap;
-  display: block;
+  font-weight: 600;
+  color: #2d3436;
 }
 
 .userAvatar {
@@ -182,29 +239,32 @@
 
 .menuDivider {
   height: 1px;
-  background: #eee;
-  margin: 10px 0;
+  background: #f0f0f0;
+  margin: 8px;
 }
 
 .menuOptionItem {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 12px 16px;
   border: none;
   background: none;
-  color: #555;
+  color: #444;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  border-radius: 10px;
   transition: background 0.2s;
+  gap: 12px;
 }
 
 .menuOptionItem:hover {
-  background: #f9f9f9;
+  background: #f8f9fa;
+  color: #c22821;
 }
 
 .optionIcon {
-  margin-right: 12px;
   color: #7f8c8d;
 }
 
@@ -212,10 +272,8 @@
   background: none;
   border: none;
   font-size: 20px;
-  color: #5f6368;
   cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;
+  color: #5f6368;
 }
 
 .menuBtn:hover {
@@ -299,13 +357,13 @@
 
 @media (max-width: 400px) {
   .navbar {
-    padding: 0 4px;
+    padding: 0 12px;
     justify-content: space-between;
   }
 
   .left,
   .right {
-    gap: 4px;
+    gap: 12px;
   }
 
   .iconBtn,

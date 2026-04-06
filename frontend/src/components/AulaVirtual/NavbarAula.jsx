@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom'
-import { FaBars, FaPlus, FaTh, FaEnvelope, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { FaBars } from "react-icons/fa";
+import { HiOutlineUser, HiOutlineCog, HiOutlineLogout, HiOutlineBell } from "react-icons/hi"; // Iconos más minimalistas
 import styles from "./NavbarAula.module.css";
 import logo from "../../assets/favicon.ico";
 
@@ -26,7 +27,13 @@ const NavbarAula = ({ toggleSidebar }) => {
 
   const userData = {
     name: "Walter Steven",
-    avatarColor: "#f39c12"
+    initial: "W",
+    avatarColor: "#c22821" // Rojo institucional de Rutas del Saber
+  };
+
+  const handleNavigate = (path) => {
+    setShowAccountMenu(false);
+    navigate(path);
   };
 
   return (
@@ -40,8 +47,10 @@ const NavbarAula = ({ toggleSidebar }) => {
       </div>
 
       <div className={styles.right}>
-        <button className={styles.iconBtn}><FaPlus /></button>
-        <button className={styles.iconBtn}><FaTh /></button>
+        <button className={styles.notificationBtn}>
+          <HiOutlineBell size={22} />
+          <span className={styles.dot}></span>
+        </button>
 
         <div className={styles.avatarContainer} ref={menuRef}>
           <div
@@ -49,39 +58,27 @@ const NavbarAula = ({ toggleSidebar }) => {
             onClick={() => setShowAccountMenu(!showAccountMenu)}
             style={{ backgroundColor: userData.avatarColor }}
           >
-            {userData.name.charAt(0)}
+            {userData.initial}
           </div>
 
           {showAccountMenu && (
-            <div className={styles.accountMenu}>
-              <div className={styles.profileHeader}>
-                <div className={styles.largeAvatar} style={{ backgroundColor: userData.avatarColor }}>
-                  {userData.name.charAt(0)}
-                </div>
-                <div className={styles.profileInfo}>
-                  <p className={styles.userName}>{userData.name}</p>
-                  <p className={styles.userCode}>{userData.code}</p>
-                  <button className={styles.viewProfileBtn}>Ver perfil</button>
-                </div>
-              </div>
+            <div className={`${styles.accountMenu} fadeUpEffect`}>
+              <button className={styles.menuOptionItem} onClick={() => handleNavigate("/aula-virtual/mi-perfil")}>
+                <HiOutlineUser className={styles.optionIcon} size={18} />
+                <span>Mi Perfil</span>
+              </button>
+
+              <button className={styles.menuOptionItem} onClick={() => handleNavigate("/aula-virtual/configuracion")}>
+                <HiOutlineCog className={styles.optionIcon} size={18} />
+                <span>Configuración</span>
+              </button>
 
               <div className={styles.menuDivider}></div>
 
-              <div className={styles.menuOptions}>
-                <button className={styles.menuOptionItem}>
-                  <FaEnvelope className={styles.optionIcon} />
-                  <span>Mensajes</span>
-                </button>
-
-                {/* BOTÓN CONECTADO A LA LÓGICA */}
-                <button
-                  className={styles.menuOptionItem}
-                  onClick={handleLogout}
-                >
-                  <FaSignOutAlt className={styles.optionIcon} />
-                  <span>Cerrar sesión</span>
-                </button>
-              </div>
+              <button className={`${styles.menuOptionItem} ${styles.logout}`} onClick={handleLogout}>
+                <HiOutlineLogout className={styles.optionIcon} size={18} />
+                <span>Salir del Sistema</span>
+              </button>
             </div>
           )}
         </div>
