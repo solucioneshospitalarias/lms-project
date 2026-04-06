@@ -5,8 +5,7 @@
     width: 100%;
     min-height: 80vh;
     background-color: transparent;
-    /* Evita fondos que choquen con el layout principal */
-    padding: 40px 20px;
+    padding: 10px 20px;
 }
 
 .formCard {
@@ -14,7 +13,6 @@
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    /* Sombra única y suave */
     width: 100%;
     max-width: 480px;
     display: flex;
@@ -28,7 +26,6 @@
 
 .iconContainer {
     background-color: #d93025;
-    /* Tu rojo institucional */
     width: 56px;
     height: 56px;
     border-radius: 50%;

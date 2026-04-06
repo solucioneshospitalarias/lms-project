@@ -69,6 +69,7 @@ const RestablecerContraseña = () => {
                 type={showCurrent ? "text" : "password"}
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
+                placeholder="Tu contraseña"
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowCurrent(!showCurrent)}>
