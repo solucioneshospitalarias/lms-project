@@ -10,6 +10,7 @@ import VistaInicio from './views/VistaInicio';
 import VistaGrupos from './views/VistaGrupos';
 import VistaDetalle from './views/VistaDetalle';
 import VistaAnalitica from './views/VistaAnalitica';
+import VistaCursos from './views/VistaCursos';
 import VistaPerfil from './views/VistaPerfil';
 import VistaConfiguracion from './views/VistaConfiguracion';
 // ── Data ──
@@ -71,6 +72,9 @@ const PanelProfesor = () => {
                     )}
                     {activeTab === 'analitica' && (
                         <VistaAnalitica grados={GRADOS} />
+                    )}
+                    {activeTab === 'cursos' && (
+                        <VistaCursos />
                     )}
 
                     {activeTab === 'perfil' && (
