@@ -1,70 +1,122 @@
-import React from "react"; // Quitamos useState porque ya no usaremos modales
-import { useNavigate } from "react-router-dom";
-import styles from "./ClassroomHome.module.css";
-import { BookOpenText, User, BookCheck, ClipboardList } from 'lucide-react';
-import img1 from '../../assets/Servicios.png'
-import img2 from '../../assets/CapiAtencion.png'
-import img3 from '../../assets/Identidad.png'
-import img4 from '../../assets/FormularioContacto.png'
-
-const courses = [
-  { id: 1, category: "Matemáticas", grade: "Periodo 1", teacher: "Walter", color: "#d93025", image: img1 },
-  { id: 2, category: "Lenguaje", grade: "Periodo 2", teacher: "Samir", color: "#FFB300", image: img2 },
-  { id: 3, category: "Ciencias Naturales", grade: "Periodo 3", teacher: "Jons", color: "#1e8e3e", image: img3 },
-  { id: 4, category: "Ciencias Sociales", grade: "Periodo 4", teacher: "Samuel", color: "#1a73e8", image: img4 },
-];
+import React, { useState } from 'react';
+import styles from './ClassroomHome.module.css';
+import cocodriloImg from '../../assets/favicon.ico';
+import imagenModalBienvenida from '../../assets/Item1.png';
+import imagenModalMetodologia from '../../assets/Item2.png';
 
 const ClassroomHome = () => {
-  const navigate = useNavigate();
+  const [modalContent, setModalContent] = useState(null);
 
   return (
-    <div className={styles.classroomGrid}>
-      {courses.map((course, index) => (
-        <div
-          key={course.id}
-          className={`${styles.studentCard} fadeUpEffect`}
-          style={{ animationDelay: `${index * 0.1}s` }}
-        >
-          <div className={styles.courseInfoSide}>
-            <div className={styles.badge} style={{ backgroundColor: course.color + '20', color: course.color }}>
-              <BookOpenText size={16} />
-              {course.category}
-            </div>
-
-            <h3>{course.grade}</h3>
-
-            <div className={styles.instructorBadge}>
-              <User size={16} color="#636e72" />
-              <span>Instructor: {course.teacher}</span>
-            </div>
-
-            <button className={styles.btnAccess}>Acceder al Curso</button>
-
-            <div className={styles.secondaryActions}>
-              <button className={styles.btnOpen}>
-                <BookCheck size={18} />
-                Abrir
-              </button>
-
-              {/* ✅ NAVEGACIÓN LIMPIA: Esto te llevará a la pantalla completa */}
-              <button
-                className={styles.btnNotes}
-                onClick={() => navigate("/visor-notas")}
-              >
-                <ClipboardList size={18} />
-                Mis notas
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.courseImageSide}>
-            <img src={course.image} alt={course.category} loading="lazy" />
+    <div className={styles.container}>
+      <div className={styles.heroSection}>
+        <div className={styles.textContent}>
+          <span className={styles.badge}>Guía Práctica</span>
+          <h1 className={styles.title}>
+            Seguridad Vial: <br />
+            <span className={styles.highlight}>Mis primeros pasos seguros</span>
+          </h1>
+          <p className={styles.description}>
+            Una plataforma educativa diseñada para enseñar a niños y adolescentes los fundamentos de la seguridad vial a través de experiencias interactivas, videos inmersivos y simuladores realistas.
+          </p>
+          <div className={styles.actions}>
+            <button className={styles.btnPrimary} onClick={() => setModalContent('bienvenida')}>
+              Comenzar ahora
+            </button>
+            <button className={styles.btnSecondary} onClick={() => setModalContent('metodologia')}>
+              Ver metodología
+            </button>
           </div>
         </div>
-      ))}
 
-      {/* ❌ ELIMINAMOS EL COMPONENTE VisorNotas DE AQUÍ 
-          Porque ahora es una ruta independiente en App.jsx */}
+        <div className={styles.imageContent}>
+          <img src={cocodriloImg} alt="Personaje" className={styles.character} />
+        </div>
+      </div>
+
+      {modalContent && (
+        <div className={styles.modalOverlay} onClick={() => setModalContent(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeBtn} onClick={() => setModalContent(null)}>×</button>
+
+            <div className={styles.modalBody}>
+              <div className={styles.modalLayoutGrid}>
+
+                <div className={styles.modalTextColumn}>
+                  {modalContent === 'bienvenida' ? (
+                    <>
+                      <div className={styles.badgeSmall}>Módulo Introductorio</div>
+                      <h2 className={styles.modalTitle}>¡Bienvenido, Walter! 👋</h2>
+                      <p className={styles.modalSubtitle}>Inicia tu formación en Seguridad Vial.</p>
+
+                      <div className={styles.learningPath}>
+                        <div className={styles.pathItem}>
+                          <div className={styles.pathIcon}>01</div>
+                          <div>
+                            <h4>Normas Fundamentales</h4>
+                            <p>Conocerás el marco legal y los principios éticos que rigen el tránsito. Aprenderás por qué las reglas no son solo prohibiciones, sino herramientas para salvar vidas.</p>
+                          </div>
+                        </div>
+                        <div className={styles.pathItem}>
+                          <div className={styles.pathIcon}>02</div>
+                          <div>
+                            <h4>Comportamiento Seguro</h4>
+                            <p>Identificarás las conductas de riesgo y desarrollarás hábitos preventivos, ya sea que te muevas como peatón, ciclista o futuro conductor.</p>
+                          </div>
+                        </div>
+                        <div className={styles.pathItem}>
+                          <div className={styles.pathIcon}>03</div>
+                          <div>
+                            <h4>Señalética Vial</h4>
+                            <p>Aprenderás a interpretar rápidamente señales preventivas, reglamentarias e informativas para tomar decisiones seguras en fracciones de segundo..</p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={styles.badgeSmall}>Nuestra Ruta</div>
+                      <h2 className={styles.modalTitle}>Metodología</h2>
+                      <div className={styles.proMethodGrid}>
+                        <div className={styles.proMethodItem}>
+                          <div className={styles.methodHeader}>
+                            <div className={styles.dot}></div>
+                            <h3>Aprendizaje Activo</h3>
+                          </div>
+                          <p>Olvídate de las clases aburridas. Nuestra metodología se basa en simuladores de situaciones reales y videos en alta resolución donde tú tomas las decisiones.</p>
+                        </div>
+                        <div className={styles.proMethodItem}>
+                          <div className={styles.methodHeader}>
+                            <div className={styles.dot}></div>
+                            <h3>Evaluación Continua</h3>
+                          </div>
+                          <p>Aquí no hay un examen final que te genera ansiedad. Cada video visto, cada reto superado y cada participación te suma puntos. Tu progreso se mide en tiempo real a través de misiones y niveles que desbloquean nuevos conocimientos.</p>
+                        </div>
+                        <div className={styles.proMethodItem}>
+                          <div className={styles.methodHeader}>
+                            <div className={styles.dot}></div>
+                            <h3>Certificación</h3>
+                          </div>
+                          <p>Al completar todos los niveles, obtendrás un certificado digital respaldado por la plataforma. Este incluye un código QR único que permite a cualquier institución verificar tus competencias en Seguridad Vial de manera instantánea.</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div className={styles.modalImageColumn}>
+                  <img
+                    src={modalContent === 'bienvenida' ? imagenModalBienvenida : imagenModalMetodologia}
+                    alt="Ilustración"
+                    className={styles.modalMainImage}
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
