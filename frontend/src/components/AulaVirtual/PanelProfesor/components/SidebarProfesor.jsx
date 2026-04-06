@@ -25,6 +25,7 @@ const SidebarProfesor = ({ activeTab, setActiveTab, isOpen, onToggle }) => {
             <nav className={styles.navMenu}>
                 {NAV_ITEMS.map((item) => {
                     const isActive = activeTab === item.key || (item.key === 'grupos' && activeTab === 'detalle');
+                    const IconComponent = item.icon;
                     return (
                         <button
                             key={item.key}
@@ -32,7 +33,9 @@ const SidebarProfesor = ({ activeTab, setActiveTab, isOpen, onToggle }) => {
                             onClick={() => setActiveTab(item.key)}
                             title={!isOpen ? item.label : undefined}
                         >
-                            <span className={styles.navIcon}>{item.icon}</span>
+                            <span className={styles.navIcon}>
+                                <IconComponent size={20} />
+                            </span>
                             {isOpen && <span className={styles.navLabel}>{item.label}</span>}
                         </button>
                     );

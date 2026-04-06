@@ -1,7 +1,10 @@
+import { icon } from "leaflet";
+import { LayoutDashboard, Users, BarChart3, BookOpen } from "lucide-react";
+
 export const PROFESOR = {
     nombre: 'SR. WALTER',
     iniciales: 'W',
-    rol: 'Desarrollador de Software', 
+    rol: 'Desarrollador de Software',
     correo: 'walter@rutasdelsaber.com',
     foto: null,
 };
@@ -109,15 +112,17 @@ export const TAREAS_PENDIENTES = [
 ];
 
 export const NAV_ITEMS = [
-    { key: 'inicio', icon: '🏠', label: 'Inicio' },
-    { key: 'grupos', icon: '👥', label: 'Mis Grupos' },
-    { key: 'analitica', icon: '📊', label: 'Analítica' },
+    { key: 'inicio', label: 'Inicio', icon: LayoutDashboard},
+    { key: 'grupos', label: 'Mis Grupos', icon: Users },
+    { key: 'analitica', label: 'Analítica', icon: BarChart3 },
+    { key: 'cursos', label: 'Cursos', icon: BookOpen },
 ];
 
 export const TITULOS_VISTAS = {
     inicio: 'Panel Principal',
     grupos: 'Mis Grupos',
     analitica: 'Analítica Académica',
+    cursos: 'Cursos',
     detalle: 'Detalle de Grado',
     perfil: 'Mi Perfil de Usuario',
     configuracion: 'Configuración del Sistema'
