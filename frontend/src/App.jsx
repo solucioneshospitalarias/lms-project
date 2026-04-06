@@ -20,6 +20,7 @@ import WhatsAppQR from "./components/WhatsApp/WhatsAppQR";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import AdminLayout from "./components/layout/AdminLayout";
 import ClassroomHome from "./components/AulaVirtual/ClassroomHome";
+import MiPerfil from './components/AulaVirtual/MiPerfil';
 import MisCursos from "./components/AulaVirtual/MisCursos";
 import RestablecerContraseña from "./components/AulaVirtual/RestablecerContraseña";
 import Desempeños from "./components/AulaVirtual/Desempeños";
@@ -73,6 +74,7 @@ function App() {
 
             <Route path="/aula-virtual" element={<AdminLayout />}>
               <Route index element={<ClassroomHome />} />
+              <Route path="mi-perfil" element={<MiPerfil />} />
               <Route path="mis-cursos" element={<MisCursos />} />
               <Route path="restablecer-contraseña" element={<RestablecerContraseña />} />
               <Route path="desempeños" element={<Desempeños />} />
