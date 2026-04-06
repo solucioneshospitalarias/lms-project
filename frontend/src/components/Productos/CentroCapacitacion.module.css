@@ -65,12 +65,12 @@
 
 .gridCapacitacion {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  width: 95%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 98%;
   max-width: 1600px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .courseCard {
@@ -101,16 +101,22 @@
 }
 
 .iconWrapper {
-  width: 85px; /* Tamaño del círculo */
+  width: 85px;
+  /* Tamaño del círculo */
   height: 85px;
-  margin: 0 auto 1.2rem; /* Centra el círculo y da espacio al título */
+  margin: 0 auto 1.2rem;
+  /* Centra el círculo y da espacio al título */
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff; /* Fondo blanco para que los colores resalten */
-  border-radius: 50%; /* Forma circular */
-  padding: 18px; /* ESTO es lo que hace que el icono se vea más pequeño y elegante */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+  background: #ffffff;
+  /* Fondo blanco para que los colores resalten */
+  border-radius: 50%;
+  /* Forma circular */
+  padding: 18px;
+  /* ESTO es lo que hace que el icono se vea más pequeño y elegante */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  /* Sombra suave */
   transition: transform 0.3s ease;
 }
 
@@ -118,7 +124,8 @@
 .iconWrapper img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Mantiene la proporción sin estirarse */
+  object-fit: contain;
+  /* Mantiene la proporción sin estirarse */
 }
 
 .courseCard h3 {
@@ -174,14 +181,17 @@
 .statsBanner {
   margin-top: 60px;
   display: flex;
-  flex-direction: row; /* En escritorio van de lado a lado */
+  flex-direction: row;
+  /* En escritorio van de lado a lado */
   justify-content: center;
   align-items: stretch;
-  gap: 25px; /* Espacio real entre cada tarjeta */
+  gap: 25px;
+  /* Espacio real entre cada tarjeta */
   width: 100%;
   max-width: 1100px;
   box-sizing: border-box;
-  background: transparent; /* Quitamos el fondo del contenedor padre */
+  background: transparent;
+  /* Quitamos el fondo del contenedor padre */
   border: none;
   box-shadow: none;
 }
@@ -192,7 +202,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--card-bg); /* Cada una tiene su propio fondo */
+  background-color: var(--card-bg);
+  /* Cada una tiene su propio fondo */
   padding: 30px 20px;
   border-radius: 24px;
   border: 1px solid var(--card-border);
@@ -246,7 +257,8 @@
 /* 1200px - Laptops grandes */
 @media (max-width: 1200px) {
   .statsBanner {
-    max-width: 1000px; /* Aumentado para que respire */
+    max-width: 1000px;
+    /* Aumentado para que respire */
     gap: 20px;
   }
 }
@@ -259,13 +271,21 @@
 
   .statsBanner {
     max-width: 90%;
-    flex-wrap: wrap; /* Permite que los ítems bajen si no hay espacio */
+    flex-wrap: wrap;
+    /* Permite que los ítems bajen si no hay espacio */
     justify-content: center;
   }
 
   .statsRow {
-    flex: 1 1 calc(50% - 25px); /* Se ponen de a 2 por fila en tablets */
+    flex: 1 1 calc(50% - 25px);
+    /* Se ponen de a 2 por fila en tablets */
     min-width: 250px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .gridCapacitacion {
+    grid-template-columns: repeat(4, 1fr) !important;
   }
 }
 
@@ -344,7 +364,8 @@
   }
 
   .statsBanner {
-    flex-direction: column; /* Una sola columna en móviles */
+    flex-direction: column;
+    /* Una sola columna en móviles */
     align-items: center;
     max-width: 100%;
   }
@@ -358,6 +379,7 @@
     font-size: 2rem;
   }
 }
+
 /* 480px - Móviles */
 @media (max-width: 480px) {
   .trainingSection {
