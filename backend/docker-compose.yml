@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
-      - "${DB_PORT}:3306"
+      - "3308:3306"
     env_file:
       - .env
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -19,7 +19,7 @@ services:
   backend:
     build: .
     ports:
-      - "${BACKEND_PORT}:8000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     depends_on:
       - db
     env_file:
@@ -34,7 +34,6 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-    command: sh /app/init_db.sh
 
 volumes:
   lms_mysql_data:

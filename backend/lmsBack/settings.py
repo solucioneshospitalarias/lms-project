@@ -26,7 +26,7 @@ AUTH_USER_MODEL = 'Auth.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'tu_app.backends.EmailBackend',
+    'Auth.backends.EmailBackend',
 ]
 
 # Application definition
