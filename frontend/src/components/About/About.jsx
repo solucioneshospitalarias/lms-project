@@ -21,7 +21,7 @@ const About = () => {
 
         if (element) {
           // Calculamos la posición considerando un margen para que el Header no lo tape
-          const yOffset = -210; // Ajusta este valor según la altura de tu Navbar
+          const yOffset = -80; // Ajusta este valor según la altura de tu Navbar
           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
           window.scrollTo({ top: y, behavior: 'smooth' });
