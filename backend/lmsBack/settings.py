@@ -17,7 +17,10 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    ]
+    env("BACKEND_URL_PRODUCTIVO").replace("https://", ""),
+]
+
+SITE_URL = env("SITE_URL")
 
 AUTH_USER_MODEL = 'Auth.CustomUser'
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'Auth',
 ]
@@ -138,8 +142,10 @@ SIMPLE_JWT = {
 
 # CORS (para desarrollo)
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
+    env("SITE_URL"),
+    env("FRONTEND_URL"),
+    env("BACKEND_URL_PRODUCTIVO"),
+    env("FRONTEND_URL_PRODUCTIVO"),
 ]
 
 CORS_ALLOW_CREDENTIALS = True
