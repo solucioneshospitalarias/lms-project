@@ -8,6 +8,7 @@ from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
 from django.db import transaction
@@ -385,4 +386,70 @@ class RequestPasswordReset(APIView):
         return Response(
             {"error": "No encontramos una cuenta asociada a este correo."},
             status=status.HTTP_404_NOT_FOUND
+        )
+    
+class ChangePasswordView(APIView):
+    """
+    Vista para cambiar la contraseña del usuario autenticado.
+    Requiere: contraseña actual, nueva contraseña y confirmación.
+    Opcional: refresh_token para blacklistearlo y forzar re-login.
+    POST /api/auth/change-password/
+    """
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+        confirm_password = request.data.get('confirm_password')
+        refresh_token = request.data.get('refresh_token')  # opcional
+
+        # Validar campos obligatorios
+        if not current_password or not new_password or not confirm_password:
+            return Response(
+                {"error": "Todos los campos son obligatorios."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Verificar contraseña actual
+        if not user.check_password(current_password):
+            return Response(
+                {"error": "La contraseña actual es incorrecta."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Verificar que nueva y confirmación coincidan
+        if new_password != confirm_password:
+            return Response(
+                {"error": "La nueva contraseña y la confirmación no coinciden."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Validar la nueva contraseña con el validador personalizado
+        validator = CustomPasswordValidator()
+        try:
+            validator.validate(new_password, user=user)
+        except ValidationError as e:
+            return Response(
+                {"error": e.messages},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Cambiar la contraseña
+        user.set_password(new_password)
+        user.save()
+
+        # Si se proporcionó un refresh_token, blacklistearlo (invalida la sesión)
+        if refresh_token:
+            try:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+            except TokenError:
+                # Si el token es inválido, simplemente ignoramos
+                pass
+
+        # Respuesta indicando que debe iniciar sesión nuevamente
+        return Response(
+            {"message": "Contraseña actualizada correctamente. Por favor, inicia sesión nuevamente."},
+            status=status.HTTP_200_OK
         )
