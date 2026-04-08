@@ -151,7 +151,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     env("SITE_URL"),
     env("FRONTEND_URL"),
-    env("BACKEND_URL_PRODUCTIVO").replace("https://", ""),
+    env("BACKEND_URL"),
     env("FRONTEND_URL_PRODUCTIVO"),
 ]
 
@@ -160,12 +160,12 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = False
 
 USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8005",
     "http://127.0.0.1:8005",
-    env("BACKEND_URL_PRODUCTIVO").strip().replace("https://", ""),
+    env("BACKEND_URL").strip(),
     env("FRONTEND_URL_PRODUCTIVO").strip(),
 ]
 
