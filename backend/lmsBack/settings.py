@@ -17,6 +17,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'backend-backend',
     env("BACKEND_URL_PRODUCTIVO").replace("https://", ""),
 ]
 
@@ -160,11 +161,11 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = False
 
 USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://localhost:8005",
+    "http://127.0.0.1:8005",
     env("BACKEND_URL_PRODUCTIVO").strip(),
     env("FRONTEND_URL_PRODUCTIVO").strip(),
 ]
