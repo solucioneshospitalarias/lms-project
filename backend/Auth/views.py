@@ -22,6 +22,7 @@ from rest_framework.views import APIView
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from .validators import CustomPasswordValidator
 
 User = get_user_model()
 
@@ -59,26 +60,17 @@ class LoginView(generics.GenericAPIView):
 
 class LogoutView(generics.GenericAPIView):
     """
-    Vista para logout
+    Vista para logout.
+    Se eliminó la lógica de blacklist para evitar errores de base de datos.
+    El cliente debe eliminar los tokens de su almacenamiento local.
     POST /api/auth/logout/
     """
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
-        try:
-            refresh_token = request.data.get('refresh_token')
-            if refresh_token:
-                token = RefreshToken(refresh_token)
-                token.blacklist()
-            
-            return Response({
-                'message': 'Logout exitoso'
-            }, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({
-                'error': 'Token inválido'
-            }, status=status.HTTP_400_BAD_REQUEST)
-
+        return Response({
+            'message': 'Logout exitoso. Sesión cerrada.'
+        }, status=status.HTTP_200_OK)
 
 class CurrentUserView(generics.RetrieveAPIView):
     """
@@ -392,7 +384,6 @@ class ChangePasswordView(APIView):
     """
     Vista para cambiar la contraseña del usuario autenticado.
     Requiere: contraseña actual, nueva contraseña y confirmación.
-    Opcional: refresh_token para blacklistearlo y forzar re-login.
     POST /api/auth/change-password/
     """
     permission_classes = [IsAuthenticated]
@@ -402,30 +393,29 @@ class ChangePasswordView(APIView):
         current_password = request.data.get('current_password')
         new_password = request.data.get('new_password')
         confirm_password = request.data.get('confirm_password')
-        refresh_token = request.data.get('refresh_token')  # opcional
 
-        # Validar campos obligatorios
+        # 1. Validar campos obligatorios
         if not current_password or not new_password or not confirm_password:
             return Response(
                 {"error": "Todos los campos son obligatorios."},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Verificar contraseña actual
+        # 2. Verificar contraseña actual
         if not user.check_password(current_password):
             return Response(
                 {"error": "La contraseña actual es incorrecta."},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Verificar que nueva y confirmación coincidan
+        # 3. Verificar que nueva y confirmación coincidan
         if new_password != confirm_password:
             return Response(
                 {"error": "La nueva contraseña y la confirmación no coinciden."},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Validar la nueva contraseña con el validador personalizado
+        # 4. Validar la nueva contraseña con el validador personalizado
         validator = CustomPasswordValidator()
         try:
             validator.validate(new_password, user=user)
@@ -435,20 +425,10 @@ class ChangePasswordView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Cambiar la contraseña
+        # 5. Cambiar la contraseña
         user.set_password(new_password)
         user.save()
 
-        # Si se proporcionó un refresh_token, blacklistearlo (invalida la sesión)
-        if refresh_token:
-            try:
-                token = RefreshToken(refresh_token)
-                token.blacklist()
-            except TokenError:
-                # Si el token es inválido, simplemente ignoramos
-                pass
-
-        # Respuesta indicando que debe iniciar sesión nuevamente
         return Response(
             {"message": "Contraseña actualizada correctamente. Por favor, inicia sesión nuevamente."},
             status=status.HTTP_200_OK
