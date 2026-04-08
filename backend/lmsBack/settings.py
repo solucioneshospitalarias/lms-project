@@ -88,6 +88,13 @@ DATABASES = {
         "PASSWORD": env("DB_PASSWORD"),
         "HOST": env("DB_HOST"),
         "PORT": env("DB_PORT"),
+        "OPTIONS": {
+            "ssl": {
+                "disabled": True  # Esto equivale al ssl_disabled=True de tu imagen
+            },
+                # Si usas mysqlclient (común en Docker), a veces se requiere esto:
+                # "init_command": "SET sql_mode='STRICT_TRANS_TABLES'", 
+        },
     }
 }
 
@@ -153,7 +160,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = False
 
 USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
