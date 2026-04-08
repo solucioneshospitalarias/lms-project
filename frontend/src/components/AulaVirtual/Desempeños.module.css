@@ -173,7 +173,6 @@
     color: #64748b;
 }
 
-/* Gráfico de Actividad (Punto 2) */
 .chartArea {
     display: flex;
     align-items: flex-end;
@@ -257,5 +256,105 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .fadeUpEffect {
+        padding: 30px;
+    }
+
+    .statsContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lowerGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .fadeUpEffect {
+        padding: 20px;
+    }
+
+    .header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .statsContainer {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .statCard {
+        padding: 20px;
+    }
+
+    .statValue {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .badgesRow {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .ctaCard {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fadeUpEffect {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .statCardHeader {
+        margin-bottom: 8px;
+    }
+
+    .statLabel {
+        font-size: 11px;
+    }
+
+    .statValue {
+        font-size: 24px;
+    }
+
+    .chartArea {
+        height: 60px;
+    }
+
+    .barContainer {
+        width: 4px;
+    }
+}
+
+@media (hover: none) {
+    .statCard:hover {
+        transform: none;
+    }
+
+    .barPercentage {
+        opacity: 1;
+        font-size: 9px;
     }
 }

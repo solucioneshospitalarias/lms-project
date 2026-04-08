@@ -310,3 +310,104 @@
         transform: translateY(0);
     }
 }
+
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 28px;
+        letter-spacing: -1px;
+    }
+
+    .sectionCard {
+        padding: 24px;
+    }
+
+    .avatarContainer {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .inputGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .actionButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btnPrimary,
+    .btnSecondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .settingItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .badgeActive {
+        align-self: flex-start;
+    }
+
+    .successAlert {
+        position: fixed !important;
+        top: 20px !important;
+        left: 20px !important;
+        right: 20px !important;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .avatarWrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    .sectionHeader h2 {
+        font-size: 16px;
+    }
+
+    .btnDanger {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (hover: none) {
+    .editPhoto:hover {
+        transform: none;
+    }
+
+    .field input {
+        font-size: 16px;
+    }
+}
