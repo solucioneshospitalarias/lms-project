@@ -12,9 +12,9 @@ const VistaCursos = () => {
     const cursosEnrolled = [
         {
             id: 1,
-            category: "Matemáticas",
+            category: "Periodo 1",
             grade: "Transicion°",
-            teacher: "Prof. Walter",
+            // teacher: "Prof. Walter",
             progress: 75,
             color: "#0061f2",
             coverUrl: "https://i.imgur.com/JnM1HUb.png",
@@ -22,34 +22,35 @@ const VistaCursos = () => {
         },
         {
             id: 2,
-            category: "Ciencias Sociales",
+            category: "Periodo 2",
             grade: "Transicion°",
-            teacher: "Prof. Walter",
-            progress: 75,
+            // teacher: "Prof. Walter",
+            progress: 52,
             color: "#f6ad55",
             coverUrl: "https://i.imgur.com/JnM1HUb.png",
             pdfUrl: pdfTransicionGral
         },
         {
             id: 3,
-            category: "Lenguaje",
+            category: "Periodo 3",
             grade: "Transicion°",
-            teacher: "Prof. Walter",
-            progress: 75,
+            // teacher: "Prof. Walter",
+            progress: 67,
             color: "#38a169",
             coverUrl: "https://i.imgur.com/JnM1HUb.png",
             pdfUrl: pdfTransicionGral
         },
-        //     {
-        //         id: 4,
-        //         category: "Ciencias Naturales",
-        //         grade: "2°",
-        //         teacher: "Prof. Samir",
-        //         progress: 40,
-        //         color: "#1e8e3e",
-        //         coverUrl: "https://i.imgur.com/zgBoWvN.jpeg",
-        //         pdfUrl: pdf
-        //     },
+        {
+            id: 4,
+            category: "Periodo 4",
+            grade: "Transicion°",
+            // teacher: "Prof. Walter",
+            progress: 91,
+            color: "#f44336",
+            coverUrl: "https://i.imgur.com/JnM1HUb.png",
+            pdfUrl: pdfTransicionGral
+        },
+        
         //     {
         //         id: 5,
         //         category: "Historia",
