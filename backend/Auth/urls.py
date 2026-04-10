@@ -3,7 +3,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from .views import (LoginView, LogoutView, CurrentUserView, validar_padron, solicitar_acceso_alumno, solicitar_acceso_profesor, UserViewSet, ColegioViewSet, RequestPasswordReset, )
+from .views import (LoginView, LogoutView, CurrentUserView, validar_padron, solicitar_acceso_alumno, solicitar_acceso_profesor, UserViewSet, ColegioViewSet, RequestPasswordReset, ChangePasswordView, ContactoCreateView)
 
 # Configurar el router para los ViewSets
 router = DefaultRouter()
@@ -36,5 +36,11 @@ urlpatterns = [
     path('registro/profesor/', solicitar_acceso_profesor, name='registro-profesor'),
 
     path('request-reset/', RequestPasswordReset.as_view(), name='cambiar-contraseña'),
+
+    # Restablecer contraseña dentro del panel estudiante
+    path('change-password/', ChangePasswordView.as_view(), name='restablecer-contraseña'),
+
+    # Formulario de Contacto
+    path('enviar/', ContactoCreateView.as_view(), name='enviar-contacto'),
 
 ]

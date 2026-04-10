@@ -1,39 +1,65 @@
 import React, { useState } from "react";
+import { changePassword } from "../../services/api";
+import { toast } from 'react-hot-toast';
 import { Lock, Eye, EyeOff, CheckCircle2, XCircle } from "lucide-react";
 import styles from "./RestablecerContraseña.module.css";
 
 const RestablecerContraseña = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const [formData, setFormData] = useState({
+    current_password: "",
+    new_password: "",
+    confirm_password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const [status, setStatus] = useState({ type: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
 
-  const passwordsMatch = newPassword === confirmPassword && newPassword.length > 0;
-  const isPasswordValid = newPassword.length >= 8;
-  const canSubmit = isPasswordValid && passwordsMatch && currentPassword.length > 0;
+  const passwordsMatch = formData.new_password === formData.confirm_password && formData.new_password.length > 0;
+  const isPasswordValid = formData.new_password.length >= 8;
+  const canSubmit = isPasswordValid && passwordsMatch && formData.current_password.length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!canSubmit) return;
 
-    setIsLoading(true);
     setStatus({ type: "", message: "" });
 
+    if (formData.new_password !== formData.confirm_password) {
+      const errorMsg = "La nueva contraseña y la confirmación no coinciden.";
+      setStatus({ type: "error", message: errorMsg });
+      return toast.error(errorMsg);
+    }
+
+    setIsLoading(true);
+
     try {
-      // Simulación de API
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setStatus({ type: "success", message: "¡Tu contraseña ha sido actualizada correctamente!" });
-      setCurrentPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
+      const response = await changePassword(formData);
+
+      setStatus({ type: "success", message: response.message });
+      toast.success(response.message || "Contraseña actualizada correctamente");
+
+      setFormData({
+        current_password: "",
+        new_password: "",
+        confirm_password: "",
+      });
+
     } catch (error) {
-      setStatus({ type: "error", message: "Error al actualizar la contraseña." });
+      console.error("Error al cambiar contraseña:", error);
+
+      const errorDetail = Array.isArray(error) ? error[0] :
+        (typeof error === "string" ? error : "Error al procesar la solicitud");
+
+      setStatus({ type: "error", message: errorDetail });
+      toast.error(errorDetail);
+
     } finally {
       setIsLoading(false);
     }
@@ -42,7 +68,6 @@ const RestablecerContraseña = () => {
   return (
     <div className={styles.containerPage}>
       <div className={styles.formCard}>
-        {/* Cabecera integrada directamente en la tarjeta */}
         <div className={styles.headerSection}>
           <div className={styles.iconContainer}>
             <Lock size={28} color="white" />
@@ -67,9 +92,11 @@ const RestablecerContraseña = () => {
               <Lock className={styles.inputIcon} size={18} />
               <input
                 type={showCurrent ? "text" : "password"}
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder="Tu contraseña"
+                name="current_password"
+                placeholder="Tu contraseña actual"
+                value={formData.current_password}
+                onChange={handleChange}
+                disabled={isLoading}
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowCurrent(!showCurrent)}>
@@ -86,16 +113,18 @@ const RestablecerContraseña = () => {
               <Lock className={styles.inputIcon} size={18} />
               <input
                 type={showNew ? "text" : "password"}
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
+                name="new_password"
                 placeholder="Mínimo 8 caracteres"
+                value={formData.new_password}
+                onChange={handleChange}
+                disabled={isLoading}
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowNew(!showNew)}>
                 {showNew ? <Eye size={18} /> : <EyeOff size={18} />}
               </button>
             </div>
-            {newPassword.length > 0 && !isPasswordValid && (
+            {formData.new_password.length > 0 && !isPasswordValid && (
               <span className={styles.fieldError}>Mínimo 8 caracteres requeridos.</span>
             )}
           </div>
@@ -106,16 +135,18 @@ const RestablecerContraseña = () => {
               <Lock className={styles.inputIcon} size={18} />
               <input
                 type={showConfirm ? "text" : "password"}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                name="confirm_password"
                 placeholder="Repite tu nueva contraseña"
+                value={formData.confirm_password}
+                onChange={handleChange}
+                disabled={isLoading}
                 required
               />
               <button type="button" className={styles.eyeBtn} onClick={() => setShowConfirm(!showConfirm)}>
                 {showConfirm ? <Eye size={18} /> : <EyeOff size={18} />}
               </button>
             </div>
-            {confirmPassword.length > 0 && !passwordsMatch && (
+            {formData.confirm_password.length > 0 && !passwordsMatch && (
               <span className={styles.fieldError}>Las contraseñas no coinciden.</span>
             )}
           </div>

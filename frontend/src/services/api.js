@@ -39,7 +39,7 @@ api.interceptors.response.use(
 
             try {
                 const refreshToken = localStorage.getItem('refreshToken');
-                
+
                 if (refreshToken) {
                     // Intentar refrescar el token
                     const response = await axios.post(`${API_BASE_URL}/auth/token/refresh/`, {
@@ -57,10 +57,10 @@ api.interceptors.response.use(
                 // Si el refresh falla, limpiar tokens y redirigir al login
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
-                
+
                 // Opcional: Redirigir al login
                 // window.location.href = '/login';
-                
+
                 return Promise.reject(refreshError);
             }
         }
@@ -81,8 +81,8 @@ api.interceptors.response.use(
  * @returns {Promise} Respuesta de validación
  */
 export const validarPadron = async (data) => {
-        const response = await api.post('/auth/validar-padron/', data);
-        return response.data;
+    const response = await api.post('/auth/validar-padron/', data);
+    return response.data;
 };
 
 /**
@@ -91,15 +91,15 @@ export const validarPadron = async (data) => {
  * @returns {Promise} Usuario creado con tokens
  */
 export const registrarAlumno = async (data) => {
-        const response = await api.post('/auth/registro/alumno/', data);
-        
-        // Guardar tokens automáticamente
-        if (response.data.tokens) {
-            localStorage.setItem('accessToken', response.data.tokens.access);
-            localStorage.setItem('refreshToken', response.data.tokens.refresh);
-        }
-        
-        return response.data;
+    const response = await api.post('/auth/registro/alumno/', data);
+
+    // Guardar tokens automáticamente
+    if (response.data.tokens) {
+        localStorage.setItem('accessToken', response.data.tokens.access);
+        localStorage.setItem('refreshToken', response.data.tokens.refresh);
+    }
+
+    return response.data;
 };
 
 /**
@@ -108,15 +108,15 @@ export const registrarAlumno = async (data) => {
  * @returns {Promise} Usuario creado con tokens
  */
 export const registrarProfesor = async (data) => {
-        const response = await api.post('/auth/registro/profesor/', data);
-        
-        // Guardar tokens automáticamente
-        if (response.data.tokens) {
-            localStorage.setItem('accessToken', response.data.tokens.access);
-            localStorage.setItem('refreshToken', response.data.tokens.refresh);
-        }
-        
-        return response.data;
+    const response = await api.post('/auth/registro/profesor/', data);
+
+    // Guardar tokens automáticamente
+    if (response.data.tokens) {
+        localStorage.setItem('accessToken', response.data.tokens.access);
+        localStorage.setItem('refreshToken', response.data.tokens.refresh);
+    }
+
+    return response.data;
 };
 
 /**
@@ -141,15 +141,15 @@ export const login = async (email, password) => {
 export const logout = async () => {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        
+
         if (refreshToken) {
             await api.post('/auth/logout/', { refresh_token: refreshToken });
         }
-        
+
         // Limpiar tokens del localStorage
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        
+
         return { message: 'Sesión cerrada exitosamente' };
     } catch (error) {
         // Limpiar tokens incluso si hay error
@@ -166,18 +166,18 @@ export const logout = async () => {
 export const refreshAccessToken = async () => {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        
+
         if (!refreshToken) {
             throw new Error('No hay refresh token disponible');
         }
-        
+
         const response = await api.post('/auth/token/refresh/', { refresh: refreshToken });
-        
+
         // Actualizar access token
         if (response.data.access) {
             localStorage.setItem('accessToken', response.data.access);
         }
-        
+
         return response.data;
     } catch (error) {
         // Si falla el refresh, limpiar tokens
@@ -307,6 +307,37 @@ export const confirmarRestablecimiento = async (uidb64, token, password) => {
         password
     });
     return response.data;
+};
+
+export const changePassword = async (passwords) => {
+    try {
+        const token = localStorage.getItem("accessToken");
+
+        const response = await fetch(`${API_BASE_URL}/auth/change-password/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                current_password: passwords.current_password,
+                new_password: passwords.new_password,
+                confirm_password: passwords.confirm_password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            const errorMsg = data.new_password ? data.new_password[0] : (data.detail || data.error || "Error al actualizar");
+            throw errorMsg;
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error en changePassword:", error);
+        throw error;
+    }
 };
 
 export default api;
