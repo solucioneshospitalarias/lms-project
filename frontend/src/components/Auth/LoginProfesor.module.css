@@ -270,6 +270,26 @@
   }
 }
 
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  font-size: 0.85rem;
+}
+
+.forgotLink {
+  color: #ff3131;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: opacity 0.3s;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
 .apiErrorBanner {
   background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
   color: white;
@@ -294,6 +314,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -309,6 +330,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

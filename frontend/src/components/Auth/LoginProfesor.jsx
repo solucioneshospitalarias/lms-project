@@ -8,6 +8,7 @@ const LoginProfesor = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -25,7 +26,7 @@ const LoginProfesor = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
+
     // Limpiar errores al escribir
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
@@ -45,7 +46,7 @@ const LoginProfesor = () => {
     let newErrors = {};
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "Este campo es obligatorio";
     } else if (!emailRegex.test(formData.email)) {
@@ -169,6 +170,21 @@ const LoginProfesor = () => {
           {errors.password && (
             <span className={styles.errorMessage}>{errors.password}</span>
           )}
+
+          <div className={styles.options}>
+            <label className={styles.remember}>
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                disabled={isLoading}
+              />
+              <span>Recordarme</span>
+            </label>
+            <Link to="/forgot-password" className={styles.forgotLink}>
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
 
           {/* Botón Principal con Spinner */}
           <button
