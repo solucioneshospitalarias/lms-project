@@ -1,0 +1,495 @@
+.container {
+  padding: 1rem 0;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.infoCard {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 33, 71, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.infoCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 33, 71, 0.05);
+  border-color: rgba(0, 33, 71, 0.1);
+}
+
+.iconWrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: #f4f6fb;
+  color: #002147;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #002147;
+  margin: 0;
+}
+
+.cardText {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.miniNotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  /* Fondo ultra-suave y borde de acento */
+  background: #fffcfc;
+  border: 1px solid rgba(194, 40, 33, 0.1);
+  padding: 8px 20px;
+  border-radius: 50px; /* Forma de cápsula */
+
+  /* Posicionamiento */
+  width: fit-content;
+  margin: 1.5rem auto 0;
+
+  /* Tipografía limpia */
+  color: #c22821;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: default;
+
+  /* Sombra de profundidad sutil */
+  box-shadow: 0 4px 12px rgba(194, 40, 33, 0.04);
+  animation: slideUpFade 1s ease-out;
+}
+
+.noticeIcon {
+  display: flex;
+  position: relative;
+}
+
+.noticeIcon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  background: #c22821;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.miniNotice::before,
+.miniNotice::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 33, 71, 0.1),
+    transparent
+  );
+}
+
+.miniNotice span {
+  color: #c22821; /* Mantenemos el color para que se note, pero con fuente normal */
+  font-size: 0.88rem;
+  font-weight: 500; /* Peso normal-medio */
+  text-transform: none; /* Quitamos las mayúsculas */
+  letter-spacing: normal; /* Quitamos el espaciado extra */
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bounceIcon {
+  animation: bounce 2s infinite;
+  color: #c22821;
+}
+
+.inspiration {
+  margin-top: 5rem;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 33, 71, 0.04); /* Línea divisoria casi invisible */
+}
+
+.inspirationFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem; /* Gran espacio para que respire */
+  max-width: 1100px;
+  width: 100%;
+}
+
+.sealSide {
+  flex: 0 0 220px; /* Tamaño fijo para el sello en el lado */
+  display: flex;
+  justify-content: center;
+}
+
+.sideSeal {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(
+    0 15px 30px rgba(0, 0, 0, 0.08)
+  ); /* Sombra para que flote */
+  animation: floatingSmooth 4s ease-in-out infinite; /* Animación de flotar */
+}
+
+.quote {
+  flex: 1;
+  max-width: 650px;
+  border-left: 3px solid #c22821;
+  padding-left: 2.5rem;
+  margin: 0;
+}
+
+.quote p {
+  flex: 1;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #334155;
+  font-style: italic;
+  z-index: 2; /* Para que el texto esté por encima del sello */
+}
+
+.quoteFooter {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.footerSeal {
+  width: 28px; /* Tamaño discreto y elegante */
+  height: 28px;
+  object-fit: contain;
+  filter: grayscale(100%); /* Lo hace ver más minimalista y profesional */
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.footerSeal:hover {
+  filter: grayscale(0%); /* Recupera color al pasar el mouse */
+  opacity: 1;
+}
+
+.quoteMain {
+  position: relative; /* Necesario para que el sello flote respecto a esto */
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.supportArea {
+  margin-top: 6rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid rgba(0, 33, 71, 0.05);
+}
+
+.supportWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc; /* Gris casi blanco muy profesional */
+  padding: 1.5rem 2.5rem;
+  border-radius: 16px;
+  margin-top: 2rem;
+}
+
+.supportInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.supportInfo p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.helpIcon {
+  color: #c22821; /* El color de la marca solo en el icono para guiar el ojo */
+}
+
+.supportAction {
+  background: white;
+  color: #002147;
+  border: 1px solid #5c6c81;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.supportAction:hover {
+  background: #002147;
+  color: white;
+  border-color: #002147;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 33, 71, 0.1);
+}
+
+.footerBrand {
+  text-align: center;
+  margin-top: 3rem;
+  opacity: 0.4;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #002147;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(3px);
+  }
+
+  60% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes floatingSmooth {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.welcomeCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column; /* Cambiamos a columna para que el aviso baje */
+  gap: 2rem; /* Espacio entre el contenido y el aviso */
+  box-shadow: 0 10px 30px rgba(0, 33, 71, 0.05);
+  border: 1px solid rgba(0, 33, 71, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcomeHero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.textContent {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.category {
+  display: inline-block;
+  color: #c22821;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  background: #fff0ef;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.title {
+  font-family: "Fraunces", serif;
+  font-size: 2.5rem;
+  color: #002147;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnPrimary {
+  background: #002147;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnPrimary:hover {
+  background: #00367a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 33, 71, 0.2);
+}
+
+.btnSecondary {
+  background: white;
+  color: #002147;
+  border: 2px solid #eef1f7;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+  background: #f8fafc;
+  border-color: #002147;
+}
+
+.imageContent {
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.mascot {
+  width: 280px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+  animation: float 4s ease-in-out infinite;
+}
+
+.floatingSeal {
+  width: 180px; /* Tamaño grande e impactante */
+  height: 180px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.08; /* Muy tenue al ser tan grande */
+  position: absolute;
+  right: -60px; /* Desplazado hacia afuera para un look editorial */
+  top: -40px;
+  pointer-events: none;
+  z-index: 1; /* Detrás del texto si es necesario */
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quote:hover .floatingSeal {
+  opacity: 0.2; /* Resalta un poco más al pasar el mouse */
+  transform: scale(1.05) rotate(-10deg); /* Animación suave */
+  filter: grayscale(0%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .welcomeCard {
+    padding: 2rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  .textContent {
+    margin-bottom: 2rem;
+  }
+  .actions {
+    justify-content: center;
+  }
+  .mascot {
+    width: 200px;
+  }
+  .title {
+    font-size: 2rem;
+  }
+}
