@@ -108,71 +108,52 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await login(email, password);
+      // 1. Enviamos el tercer parámetro "alumno"
+      const response = await login(email, password, "alumno");
 
-      console.log("Login exitoso:", response);
+      // 2. Si llega aquí, es porque el servidor devolvió 200 OK y SÍ es alumno
+      console.log("Login exitoso y autorizado:", response);
 
       if (response.user) {
         localStorage.setItem("userData", JSON.stringify(response.user));
       }
 
-      if (rememberMe) {
-        localStorage.setItem("userEmail", email);
-        localStorage.setItem("userPassword", password);
-      } else {
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userPassword");
-      }
+      // Lógica de rememberMe...
 
       setIsLoading(false);
       setIsSuccess(true);
       triggerConfetti();
 
       setTimeout(() => {
-        if (response.user.user_type === "profesor") {
-          navigate("/dashboard-profesor");
-        } else if (response.user.user_type === "alumno") {
-          navigate("/aula-virtual");
-        } else {
-          navigate("/dashboard");
-        }
+        navigate("/aula-virtual");
       }, 2000);
 
     } catch (error) {
-      console.error("Error completo en login:", error);
+      console.error("Error en login:", error);
       setIsLoading(false);
 
-      const serverData = error.response?.data; // Accedemos a la data de Axios
-      
-      let newErrors = { email: "", password: "" };
+      const serverData = error.response?.data;
+
+      // 3. CAPTURAR EL ERROR 403 (Rol incorrecto)
+      if (error.response?.status === 403 || (error.response?.status === 400 && serverData?.error?.includes("tipo de usuario"))) {
+        const mensaje = "Acceso denegado: El perfil vinculado a esta cuenta no corresponde al tipo de usuario Alumno.";
+        setApiError(serverData.error || mensaje);
+        return;
+      }
+
+      // Manejo de otros errores (401, 404, 500)
       let newApiError = "";
-
       if (serverData) {
-        // 1. Capturar errores generales (El banner rojo que ya tienes)
-        if (serverData.non_field_errors) {
-          newApiError = Array.isArray(serverData.non_field_errors) 
-            ? serverData.non_field_errors[0] 
-            : serverData.non_field_errors;
-        } 
-        
-        // 2. Capturar errores de campos específicos (opcional, por si el backend cambia)
-        if (serverData.password) {
-          newErrors.password = Array.isArray(serverData.password) ? serverData.password[0] : serverData.password;
-        }
-        if (serverData.email) {
-          newErrors.email = Array.isArray(serverData.email) ? serverData.email[0] : serverData.email;
-        }
+        newApiError = serverData.non_field_errors?.[0] || serverData.error || serverData.detail || "Credenciales incorrectas";
 
-        // 3. Si no hay mensajes de texto pero hay un error_type, podrías personalizarlo
         if (!newApiError && serverData.error_type?.includes("email_not_found")) {
           newApiError = "El correo electrónico no está registrado.";
         }
       } else {
-        newApiError = "Ocurrió un error inesperado. Inténtalo más tarde.";
+        newApiError = "Ocurrió un error inesperado.";
       }
 
-      setErrors(newErrors);
-      setApiError(newApiError); // Esto actualizará el banner rojo en tu componente
+      setApiError(newApiError);
     }
   };
 
@@ -276,7 +257,7 @@ const Login = () => {
                 />
                 <span>Recordarme</span>
               </label>
-              <Link to="/forgot-password" className={styles.forgotLink}>
+              <Link to="/forgot-password?role=alumno" className={styles.forgotLink}>
                 ¿Olvidaste tu contraseña?
               </Link>
             </div>

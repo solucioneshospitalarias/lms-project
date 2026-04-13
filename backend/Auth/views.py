@@ -10,8 +10,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.generics import CreateAPIView
+from rest_framework import status
+from .models import ContactoMensaje
+from .serializers import ContactoSerializer
 from django.contrib.auth import get_user_model
 from django.db import transaction
+from django.db import models
 from django.utils import timezone
 from .models import ( CustomUser, PerfilAlumno, PerfilProfesor, Colegios, PadronAlumnos, PadronProfesores, SolicitudAcceso )
 from .serializers import ( UserSerializer, UserDetailSerializer, LoginSerializer, ValidarPadronSerializer, SolicitudAccesoAlumnoSerializer, SolicitudAccesoProfesorSerializer, SolicitudAccesoListSerializer, SolicitudAccesoDetailSerializer, PerfilAlumnoSerializer, PerfilProfesorSerializer, ColegioSerializer )
@@ -41,6 +46,15 @@ class LoginView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         
         user = serializer.validated_data['user']
+
+        # Recibimos el tipo de usuario que el frontend espera (alumno/profesor)
+        user_type_esperado = request.data.get('user_type') 
+
+        if user_type_esperado and user.user_type != user_type_esperado:
+            return Response({
+                'error': f'Acceso denegado. Esta cuenta es de tipo {user.get_user_type_display()}.',
+                'error_type': 'invalid_role'
+            }, status=status.HTTP_403_FORBIDDEN)
         
         # Generar tokens JWT
         refresh = RefreshToken.for_user(user)
@@ -330,36 +344,44 @@ class RequestPasswordReset(APIView):
 
     def post(self, request):
         email = request.data.get('email')
+        # 1. Recibimos el tipo de usuario desde el frontend
+        tipo_usuario = request.data.get('tipo_usuario', 'alumno') 
+        
         user = User.objects.filter(email=email).first()
         
         if user:
-            # Generar contraseña segura
+            # --- Lógica de generación de contraseña (se mantiene igual) ---
             alphabet = string.ascii_letters + string.digits + "!@#$%"
             while True:
                 temp_pass = ''.join(secrets.choice(alphabet) for _ in range(10))
-                if (
-                    any(c.islower() for c in temp_pass) and
-                    any(c.isupper() for c in temp_pass) and
-                    any(c.isdigit() for c in temp_pass)
-                ):
+                if (any(c.islower() for c in temp_pass) and 
+                    any(c.isupper() for c in temp_pass) and 
+                    any(c.isdigit() for c in temp_pass)):
                     break
             
             user.set_password(temp_pass)
             user.save()
 
-            # 🔥 Renderizar HTML
+            # 2. Definir el Link según el tipo de usuario
+            # En producción cambia localhost:5173 por rutasdelsaber.com
+            base_url = "http://localhost:5173" 
+            if tipo_usuario == 'profesor':
+                link_login = f"{base_url}/login-profesor"
+            else:
+                link_login = f"{base_url}/login"
+
+            # 3. Pasar 'link_login' al template HTML
             html_content = render_to_string(
                 'emails/reset_password.html',
                 {
                     'temp_password': temp_pass,
-                    'user': user
+                    'user': user,
+                    'link_login': link_login  # <--- Variable nueva
                 }
             )
 
-            # Versión texto plano (fallback)
             text_content = strip_tags(html_content)
 
-            # 📧 Crear email
             email_message = EmailMultiAlternatives(
                 subject='Tu nueva contraseña temporal - Rutas del Saber',
                 body=text_content,
@@ -370,15 +392,9 @@ class RequestPasswordReset(APIView):
             email_message.attach_alternative(html_content, "text/html")
             email_message.send()
 
-            return Response(
-                {"message": "Contraseña enviada"},
-                status=status.HTTP_200_OK
-            )
+            return Response({"message": "Contraseña enviada"}, status=status.HTTP_200_OK)
         
-        return Response(
-            {"error": "No encontramos una cuenta asociada a este correo."},
-            status=status.HTTP_404_NOT_FOUND
-        )
+        return Response({"error": "No encontramos una cuenta asociada."}, status=status.HTTP_404_NOT_FOUND)
     
 class ChangePasswordView(APIView):
     """
@@ -433,3 +449,33 @@ class ChangePasswordView(APIView):
             {"message": "Contraseña actualizada correctamente. Por favor, inicia sesión nuevamente."},
             status=status.HTTP_200_OK
         )
+    
+
+class ContactoCreateView(CreateAPIView):
+    """
+    Vista profesional para recibir mensajes de contacto.
+    Permite que cualquier usuario (incluso no logueados) envíe el formulario.
+    """
+    queryset = ContactoMensaje.objects.all()
+    serializer_class = ContactoSerializer
+    permission_classes = [AllowAny] # El formulario de contacto suele ser público
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        
+        # Validación robusta de datos
+        if serializer.is_valid():
+            # El método .save() disparará el envío de correo que pusimos en el Serializer
+            self.perform_create(serializer)
+            
+            return Response({
+                "success": True,
+                "message": "¡Tu mensaje ha sido enviado! Nos pondremos en contacto pronto."
+            }, status=status.HTTP_201_CREATED)
+        
+        # Manejo de errores detallado para el frontend
+        return Response({
+            "success": False,
+            "errors": serializer.errors,
+            "message": "Revisa los campos del formulario e intenta de nuevo."
+        }, status=status.HTTP_400_BAD_REQUEST)

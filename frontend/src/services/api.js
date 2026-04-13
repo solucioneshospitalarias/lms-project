@@ -123,10 +123,11 @@ export const registrarProfesor = async (data) => {
  * Iniciar sesión
  * @param {string} email - Correo electrónico
  * @param {string} password - Contraseña
+ * @param {string} user_type - Tipo de usuario ('alumno' o 'profesor')
  * @returns {Promise} Usuario con tokens
  */
-export const login = async (email, password) => {
-    const response = await api.post('/auth/login/', { email, password });
+export const login = async (email, password, user_type) => {
+    const response = await api.post('/auth/login/', { email, password, user_type });
     if (response.data.tokens) {
         localStorage.setItem('accessToken', response.data.tokens.access);
         localStorage.setItem('refreshToken', response.data.tokens.refresh);
@@ -288,9 +289,14 @@ export const limpiarTokens = () => {
 /**
  * Solicitar enlace de restablecimiento de contraseña
  * @param {string} email 
+ * @param {string} tipoUsuario - Puede ser 'alumno' o 'profesor'
  */
-export const solicitarRestablecimiento = async (email) => {
-    const response = await api.post('/auth/request-reset/', { email });
+export const solicitarRestablecimiento = async (email, tipoUsuario) => {
+    // Enviamos ambos datos al backend en el cuerpo del POST
+    const response = await api.post('/auth/request-reset/', {
+        email,
+        tipo_usuario: tipoUsuario
+    });
     return response.data;
 };
 

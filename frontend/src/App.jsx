@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Toaster } from 'react-hot-toast';
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop/ScrollToTop";
@@ -91,6 +92,7 @@ function App() {
 
         {!isCleanPage && <Footer />}
         {!isCleanPage && <WhatsAppQR />}
+        <Toaster position="top-center" reverseOrder={false} />
       </div>
     </HelmetProvider>
   );

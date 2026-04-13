@@ -1,64 +1,28 @@
 .container {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 2rem auto;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 3rem;
+    gap: 1.5rem;
+    padding: 0 1.5rem 4rem;
 }
 
 .section {
     background: white;
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f1f5f9;
 }
 
 .sectionTitle {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #1e293b;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.field label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #64748b;
-}
-
-.input {
-    padding: 0.75rem 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-}
-
-.input:focus {
-    outline: none;
-    border-color: #e11d48;
-}
-
-.divider {
-    height: 1px;
-    background: #f1f5f9;
-    margin: 2rem 0;
 }
 
 .row {
@@ -69,66 +33,113 @@
 }
 
 .info h4 {
-    margin: 0;
-    font-size: 1rem;
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
     color: #1e293b;
 }
 
 .info p {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     color: #64748b;
 }
 
-.btnAction {
-    background: #1e293b;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    border: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
+/* --- ELEMENTOS DE FORMULARIO --- */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
     margin-top: 1.5rem;
-    transition: background 0.2s;
 }
 
-.btnAction:hover {
-    background: #0f172a;
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
 }
 
-.btnSecondary {
-    background: #1e293b;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    border: none;
+.field label {
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
+    color: #475569;
+}
+
+.input,
+.selectInput {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #f1f5f9;
+    background: #f8fafc;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.input:focus,
+.selectInput:focus {
+    outline: none;
+    border-color: #0f172a;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.05);
+}
+
+.selectInput {
     cursor: pointer;
-    margin-top: 1.5rem;
-    transition: background 0.2s;
+    width: auto;
+    min-width: 180px;
+}
+
+/* --- BOTONES --- */
+.btnAction,
+.btnSecondary,
+.btnConfirm {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
+}
+
+.btnAction,
+.btnConfirm {
+    background: #0f172a;
+    color: white;
+}
+
+.btnAction:hover,
+.btnConfirm:hover:not(:disabled) {
+    background: #1e293b;
+    transform: translateY(-1px);
+}
+
+.btnSecondary {
+    background: #f1f5f9;
+    color: #1e293b;
 }
 
 .btnSecondary:hover {
-    background-color: #0f172a;
+    background: #e2e8f0;
 }
 
-.btnSecondary:disabled {
-    color: #0f172a;
-    opacity: 1 !important;
-    cursor: not-allowed;
-    background-color: #334155;
+.btnConfirm {
+    width: 100%;
+    margin-top: 1rem;
 }
 
+/* --- SWITCHES --- */
 .switch {
-    position: relative;
-    display: inline-block;
     width: 44px;
-    height: 22px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
 }
 
 .switch input {
@@ -139,127 +150,213 @@
 
 .slider {
     position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #e2e8f0;
-    transition: .4s;
-    border-radius: 34px;
+    inset: 0;
+    background: #e2e8f0;
+    border-radius: 50px;
+    transition: 0.3s;
 }
 
-.slider:before {
-    position: absolute;
+.slider::before {
     content: "";
-    height: 16px;
-    width: 16px;
+    position: absolute;
+    width: 18px;
+    height: 18px;
     left: 3px;
     bottom: 3px;
-    background-color: white;
-    transition: .4s;
+    background: white;
     border-radius: 50%;
+    transition: 0.3s;
 }
 
 .switch input:checked+.slider {
-    background-color: #e11d48;
-}
-
-.switch input:checked+.slider:before {
-    transform: translateX(22px);
-}
-
-.storageBarContainer {
-    margin-top: 1rem;
-}
-
-.storageInfo {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-bottom: 0.5rem;
-}
-
-.progressBar {
-    height: 8px;
-    background: #f1f5f9;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.progressFill {
-    height: 100%;
     background: #e11d48;
-    border-radius: 10px;
+}
+
+.switch input:checked+.slider::before {
+    transform: translateX(20px);
+}
+
+/* --- MODAL --- */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modalContent {
+    background: white;
+    width: 100%;
+    max-width: 460px;
+    padding: 2.5rem;
+    border-radius: 28px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.3s ease-out;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: #f8fafc;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.closeBtn:hover {
+    background: #fee2e2;
+    color: #e11d48;
+}
+
+.modalHeader h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.modalHeader p {
+    color: #64748b;
+    margin: 8px 0 0 0;
+    font-size: 0.95rem;
+}
+
+.modalBody {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- PASSWORD WRAPPER --- */
+.passwordWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.eyeBtn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.eyeBtn:hover {
+    color: #0f172a;
+}
+
+/* --- EXTRAS --- */
+.divider {
+    height: 1px;
+    background: #f1f5f9;
+    margin: 1.5rem 0;
 }
 
 .sectionSupport {
     background: #f8fafc;
-    border: 1px dashed #e2e8f0;
-    border-radius: 16px;
-    padding: 1.5rem 2rem;
+    border: 1.5px dashed #e2e8f0;
+    border-radius: 20px;
+    padding: 2rem;
 }
 
 .supportContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 }
 
 .btnWhatsapp {
     background: #1e293b;
     color: white;
     text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
     transition: transform 0.2s;
 }
 
 .btnWhatsapp:hover {
-    background: #0f172a;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.btnSecondary:disabled {
-    cursor: not-allowed;
+.progressBar {
+    height: 10px;
     background: #f1f5f9;
+    border-radius: 20px;
+    margin-top: 1rem;
+    overflow: hidden;
 }
 
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(8px);
+.progressFill {
+    height: 100%;
+    background: #e11d48;
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+.successContainer {
+    text-align: center;
+    padding: 2rem 0;
+    animation: fadeIn 0.4s ease;
+}
+
+.successIcon {
+    width: 64px;
+    height: 64px;
+    background: #e11d48;
+    color: white;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    font-size: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(225, 29, 72, 0.3);
 }
 
-.modalContent {
-    background: white;
-    width: 90%;
-    max-width: 450px;
-    padding: 2.5rem;
-    border-radius: 20px;
-    position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-    animation: slideUp 0.3s ease-out;
+.spin {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes slideUp {
     from {
-        transform: translateY(20px);
+        transform: translateY(30px);
         opacity: 0;
     }
 
@@ -269,134 +366,95 @@
     }
 }
 
-.closeBtn {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.closeBtn:hover {
-    color: #e11d48;
-}
-
-.modalHeader h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #1e293b;
-}
-
-.modalHeader p {
-    font-size: 0.9rem;
-    color: #64748b;
-    margin-top: 0.5rem;
-}
-
-.modalBody {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-}
-
-.btnConfirm {
-    background: #0f172a;
-    color: white;
-    border: none;
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: opacity 0.2s;
-}
-
-.btnConfirm:hover {
-    opacity: 0.9;
-}
-
-.successContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-    text-align: center;
-    animation: fadeIn 0.4s ease-out;
-}
-
-.successIcon {
-    width: 60px;
-    height: 60px;
-    background: #e11d48;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 10px 15px -3px rgba(225, 29, 72, 0.3);
-}
-
-.successContainer h4 {
-    color: #1e293b;
-    margin-bottom: 0.5rem;
-}
-
-.successContainer p {
-    color: #64748b;
-    font-size: 0.9rem;
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.95);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
     }
 }
 
+/* --- RESPONSIVE DESIGN --- */
 
+/* Tablets y pantallas medianas */
 @media (max-width: 768px) {
+    .container {
+        margin: 1rem auto;
+        padding: 0 1rem 3rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna para formularios */
+        gap: 1.25rem;
+    }
+
+    .supportContent {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .btnWhatsapp {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Celulares (Pantallas pequeñas) */
+@media (max-width: 480px) {
+    .sectionTitle {
+        font-size: 1.1rem;
+    }
 
     .row {
         flex-direction: column;
         align-items: stretch;
+        /* Los botones ocupan todo el ancho */
         gap: 1rem;
+        padding: 1.25rem 0;
+    }
+
+    .info {
+        text-align: left;
     }
 
     .btnAction,
     .btnSecondary,
-    .btnConfirm {
+    .selectInput {
         width: 100%;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.8rem 1rem;
-        font-size: 0.95rem;
-        line-height: 1.2;
-        margin-top: 0.5rem;
-        text-align: center;
-        white-space: normal;
+        /* Botones de acción completa en móvil */
+        min-width: unset;
     }
 
-    .btnAction {
-        margin-left: 0;
-        align-self: center;
+    .modalContent {
+        padding: 1.5rem;
+        width: 95%;
+        border-radius: 24px;
     }
 
-    .input {
-        width: 100%;
-        margin-top: 0.5rem;
+    .modalHeader h3 {
+        font-size: 1.25rem;
+    }
+
+    .closeBtn {
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+/* Ajuste para pantallas táctiles (evitar hover persistente) */
+@media (hover: none) {
+
+    .btnAction:hover,
+    .btnConfirm:hover,
+    .btnWhatsapp:hover {
+        transform: none;
     }
 }

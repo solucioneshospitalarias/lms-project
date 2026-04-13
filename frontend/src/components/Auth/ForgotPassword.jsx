@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { solicitarRestablecimiento } from "../../services/api"; // Esta función llama a tu API
+import { solicitarRestablecimiento } from "../../services/api";
 import { ArrowLeft } from "lucide-react";
 import { FaEnvelope, FaArrowLeft, FaCheckCircle } from "react-icons/fa";
 import styles from "./Login.module.css";
@@ -12,6 +12,9 @@ const ForgotPassword = () => {
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const query = new URLSearchParams(window.location.search);
+  const esProfesor = query.get("role") === "profesor";
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
@@ -28,38 +31,33 @@ const ForgotPassword = () => {
 
     setError("");
     setIsLoading(true);
-    setShowToast(false);
 
     try {
-      // Llamada a la API que generará la contraseña temporal en el backend
-      await solicitarRestablecimiento(email); 
-      
+      const tipoUsuario = esProfesor ? "profesor" : "alumno";
+
+      // Enviamos el tipo de usuario a la API (api.js)
+      await solicitarRestablecimiento(email, tipoUsuario);
+
       setIsLoading(false);
-      setShowToast(true); // "¡Enviado! Revisa tu bandeja de entrada"
-      
-      // Esperamos 4 segundos para que el usuario lea el mensaje y redirigimos al login
+      setShowToast(true);
+
       setTimeout(() => {
-        navigate("/login");
-      }, 4000); 
+        // Redirección automática tras éxito
+        navigate(esProfesor ? "/login-profesor" : "/login");
+      }, 4000);
 
     } catch (err) {
       setIsLoading(false);
-
       if (err.response && err.response.data) {
         const data = err.response.data;
-
-        // error personalizado del backend
         if (data.error) {
           setError(data.error);
           return;
         }
-
-        // por si algún día mandas validaciones tipo serializer
         if (data.email) {
           setError(Array.isArray(data.email) ? data.email[0] : data.email);
           return;
         }
-
         setError("Error del servidor");
       } else {
         setError("No se pudo conectar con el servidor");
@@ -149,8 +147,9 @@ const ForgotPassword = () => {
               <span>O</span>
             </div>
 
+            {/* BOTÓN VOLVER DINÁMICO */}
             <Link
-              to="/login"
+              to={esProfesor ? "/login-profesor" : "/login"}
               className={styles.btnGoogle}
               style={{ textDecoration: "none" }}
             >

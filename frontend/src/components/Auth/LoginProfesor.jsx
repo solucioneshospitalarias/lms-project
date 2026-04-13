@@ -9,6 +9,7 @@ const LoginProfesor = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -40,11 +41,9 @@ const LoginProfesor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setApiError(""); // Limpiar errores previos
+    setApiError("");
 
-    // Validaciones frontend
     let newErrors = {};
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!formData.email.trim()) {
@@ -59,48 +58,45 @@ const LoginProfesor = () => {
 
     setErrors(newErrors);
 
-    // Si no hay errores, hacer login
     if (Object.keys(newErrors).length === 0) {
       setIsLoading(true);
 
       try {
-        // Llamada a la API real
-        const response = await login(formData.email, formData.password);
+        const response = await login(formData.email, formData.password, "profesor");
 
-        // Verificar que sea un profesor
-        if (response.user.user_type !== "profesor") {
-          setIsLoading(false);
-          setApiError("Esta cuenta no es de tipo profesor. Por favor, usa el acceso de alumnos.");
-          return;
-        }
-
-        // Guardar información adicional del usuario
         if (response.user) {
           localStorage.setItem("userData", JSON.stringify(response.user));
         }
 
-        // Pequeño delay para mejor UX
+        setIsSuccess(true);
+
         setTimeout(() => {
           navigate("/panel-profesor", { replace: true });
-        }, 500);
+        }, 1500);
 
       } catch (error) {
         console.error("Error en login profesor:", error);
         setIsLoading(false);
 
-        // Manejar diferentes tipos de errores del backend
-        if (error.detail) {
-          setApiError(error.detail);
-        } else if (error.email) {
-          setErrors(prev => ({ ...prev, email: error.email[0] }));
-        } else if (error.password) {
-          setErrors(prev => ({ ...prev, password: error.password[0] }));
-        } else if (error.non_field_errors) {
-          setApiError(error.non_field_errors[0]);
-        } else if (typeof error === 'string') {
-          setApiError(error);
+        const serverData = error.response?.data;
+        const statusCode = error.response?.status;
+
+        if (statusCode === 403 || (statusCode === 400 && serverData?.error)) {
+          const mensajeDefault = "Acceso denegado: El perfil vinculado a esta cuenta no corresponde al tipo de usuario Profesor.";
+          setApiError(serverData.error || mensajeDefault);
+          return;
+        }
+
+        if (serverData) {
+          if (serverData.non_field_errors) {
+            setApiError(serverData.non_field_errors[0]);
+          } else if (serverData.error) {
+            setApiError(serverData.error);
+          } else {
+            setApiError("Error al iniciar sesión. Revisa tus credenciales.");
+          }
         } else {
-          setApiError("Error al iniciar sesión. Por favor, intenta de nuevo.");
+          setApiError("No se pudo conectar con el servidor.");
         }
       }
     }
@@ -181,7 +177,7 @@ const LoginProfesor = () => {
               />
               <span>Recordarme</span>
             </label>
-            <Link to="/forgot-password" className={styles.forgotLink}>
+            <Link to="/forgot-password?role=profesor" className={styles.forgotLink}>
               ¿Olvidaste tu contraseña?
             </Link>
           </div>
