@@ -473,23 +473,125 @@
   }
 }
 
-/* Responsividad */
 @media (max-width: 1024px) {
   .welcomeCard {
-    padding: 2rem;
+    padding: 2.5rem;
+    gap: 2.5rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+
+  .inspirationFlex {
+    gap: 2rem;
+  }
+
+  .sideSeal {
+    width: 180px; /* Reducimos un poco el sello */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .welcomeHero {
     flex-direction: column;
     text-align: center;
   }
+
   .textContent {
+    max-width: 100%;
+    margin-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 1rem;
     margin-bottom: 2rem;
   }
+
   .actions {
     justify-content: center;
+    flex-wrap: wrap; /* Botones uno debajo del otro si no caben */
   }
+
+  .imageContent {
+    flex: 0 0 auto;
+  }
+
   .mascot {
-    width: 200px;
+    width: 200px; /* Mascota más pequeña en móvil */
   }
+
+  .infoGrid {
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+  }
+
+  .inspirationFlex {
+    flex-direction: column-reverse; /* El sello queda arriba de la frase */
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .quote {
+    border-left: none;
+    border-top: 3px solid #c22821;
+    padding: 1.5rem 0 0 0;
+    max-width: 100%;
+  }
+
+  .sideSeal {
+    width: 140px;
+    margin: 0 auto;
+  }
+
+  .supportWrapper {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .supportAction {
+    width: 100%; /* Botón de soporte a todo el ancho en móvil */
+  }
+}
+
+@media (max-width: 480px) {
+  .welcomeCard {
+    padding: 1.5rem;
+  }
+
   .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .miniNotice {
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 20px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .miniNotice span {
+    font-size: 0.75rem;
+    white-space: normal; /* Permite que el texto rompa en dos líneas */
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%; /* Botones a todo el ancho */
+    padding: 12px 15px;
   }
 }
