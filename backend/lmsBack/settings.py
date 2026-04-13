@@ -17,6 +17,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'localhost:8005',
+    '127.0.0.1:8005',
     'backend-backend',
     env("BACKEND_URL_PRODUCTIVO").replace("https://", ""),
 ]
@@ -123,6 +125,15 @@ STATIC_URL = 'static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 # Configuración de JWT
 SIMPLE_JWT = {
