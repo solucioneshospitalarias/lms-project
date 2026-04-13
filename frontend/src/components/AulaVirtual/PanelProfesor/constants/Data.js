@@ -1,5 +1,5 @@
 import { icon } from "leaflet";
-import { LayoutDashboard, Users, BarChart3, BookOpen } from "lucide-react";
+import { LayoutDashboard, Users, BarChart3, BookOpen, Home } from "lucide-react";
 
 export const PROFESOR = {
     nombre: 'SR. WALTER',
@@ -112,14 +112,15 @@ export const TAREAS_PENDIENTES = [
 ];
 
 export const NAV_ITEMS = [
-    { key: 'inicio', label: 'Inicio', icon: LayoutDashboard},
+    { key: 'panelPrincipal', label: 'Panel Principal', icon: Home },
     { key: 'grupos', label: 'Mis Grupos', icon: Users },
-    { key: 'analitica', label: 'Analítica', icon: BarChart3 },
     { key: 'cursos', label: 'Cursos', icon: BookOpen },
+    { key: 'inicio', label: 'Inicio', icon: LayoutDashboard },
+    { key: 'analitica', label: 'Analítica', icon: BarChart3 },
 ];
 
 export const TITULOS_VISTAS = {
-    inicio: 'Panel Principal',
+    panelPrincipal: 'Bienvenido Profesor',
     grupos: 'Mis Grupos',
     analitica: 'Analítica Académica',
     cursos: 'Cursos',
