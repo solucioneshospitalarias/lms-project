@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body
+    style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; padding: 20px; margin: 0;">
+    <div
+        style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+
+        <div
+            style="background: #1a1a1a; background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%); color: white; padding: 30px; text-align: center;">
+            <h1 style="margin: 0; font-size: 24px;">Rutas del <span style="color: #e63946;">Saber</span></h1>
+        </div>
+
+        <div style="padding: 30px; line-height: 1.6; color: #444;">
+            <div
+                style="display: inline-block; background: #e63946; color: white; padding: 2px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; margin-bottom: 10px; text-transform: uppercase;">
+                NUEVO CONTACTO
+            </div>
+
+            <h2 style="margin-top: 10px; color: #1a1a1a; font-size: 20px;">Detalles del Mensaje</h2>
+            <p style="margin: 15px 0;">Hola Walter, has recibido una nueva solicitud de información a través del portal:
+            </p>
+
+            <div
+                style="background-color: #fcfcfc; border: 1px solid #eee; border-left: 4px solid #e63946; border-radius: 8px; margin: 20px 0; padding: 20px;">
+                <div style="margin-bottom: 10px; font-size: 14px;">
+                    <strong style="color: #1a1a1a; text-transform: uppercase; font-size: 12px;">Nombre
+                        Completo:</strong><br>{{ nombre }}
+                </div>
+                <div style="margin-bottom: 10px; font-size: 14px;">
+                    <strong style="color: #1a1a1a; text-transform: uppercase; font-size: 12px;">Correo
+                        Electrónico:</strong><br>{{ email }}
+                </div>
+                <div style="margin-bottom: 0; font-size: 14px;">
+                    <strong style="color: #1a1a1a; text-transform: uppercase; font-size: 12px;">Asunto:</strong><br>
+                    {{ asunto }}
+                </div>
+            </div>
+
+            <p style="margin: 15px 0;"><strong>Mensaje del usuario:</strong></p>
+
+            <div
+                style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; font-style: italic; color: #555; border: 1px inset #eee;">
+                "{{ mensaje }}"
+            </div>
+
+            <p style="margin-top: 25px; font-size: 14px;">Puedes responder a este mensaje directamente escribiendo al
+                correo del solicitante.</p>
+        </div>
+
+        <div
+            style="background: #f9f9f9; padding: 20px; text-align: center; font-size: 12px; color: #888; border-top: 1px solid #eee;">
+            <p style="margin: 5px 0;">&copy; 2026 Rutas del Saber. Todos los derechos reservados.</p>
+            <p style="margin: 5px 0;">Este es un reporte automático generado por el sistema de administración.</p>
+        </div>
+    </div>
+</body>
+
+</html>

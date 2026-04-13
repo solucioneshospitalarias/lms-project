@@ -3,21 +3,59 @@ import { motion } from "framer-motion";
 import styles from "./Contacto.module.css";
 import imgFormulario from "../../assets/FormularioContacto.png";
 import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
+import api from "../../services/api";
+import { toast } from 'react-hot-toast';
 
 const Contacto = () => {
-  const [email, setEmail] = useState("");
+  // 1. Estados iniciales
+  const [formData, setFormData] = useState({
+    nombre_completo: "",
+    email: "",
+    asunto: "",
+    mensaje: ""
+  });
+  const [isLoading, setIsLoading] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
-  const [asunto, setAsunto] = useState("");
-  const [mensaje, setMensaje] = useState("");
 
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValidEmail(emailRegex.test(value));
+  // 2. Manejador de cambios
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setIsValidEmail(emailRegex.test(value));
+    }
   };
 
-  // Variantes para los iconos flotantes (entran uno por uno)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isValidEmail) {
+      return toast.error("Por favor, ingresa un correo electrónico válido.");
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await api.post("/auth/enviar/", formData);
+      toast.success(response.data.message || "¡Mensaje enviado con éxito!");
+
+      setFormData({
+        nombre_completo: "",
+        email: "",
+        asunto: "",
+        mensaje: ""
+      });
+      setIsValidEmail(false);
+    } catch (error) {
+      console.error("Error en contacto:", error);
+      const errorMsg = error.response?.data?.message || "Error al conectar con el servidor.";
+      toast.error(errorMsg);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const iconVariants = {
     hidden: { opacity: 0, scale: 0 },
     visible: (i) => ({
@@ -102,23 +140,30 @@ const Contacto = () => {
         <div className={styles.formCard}>
           <div className={styles.formSide}>
             <h3 className={styles.formSubtitle}>FORMULARIO DE CONTACTO</h3>
-            <form className={styles.contactForm}>
+            <form onSubmit={handleSubmit} className={styles.contactForm}>
               <div className={styles.inputContainer}>
                 <input
                   type="text"
+                  name="nombre_completo" // IMPORTANTE
                   placeholder="Nombre completo"
+                  value={formData.nombre_completo} // VINCULADO
+                  onChange={handleChange}
                   className={styles.input}
+                  required
+                  disabled={isLoading}
                 />
               </div>
 
               <div className={styles.inputContainer}>
                 <input
                   type="email"
+                  name="email" // IMPORTANTE
                   placeholder="Correo electrónico"
-                  value={email}
-                  onChange={handleEmailChange}
+                  value={formData.email} // VINCULADO
+                  onChange={handleChange}
                   className={`${styles.input} ${isValidEmail ? styles.valid : ""}`}
                   required
+                  disabled={isLoading}
                 />
                 {isValidEmail && <CheckCircle size={18} className={styles.checkIcon} />}
               </div>
@@ -127,34 +172,40 @@ const Contacto = () => {
               <div className={styles.inputContainer}>
                 <input
                   type="text"
+                  name="asunto" // IMPORTANTE
                   placeholder="Asunto"
                   className={styles.input}
-                  maxLength={50} // Límite de 50
-                  value={asunto}
-                  onChange={(e) => setAsunto(e.target.value)}
+                  maxLength={50}
+                  value={formData.asunto} // VINCULADO
+                  onChange={handleChange}
+                  required
+                  disabled={isLoading}
                 />
-                <span className={`${styles.charCounter} ${asunto.length >= 45 ? styles.counterDanger : ""}`}>
-                  {asunto.length} / 50
+                <span className={`${styles.charCounter} ${formData.asunto.length >= 45 ? styles.counterDanger : ""}`}>
+                  {formData.asunto.length} / 50
                 </span>
               </div>
 
               {/* TEXTAREA CON CONTADOR */}
               <div className={styles.inputContainer}>
                 <textarea
+                  name="mensaje" // IMPORTANTE
                   placeholder="Escribe tu mensaje aquí..."
                   rows="4"
                   className={styles.textarea}
-                  maxLength={500} // Límite de 500
-                  value={mensaje}
-                  onChange={(e) => setMensaje(e.target.value)}
+                  maxLength={500}
+                  value={formData.mensaje} // VINCULADO
+                  onChange={handleChange}
+                  required
+                  disabled={isLoading}
                 ></textarea>
-                <span className={`${styles.charCounter} ${mensaje.length >= 480 ? styles.counterDanger : ""}`}>
-                  {mensaje.length} / 500
+                <span className={`${styles.charCounter} ${formData.mensaje.length >= 480 ? styles.counterDanger : ""}`}>
+                  {formData.mensaje.length} / 500
                 </span>
               </div>
 
-              <button type="submit" className={styles.submitBtn}>
-                Enviar Mensaje <Send size={18} />
+              <button type="submit" className={styles.submitBtn} disabled={isLoading}>
+                {isLoading ? "Enviando..." : "Enviar Mensaje"} <Send size={18} />
               </button>
             </form>
           </div>
