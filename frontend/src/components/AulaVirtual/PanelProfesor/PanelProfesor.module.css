@@ -1,11 +1,13 @@
 .root {
-    display: flex;
-    min-height: 100dvh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f4f6fb;
-    color: #1e293b;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  min-height: 100dvh;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  background: #f4f6fb;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -14,58 +16,57 @@ h3,
 h4,
 span,
 button {
-    font-family: inherit !important;
+  font-family: inherit !important;
 }
 
 /* ── Estado del sidebar ── */
 .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-    transition: margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  transition: margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expanded .main {
-    margin-left: 260px;
+  margin-left: 260px;
 }
 
 .collapsed .main {
-    margin-left: 68px;
+  margin-left: 68px;
 }
 
 /* ── Área de contenido scrollable ── */
 .contenido {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto;
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
-    animation: fadeIn 0.25s ease;
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeIn 0.25s ease;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  .expanded .main,
+  .collapsed .main {
+    margin-left: 68px;
+  }
 
-    .expanded .main,
-    .collapsed .main {
-        margin-left: 68px;
-    }
-
-    .contenido {
-        padding: 1rem;
-    }
+  .contenido {
+    padding: 1rem;
+  }
 }

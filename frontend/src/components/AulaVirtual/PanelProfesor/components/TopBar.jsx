@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './TopBar.module.css';
 import { ACTIVIDAD_RECIENTE } from '../constants/Data';
-import { LogOut, User, Settings, Bell } from 'lucide-react';
+import { LogOut, User, Settings, Bell, Menu } from 'lucide-react';
 import { useUser } from '../../../../context/UserContext';
 
-const TopBar = ({ titulo, setActiveTab }) => {
+const TopBar = ({ titulo, setActiveTab, isOpen, onToggle }) => {
   const { userData } = useUser();
 
   const [hora, setHora] = useState(new Date());
@@ -42,9 +42,19 @@ const TopBar = ({ titulo, setActiveTab }) => {
 
   return (
     <header className={styles.topBar}>
-      <div>
-        <h1 className={styles.titulo}>{titulo}</h1>
-        <p className={styles.fecha}>{fechaStr} · {horaStr}</p>
+      <div className={styles.headerLeft}>
+        <button
+          className={styles.menuBtn}
+          onClick={onToggle}
+          aria-label="Toggle Sidebar"
+        >
+          <Menu size={20} />
+        </button>
+
+        <div>
+          <h1 className={styles.titulo}>{titulo}</h1>
+          <p className={styles.fecha}>{fechaStr} · {horaStr}</p>
+        </div>
       </div>
 
       <div className={styles.acciones}>

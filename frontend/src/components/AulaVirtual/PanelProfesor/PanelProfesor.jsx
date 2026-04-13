@@ -13,11 +13,12 @@ import VistaAnalitica from './views/VistaAnalitica';
 import VistaCursos from './views/VistaCursos';
 import VistaPerfil from './views/VistaPerfil';
 import VistaConfiguracion from './views/VistaConfiguracion';
+import VistaPanelPrincipal from './views/VistaPanelPrincipal';
 // ── Data ──
 import { GRADOS, TITULOS_VISTAS } from './constants/Data';
 
 const PanelProfesor = () => {
-    const [activeTab, setActiveTab] = useState('inicio');
+    const [activeTab, setActiveTab] = useState('panelPrincipal');
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [gradoSeleccionado, setGradoSeleccionado] = useState(null);
 
@@ -47,9 +48,18 @@ const PanelProfesor = () => {
             />
 
             <main className={styles.main}>
-                <TopBar titulo={titulo} setActiveTab={setActiveTab} />
+                <TopBar
+                    titulo={titulo}
+                    setActiveTab={setActiveTab}
+                    isOpen={sidebarOpen}
+                    onToggle={() => setSidebarOpen(v => !v)}
+                />
 
                 <div className={styles.contenido} key={activeTab}>
+                    {activeTab === 'panelPrincipal' && (
+                        <VistaPanelPrincipal setActiveTab={setActiveTab} />
+                    )}
+
                     {activeTab === 'inicio' && (
                         <VistaInicio
                             grados={GRADOS}
