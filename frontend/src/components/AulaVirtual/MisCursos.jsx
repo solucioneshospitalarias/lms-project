@@ -13,7 +13,6 @@ const courses = [
     category: "Periodo 1",
     grade: "Regla de Colores",
     descripcion: 'Asumir la regulación',
-    teacher: "Walter",
     color: "#d93025",
     image: img1
   },
@@ -22,7 +21,6 @@ const courses = [
     category: "Periodo 2",
     grade: "¿Quién me cuida?",
     descripcion: 'Corresponsabilidad vial',
-    teacher: "Samir",
     color: "#FFB300",
     image: img2
   },
@@ -31,7 +29,6 @@ const courses = [
     category: "Periodo 3",
     grade: "Mi Cuerpo es Frágil",
     descripcion: 'Valoración de Riesgos',
-    teacher: "Jons",
     color: "#1e8e3e",
     image: img3
   },
@@ -40,7 +37,6 @@ const courses = [
     category: "Periodo 4",
     grade: "Conocer mi Camino y Reglas para Viajar",
     descripcion: 'Comprensión del entorno y Movilidad del Idónea',
-    teacher: "Samuel",
     color: "#1a73e8",
     image: img4
   },

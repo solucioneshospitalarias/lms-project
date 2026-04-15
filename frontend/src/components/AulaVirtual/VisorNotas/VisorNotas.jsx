@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importante para navegar
 import { X, FileText, ArrowLeft } from "lucide-react";
 import styles from "./VisorNotas.module.css";
-import pdfFile from "../../layout/Footer/Docs/TerminosCondiciones.pdf";
+import pdfFile from "../../AulaVirtual/PanelProfesor/PDFS/0-P1-GPSV-Grado Transición.pdf";
 
 const VisorNotas = () => {
     const navigate = useNavigate();
