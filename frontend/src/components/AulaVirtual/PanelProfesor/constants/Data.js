@@ -2,10 +2,10 @@ import { icon } from "leaflet";
 import { LayoutDashboard, Users, BarChart3, BookOpen, Home } from "lucide-react";
 
 export const PROFESOR = {
-    nombre: 'SR. WALTER',
-    iniciales: 'W',
-    rol: 'Desarrollador de Software',
-    correo: 'walter@rutasdelsaber.com',
+    nombre: 'DOCENTE DE PRUEBA',
+    iniciales: 'DP',
+    rol: 'Coordinador Académico',
+    correo: 'docente@rutasdelsaber.com',
     foto: null,
 };
 

@@ -10,7 +10,7 @@ const VistaPerfil = () => {
 
     const [tempNombre, setTempNombre] = useState(userData.nombre);
     const [tempFoto, setTempFoto] = useState(userData.foto);
-    const [tempCorreo, setTempCorreo] = useState(userData.correo || "walter@rutasdelsaber.com");
+    const [tempCorreo, setTempCorreo] = useState(userData.correo || "correo@institucion.edu");
 
     const fileInputRef = useRef(null);
 
@@ -40,7 +40,7 @@ const VistaPerfil = () => {
     const handleCancel = () => {
         setTempNombre(userData.nombre);
         setTempFoto(userData.foto);
-        setTempCorreo(userData.correo || "walter@rutasdelsaber.com");
+        setTempCorreo(userData.correo || "correo@institucion.edu");
         setIsEditing(false);
     }
 
@@ -98,13 +98,15 @@ const VistaPerfil = () => {
                                 className={styles.input}
                             />
                         ) : (
-                            <p className={styles.textStatic}>{userData.correo || "walter@rutasdelsaber.com"}</p>
+                            <p className={styles.textStatic}>{userData.correo || "correo@institucion.edu"}</p>
                         )}
                     </div>
 
                     <div className={styles.field} style={{ gridColumn: 'span 2' }}>
                         <label>Institución (No editable)</label>
-                        <p className={styles.textStatic} style={{ color: '#94a3b8' }}>Rutas del Saber</p>
+                        <p className={styles.textStatic} style={{ color: '#94a3b8' }}>
+                            {userData.institucion || "Institución Educativa"}
+                        </p>
                     </div>
                 </div>
 
@@ -126,7 +128,7 @@ const VistaPerfil = () => {
                 <h4 style={{ marginTop: 0, marginBottom: '1rem', color: '#1e293b' }}>Biografía / Enfoque Educativo</h4>
                 <div className={styles.field}>
                     <p style={{ color: '#1e293b', lineHeight: 1.6, margin: 0 }}>
-                        Docente de Tecnología apasionado por el desarrollo de software y el aprendizaje significativo.
+                        Docente comprometido con la excelencia académica y el desarrollo integral de los estudiantes a través de metodologías innovadoras.
                     </p>
                 </div>
             </div>

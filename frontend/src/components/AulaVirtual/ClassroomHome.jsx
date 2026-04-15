@@ -3,8 +3,10 @@ import styles from './ClassroomHome.module.css';
 import cocodriloImg from '../../assets/favicon.ico';
 import imagenModalBienvenida from '../../assets/Item1.png';
 import imagenModalMetodologia from '../../assets/Item2.png';
+import { useUser } from '../../context/UserContext';
 
 const ClassroomHome = () => {
+  const { userData } = useUser();
   const [modalContent, setModalContent] = useState(null);
 
   return (
@@ -46,7 +48,7 @@ const ClassroomHome = () => {
                   {modalContent === 'bienvenida' ? (
                     <>
                       <div className={styles.badgeSmall}>Módulo Introductorio</div>
-                      <h2 className={styles.modalTitle}>¡Bienvenido, Walter! 👋</h2>
+                      <h2 className={styles.modalTitle}>¡Bienvenido, {userData.nombre}! 👋</h2>
                       <p className={styles.modalSubtitle}>Inicia tu formación en Seguridad Vial.</p>
 
                       <div className={styles.learningPath}>
