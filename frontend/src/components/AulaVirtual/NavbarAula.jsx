@@ -4,8 +4,10 @@ import { FaBars } from "react-icons/fa";
 import { HiOutlineUser, HiOutlineCog, HiOutlineLogout, HiOutlineBell } from "react-icons/hi"; // Iconos más minimalistas
 import styles from "./NavbarAula.module.css";
 import logo from "../../assets/favicon.ico";
+import { useUser } from "../../context/UserContext";
 
 const NavbarAula = ({ toggleSidebar }) => {
+  const { userData } = useUser();
   const navigate = useNavigate();
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const menuRef = useRef(null);
@@ -25,10 +27,11 @@ const NavbarAula = ({ toggleSidebar }) => {
     navigate("/login", { replace: true });
   };
 
-  const userData = {
-    name: "Walter Steven",
-    initial: "W",
-    avatarColor: "#c22821" // Rojo institucional de Rutas del Saber
+
+  const userDisplay = {
+    name: userData.nombre,
+    initial: userData.iniciales || userData.nombre.charAt(0).toUpperCase(),
+    avatarColor: "#c22821"
   };
 
   const handleNavigate = (path) => {
@@ -56,9 +59,9 @@ const NavbarAula = ({ toggleSidebar }) => {
           <div
             className={styles.avatar}
             onClick={() => setShowAccountMenu(!showAccountMenu)}
-            style={{ backgroundColor: userData.avatarColor }}
+            style={{ backgroundColor: userDisplay.avatarColor }}
           >
-            {userData.initial}
+            {userDisplay.initial}
           </div>
 
           {showAccountMenu && (

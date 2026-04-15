@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { User, ShieldCheck, Trash2, Camera, Edit2, X, Save, CheckCircle } from "lucide-react";
 import styles from "./MiPerfil.module.css";
 import img from '../../assets/favicon.ico'
+import { useUser } from '../../context/UserContext';
 
 const MiPerfil = () => {
-
+    const { userData } = useUser();
     const [isEditing, setIsEditing] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const fileInputRef = useRef(null);
-
     const [avatarPreview, setAvatarPreview] = useState(null);
 
     const handleCameraButtonClick = () => {
@@ -34,10 +34,10 @@ const MiPerfil = () => {
     };
 
     const [formData, setFormData] = useState({
-        nombreCompleto: "Walter",
-        correo: "contactos@rutasdelsaber.com",
-        telefono: "+57 000 000 000",
-        ciudad: "Barranquilla, Atlántico"
+        nombreCompleto: userData.nombre,
+        correo: userData.correo || "usuario@rutasdelsaber.com",
+        telefono: userData.telefono || "+57 000 000 000",
+        ciudad: userData.ciudad || "Bogotá, Colombia"
     });
 
     const handleEditClick = () => setIsEditing(true);
@@ -126,7 +126,7 @@ const MiPerfil = () => {
                                 value={formData.nombreCompleto}
                                 onChange={handleInputChange}
                                 disabled={!isEditing}
-                                placeholder="Walter"
+                                placeholder="Ingresa tu nombre"
                             />
                         </div>
                         <div className={styles.field}>
@@ -137,7 +137,7 @@ const MiPerfil = () => {
                                 value={formData.correo}
                                 onChange={handleInputChange}
                                 disabled={!isEditing}
-                                placeholder="contactos@rutasdelsaber.com"
+                                placeholder="ejemplo@correo.com"
                             />
                         </div>
                         <div className={styles.field}>
@@ -159,7 +159,7 @@ const MiPerfil = () => {
                                 value={formData.ciudad}
                                 onChange={handleInputChange}
                                 disabled={!isEditing}
-                                placeholder="Barranquilla, Atlántico"
+                                placeholder="Ciudad, Departamento"
                             />
                         </div>
                     </div>
