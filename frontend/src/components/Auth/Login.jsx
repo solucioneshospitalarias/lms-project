@@ -3,6 +3,7 @@ import styles from "./Login.module.css";
 import { login } from "../../services/api.js";
 import { Mail, Lock, ArrowRight, Chrome, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from '../../context/UserContext.jsx';
 import confetti from "canvas-confetti";
 import Img1 from "../../assets/Item1.png";
 import Img2 from "../../assets/Item2.png";
@@ -14,6 +15,7 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { updateUserData } = useUser();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,15 +110,26 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // 1. Enviamos el tercer parámetro "alumno"
       const response = await login(email, password, "alumno");
 
-      // 2. Si llega aquí, es porque el servidor devolvió 200 OK y SÍ es alumno
       console.log("Login exitoso y autorizado:", response);
 
       if (response.user) {
         localStorage.setItem("userData", JSON.stringify(response.user));
+
+        const rawNombre = response.user.perfil?.nombre_completo || "Usuario";
+        const nombreReal = [...new Set(rawNombre.split(' '))].join(' ');
+
+        updateUserData({
+          nombre: nombreReal,
+          rol: "Estudiante Verificado",
+          user_type: "alumno",
+          correo: response.user.email, // Añadimos el correo real aquí
+          iniciales: nombreReal.charAt(0).toUpperCase(),
+          foto: response.user.foto || null
+        });
       }
+
 
       // Lógica de rememberMe...
 

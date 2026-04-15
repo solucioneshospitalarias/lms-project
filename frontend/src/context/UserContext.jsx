@@ -1,17 +1,29 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [userData, setUserData] = useState({
-        nombre: "Sr. Walter",
-        rol: "Desarrollador de Software",
-        iniciales: "W",
+        nombre: "Usuario Invitado",
+        rol: "Consultor",
+        user_type: null,
+        iniciales: "U",
         foto: null
     });
 
+    useEffect(() => {
+        const savedUser = localStorage.getItem('userData');
+        if (savedUser) {
+            setUserData(JSON.parse(savedUser));
+        }
+    }, []);
+
     const updateUserData = (newData) => {
-        setUserData((prev) => ({ ...prev, ...newData }));
+        setUserData((prev) => {
+            const updated = { ...prev, ...newData };
+            localStorage.setItem('userData', JSON.stringify(updated));
+            return updated;
+        });
     };
 
     return (

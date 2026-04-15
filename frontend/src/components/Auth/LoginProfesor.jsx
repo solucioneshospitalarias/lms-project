@@ -3,9 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { Mail, Lock, ArrowLeft, Users, ChevronLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import styles from "./LoginProfesor.module.css";
 import { login } from "../../services/api.js";
+import { useUser } from "../../context/UserContext.jsx";
 
 const LoginProfesor = () => {
   const navigate = useNavigate();
+  const { updateUserData } = useUser();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -66,7 +68,23 @@ const LoginProfesor = () => {
 
         if (response.user) {
           localStorage.setItem("userData", JSON.stringify(response.user));
+
+          const rawNombre = response.user.perfil?.nombre_completo || "Usuario";
+          const nombreReal = [...new Set(rawNombre.split(' '))].join(' ');
+
+
+          updateUserData({
+            nombre: nombreReal,
+            rol: "Docente Académico",
+            user_type: "profesor",
+            correo: response.user.email,
+            institucion: response.user.perfil?.colegio?.nombre_colegio || "Rutas del Saber",
+            iniciales: nombreReal.charAt(0).toUpperCase(),
+            foto: response.user.foto || null
+          });
         }
+
+
 
         setIsSuccess(true);
 
