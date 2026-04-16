@@ -6,7 +6,7 @@ import Sidebar from './components/SidebarProfesor';
 import TopBar from './components/TopBar';
 
 // ── Vistas ──
-import VistaInicio from './views/VistaInicio';
+import VistaActividades from './views/VistaActividades';
 import VistaGrupos from './views/VistaGrupos';
 import VistaDetalle from './views/VistaDetalle';
 import VistaAnalitica from './views/VistaAnalitica';
@@ -60,8 +60,8 @@ const PanelProfesor = () => {
                         <VistaPanelPrincipal setActiveTab={setActiveTab} />
                     )}
 
-                    {activeTab === 'inicio' && (
-                        <VistaInicio
+                    {activeTab === 'actividades' && (
+                        <VistaActividades
                             grados={GRADOS}
                             setActiveTab={setActiveTab}
                             setGradoSeleccionado={setGradoSeleccionado}
