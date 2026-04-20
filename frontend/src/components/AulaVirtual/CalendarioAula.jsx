@@ -28,7 +28,7 @@ const DIAS_HEADER = ["lun", "mar", "mié", "jue", "vie", "sáb", "dom"];
 
 const CalendarioAula = () => {
   const [fechaReferencia, setFechaReferencia] = useState(new Date());
-  const [tipoVista, setTipoVista] = useState("semana");
+  const [tipoVista, setTipoVista] = useState("mes");
 
   const hoy = new Date();
 
