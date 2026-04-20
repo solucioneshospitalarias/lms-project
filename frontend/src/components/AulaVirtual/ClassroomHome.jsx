@@ -16,7 +16,7 @@ const ClassroomHome = () => {
           <span className={styles.badge}>Guía Práctica</span>
           <h1 className={styles.title}>
             Seguridad Vial: <br />
-            <span className={styles.highlight}>Mis primeros pasos seguros</span>
+            <span className={styles.highlight}>Grado Transición</span>
           </h1>
           <p className={styles.description}>
             Una plataforma educativa diseñada para enseñar a niños y adolescentes los fundamentos de la seguridad vial a través de experiencias interactivas, videos inmersivos y simuladores realistas.
