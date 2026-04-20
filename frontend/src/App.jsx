@@ -29,6 +29,7 @@ import ConfiguracionAula from "./components/AulaVirtual/ConfiguracionAula";
 import CalendarioAula from './components/AulaVirtual/CalendarioAula';
 import VisorNotas from './components/AulaVirtual/VisorNotas/VisorNotas'
 import PanelProfesor from './components/AulaVirtual/PanelProfesor/PanelProfesor'
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
 
 function App() {
   const { pathname } = useLocation();
@@ -71,9 +72,25 @@ function App() {
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/autorizacion" element={<Autorizacion />} />
 
-            <Route path="/panel-profesor" element={<PanelProfesor />} />
+            {/* PROTEGER PANEL PROFESOR */}
+            <Route
+              path="/panel-profesor"
+              element={
+                <ProtectedRoute allowedRoles={['profesor']}>
+                  <PanelProfesor />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/aula-virtual" element={<AdminLayout />}>
+            {/* PROTEGER AULA VIRTUAL (ALUMNOS) */}
+            <Route
+              path="/aula-virtual/*"
+              element={
+                <ProtectedRoute allowedRoles={['alumno']}>
+                  <AdminLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<ClassroomHome />} />
               <Route path="mi-perfil" element={<MiPerfil />} />
               <Route path="mis-cursos" element={<MisCursos />} />
@@ -83,7 +100,15 @@ function App() {
               <Route path="calendario" element={<CalendarioAula />} />
             </Route>
 
-            <Route path="/visor-notas" element={<VisorNotas />} />
+            {/* PROTEGER VISOR DE NOTAS (AMBOS) */}
+            <Route
+              path="/visor-notas"
+              element={
+                <ProtectedRoute allowedRoles={['alumno', 'profesor']}>
+                  <VisorNotas />
+                </ProtectedRoute>
+              }
+            />
 
           </Routes>
 
