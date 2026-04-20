@@ -36,8 +36,7 @@ jobs:
           server-dir: /public_html/
           protocol: ftp
           port: 21
-          timeout: 90000
-          passive: true
+          timeout: 120000
           dangerous-clean-slate: false
           dry-run: false
           state-name: .ftp-state-frontend    # ← estado exclusivo del frontend
@@ -53,8 +52,7 @@ jobs:
           server-dir: /lms-project/
           protocol: ftp
           port: 21
-          timeout: 90000
-          passive: true
+          timeout: 120000
           dangerous-clean-slate: false
           dry-run: false
           state-name: .ftp-state-backend     # ← estado exclusivo del backend
