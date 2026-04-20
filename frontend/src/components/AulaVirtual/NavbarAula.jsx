@@ -30,7 +30,7 @@ const NavbarAula = ({ toggleSidebar }) => {
 
   const userDisplay = {
     name: userData.nombre,
-    initial: userData.iniciales || userData.nombre.charAt(0).toUpperCase(),
+    initial: userData.iniciales || (userData?.nombre ? userData.nombre.charAt(0).toUpperCase() : "U"),
     avatarColor: "#c22821"
   };
 
