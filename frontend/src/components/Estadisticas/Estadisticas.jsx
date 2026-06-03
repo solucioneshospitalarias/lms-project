@@ -6,7 +6,7 @@ import {
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { Car, UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink, School, FileText } from 'lucide-react'
+import { UserSearch, Activity, ShieldAlert, Users, Home, ExternalLink, School, FileText } from 'lucide-react'
 import styles from './Estadisticas.module.css';
 import img from '../../assets/BaseDatos.png'
 
@@ -605,11 +605,6 @@ const Estadisticas = () => {
                   name: "Boletin estadistico",
                   url: "https://www.atlantico.gov.co/images/stories/adjuntos/educacion/Planeacion/Boletin_Estadistico2024Educacion.pdf",
                   icon: <FileText size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
-                },
-                {
-                  name: "Muertes por eventos de transporte",
-                  url: "https://ansv.correocertificado4-72.com.co/viewmessage.php?messageid=id235039aafc880da4953f7e245a6a5a852e49bfc164545939bfb500b254775142",
-                  icon: <Car size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
                 },
                 {
                   name: "Desaparecidos en Colombia (Histórico)",
