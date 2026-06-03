@@ -612,7 +612,7 @@ const Estadisticas = () => {
                   icon: <UserSearch size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
                 },
                 {
-                  name: "Lesiones por eventos de transporte",
+                  name: "Siniestralidad Vial",
                   url: "https://ansv.correocertificado4-72.com.co/viewmessage.php?messageid=id235039aafc880da4953f7e245a6a5a852e49bfc164545939bfb500b254775142",
                   icon: <Activity size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
                 },
