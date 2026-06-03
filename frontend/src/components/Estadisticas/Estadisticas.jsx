@@ -608,7 +608,7 @@ const Estadisticas = () => {
                 },
                 {
                   name: "Muertes por eventos de transporte",
-                  url: "https://www.datos.gov.co/Justicia-y-Derecho/Muertes-por-eventos-de-transporte-Colombia-a-os-20/s65h-7665/about_data",
+                  url: "https://ansv.correocertificado4-72.com.co/viewmessage.php?messageid=id235039aafc880da4953f7e245a6a5a852e49bfc164545939bfb500b254775142",
                   icon: <Car size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
                 },
                 {
@@ -618,7 +618,7 @@ const Estadisticas = () => {
                 },
                 {
                   name: "Lesiones por eventos de transporte",
-                  url: "https://www.datos.gov.co/Justicia-y-Derecho/Lesiones-por-eventos-de-transporte-Colombia-a-os-2/ezhf-hscf/about_data",
+                  url: "https://ansv.correocertificado4-72.com.co/viewmessage.php?messageid=id235039aafc880da4953f7e245a6a5a852e49bfc164545939bfb500b254775142",
                   icon: <Activity size={20} strokeWidth={2} color="#ba0000" className={styles.linkIcon} />
                 },
                 {
